@@ -1,0 +1,943 @@
+,collectionSiteId,collectorUsername,airTemp,algalBloom,algalBloomSheen,batherLoad,plantDebris,time.of.entry,Date,Time,turbidity,waterAppearance,waterfowlPresence,waterTemp,waveIntensity,comment,phosphorusSample,favorability,lat,long
+1,MononaPier9,arntsen,undefined,1,0,1,2,7/7/2014 12:09,5/25/2014,13:20:00,undefined,1,1,undefined,1,undefined,FALSE,Good,43.05718333,-89.39632778
+2,MononaPier9,arntsen,undefined,2,2,1,1,7/7/2014 12:10,6/3/2014,6:45:00,undefined,1,1,undefined,2,undefined,TRUE,Good,43.05718333,-89.39632778
+3,MononaPier9,arntsen,66.2,1,0,1,2,7/7/2014 12:11,6/10/2014,6:50:00,97,1,1,71.6,2,undefined,FALSE,Good,43.05718333,-89.39632778
+4,MononaPier9,arntsen,63.1,2,2,1,2,6/17/2014,6/15/2014,17:00:37,75,0,1,79,2,undefined,FALSE,Unknown,43.05718333,-89.39632778
+5,MononaPier9,arntsen,81,2,2,1,3,7/7/2014 12:14,6/22/2014,14:50:00,115,1,2,82,1,undefined,FALSE,Poor,43.05718333,-89.39632778
+6,MononaPier9,arntsen,78.9,2,2,1,2,7/7/2014 12:15,7/6/2014,13:00:00,115,1,1,76.3,1,undefined,FALSE,Fair,43.05718333,-89.39632778
+7,MononaPier9,arntsen,66.2,2,2,1,2,8/16/2014 10:14,7/15/2014,14:30:53,115,1,2,71.6,2,undefined,FALSE,Fair,43.05718333,-89.39632778
+8,MononaPier9,arntsen,86.8,2,2,1,2,8/16/2014 10:15,7/21/2014,18:50:38,115,1,1,82,1,undefined,FALSE,Fair,43.05718333,-89.39632778
+9,MononaPier9,arntsen,73.8,1,0,1,1,8/16/2014 10:17,7/28/2014,15:16:01,115,1,1,73.2,1,undefined,FALSE,Good,43.05718333,-89.39632778
+10,MononaPier9,arntsen,76.5,1,0,1,2,8/16/2014 10:18,8/2/2014,12:17:02,115,1,1,78.8,1,undefined,TRUE,Good,43.05718333,-89.39632778
+11,MononaPier9,arntsen,74.5,1,0,1,1,8/16/2014 10:18,8/12/2014,18:18:04,115,1,1,75.2,1,undefined,FALSE,Good,43.05718333,-89.39632778
+12,MononaPier9,arntsen,79.3,1,0,1,2,9/9/2014 14:21,8/19/2014,19:00:42,117,0,1,77.7,1,undefined,FALSE,Unknown,43.05718333,-89.39632778
+13,MononaPier9,arntsen,77.7,1,0,1,2,9/9/2014 14:22,8/25/2014,18:30:12,115,0,1,78.3,1,undefined,FALSE,Unknown,43.05718333,-89.39632778
+14,MononaPier9,arntsen,82.8,1,0,1,2,9/9/2014 14:23,9/1/2014,15:40:25,115,0,1,77.4,1,undefined,TRUE,Unknown,43.05718333,-89.39632778
+15,MononaPier9,arntsen,83.1,2,2,1,2,7/7/2014 12:12,6/16/2014,17:00:00,75,1,1,79,1,undefined,FALSE,Fair,43.05718333,-89.39632778
+16,MendotaPier6,arries,71.6,2,0,1,1,8/13/2014 8:19,5/26/2014,8:15:12,45,2,1,67.1,1,undefined,FALSE,Fair,43.1353,-89.42991667
+17,MendotaPier6,arries,74.5,2,0,1,2,8/13/2014 8:21,6/6/2014,8:38:02,43,2,2,68.7,1,undefined,TRUE,Unknown,43.1353,-89.42991667
+18,MendotaPier6,arries,72.3,2,0,1,2,8/13/2014 8:23,6/7/2014,8:27:43,33,2,2,62.2,1,undefined,FALSE,Unknown,43.1353,-89.42991667
+19,MendotaPier6,arries,60.3,1,0,1,1,8/13/2014 8:24,6/8/2014,8:54:42,91,1,2,62.6,1,undefined,FALSE,Good,43.1353,-89.42991667
+20,MendotaPier6,arries,64.4,1,0,1,2,8/13/2014 8:26,6/9/2014,8:15:03,93,1,1,63.9,1,undefined,FALSE,Good,43.1353,-89.42991667
+21,MendotaPier6,arries,80.6,2,0,1,2,8/13/2014 8:27,6/17/2014,15:45:16,47,2,2,78.3,1,undefined,FALSE,Unknown,43.1353,-89.42991667
+22,MendotaPier6,arries,77,1,0,1,1,8/13/2014 8:28,7/4/2014,8:40:45,120,1,3,71.4,1,undefined,FALSE,Good,43.1353,-89.42991667
+23,MendotaPier6,arries,68.7,1,0,1,1,8/13/2014 8:29,7/6/2014,8:27:57,104,1,1,69.3,1,undefined,FALSE,Good,43.1353,-89.42991667
+24,MendotaPier6,arries,79.3,2,0,1,2,8/13/2014 8:31,7/7/2014,15:15:01,61,2,2,77.7,1,undefined,TRUE,Unknown,43.1353,-89.42991667
+25,MendotaPier6,arries,67.3,1,0,1,1,8/13/2014 8:32,7/19/2014,7:54:18,75,1,2,72.7,1,undefined,FALSE,Good,43.1353,-89.42991667
+26,MendotaPier6,arries,79,1,0,1,2,8/13/2014 8:33,7/26/2014,9:13:29,40,2,1,71.8,1,undefined,FALSE,Good,43.1353,-89.42991667
+27,MendotaPier6,arries,82,1,0,1,1,8/13/2014 8:34,8/4/2014,11:24:49,33,3,2,78.4,1,undefined,TRUE,Poor,43.1353,-89.42991667
+28,MendotaPier6,arries,71.2,1,0,1,1,8/16/2014 8:57,8/16/2014,8:48:07,30,3,1,72.7,1,undefined,FALSE,Poor,43.1353,-89.42991667
+29,MendotaPier6,arries,76.5,1,0,2,1,8/23/2014 9:11,8/23/2014,9:02:34,30,2,3,79.3,2,undefined,FALSE,Good,43.1353,-89.42991667
+30,MendotaPier6,arries,72.7,1,0,1,1,8/30/2014 9:02,8/30/2014,8:48:55,27,2,1,74.7,2,undefined,FALSE,Good,43.1353,-89.42991667
+31,MendotaPier6,arries,80.6,1,0,1,1,9/5/2014 10:03,9/5/2014,9:46:11,32,2,1,75.9,1,undefined,TRUE,Good,43.1353,-89.42991667
+32,Mendota3,ausel,72.3,1,0,1,1,7/2/2014 10:01,7/1/2014,11:30:00,118,1,1,78.9,2,undefined,TRUE,Good,"43.126486,",-89.399675
+33,Mendota3,ausel,74.5,1,0,1,1,7/7/2014 9:46,7/7/2014,9:44:00,119,1,2,74.1,1,undefined,FALSE,Good,"43.126486,",-88.399675
+34,Mendota3,ausel,75.9,1,0,1,1,7/13/2014 11:42,7/13/2014,11:39:00,119,3,1,76.5,2,undefined,FALSE,Poor,"43.126486,",-87.399675
+35,Mendota3,ausel,70.2,1,0,1,1,7/20/2014 9:49,7/20/2014,9:46:00,75,3,2,73.1,1,undefined,FALSE,Poor,"43.126486,",-86.399675
+36,Mendota3,ausel,72.7,1,0,1,1,7/27/2014 10:15,7/27/2014,10:12:00,88.3,3,2,74.5,1,undefined,FALSE,Poor,"43.126486,",-85.399675
+37,Mendota3,ausel,77,1,0,1,2,8/10/2014 13:09,8/10/2014,13:07:03,91.3,2,1,78.8,1,I was out of town the first week of August.,TRUE,Good,"43.126486,",-84.399675
+38,Mendota3,ausel,79.5,1,0,2,1,8/20/2014 12:36,8/20/2014,11:56:40,88,1,1,79.2,1,undefined,FALSE,Good,"43.126486,",-83.399675
+39,Mendota3,ausel,77.4,1,0,1,2,9/3/2014 13:01,9/3/2014,12:58:56,58,3,1,77,2,undefined,TRUE,Poor,"43.126486,",-82.399675
+40,KegonsaPier4,balz,60.8,1,0,1,1,7/6/2014 21:48,5/17/2014,13:00:00,120,1,1,60.3,1,,FALSE,Good,42.94964722,-89.26027222
+41,KegonsaPier4,balz,83.5,1,0,1,1,7/6/2014 21:51,5/25/2014,16:46:00,120,1,1,68,1,,FALSE,Good,42.94964722,-89.26027222
+42,KegonsaPier4,balz,84.2,1,0,2,1,7/6/2014 21:53,5/31/2014,16:53:00,120,1,1,73.4,2,,FALSE,Good,42.94964722,-89.26027222
+43,KegonsaPier4,balz,69.8,1,0,1,1,7/6/2014 21:55,6/4/2014,17:30:00,120,1,1,72.3,1,,TRUE,Good,42.94964722,-89.26027222
+44,KegonsaPier4,balz,80.4,1,0,1,1,7/6/2014 21:56,6/7/2014,16:30:00,95,1,1,74.5,2,,FALSE,Good,42.94964722,-89.26027222
+45,KegonsaPier4,balz,75.7,1,0,1,1,7/6/2014 21:57,6/15/2014,10:12:00,120,1,1,68.4,1,,FALSE,Good,42.94964722,-89.26027222
+46,KegonsaPier4,balz,77.9,1,0,1,1,7/6/2014 21:58,6/18/2014,17:05:00,85,2,1,74.8,2,,FALSE,Good,42.94964722,-89.26027222
+47,KegonsaPier4,balz,78.1,1,0,1,1,7/6/2014 21:59,6/21/2014,18:30:00,103,1,1,75.2,1,,FALSE,Good,42.94964722,-89.26027222
+48,KegonsaPier4,balz,82,1,0,1,1,7/6/2014 22:00,6/28/2014,18:08:00,86,2,1,75.2,1,,FALSE,Good,42.94964722,-89.26027222
+49,KegonsaPier4,balz,69.6,1,0,1,1,7/6/2014 22:01,7/2/2014,16:22:00,73,2,1,73.4,3,,FALSE,Good,42.94964722,-89.26027222
+50,KegonsaPier4,balz,78.8,1,0,1,1,7/6/2014 22:03,7/6/2014,18:21:00,97,1,1,73.4,1,,TRUE,Good,42.94964722,-89.26027222
+51,KegonsaPier4,balz,73.4,1,0,1,1,7/11/2014 7:57,7/9/2014,19:00:00,86,2,1,75,2,,FALSE,Good,42.94964722,-89.26027222
+52,KegonsaPier4,balz,81.5,1,0,1,1,8/13/2014 21:56,7/19/2014,16:19:06,45,2,1,74.7,1,,FALSE,Good,42.94964722,-89.26027222
+53,KegonsaPier4,balz,78.4,1,0,1,1,8/13/2014 22:02,7/27/2014,16:14:25,45,3,1,77,3,undefined,FALSE,Poor,42.94964722,-89.26027222
+54,KegonsaPier4,balz,83.7,1,0,1,1,8/13/2014 22:03,8/1/2014,17:13:24,64,3,1,77.7,1,undefined,FALSE,Poor,42.94964722,-89.26027222
+55,KegonsaPier4,balz,75.5,1,0,1,1,8/13/2014 22:08,8/3/2014,19:42:57,67,3,1,78.8,1,undefined,TRUE,Poor,42.94964722,-89.26027222
+56,KegonsaPier4,balz,68.7,1,0,1,1,8/13/2014 22:05,8/3/2014,6:54:02,59,3,1,74.8,1,undefined,FALSE,Poor,42.94964722,-89.26027222
+57,KegonsaPier4,balz,80.1,1,0,1,1,8/13/2014 22:10,8/8/2014,16:25:17,45,3,1,78.8,2,undefined,FALSE,Poor,42.94964722,-89.26027222
+58,KegonsaPier4,balz,75.2,1,0,1,1,8/13/2014 22:11,8/13/2014,19:42:34,42,3,1,76.1,2,undefined,FALSE,Poor,42.94964722,-89.26027222
+59,KegonsaPier4,balz,83.5,1,0,2,2,9/9/2014 13:53,8/31/2014,16:39:45,35,0,1,77,2,undefined,FALSE,Unknown,42.94964722,-89.26027222
+60,KegonsaPier4,balz,73,1,0,1,1,9/9/2014 13:52,8/31/2014,8:30:02,70,0,1,74.3,1,undefined,FALSE,Unknown,42.94964722,-89.26027222
+61,KegonsaPier4,balz,81.3,1,0,1,1,9/9/2014 13:54,9/1/2014,16:21:49,60,0,1,76.5,1,undefined,TRUE,Unknown,42.94964722,-89.26027222
+62,MononaPark12,betz,72.7,1,0,1,2,8/3/2014 15:43,6/8/2014,14:00:55,114.2,1,2,73.9,2,undefined,TRUE,Good,43.08385556,-89.355225
+63,MononaPark12,betz,undefined,0,0,0,0,7/27/2014 22:55,6/8/2014,22:54:00,undefined,0,0,undefined,0,undefined,FALSE,Unknown,43.08385556,-89.355225
+64,MononaPark12,betz,84.2,1,0,1,1,8/3/2014 15:45,6/15/2014,15:20:20,28.5,3,1,71.4,3,undefined,FALSE,Poor,43.08385556,-89.355225
+65,MononaPark12,betz,undefined,1,FALSE,1,2,6/22/2014 16:31,6/22/2014,15:30:00,119,NA,2,undefined,1,Thermometer is broken. Water condensation inside screen. Battery wet inside.Sitting in a bucket of rice to dry out.,FALSE,Unknown,43.08385556,-89.355225
+66,MononaPark12,betz,81.7,2,0,1,2,8/3/2014 15:48,6/28/2014,15:00:18,37,1,2,79.9,3,undefined,TRUE,Good,43.08385556,-89.355225
+67,MononaPark12,betz,61.3,1,0,1,1,8/3/2014 15:49,7/2/2014,7:50:37,119,1,2,73,1,undefined,FALSE,Good,43.08385556,-89.355225
+68,MononaPark12,betz,86,3,,1,1,,7/13/2014,15:50:00,114,NA,2,77.4,2,,NA,,43.08385556,-89.355225
+69,MononaPark12,betz,84,1,0,1,2,8/3/2014 15:50,7/20/2014,15:45:49,68,3,2,77,2,undefined,FALSE,Poor,43.08385556,-89.355225
+70,MononaPark12,betz,74.1,1,0,1,3,7/29/2014 9:41,7/29/2014,9:36:00,88,3,2,70.9,1,Data entry is so slow and I cannot seem to edit the time.,FALSE,Poor,43.08385556,-89.355225
+71,MononaPark12,betz,82.4,1,0,1,1,8/3/2014 15:41,8/3/2014,14:35:09,91,2,1,78.3,1,undefined,TRUE,Good,43.08385556,-89.355225
+72,MononaPark12,betz,undefined,0,0,0,0,7/27/2014 21:18,8/6/2014,21:18:00,undefined,0,0,undefined,0,undefined,FALSE,Unknown,43.08385556,-89.355225
+73,MononaPark12,betz,78.8,1,0,1,1,9/29/2014 21:03,8/17/2014,15:10:40,119,1,1,76.5,1,undefined,FALSE,Good,43.08385556,-89.355225
+74,MononaPark12,betz,86.5,1,0,1,2,9/29/2014 21:05,8/24/2014,15:00:07,119,1,2,79.5,2,undefined,FALSE,Good,43.08385556,-89.355225
+75,MononaPark12,betz,82.2,1,0,1,2,9/29/2014 21:07,9/7/2014,14:30:35,118,1,1,77.4,2,undefined,TRUE,Good,43.08385556,-89.355225
+76,KegonsaPier3,cordray,75.2,1,FALSE,1,2,6/16/2014 13:11,6/12/2014,9:50:00,69,NA,2,71.2,1,undefined,TRUE,Unknown,42.95196667,-89.27530278
+77,KegonsaPier3,cordray,75.2,1,FALSE,1,2,6/20/2014 10:19,6/19/2014,10:00:00,42,NA,1,72.7,2,undefined,TRUE,Unknown,42.95196667,-89.27530278
+78,KegonsaPier3,cordray,78.8,1,FALSE,1,2,6/27/2014 11:54,6/26/2014,16:35:00,55,NA,1,82.2,2,undefined,FALSE,Unknown,42.95196667,-89.27530278
+79,KegonsaPier3,cordray,62.6,1,0,1,1,7/2/2014 11:23,7/2/2014,9:50:00,103,1,1,72.3,2,undefined,TRUE,Good,42.95196667,-89.27530278
+80,KegonsaPier3,cordray,83.7,1,0,1,2,7/14/2014 9:52,7/13/2014,13:00:00,51,3,1,78.6,1,undefined,FALSE,Poor,42.95196667,-89.27530278
+81,KegonsaPier3,cordray,84.4,1,0,1,2,7/21/2014 11:17,7/20/2014,14:00:00,42,3,1,75.2,1,undefined,FALSE,Poor,42.95196667,-89.27530278
+82,KegonsaPier3,cordray,71.6,1,0,1,1,7/31/2014 10:20,7/31/2014,9:20:00,62,2,1,74.8,1,undefined,FALSE,Good,42.95196667,-89.27530278
+83,KegonsaPier3,cordray,71.6,2,2,1,2,8/7/2014 10:37,8/5/2014,10:10:00,40.5,3,1,74.5,1,undefined,TRUE,Poor,42.95196667,-89.27530278
+84,KegonsaPier3,cordray,71.6,1,0,1,1,8/13/2014 10:56,8/13/2014,10:40:24,50,3,1,73.4,2,undefined,FALSE,Poor,42.95196667,-89.27530278
+85,KegonsaPier3,cordray,74.1,1,0,1,2,8/18/2014 10:19,8/17/2014,14:35:23,49,3,1,77.5,2,undefined,FALSE,Poor,42.95196667,-89.27530278
+86,KegonsaPier3,cordray,83.5,1,0,1,2,8/25/2014 9:04,8/24/2014,13:20:11,39,3,1,79.9,2,undefined,FALSE,Poor,42.95196667,-89.27530278
+87,KegonsaPier3,cordray,74.5,1,0,1,2,9/3/2014 10:10,9/3/2014,9:55:07,50,2,1,75.2,1,undefined,TRUE,Good,42.95196667,-89.27530278
+88,MendotaPier14,cyffka,74.7,1,0,1,1,7/6/2014 13:57,5/31/2014,9:00:00,121,1,1,72.9,1,undefined,FALSE,Good,43.08117222,-89.46235
+89,MendotaPier14,cyffka,82.4,1,0,1,1,7/6/2014 13:56,6/1/2014,11:00:00,121,1,1,71.4,1,undefined,FALSE,Good,43.08117222,-89.46235
+90,MendotaPier14,cyffka,64.2,1,0,1,1,7/6/2014 13:55,6/3/2014,9:20:00,121,1,1,62.6,2,undefined,TRUE,Good,43.08117222,-89.46235
+91,MendotaPier14,cyffka,68,1,0,1,1,7/6/2014 13:54,6/5/2014,9:15:00,121,1,1,68,1,undefined,FALSE,Good,43.08117222,-89.46235
+92,MendotaPier14,cyffka,68.4,1,0,1,2,7/6/2014 13:52,6/6/2014,9:15:00,121,1,1,68.2,1,undefined,FALSE,Good,43.08117222,-89.46235
+93,MendotaPier14,cyffka,60.8,1,0,1,2,7/5/2014 12:35,6/9/2014,8:45:00,113,3,1,68.5,2,undefined,FALSE,Poor,43.08117222,-89.46235
+94,MendotaPier14,cyffka,63.7,1,0,1,1,7/5/2014 12:33,6/10/2014,8:35:00,75,3,1,70.5,2,undefined,FALSE,Poor,43.08117222,-89.46235
+95,MendotaPier14,cyffka,70.2,2,2,1,2,7/5/2014 12:32,6/12/2014,9:05:00,110,3,1,68.7,1,undefined,FALSE,Poor,43.08117222,-89.46235
+96,MendotaPier14,cyffka,66.9,1,0,1,1,7/5/2014 12:30,6/19/2014,10:30:00,108,3,1,69.4,1,undefined,FALSE,Poor,43.08117222,-89.46235
+97,MendotaPier14,cyffka,72.1,1,0,1,1,7/5/2014 12:28,6/21/2014,9:40:00,110,3,1,71.4,1,undefined,FALSE,Poor,43.08117222,-89.46235
+98,MendotaPier14,cyffka,73.4,2,2,1,2,7/5/2014 12:27,6/24/2014,9:15:00,90,3,1,74.7,1,undefined,FALSE,Poor,43.08117222,-89.46235
+99,MendotaPier14,cyffka,66.9,1,0,1,1,7/5/2014 12:25,6/26/2014,8:45:00,107,3,1,75.4,1,undefined,FALSE,Poor,43.08117222,-89.46235
+100,MendotaPier14,cyffka,68,1,0,1,2,7/24/2014 10:25,7/2/2014,9:25:00,80,1,2,74.5,1,undefined,FALSE,Good,43.08117222,-89.46235
+101,MendotaPier14,cyffka,61.7,1,0,1,1,7/5/2014 12:23,7/3/2014,8:30:00,105,3,1,68.7,2,undefined,FALSE,Poor,43.08117222,-89.46235
+102,MendotaPier14,cyffka,67.5,1,0,1,2,7/5/2014 12:21,7/5/2014,9:10:00,99,3,1,73,1,undefined,FALSE,Poor,43.08117222,-89.46235
+103,MendotaPier14,cyffka,71.1,1,0,1,2,7/6/2014 13:51,7/6/2014,9:25:00,120,1,1,71.4,1,undefined,FALSE,Good,43.08117222,-89.46235
+104,MendotaPier14,cyffka,75.7,1,0,1,2,7/7/2014 9:55,7/7/2014,9:30:00,109,1,2,73.4,1,undefined,TRUE,Good,43.08117222,-89.46235
+105,MendotaPier14,cyffka,65.1,1,0,1,2,7/9/2014 9:30,7/9/2014,9:15:00,90,1,1,72.9,3,FYI  All air temp measurements taken in the shade.,FALSE,Good,43.08117222,-89.46235
+106,MendotaPier14,cyffka,69.8,1,0,1,2,7/10/2014 11:29,7/10/2014,8:30:00,119,1,1,72.7,1,undefined,FALSE,Good,43.08117222,-89.46235
+107,MendotaPier14,cyffka,72.9,1,0,1,2,7/14/2014 13:26,7/12/2014,8:30:00,119,1,1,72.1,1,undefined,FALSE,Good,43.08117222,-89.46235
+108,MendotaPier14,cyffka,70.7,1,0,1,2,7/14/2014 13:27,7/13/2014,9:05:00,110,1,2,72.3,2,undefined,FALSE,Good,43.08117222,-89.46235
+109,MendotaPier14,cyffka,59.9,1,0,1,2,7/15/2014 9:08,7/15/2014,9:00:00,69,2,1,69.3,3,undefined,FALSE,Good,43.08117222,-89.46235
+110,MendotaPier14,cyffka,59,1,0,1,2,7/17/2014 8:17,7/16/2014,9:00:00,109,1,1,69.3,1,undefined,FALSE,Good,43.08117222,-89.46235
+111,MendotaPier14,cyffka,63.3,1,0,1,2,7/17/2014 8:16,7/17/2014,8:10:00,90,3,2,71.6,1,undefined,FALSE,Poor,43.08117222,-89.46235
+112,MendotaPier14,cyffka,69.3,2,2,1,2,7/18/2014 9:11,7/18/2014,9:00:00,75,3,2,73.4,1,undefined,FALSE,Poor,43.08117222,-89.46235
+113,MendotaPier14,cyffka,70.2,2,2,1,2,7/19/2014 9:51,7/19/2014,9:20:00,95,3,2,71.1,1,undefined,FALSE,Poor,43.08117222,-89.46235
+114,MendotaPier14,cyffka,73.4,2,2,1,2,7/21/2014 9:48,7/21/2014,9:20:00,95,1,2,72.3,1,"Weed cutters out this morning, between Spring Harbor and my pier as of 10 a.m.",FALSE,Fair,43.08117222,-89.46235
+115,MendotaPier14,cyffka,66.2,1,0,1,2,7/24/2014 10:24,7/23/2014,9:05:00,60,3,1,73.4,3,Plant cutters came through yesterday.,FALSE,Poor,43.08117222,-89.46235
+116,MendotaPier14,cyffka,68,1,0,1,2,7/30/2014 10:23,7/24/2014,9:25:53,80,2,2,74.5,1,undefined,FALSE,Good,43.08117222,-89.46235
+117,MendotaPier14,cyffka,71.2,1,0,1,2,7/30/2014 10:24,7/26/2014,9:16:30,83,2,1,72.3,1,undefined,FALSE,Good,43.08117222,-89.46235
+118,MendotaPier14,cyffka,64.9,1,0,1,2,7/30/2014 10:25,7/30/2014,9:50:40,75,2,2,71.8,1,undefined,FALSE,Good,43.08117222,-89.46235
+119,MendotaPier14,cyffka,71.6,1,0,1,1,8/1/2014 10:03,8/1/2014,8:55:01,75,1,1,73.4,1,undefined,FALSE,Good,43.08117222,-89.46235
+120,MendotaPier14,cyffka,66.9,1,0,1,2,8/2/2014 8:51,8/2/2014,8:40:46,58,2,2,74.1,1,rain and winds yesterday evening.,FALSE,Good,43.08117222,-89.46235
+121,MendotaPier14,cyffka,75.4,1,0,1,1,8/4/2014 8:50,8/4/2014,8:35:53,68,2,1,74.8,1,undefined,FALSE,Good,43.08117222,-89.46235
+122,MendotaPier14,cyffka,71.1,2,2,1,1,8/7/2014 14:55,8/6/2014,9:20:55,70,3,2,73.6,1,undefined,FALSE,Poor,43.08117222,-89.46235
+123,MendotaPier14,cyffka,70.9,1,0,1,1,8/7/2014 14:54,8/7/2014,9:00:42,64,3,2,74.1,1,undefined,TRUE,Poor,43.08117222,-89.46235
+124,MendotaPier14,cyffka,69.6,1,0,1,2,8/19/2014 11:12,8/8/2014,9:05:26,60,2,1,73.6,2,undefined,FALSE,Good,43.08117222,-89.46235
+125,MendotaPier14,cyffka,68,1,0,1,2,8/19/2014 11:13,8/10/2014,8:55:41,73,2,1,74.1,1,undefined,FALSE,Good,43.08117222,-89.46235
+126,MendotaPier14,cyffka,60.1,1,0,1,2,8/19/2014 11:14,8/14/2014,8:45:44,58,2,1,70.5,2,undefined,FALSE,Good,43.08117222,-89.46235
+127,MendotaPier14,cyffka,71.6,1,0,1,2,8/19/2014 11:11,8/19/2014,8:45:12,80,2,1,72.9,1,rain last night.,FALSE,Good,43.08117222,-89.46235
+128,MendotaPier14,cyffka,86.2,1,0,1,1,8/29/2014 14:41,8/29/2014,14:32:20,110,1,1,78.3,1,"Phos sample in fridge; will be delivered to CLA office on Sept 8.  thanks,  josie.",TRUE,Good,43.08117222,-89.46235
+129,MendotaPier16,durcan,81,2,FALSE,1,2,6/10/2014 7:49,6/7/2014,11:00:00,117,NA,2,74,1,undefined,FALSE,Unknown,43.08771944,-89.47295278
+130,MendotaPier16,durcan,75,2,FALSE,1,2,6/10/2014 7:47,6/9/2014,13:35:00,85,NA,1,75,1,water looked like pea soup,FALSE,Unknown,43.08771944,-89.47295278
+131,MendotaPier16,durcan,76,2,FALSE,1,2,6/12/2014 12:54,6/12/2014,12:52:00,40,NA,2,72,2,undefined,FALSE,Unknown,43.08771944,-89.47295278
+132,MendotaPier16,durcan,84,2,FALSE,1,2,6/16/2014 11:11,6/16/2014,9:25:00,120,NA,1,69,1,undefined,FALSE,Unknown,43.08771944,-89.47295278
+133,MendotaPier16,durcan,68,1,FALSE,1,2,6/24/2014 11:09,6/21/2014,10:45:00,120,NA,1,68,1,Temperature isn't accurate as thermometer isn't working,FALSE,Unknown,43.08771944,-89.47295278
+134,MendotaPier16,durcan,85,1,FALSE,1,2,6/24/2014 16:00,6/24/2014,15:59:00,120,NA,1,78,1,undefined,FALSE,Unknown,43.08771944,-89.47295278
+135,MendotaPier16,durcan,81,1,FALSE,1,2,6/27/2014 11:52,6/27/2014,10:05:00,120,NA,1,78,2,undefined,FALSE,Unknown,43.08771944,-89.47295278
+136,MendotaPier16,durcan,76,1,0,1,2,7/7/2014 8:07,7/4/2014,11:15:00,105,3,1,76,1,Temperatures are estimates as the thermometer isn't working.,FALSE,Poor,43.08771944,-89.47295278
+137,MendotaPier16,durcan,79,1,0,1,2,7/8/2014 8:28,7/8/2014,8:25:00,120,1,1,78,1,"The website won't let me over-ride the date and time.  Monitoring was done on 7/7/14 at 10:15.  Also, temperatures are estimates as the thermometer wasn't working.",TRUE,Good,43.08771944,-89.47295278
+138,MendotaPier16,durcan,76,1,0,1,2,7/11/2014 15:54,7/11/2014,15:51:00,120,1,1,73,2,undefined,FALSE,Good,43.08771944,-89.47295278
+139,MendotaPier16,durcan,66,2,2,1,2,7/16/2014 10:56,7/16/2014,10:15:00,120,1,1,72,1,undefined,FALSE,Fair,43.08771944,-89.47295278
+140,MendotaPier16,durcan,74,2,2,1,3,7/18/2014 10:38,7/18/2014,10:34:00,112,3,1,76,1,weed cutters were out yesterday.  Time was closer to 10:15 but I couldn't override the auto fill.,FALSE,Poor,43.08771944,-89.47295278
+141,MendotaPier16,durcan,73,1,0,1,2,7/23/2014 12:23,7/23/2014,12:21:00,67,2,1,75,3,undefined,FALSE,Good,43.08771944,-89.47295278
+142,MendotaPier16,durcan,86,1,0,1,2,7/27/2014 14:34,7/26/2014,16:15:00,97,2,1,78,1,undefined,FALSE,Good,43.08771944,-89.47295278
+143,MendotaPier16,durcan,77,1,0,1,2,7/30/2014 17:19,7/30/2014,17:16:41,115,1,1,76,2,Temps are estimates as the thermometer died (again).  Water was quite clear.,FALSE,Good,43.08771944,-89.47295278
+144,MendotaPier16,durcan,79,2,2,1,3,8/4/2014 12:59,8/2/2014,12:30:57,101,3,1,77,2,Temperatures are estimates.,FALSE,Poor,43.08771944,-89.47295278
+145,MendotaPier16,durcan,81,1,0,1,2,8/4/2014 13:01,8/4/2014,12:40:00,114,1,1,78,1,Temperatures are estimates.,TRUE,Good,43.08771944,-89.47295278
+146,MendotaPier16,durcan,81,1,0,1,2,8/10/2014 9:31,8/7/2014,14:15:16,84,2,1,77,2,undefined,FALSE,Good,43.08771944,-89.47295278
+147,MendotaPier16,durcan,77,1,0,1,2,8/16/2014 13:06,8/13/2014,15:35:04,105,2,1,73,2,undefined,FALSE,Good,43.08771944,-89.47295278
+148,MendotaPier16,durcan,79,1,0,1,2,8/16/2014 13:07,8/16/2014,12:45:36,115,2,2,74,1,undefined,FALSE,Good,43.08771944,-89.47295278
+149,MendotaPier16,durcan,79,1,0,1,2,8/27/2014 12:37,8/19/2014,15:45:57,116,2,1,77,2,undefined,FALSE,Good,43.08771944,-89.47295278
+150,MendotaPier16,durcan,76,1,0,1,2,8/27/2014 12:38,8/27/2014,12:00:27,116,2,1,78,1,undefined,FALSE,Good,43.08771944,-89.47295278
+151,MendotaPier16,durcan,85,1,0,1,1,8/30/2014 13:56,8/29/2014,15:05:37,105,2,1,77,2,undefined,FALSE,Good,43.08771944,-89.47295278
+152,MendotaPier16,durcan,72,1,0,1,2,9/4/2014 11:20,9/4/2014,10:45:07,87,2,1,74,2,Temperatures are estimates as the thermometer wasn't working.,TRUE,Good,43.08771944,-89.47295278
+153,WingraPark3,faller,83.1,1,FALSE,1,2,6/25/2014 13:56,6/1/2014,11:15:00,120,NA,1,77.4,2,undefined,FALSE,Unknown,43.05505833,-89.42582222
+154,WingraPark3,faller,80.6,1,FALSE,1,2,6/25/2014 13:57,6/2/2014,18:00:00,30,NA,1,78.3,1,undefined,FALSE,Unknown,43.05505833,-89.42582222
+155,WingraPark3,faller,73,2,FALSE,1,3,6/25/2014 13:59,6/7/2014,8:30:00,120,NA,1,74.1,1,undefined,TRUE,Poor,43.05505833,-89.42582222
+156,WingraPark3,faller,undefined,1,0,1,2,8/1/2014 10:21,6/14/2014,20:12:09,94,0,1,undefined,1,undefined,FALSE,Unknown,43.05505833,-89.42582222
+157,WingraPark3,faller,75.4,2,FALSE,1,2,6/25/2014 14:03,6/23/2014,8:44:00,120,NA,1,77.7,1,undefined,FALSE,Unknown,43.05505833,-89.42582222
+158,WingraPark3,faller,79.9,2,FALSE,1,2,6/25/2014 14:04,6/24/2014,8:40:00,93,NA,2,77.7,1,undefined,FALSE,Unknown,43.05505833,-89.42582222
+159,WingraPark3,faller,79.2,2,FALSE,1,2,6/25/2014 14:05,6/25/2014,12:30:00,115,NA,1,79.2,1,undefined,FALSE,Unknown,43.05505833,-89.42582222
+160,WingraPark3,faller,80.5,1,,2,2,,6/26/2014,12:33,120,NA,1,79.3,1,,FALSE,,43.05505833,-89.42582222
+161,WingraPark3,faller,78.6,2,2,2,2,8/1/2014 10:20,7/26/2014,14:23:32,102,2,1,77,1,undefined,FALSE,Poor,43.05505833,-89.42582222
+162,WingraPark3,faller,72,2,2,1,2,8/1/2014 10:23,7/28/2014,10:15:59,90,2,1,74.1,1,undefined,FALSE,Poor,43.05505833,-89.42582222
+163,WingraPark3,faller,75.2,2,2,2,2,8/1/2014 10:25,7/30/2014,10:00:47,105,2,2,73.9,1,undefined,FALSE,Poor,43.05505833,-89.42582222
+164,WingraPark3,faller,78.1,2,0,1,2,9/9/2014 15:49,8/4/2014,9:15:36,109,1,1,77,1,undefined,FALSE,Fair,43.05505833,-89.42582222
+165,WingraPark3,faller,76.3,2,0,1,2,9/9/2014 15:50,8/6/2014,9:30:28,99,0,1,75.6,1,undefined,TRUE,Unknown,43.05505833,-89.42582222
+166,WingraPark3,faller,88,2,0,2,2,9/9/2014 15:52,8/16/2014,15:00:43,99,0,1,79.5,1,undefined,FALSE,Unknown,43.05505833,-89.42582222
+167,WingraPark3,faller,undefined,1,0,2,2,9/9/2014 15:54,8/23/2014,14:00:15,101,0,1,undefined,1,undefined,FALSE,Unknown,43.05505833,-89.42582222
+168,WingraPark3,faller,undefined,1,0,1,2,9/9/2014 15:55,9/3/2014,9:00:18,86,0,1,undefined,1,undefined,TRUE,Unknown,43.05505833,-89.42582222
+169,MendotaPier2,gilbert,76.8,2,2,1,1,7/2/2014 15:10,6/7/2014,9:05:00,120,1,1,73.4,1,undefined,FALSE,Good,43.12895556,-89.38150833
+170,MendotaPier2,gilbert,60.8,1,0,1,1,7/2/2014 15:13,6/8/2014,20:45:00,120,1,1,65.4,1,undefined,FALSE,Good,43.12895556,-89.38150833
+171,MendotaPier2,gilbert,67.8,2,2,1,2,7/2/2014 15:15,6/10/2014,9:20:00,120,1,1,67.9,1,undefined,FALSE,Fair,43.12895556,-89.38150833
+172,MendotaPier2,gilbert,75.2,1,0,1,2,7/2/2014 19:03,6/14/2014,11:40:00,120,1,2,70.2,2,undefined,FALSE,Good,43.12895556,-89.38150833
+173,MendotaPier2,gilbert,79.5,3,1,1,3,7/2/2014 19:06,6/16/2014,10:50:00,18,3,1,73.4,1,blue green all over Warner Bay,FALSE,Poor,43.12895556,-89.38150833
+174,MendotaPier2,gilbert,70.9,1,0,1,1,7/2/2014 19:08,6/20/2014,9:20:00,120,1,1,70.3,1,undefined,FALSE,Good,43.12895556,-89.38150833
+175,MendotaPier2,gilbert,81.3,2,2,1,2,7/2/2014 19:10,6/26/2014,15:10:00,120,1,1,79.9,1,undefined,FALSE,Fair,43.12895556,-89.38150833
+176,MendotaPier2,gilbert,65.8,1,0,1,1,7/2/2014 19:12,7/2/2014,13:45:00,80,1,1,74.1,2,undefined,TRUE,Good,43.12895556,-89.38150833
+177,MendotaPier2,gilbert,68,1,0,1,1,7/9/2014 9:47,7/9/2014,9:28:00,75,2,1,73.4,2,undefined,FALSE,Good,43.12895556,-89.38150833
+178,MendotaPier2,gilbert,68,1,0,1,2,7/14/2014 19:39,7/14/2014,17:35:00,50,3,1,77,2,undefined,FALSE,Poor,43.12895556,-89.38150833
+179,MendotaPier2,gilbert,73.8,1,0,1,2,7/22/2014 15:00,7/21/2014,9:15:00,45,2,3,74.1,3,"Sea Gull flock, no Ducks or Geese",FALSE,Good,43.12895556,-89.38150833
+180,MendotaPier2,gilbert,67.3,1,0,1,2,7/25/2014 12:34,7/25/2014,23:45:00,25,2,1,71.4,3,undefined,FALSE,Good,43.12895556,-89.38150833
+181,MendotaPier2,gilbert,69.8,1,0,1,1,8/1/2014 9:36,8/1/2014,8:55:00,90,1,1,72.5,1,undefined,TRUE,Good,43.12895556,-89.38150833
+182,MendotaPier2,gilbert,71.6,1,0,1,1,8/8/2014 9:12,8/8/2014,8:45:43,82,1,2,74.1,1,few ducks,FALSE,Good,43.12895556,-89.38150833
+183,MendotaPier2,gilbert,74,1,0,1,1,8/14/2014 16:48,8/14/2014,15:30:46,76,1,1,74.8,1,undefined,FALSE,Good,43.12895556,-89.38150833
+184,MendotaPier2,gilbert,79.9,1,0,1,2,8/18/2014 17:38,8/18/2014,17:25:37,38,3,1,78.1,3,Brown turbidity,FALSE,Poor,43.12895556,-89.38150833
+185,MendotaPier2,gilbert,73.4,1,0,1,2,8/25/2014 12:14,8/25/2014,11:55:55,59,2,1,76.3,2,1 hour after rainstorms(.75 inches in 3 hours),FALSE,Good,43.12895556,-89.38150833
+186,MendotaPier2,gilbert,70.5,1,0,1,2,9/1/2014 9:47,9/1/2014,9:15:45,54,3,1,75.4,2,undefined,TRUE,Poor,43.12895556,-89.38150833
+187,MononaPier7,gillen,undefined,0,0,0,0,9/15/2014 10:57,6/5/2014,13:00:30,undefined,0,0,undefined,0,undefined,TRUE,Unknown,43.05076389,-89.34526944
+188,MononaPier7,gillen,undefined,2,0,1,2,9/15/2014 9:54,6/6/2014,17:30:07,95,0,1,undefined,1,undefined,FALSE,Unknown,43.05076389,-89.34526944
+189,MononaPier7,gillen,74.3,1,0,1,2,9/15/2014 9:55,6/12/2014,16:30:48,96,0,1,68.2,3,undefined,FALSE,Unknown,43.05076389,-89.34526944
+190,MononaPier7,gillen,72,1,0,1,1,9/15/2014 9:56,6/19/2014,16:00:51,115,0,1,69.1,2,undefined,FALSE,Unknown,43.05076389,-89.34526944
+191,MononaPier7,gillen,75.9,2,0,1,2,9/15/2014 9:57,6/26/2014,19:00:43,118,0,1,72.7,1,undefined,FALSE,Unknown,43.05076389,-89.34526944
+192,MononaPier7,gillen,77,1,0,1,2,9/15/2014 9:59,7/4/2014,9:45:14,120,0,1,66.7,1,undefined,FALSE,Unknown,43.05076389,-89.34526944
+193,MononaPier7,gillen,undefined,0,0,0,0,9/15/2014 10:58,7/7/2014,9:45:55,undefined,0,0,undefined,0,undefined,TRUE,Unknown,43.05076389,-89.34526944
+194,MononaPier7,gillen,81,1,0,1,1,9/15/2014 10:00,7/13/2014,15:30:18,75,0,1,72.2,2,undefined,FALSE,Unknown,43.05076389,-89.34526944
+195,MononaPier7,gillen,80.6,2,0,1,2,9/15/2014 10:02,7/18/2014,11:35:53,99,0,1,72.3,1,undefined,FALSE,Unknown,43.05076389,-89.34526944
+196,MononaPier7,gillen,78.1,1,0,1,1,9/15/2014 10:07,7/24/2014,15:42:22,65,0,1,72.1,1,undefined,FALSE,Unknown,43.05076389,-89.34526944
+197,MononaPier7,gillen,83.9,1,0,1,2,9/15/2014 10:08,8/1/2014,10:58:00,64,0,1,75.7,1,undefined,TRUE,Unknown,43.05076389,-89.34526944
+198,MononaPier7,gillen,78.8,2,0,1,1,9/15/2014 10:10,8/10/2014,16:20:58,64,0,1,73.6,1,undefined,FALSE,Unknown,43.05076389,-89.34526944
+199,MononaPier7,gillen,80.6,1,0,1,1,9/15/2014 10:11,8/14/2014,13:30:04,65,0,1,73.2,1,undefined,FALSE,Unknown,43.05076389,-89.34526944
+200,MononaPier7,gillen,86.2,1,0,1,1,9/15/2014 10:12,8/22/2014,12:48:26,79,0,1,75.6,1,undefined,FALSE,Unknown,43.05076389,-89.34526944
+201,MononaPier7,gillen,85.6,1,0,1,1,9/15/2014 10:13,8/29/2014,16:30:50,69,0,1,75.3,1,undefined,FALSE,Unknown,43.05076389,-89.34526944
+202,MendotaPier17,guthrie,65.7,1,0,1,2,8/14/2014 8:52,7/24/2014,7:40:55,93,2,1,74.1,1,Please note that I accidentally entered a sample dated 7/11 when it should have been 7/1 in a previous entry. Please correct - apologies for this error.,FALSE,Good,#N/A,#N/A
+203,MendotaPier17,guthrie,89.9,1,0,1,2,8/14/2014 8:53,8/5/2014,16:00:26,117,2,1,77,1,undefined,TRUE,Good,#N/A,#N/A
+204,MendotaPier17,guthrie,77.7,1,0,1,1,8/14/2014 8:55,8/11/2014,16:20:07,120,2,2,77.9,1,undefined,FALSE,Good,#N/A,#N/A
+205,MendotaPier17,guthrie,86.5,1,0,1,2,9/29/2014 8:05,8/18/2014,17:20:27,120,2,1,74.8,1,undefined,FALSE,Good,#N/A,#N/A
+206,MendotaPier17,guthrie,77.9,1,0,1,2,9/29/2014 8:07,8/28/2014,16:45:11,120,2,2,75.9,2,undefined,FALSE,Good,#N/A,#N/A
+207,MendotaPier17,guthrie,71.6,1,0,1,2,9/29/2014 8:08,9/5/2014,16:45:19,107,2,3,74.5,3,undefined,TRUE,Good,#N/A,#N/A
+208,MononaBeach5,hayden,77,2,2,1,2,7/7/2014 21:37,6/6/2014,19:00:00,57,1,2,78.1,1,undefined,TRUE,Fair,43.05709444,-89.38948889
+209,MononaBeach5,hayden,72.9,1,0,1,2,7/7/2014 21:38,6/13/2014,19:30:00,56.7,1,1,71.6,1,undefined,FALSE,Good,43.05709444,-89.38948889
+210,MononaBeach5,hayden,73,2,FALSE,2,2,6/21/2014 9:58,6/21/2014,9:30:00,46.1,NA,2,75.9,2,Can't slide values for visual obs. Need to fix later,FALSE,Unknown,43.05709444,-89.38948889
+211,MononaBeach5,hayden,78.8,2,2,2,3,7/7/2014 21:40,6/26/2014,20:30:00,43.2,2,1,81.7,1,undefined,FALSE,Poor,43.05709444,-89.38948889
+212,MononaBeach5,hayden,84.4,1,0,2,2,7/7/2014 21:41,7/7/2014,17:20:00,74.1,1,1,80.1,1,undefined,TRUE,Good,43.05709444,-89.38948889
+213,MononaBeach5,hayden,65.7,1,0,1,1,7/15/2014 20:09,7/15/2014,19:50:00,77,1,2,70.9,2,undefined,FALSE,Good,43.05709444,-89.38948889
+214,MononaBeach5,hayden,90.3,1,0,2,1,7/22/2014 21:13,7/22/2014,17:00:00,102.8,1,2,84.2,1,undefined,FALSE,Good,43.05709444,-89.38948889
+215,MononaBeach5,hayden,75.2,1,0,2,2,7/30/2014 7:47,7/29/2014,17:50:09,107,1,3,77,1,undefined,FALSE,Good,43.05709444,-89.38948889
+216,MononaBeach5,hayden,79.5,1,0,2,3,8/6/2014 19:07,8/6/2014,18:00:34,97.2,1,2,83.7,1,undefined,TRUE,Poor,43.05709444,-89.38948889
+217,MononaBeach5,hayden,72.5,1,0,1,3,8/12/2014 20:48,8/12/2014,19:30:24,55.3,1,2,73.4,1,"I believe the turbidity may not be a great measurement, because: a) it was nearing dusk and light was limited b) there is extensive floating vegetation where I've been sampling,  and some of that inevitably gets pulled into the sample even after waiting several minutes after tromping out through the weeds. The water outside the weed zone looked clear",FALSE,Poor,43.05709444,-89.38948889
+218,MononaBeach5,hayden,81.1,1,0,2,3,8/19/2014 20:56,8/19/2014,18:25:08,78.6,1,2,82.4,1,My thermometer has been leaky from the start and now some parts of the digital readout are not showing up. These temperatures may be off as they were my best interpretations of the screen,FALSE,Poor,43.05709444,-89.38948889
+219,MononaBeach5,hayden,84.2,1,0,2,2,8/24/2014 21:24,8/24/2014,11:00:24,91.4,2,3,79.5,1,undefined,FALSE,Good,43.05709444,-89.38948889
+220,MononaBeach5,hayden,72.3,1,0,2,2,9/7/2014 19:40,9/7/2014,19:00:48,67,1,2,75.3,1,water was clear but amount of floating plant debris collected during sample limited turbidity,TRUE,Good,43.05709444,-89.38948889
+221,MendotaBeach13,hoffman,73.4,1,0,1,1,7/11/2014 9:36,7/11/2014,9:20:00,78,2,2,74.5,1,,FALSE,Good,43.09358889,-89.37230556
+222,MendotaBeach13,hoffman,66.2,1,0,1,1,7/15/2014 19:24,7/15/2014,19:00:00,58,2,2,69.4,2,,FALSE,Good,43.09358889,-89.37230556
+223,MendotaBeach13,hoffman,76.8,1,0,2,1,7/23/2014 14:26,7/23/2014,14:00:00,55,3,2,78.8,2,undefined,FALSE,Poor,43.09358889,-89.37230556
+224,MendotaBeach13,hoffman,77,1,0,2,1,7/30/2014 16:53,7/30/2014,16:30:40,82,2,2,78.1,2,,FALSE,Good,43.09358889,-89.37230556
+225,MendotaBeach13,hoffman,77,1,0,2,1,7/30/2014 16:53,7/30/2014,16:30:40,82,2,2,78.1,2,,FALSE,Good,43.09358889,-89.37230556
+226,MendotaBeach13,hoffman,79.7,1,0,2,1,8/7/2014 11:50,8/7/2014,11:00:44,72,2,1,76.3,1,undefined,TRUE,Good,43.09358889,-89.37230556
+227,MendotaBeach13,hoffman,72.7,1,0,1,1,8/13/2014 12:02,8/13/2014,11:30:34,80,2,1,71.4,2,undefined,FALSE,Good,43.09358889,-89.37230556
+228,MendotaBeach13,hoffman,81.9,1,0,2,1,8/20/2014 16:22,8/20/2014,16:10:51,74,2,2,80.1,1,undefined,FALSE,Good,43.09358889,-89.37230556
+229,MendotaBeach13,hoffman,79.5,1,0,1,1,8/24/2014 9:55,8/24/2014,9:40:01,94,2,1,75.2,1,undefined,FALSE,Good,43.09358889,-89.37230556
+230,MendotaBeach13,hoffman,73.4,1,0,1,1,9/5/2014 8:44,9/5/2014,8:30:13,62,2,2,75.4,3,undefined,TRUE,Good,43.09358889,-89.37230556
+231,WaubesaPier4,horn,75.4,1,0,1,1,7/1/2014 21:14,5/29/2014,10:45:00,120,1,1,72.3,1,undefined,TRUE,Good,42.997125,-89.3247
+232,WaubesaPier4,horn,85.3,1,0,1,1,7/1/2014 21:18,6/9/2014,16:10:00,93,3,1,79,1,Air and Water temps seem out of line - faulty thermometer?  Subsequent readom,FALSE,Poor,42.997125,-89.3247
+233,WaubesaPier4,horn,79.5,2,2,1,2,7/1/2014 21:20,6/16/2014,14:45:00,63,3,1,75.4,1,Heavy rain (3+ inches) this week improved water condition,FALSE,Poor,42.997125,-89.3247
+234,WaubesaPier4,horn,80.6,2,2,1,2,7/1/2014 21:22,6/24/2014,10:00:00,72,3,1,77.2,1,Heavy rain this week (3+ inches) improved water conditions,FALSE,Poor,42.997125,-89.3247
+235,WaubesaPier4,horn,79.5,1,0,1,1,7/1/2014 21:12,7/1/2014,12:15:00,63,3,1,75.2,3,"3"" of rain prior two days; very windy today causing rough water",TRUE,Poor,42.997125,-89.3247
+236,WaubesaPier4,horn,82,1,0,1,1,7/6/2014 14:52,7/6/2014,14:30:00,61,3,1,76.2,1,Sunday of July 4th weekend so water stirred up some,FALSE,Poor,42.997125,-89.3247
+237,WaubesaPier4,horn,79.5,1,0,1,1,7/14/2014 17:28,7/14/2014,16:00:00,56,3,1,77,3,Cool and windy day,FALSE,Poor,42.997125,-89.3247
+238,WaubesaPier4,horn,84.2,1,0,1,1,7/21/2014 17:52,7/21/2014,16:30:00,59,3,1,77.2,1,undefined,FALSE,Poor,42.997125,-89.3247
+239,WaubesaPier4,horn,75.9,1,0,1,1,8/14/2014 21:02,8/5/2014,11:00:59,63,3,1,76.5,1,"After 1"" rain night before",FALSE,Poor,42.997125,-89.3247
+240,WaubesaPier4,horn,83.8,1,0,1,1,8/14/2014 21:03,8/11/2014,13:25:06,67,3,1,77.1,1,undefined,FALSE,Poor,42.997125,-89.3247
+241,WaubesaPier4,horn,85.8,1,0,1,1,8/22/2014 14:58,8/22/2014,14:45:06,62,3,1,76.8,1,Had 1.5 inches of rain prior two days,FALSE,Poor,42.997125,-89.3247
+242,WaubesaPier4,horn,85.8,1,0,1,1,8/22/2014 14:58,8/22/2014,14:45:06,62,3,1,76.8,1,Had 1.5 inches of rain prior two days,FALSE,Poor,42.997125,-89.3247
+243,WaubesaPier4,horn,71,1,0,1,1,8/25/2014 12:58,8/25/2014,12:30:07,65,2,1,76.7,1,"After 1.5"" of rain in morning",FALSE,Good,42.997125,-89.3247
+244,WaubesaPier4,horn,72,1,0,1,1,9/4/2014 11:33,9/4/2014,11:15:55,66,2,1,76.1,1,After 2' of rain in early morning,TRUE,Good,42.997125,-89.3247
+245,MendotaPier7,jendrisak,64.4,1,0,1,1,7/1/2014 9:32,5/10/2014,9:50:00,120,1,1,49.1,1,undefined,FALSE,Good,43.10944444,-89.46361111
+246,MendotaPier7,jendrisak,57.2,1,0,1,1,7/1/2014 9:34,5/15/2014,16:55:00,81,1,1,52.2,1,undefined,FALSE,Good,43.10944444,-89.46361111
+247,MendotaPier7,jendrisak,64,1,0,1,1,7/1/2014 9:37,5/17/2014,16:06:00,88,1,1,52.3,2,undefined,FALSE,Good,43.10944444,-89.46361111
+248,MendotaPier7,jendrisak,60.1,1,0,1,1,7/1/2014 9:39,5/21/2014,6:31:00,74,1,1,61,1,undefined,FALSE,Good,43.10944444,-89.46361111
+249,MendotaPier7,jendrisak,62.6,1,0,1,1,7/1/2014 9:46,5/24/2014,9:18:00,31,1,1,63.9,1,undefined,FALSE,Good,43.10944444,-89.46361111
+250,MendotaPier7,jendrisak,71.1,1,0,2,1,7/1/2014 9:48,5/28/2014,18:13:00,120,1,1,70.9,2,undefined,FALSE,Good,43.10944444,-89.46361111
+251,MendotaPier7,jendrisak,65.1,1,0,1,1,7/1/2014 9:49,5/31/2014,7:27:00,120,1,2,73.4,1,undefined,FALSE,Good,43.10944444,-89.46361111
+252,MendotaPier7,jendrisak,63.3,1,0,1,1,7/1/2014 9:50,6/3/2014,7:14:00,120,1,1,64.2,2,undefined,TRUE,Good,43.10944444,-89.46361111
+253,MendotaPier7,jendrisak,63.9,1,0,1,1,7/1/2014 9:53,6/5/2014,7:43:00,120,1,1,68,1,undefined,FALSE,Good,43.10944444,-89.46361111
+254,MendotaPier7,jendrisak,72.9,1,0,1,1,7/1/2014 9:54,6/8/2014,14:00:00,120,1,2,72.9,2,undefined,FALSE,Good,43.10944444,-89.46361111
+255,MendotaPier7,jendrisak,72.3,3,2,1,1,7/1/2014 9:56,6/14/2014,12:29:00,19,3,2,70.9,3,undefined,FALSE,Poor,43.10944444,-89.46361111
+256,MendotaPier7,jendrisak,69.3,1,0,1,2,7/1/2014 9:57,6/20/2014,6:14:00,120,3,2,71.1,1,undefined,FALSE,Poor,43.10944444,-89.46361111
+257,MendotaPier7,jendrisak,74.1,1,0,1,2,7/1/2014 10:00,6/29/2014,9:56:00,120,1,1,77.2,3,undefined,FALSE,Good,43.10944444,-89.46361111
+258,MendotaPier7,jendrisak,67.5,1,0,1,1,7/1/2014 10:00,7/1/2014,7:41:00,120,1,1,73.2,2,undefined,TRUE,Good,43.10944444,-89.46361111
+259,MendotaPier7,jendrisak,68,1,0,1,1,7/4/2014 10:30,7/4/2014,10:18:00,120,1,1,73.4,2,"nice, easy to use reporting web page.",FALSE,Good,43.10944444,-89.46361111
+260,MendotaPier7,jendrisak,69.8,1,0,1,2,7/6/2014 9:58,7/6/2014,9:11:00,120,1,1,72.3,2,undefined,FALSE,Good,43.10944444,-89.46361111
+261,MendotaPier7,jendrisak,68,1,0,1,2,7/13/2014 8:20,7/13/2014,8:03:00,120,0,1,72.9,1,undefined,FALSE,Unknown,43.10944444,-89.46361111
+262,MendotaPier7,jendrisak,59.2,1,0,1,2,7/16/2014 8:01,7/16/2014,7:17:00,120,1,2,69.8,1,undefined,FALSE,Good,43.10944444,-89.46361111
+263,MendotaPier7,jendrisak,76.5,2,2,1,2,7/23/2014 19:11,7/23/2014,18:33:00,97,1,2,77,2,undefined,FALSE,Fair,43.10944444,-89.46361111
+264,MendotaPier7,jendrisak,78.8,1,0,1,2,7/26/2014 13:13,7/26/2014,13:57:00,104.2,1,1,75.2,2,undefined,FALSE,Good,43.10944444,-89.46361111
+265,MendotaPier7,jendrisak,78.1,1,0,1,2,7/29/2014 17:29,7/28/2014,17:05:00,91.5,1,1,73.8,2,undefined,FALSE,Good,43.10944444,-89.46361111
+266,MendotaPier7,jendrisak,68.4,1,0,1,1,8/2/2014 8:53,8/2/2014,8:25:00,114.8,1,1,71.6,1,undefined,FALSE,Good,43.10944444,-89.46361111
+267,MendotaPier7,jendrisak,65.1,1,0,1,1,8/7/2014 5:08,8/5/2014,7:07:06,120,1,1,73,1,undefined,TRUE,Good,43.10944444,-89.46361111
+268,MendotaPier7,jendrisak,71.1,1,0,1,1,8/10/2014 10:40,8/10/2014,9:45:09,100.7,1,1,74.7,1,undefined,FALSE,Good,43.10944444,-89.46361111
+269,MendotaPier7,jendrisak,78.1,1,0,1,1,8/13/2014 19:12,8/13/2014,20:22:56,103.2,1,1,74.7,1,undefined,FALSE,Good,43.10944444,-89.46361111
+270,MendotaPier7,jendrisak,69.4,1,0,1,1,8/19/2014 7:31,8/19/2014,7:13:11,105.8,1,1,74.5,2,undefined,FALSE,Good,43.10944444,-89.46361111
+271,MendotaPier7,jendrisak,78.3,1,0,1,2,8/24/2014 11:49,8/24/2014,11:31:19,106.5,1,1,77.9,2,undefined,FALSE,Good,43.10944444,-89.46361111
+272,MendotaPier7,jendrisak,76.3,1,0,1,2,8/31/2014 11:45,8/31/2014,11:33:59,111.5,1,1,76.3,3,undefined,FALSE,Good,43.10944444,-89.46361111
+273,MendotaPier7,jendrisak,66.2,1,0,1,1,9/3/2014 7:49,9/3/2014,7:32:27,120,1,1,72.7,1,undefined,TRUE,Good,43.10944444,-89.46361111
+274,WingraPier2,kerlow,76.8,2,1,1,1,9/4/2014 9:35,6/7/2014,10:30:10,115,0,1,75.9,1,"Turbidity reading was actually greater than 115cm, I could still see the bottom of the tube at 115cm but that is the top of the tube.",TRUE,Unknown,43.05666667,-89.41984167
+275,WingraPier2,kerlow,77.4,2,0,1,2,9/4/2014 9:37,6/14/2014,15:30:54,74,0,1,74.5,2,undefined,FALSE,Unknown,43.05666667,-89.41984167
+276,WingraPier2,kerlow,80.1,2,0,1,2,9/4/2014 9:38,6/23/2014,10:02:04,110,3,1,78.6,1,undefined,FALSE,Poor,43.05666667,-89.41984167
+277,WingraPier2,kerlow,81.5,2,0,1,2,9/4/2014 9:40,6/29/2014,18:15:41,115,0,1,80.8,2,Turbidity reading was actually greater than 115cm as I could still see that bottom at 115cm but that is the top of the tube.,FALSE,Unknown,43.05666667,-89.41984167
+278,WingraPier2,kerlow,81.7,2,0,1,2,9/4/2014 9:41,7/2/2014,10:20:17,74,0,1,75,1,undefined,FALSE,Unknown,43.05666667,-89.41984167
+279,WingraPier2,kerlow,82,2,0,1,2,9/4/2014 9:42,7/16/2014,10:10:17,88,0,1,75.6,1,undefined,FALSE,Unknown,43.05666667,-89.41984167
+280,WingraPier2,kerlow,78.4,2,0,1,1,9/4/2014 9:43,7/26/2014,9:45:28,115,0,1,73.8,1,"Turbidity was actually greater than 115cm as I could still see the bottom at 115cm, but that is the top of the tube",FALSE,Unknown,43.05666667,-89.41984167
+281,WingraPier2,kerlow,87.4,2,0,1,2,9/4/2014 9:44,8/1/2014,15:00:41,107,0,1,79.9,1,undefined,TRUE,Unknown,43.05666667,-89.41984167
+282,WingraPier2,kerlow,77.5,1,0,2,1,9/4/2014 9:45,8/24/2014,19:45:40,60,0,1,80.6,1,undefined,FALSE,Unknown,43.05666667,-89.41984167
+283,WingraPier2,kerlow,70.3,1,0,1,2,9/4/2014 9:46,9/1/2014,18:45:50,115,0,1,77,1,Turbidity was actually greater than 115cm as I could see the bottom at 115cm but that is the top of the tube.,TRUE,Unknown,43.05666667,-89.41984167
+284,WaubesaPier5,kneppreth,76,2,FALSE,1,2,6/23/2014 15:15,6/2/2014,15:13:00,120,NA,1,75,3,undefined,FALSE,Unknown,43.00700556,-89.30917778
+285,WaubesaPier5,kneppreth,75,2,FALSE,1,2,6/23/2014 15:17,6/3/2014,15:14:00,120,NA,1,76,2,undefined,FALSE,Unknown,43.00700556,-89.30917778
+286,WaubesaPier5,kneppreth,65,1,FALSE,1,1,6/23/2014 15:18,6/4/2014,15:15:00,120,NA,1,74,1,undefined,TRUE,Unknown,43.00700556,-89.30917778
+287,WaubesaPier5,kneppreth,76,1,FALSE,1,2,6/23/2014 15:19,6/6/2014,12:16:00,120,NA,1,77,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+288,WaubesaPier5,kneppreth,77,1,FALSE,1,1,6/23/2014 15:20,6/7/2014,16:17:00,120,NA,1,77,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+289,WaubesaPier5,kneppreth,71,1,FALSE,1,1,6/23/2014 15:21,6/8/2014,19:18:00,120,NA,1,74,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+290,WaubesaPier5,kneppreth,75,1,FALSE,1,1,6/24/2014 14:17,6/9/2014,14:13:00,120,NA,1,76,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+291,WaubesaPier5,kneppreth,72,1,FALSE,1,2,6/24/2014 14:18,6/12/2014,15:14:00,90,NA,1,73,3,undefined,FALSE,Unknown,43.00700556,-89.30917778
+292,WaubesaPier5,kneppreth,77,1,FALSE,1,1,6/24/2014 14:19,6/14/2014,13:15:00,115,NA,1,74,2,undefined,FALSE,Unknown,43.00700556,-89.30917778
+293,WaubesaPier5,kneppreth,80,1,FALSE,1,1,6/24/2014 14:19,6/15/2014,14:16:00,110,NA,1,72,2,undefined,FALSE,Unknown,43.00700556,-89.30917778
+294,WaubesaPier5,kneppreth,86,2,FALSE,1,1,6/24/2014 14:21,6/16/2014,15:20:00,80,NA,1,76,2,undefined,FALSE,Unknown,43.00700556,-89.30917778
+295,WaubesaPier5,kneppreth,83,1,FALSE,1,1,6/24/2014 14:22,6/17/2014,16:00:00,80,NA,1,80,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+296,WaubesaPier5,kneppreth,75,1,FALSE,1,1,6/24/2014 14:23,6/19/2014,14:40:00,105,NA,1,74,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+297,WaubesaPier5,kneppreth,76,2,FALSE,1,1,6/24/2014 14:24,6/23/2014,14:45:00,90,NA,1,80,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+298,WaubesaPier5,kneppreth,79,2,FALSE,1,2,6/24/2014 14:25,6/24/2014,13:30:00,80,NA,1,80,2,undefined,FALSE,Unknown,43.00700556,-89.30917778
+299,WaubesaPier5,kneppreth,75,1,FALSE,1,1,6/25/2014 16:35,6/25/2014,16:15:00,100,NA,1,78,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+300,WaubesaPier5,kneppreth,76,1,FALSE,1,2,6/26/2014 13:49,6/26/2014,13:45:00,120,NA,1,79,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+301,WaubesaPier5,kneppreth,84,1,FALSE,2,1,6/28/2014 16:29,6/28/2014,16:15:00,90,NA,1,80,1,Lots of boat traffic,FALSE,Unknown,43.00700556,-89.30917778
+302,WaubesaPier5,kneppreth,82,1,FALSE,2,1,6/29/2014 14:27,6/29/2014,14:05:00,85,NA,1,80,2,undefined,FALSE,Unknown,43.00700556,-89.30917778
+303,WaubesaPier5,kneppreth,76.8,1,0,1,2,7/1/2014 18:25,7/1/2014,16:15:00,90,3,1,77.5,3,,FALSE,Poor,43.00700556,-89.30917778
+304,WaubesaPier5,kneppreth,63.5,1,0,1,2,7/2/2014 11:50,7/2/2014,11:00:00,95,3,1,73.4,3,undefined,TRUE,Poor,43.00700556,-89.30917778
+305,WaubesaPier5,kneppreth,71.8,1,0,1,1,7/3/2014 15:24,7/3/2014,15:15:00,85,1,1,76.3,2,undefined,FALSE,Good,43.00700556,-89.30917778
+306,WaubesaPier5,kneppreth,74.8,1,0,1,1,7/5/2014 13:49,7/5/2014,13:40:00,85,1,1,75.9,2,undefined,FALSE,Good,43.00700556,-89.30917778
+307,WaubesaPier5,kneppreth,77.7,1,0,1,1,7/6/2014 15:06,7/6/2014,15:00:00,95,2,1,75.2,2,undefined,FALSE,Good,43.00700556,-89.30917778
+308,WaubesaPier5,kneppreth,81.7,1,0,1,2,7/7/2014 14:30,7/7/2014,14:20:00,85,2,1,79,2,undefined,FALSE,Good,43.00700556,-89.30917778
+309,WaubesaPier5,kneppreth,72.7,1,0,1,2,7/9/2014 17:25,7/9/2014,17:05:00,70,3,1,76.3,3,undefined,FALSE,Poor,43.00700556,-89.30917778
+310,WaubesaPier5,kneppreth,78,2,2,2,2,7/10/2014 16:14,7/10/2014,16:00:00,75,2,1,78.1,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+311,WaubesaPier5,kneppreth,75.9,1,0,1,1,7/12/2014 13:53,7/12/2014,12:30:00,75,1,1,75.6,1,undefined,FALSE,Good,43.00700556,-89.30917778
+312,WaubesaPier5,kneppreth,79.9,1,0,2,2,7/13/2014 16:54,7/13/2014,16:45:00,60,2,1,77.9,3,undefined,FALSE,Good,43.00700556,-89.30917778
+313,WaubesaPier5,kneppreth,69.5,1,0,1,1,7/16/2014 15:55,7/16/2014,15:40:00,70,2,1,77,2,undefined,FALSE,Good,43.00700556,-89.30917778
+314,WaubesaPier5,kneppreth,74.5,2,2,1,1,7/17/2014 15:14,7/17/2014,15:00:00,35,3,1,80.4,1,undefined,FALSE,Poor,43.00700556,-89.30917778
+315,WaubesaPier5,kneppreth,72.5,1,0,1,1,7/18/2014 12:53,7/18/2014,12:45:00,75,2,1,76.3,1,undefined,FALSE,Good,43.00700556,-89.30917778
+316,WaubesaPier5,kneppreth,73.9,1,0,2,1,7/20/2014 12:49,7/20/2014,22:45:00,85,2,1,75.2,1,undefined,FALSE,Good,43.00700556,-89.30917778
+317,WaubesaPier5,kneppreth,83.4,1,0,1,1,7/21/2014 16:56,7/21/2014,16:50:00,75,1,1,78.8,1,undefined,FALSE,Good,43.00700556,-89.30917778
+318,WaubesaPier5,kneppreth,87.3,1,0,1,1,7/22/2014 15:10,7/22/2014,15:05:00,75,1,1,79.5,2,undefined,FALSE,Good,43.00700556,-89.30917778
+319,WaubesaPier5,kneppreth,71.8,1,0,1,1,7/25/2014 15:49,7/25/2014,15:40:00,70,2,1,75.7,1,undefined,FALSE,Good,43.00700556,-89.30917778
+320,WaubesaPier5,kneppreth,78.7,1,0,1,1,7/26/2014 15:17,7/26/2014,15:10:00,70,1,1,77.2,1,undefined,FALSE,Good,43.00700556,-89.30917778
+321,WaubesaPier5,kneppreth,64.9,1,0,1,1,8/9/2014 19:20,7/29/2014,8:15:41,80,1,1,72,2,undefined,TRUE,Good,43.00700556,-89.30917778
+322,WaubesaPier5,kneppreth,77.2,1,0,1,1,8/9/2014 19:21,8/9/2014,19:15:30,45,1,1,75.9,1,undefined,FALSE,Good,43.00700556,-89.30917778
+323,WaubesaPier5,kneppreth,77.5,1,0,1,1,8/10/2014 12:42,8/10/2014,12:30:04,60,1,1,78.1,1,undefined,FALSE,Good,43.00700556,-89.30917778
+324,WaubesaPier5,kneppreth,80,1,0,1,1,8/11/2014 19:42,8/11/2014,14:20:01,65,1,1,81.9,1,,FALSE,Good,43.00700556,-89.30917778
+325,WaubesaPier5,kneppreth,77.5,1,0,1,2,8/13/2014 15:44,8/13/2014,15:05:27,65,1,1,77.2,2,undefined,FALSE,Good,43.00700556,-89.30917778
+326,WaubesaPier5,kneppreth,69.3,1,0,1,1,8/14/2014 15:02,8/14/2014,14:40:39,60,2,1,77,1,undefined,FALSE,Good,43.00700556,-89.30917778
+327,WaubesaPier5,kneppreth,77.2,1,0,1,1,8/15/2014 14:55,8/15/2014,14:50:24,55,2,1,76.6,2,undefined,FALSE,Good,43.00700556,-89.30917778
+328,WaubesaPier5,kneppreth,74.3,1,0,1,1,8/17/2014 14:14,8/17/2014,14:05:31,70,1,1,75.6,1,undefined,FALSE,Good,43.00700556,-89.30917778
+329,WaubesaPier5,kneppreth,81.5,2,2,2,2,8/18/2014 14:57,8/18/2014,14:25:13,55,2,1,77,1,undefined,FALSE,Unknown,43.00700556,-89.30917778
+330,WaubesaPier5,kneppreth,81.5,1,0,1,1,8/20/2014 15:05,8/20/2014,14:50:48,55,2,1,79.3,1,undefined,FALSE,Good,43.00700556,-89.30917778
+331,WaubesaPier5,kneppreth,83.7,1,0,1,1,8/22/2014 15:31,8/22/2014,14:50:39,55,2,1,81.9,1,undefined,FALSE,Good,43.00700556,-89.30917778
+332,WaubesaPier5,kneppreth,75.8,1,0,1,1,8/23/2014 12:20,8/23/2014,12:10:56,60,2,1,76.6,1,undefined,FALSE,Good,43.00700556,-89.30917778
+333,WaubesaPier5,kneppreth,74.8,1,0,1,1,8/24/2014 10:03,8/24/2014,9:55:22,70,2,1,74.8,1,undefined,FALSE,Good,43.00700556,-89.30917778
+334,WaubesaPier5,kneppreth,74.3,1,0,1,1,8/25/2014 16:04,8/25/2014,15:45:15,65,2,1,77.2,1,undefined,FALSE,Good,43.00700556,-89.30917778
+335,WaubesaPier5,kneppreth,75,1,0,1,1,8/26/2014 16:53,8/26/2014,16:45:23,65,2,1,79.5,1,undefined,FALSE,Good,43.00700556,-89.30917778
+336,WaubesaPier5,kneppreth,84.2,1,0,1,1,8/29/2014 14:15,8/29/2014,14:10:42,65,2,1,78.8,1,undefined,FALSE,Good,43.00700556,-89.30917778
+337,WaubesaPier5,kneppreth,74.5,1,0,1,1,8/30/2014 13:21,8/30/2014,13:15:34,65,2,1,76.8,2,undefined,FALSE,Good,43.00700556,-89.30917778
+338,WaubesaPier5,kneppreth,82.1,1,0,1,1,8/31/2014 15:49,8/31/2014,15:45:35,55,2,1,79,2,Heavy boat traffic,FALSE,Good,43.00700556,-89.30917778
+339,WaubesaPier5,kneppreth,76.8,1,0,1,2,9/1/2014 15:20,9/1/2014,15:15:28,60,2,1,77,2,undefined,FALSE,Good,43.00700556,-89.30917778
+340,WaubesaPier5,kneppreth,73.8,1,0,1,1,9/2/2014 14:51,9/2/2014,14:45:05,65,2,1,78.8,1,undefined,FALSE,Good,43.00700556,-89.30917778
+341,MendotaBeach18,krejcarek,undefined,1,0,1,2,9/7/2014 12:51,6/11/2014,9:54:11,55,3,1,undefined,3,undefined,TRUE,Poor,43.08754444,-89.41970556
+342,MendotaBeach18,krejcarek,undefined,3,1,1,2,9/7/2014 12:50,6/16/2014,9:51:23,3,3,1,undefined,1,thermometer broke; water was very green and covered in algae,FALSE,Poor,43.08754444,-89.41970556
+343,MendotaBeach18,krejcarek,71.6,1,FALSE,1,2,6/25/2014 19:37,6/20/2014,8:33:00,117,NA,2,69.3,2,undefined,FALSE,Unknown,43.08754444,-89.41970556
+344,MendotaBeach18,krejcarek,80.6,2,TRUE,1,2,6/25/2014 19:42,6/23/2014,16:05:00,53,NA,1,77.4,2,"along shore parallel to path, looked what appeared to be a less prevalent algal bloom; not completely covered with bloom, but enough to deter me from wanting to swim there.",FALSE,Unknown,43.08754444,-89.41970556
+345,MendotaBeach18,krejcarek,69.5,1,FALSE,1,2,6/27/2014 17:24,6/26/2014,9:57:00,117,NA,2,73.4,2,undefined,FALSE,Unknown,43.08754444,-89.41970556
+346,MendotaBeach18,krejcarek,67.5,1,0,1,2,7/21/2014 15:43,7/1/2014,9:11:00,117,1,1,74.1,2,undefined,FALSE,Good,43.08754444,-89.41970556
+347,MendotaBeach18,krejcarek,64,1,0,1,2,7/21/2014 15:52,7/3/2014,8:43:00,88.9,3,3,70,3,undefined,FALSE,Poor,43.08754444,-89.41970556
+348,MendotaBeach18,krejcarek,82.6,1,0,1,2,7/21/2014 16:02,7/7/2014,15:31:00,106.2,1,1,77.2,2,undefined,TRUE,Good,43.08754444,-89.41970556
+349,MendotaBeach18,krejcarek,76.1,1,0,1,2,7/21/2014 16:06,7/10/2014,9:30:00,117,1,2,73.8,1,undefined,FALSE,Good,43.08754444,-89.41970556
+350,MendotaBeach18,krejcarek,74.1,1,0,1,2,7/21/2014 16:39,7/14/2014,9:25:00,117,1,1,73.2,2,undefined,FALSE,Good,43.08754444,-89.41970556
+351,MendotaBeach18,krejcarek,72.5,3,1,1,2,7/21/2014 16:42,7/17/2014,11:36:00,19.6,3,1,74.3,2,bloom present at each site,FALSE,Poor,43.08754444,-89.41970556
+352,MendotaBeach18,krejcarek,86.4,1,0,1,2,7/30/2014 14:56,7/22/2014,10:38:00,117,1,2,76.3,2,hottest day of the year thus far and water was refreshing!,FALSE,Good,43.08754444,-89.41970556
+353,MendotaBeach18,krejcarek,72.7,1,0,1,2,7/30/2014 14:57,7/24/2014,9:15:00,107.2,1,1,73.4,1,undefined,FALSE,Good,43.08754444,-89.41970556
+354,MendotaBeach18,krejcarek,71.6,1,0,1,3,7/30/2014 14:59,7/28/2014,15:53:00,25.9,2,1,72.3,3,covered in debris,FALSE,Poor,43.08754444,-89.41970556
+355,MendotaBeach18,krejcarek,74.1,1,0,1,2,9/7/2014 14:05,7/31/2014,9:59:22,117,1,1,73.4,2,undefined,FALSE,Good,43.08754444,-89.41970556
+356,MendotaBeach18,krejcarek,74.1,1,0,1,2,9/7/2014 14:07,8/4/2014,16:29:56,117,0,1,73.4,2,after rain,FALSE,Unknown,43.08754444,-89.41970556
+357,MendotaBeach18,krejcarek,78.3,1,0,1,2,9/7/2014 14:08,8/7/2014,15:23:36,90.4,2,2,77.7,2,undefined,TRUE,Good,43.08754444,-89.41970556
+358,MendotaBeach18,krejcarek,68,1,0,1,2,9/7/2014 14:14,8/12/2014,11:58:23,48.7,3,1,71.8,3,undefined,FALSE,Poor,43.08754444,-89.41970556
+359,MendotaBeach18,krejcarek,74,1,0,2,2,9/7/2014 14:15,8/15/2014,10:23:21,117,1,1,73.4,1,bathers were dog and owner,FALSE,Good,43.08754444,-89.41970556
+360,MendotaBeach18,krejcarek,79.5,1,0,1,2,9/7/2014 14:16,8/18/2014,13:13:55,117,1,1,75.4,2,undefined,FALSE,Good,43.08754444,-89.41970556
+361,MendotaBeach18,krejcarek,78.3,1,0,1,2,9/7/2014 14:18,8/19/2014,15:54:01,117,1,2,77.9,2,undefined,FALSE,Good,43.08754444,-89.41970556
+362,MendotaBeach18,krejcarek,67.1,1,0,1,3,9/7/2014 14:20,8/26/2014,10:36:15,71.3,3,1,73.2,2,before rain,FALSE,Poor,43.08754444,-89.41970556
+363,MendotaBeach18,krejcarek,76.3,1,0,1,2,9/7/2014 14:20,8/29/2014,10:47:09,117,1,1,75.6,1,undefined,FALSE,Good,43.08754444,-89.41970556
+364,MendotaBeach18,krejcarek,76.5,1,0,1,2,9/7/2014 14:03,9/2/2014,15:24:13,117,1,1,76.3,2,undefined,TRUE,Good,43.08754444,-89.41970556
+365,MendotaBeach18,krejcarek,76.1,1,0,1,2,9/7/2014 14:02,9/4/2014,14:22:08,117,1,2,76.5,2,after night of intense storms; observations taken literally moments before downpour,FALSE,Good,43.08754444,-89.41970556
+366,MendotaBeach19,krejcarek,undefined,1,0,1,2,9/7/2014 12:52,6/11/2014,9:10:30,44,3,2,undefined,2,thermometer broke,TRUE,Poor,43.07946944,-89.41926389
+367,MendotaBeach19,krejcarek,76.3,1,FALSE,2,2,6/25/2014 14:48,6/16/2014,9:20:00,116,NA,2,65.5,1,undefined,FALSE,Unknown,43.07946944,-89.41926389
+368,MendotaBeach19,krejcarek,72.7,1,FALSE,1,2,6/25/2014 19:34,6/20/2014,9:25:00,68,NA,2,70.9,2,undefined,FALSE,Unknown,43.07946944,-89.41926389
+369,MendotaBeach19,krejcarek,84.1,2,FALSE,1,2,6/25/2014 19:35,6/23/2014,15:15:00,97,NA,3,78.3,1,undefined,FALSE,Unknown,43.07946944,-89.41926389
+370,MendotaBeach19,krejcarek,67.5,1,FALSE,1,2,6/27/2014 17:21,6/26/2014,9:20:00,117,NA,3,78.3,1,undefined,FALSE,Unknown,43.07946944,-89.41926389
+371,MendotaBeach19,krejcarek,72.5,1,0,1,2,7/21/2014 15:40,7/1/2014,8:26:00,117,1,3,73.6,2,undefined,FALSE,Good,43.07946944,-89.41926389
+372,MendotaBeach19,krejcarek,63.9,1,0,1,2,7/21/2014 15:54,7/3/2014,9:29:00,99.8,3,2,70.9,2,undefined,FALSE,Poor,43.07946944,-89.41926389
+373,MendotaBeach19,krejcarek,86.7,1,0,1,2,7/21/2014 16:01,7/7/2014,14:37:00,117,1,2,77.4,2,undefined,TRUE,Good,43.07946944,-89.41926389
+374,MendotaBeach19,krejcarek,72.3,1,0,1,2,7/21/2014 16:07,7/10/2014,8:54:00,117,1,2,73.8,1,undefined,FALSE,Good,43.07946944,-89.41926389
+375,MendotaBeach19,krejcarek,71.6,1,0,1,2,7/21/2014 16:38,7/14/2014,8:38:00,117,1,1,72.9,2,undefined,FALSE,Good,43.07946944,-89.41926389
+376,MendotaBeach19,krejcarek,72.3,2,1,1,2,7/21/2014 16:44,7/17/2014,11:07:00,90,3,1,74.5,1,smallest bloom in comparison to other two site,FALSE,Poor,43.07946944,-89.41926389
+377,MendotaBeach19,krejcarek,84.7,2,2,1,2,7/30/2014 14:48,7/22/2014,9:42:00,106.9,3,3,72.3,1,hottest day of year thus far,FALSE,Poor,43.07946944,-89.41926389
+378,MendotaBeach19,krejcarek,76.3,1,0,1,2,7/30/2014 14:52,7/24/2014,15:41:00,94.3,3,2,77.7,2,This sample was taken later than the other two because they were taking one of the docks out of the water at this site in the morning.,FALSE,Poor,43.07946944,-89.41926389
+379,MendotaBeach19,krejcarek,72.9,1,0,1,2,7/30/2014 14:53,7/28/2014,15:12:00,76.7,2,1,71.6,2,undefined,FALSE,Good,43.07946944,-89.41926389
+380,MendotaBeach19,krejcarek,76.1,1,0,1,2,9/7/2014 13:35,7/31/2014,9:11:30,97.8,1,1,73,2,undefined,FALSE,Good,43.07946944,-89.41926389
+381,MendotaBeach19,krejcarek,69.1,1,0,1,2,9/7/2014 13:37,8/4/2014,15:51:34,39.2,3,1,75.2,2,undefined,FALSE,Poor,43.07946944,-89.41926389
+382,MendotaBeach19,krejcarek,83.5,1,0,1,2,9/7/2014 13:40,8/7/2014,14:29:17,55.9,2,1,78.6,2,undefined,TRUE,Good,43.07946944,-89.41926389
+383,MendotaBeach19,krejcarek,67.3,1,0,1,2,9/7/2014 13:49,8/12/2014,11:28:34,38.6,3,1,68.5,2,undefined,FALSE,Poor,43.07946944,-89.41926389
+384,MendotaBeach19,krejcarek,72.3,1,0,1,2,9/7/2014 13:50,8/15/2014,9:47:46,109.7,1,1,73,1,undefined,FALSE,Good,43.07946944,-89.41926389
+385,MendotaBeach19,krejcarek,80.6,1,0,1,2,9/7/2014 13:52,8/18/2014,12:22:23,117,1,2,74.5,1,undefined,FALSE,Good,43.07946944,-89.41926389
+386,MendotaBeach19,krejcarek,82.4,1,0,1,2,9/7/2014 13:53,8/19/2014,15:02:45,37.7,3,1,75.3,2,undefined,FALSE,Poor,43.07946944,-89.41926389
+387,MendotaBeach19,krejcarek,67.5,1,0,1,2,9/7/2014 13:55,8/26/2014,9:47:59,53.6,3,1,71.8,2,before rain,FALSE,Poor,43.07946944,-89.41926389
+388,MendotaBeach19,krejcarek,78.4,1,0,1,2,9/7/2014 13:56,8/29/2014,11:14:19,117,1,1,74.8,1,undefined,FALSE,Good,43.07946944,-89.41926389
+389,MendotaBeach19,krejcarek,77,1,0,1,2,9/7/2014 13:57,9/2/2014,16:23:33,97.8,1,1,76.3,2,undefined,TRUE,Good,43.07946944,-89.41926389
+390,MendotaBeach19,krejcarek,74.3,1,0,1,2,9/7/2014 13:59,9/4/2014,15:10:40,117,2,2,74.5,1,observations taken just after rain shower,FALSE,Good,43.07946944,-89.41926389
+391,MendotaPier20,krejcarek,62.6,1,0,1,2,9/7/2014 12:54,6/11/2014,8:40:55,116,1,2,undefined,3,undefined,TRUE,Good,43.07724167,-89.398775
+392,MendotaPier20,krejcarek,80,1,FALSE,1,2,6/25/2014 14:32,6/16/2014,8:42:00,116,NA,2,67.6,1,undefined,FALSE,Unknown,43.07724167,-89.398775
+393,MendotaPier20,krejcarek,75,1,FALSE,1,2,6/25/2014 14:33,6/20/2014,10:06:00,117,NA,2,70.2,2,undefined,FALSE,Unknown,43.07724167,-89.398775
+394,MendotaPier20,krejcarek,80.4,1,FALSE,2,2,6/25/2014 14:34,6/23/2014,14:40:00,117,NA,2,77.7,1,undefined,FALSE,Unknown,43.07724167,-89.398775
+395,MendotaPier20,krejcarek,66.6,1,FALSE,1,2,6/27/2014 17:20,6/26/2014,8:15:00,117,NA,2,70.5,2,undefined,FALSE,Unknown,43.07724167,-89.398775
+396,MendotaPier20,krejcarek,72.3,1,0,1,2,7/21/2014 15:37,7/1/2014,10:13:00,117,1,2,74.7,2,undefined,FALSE,Good,43.07724167,-89.398775
+397,MendotaPier20,krejcarek,67.5,1,0,1,2,7/21/2014 15:57,7/3/2014,10:08:00,81.5,3,3,72.5,3,undefined,FALSE,Poor,43.07724167,-89.398775
+398,MendotaPier20,krejcarek,81.3,1,0,2,2,7/21/2014 15:59,7/7/2014,13:53:00,80.6,3,2,76.6,2,undefined,TRUE,Poor,43.07724167,-89.398775
+399,MendotaPier20,krejcarek,73.9,1,0,1,2,7/21/2014 16:35,7/10/2014,8:08:00,117,1,2,73.9,1,undefined,FALSE,Good,43.07724167,-89.398775
+400,MendotaPier20,krejcarek,72.1,1,0,1,2,7/21/2014 16:37,7/14/2014,8:07:00,117,3,3,73.4,2,undefined,FALSE,Poor,43.07724167,-89.398775
+401,MendotaPier20,krejcarek,76.3,3,1,1,2,7/21/2014 16:49,7/17/2014,10:36:00,80.6,3,2,74.7,2,lifeguard was already aware of bloom. ducks seen eating from bloom,FALSE,Poor,43.07724167,-89.398775
+402,MendotaPier20,krejcarek,86,1,0,1,2,7/30/2014 14:40,7/22/2014,8:08:00,102.7,3,2,72.9,2,hottest day of summer thus far,FALSE,Poor,43.07724167,-89.398775
+403,MendotaPier20,krejcarek,71.1,1,0,1,2,7/30/2014 14:43,7/24/2014,8:28:00,89,3,2,74.7,1,undefined,FALSE,Poor,43.07724167,-89.398775
+404,MendotaPier20,krejcarek,71.1,1,0,1,2,7/30/2014 14:44,7/28/2014,14:38:00,97.2,3,2,73.4,3,undefined,FALSE,Poor,43.07724167,-89.398775
+405,MendotaPier20,krejcarek,73.4,1,0,1,2,9/7/2014 13:07,7/31/2014,8:39:07,117,2,2,74.1,2,undefined,FALSE,Good,43.07724167,-89.398775
+406,MendotaPier20,krejcarek,67.5,1,0,1,3,9/7/2014 13:09,8/4/2014,17:07:01,87.4,0,3,75.2,2,observations/measurements taken after rain; most plant debris seen at this location all summer,FALSE,Poor,43.07724167,-89.398775
+407,MendotaPier20,krejcarek,83.5,1,0,2,2,9/7/2014 13:11,8/7/2014,15:58:59,106.2,1,3,75,2,undefined,TRUE,Good,43.07724167,-89.398775
+408,MendotaPier20,krejcarek,69.6,1,0,1,2,9/7/2014 13:13,8/12/2014,12:28:59,86.6,3,2,73.4,3,undefined,FALSE,Poor,43.07724167,-89.398775
+409,MendotaPier20,krejcarek,78.8,1,0,1,2,9/7/2014 13:15,8/15/2014,11:31:41,100.2,1,3,73.6,1,undefined,FALSE,Good,43.07724167,-89.398775
+410,MendotaPier20,krejcarek,86,1,0,2,2,9/7/2014 13:19,8/18/2014,13:58:00,117,2,3,75.2,2,undefined,FALSE,Good,43.07724167,-89.398775
+411,MendotaPier20,krejcarek,79.9,1,0,1,2,9/7/2014 13:25,8/19/2014,14:23:21,117,2,2,75.2,2,undefined,FALSE,Good,43.07724167,-89.398775
+412,MendotaPier20,krejcarek,68.1,1,0,1,2,9/7/2014 13:27,8/26/2014,11:31:24,110.3,2,2,74.7,3,before storm,FALSE,Good,43.07724167,-89.398775
+413,MendotaPier20,krejcarek,83.7,1,0,2,2,9/7/2014 13:28,8/29/2014,12:08:48,117,1,2,74.5,1,undefined,FALSE,Good,43.07724167,-89.398775
+414,MendotaPier20,krejcarek,78.8,1,0,1,2,9/7/2014 13:30,9/2/2014,17:03:53,107.8,2,2,76.1,2,undefined,TRUE,Good,43.07724167,-89.398775
+415,MendotaPier20,krejcarek,81.3,1,0,1,2,9/7/2014 13:32,9/4/2014,16:08:08,102.8,2,1,74.7,2,last day,FALSE,Good,43.07724167,-89.398775
+416,KegonsaPier1,lamm,73,1,0,1,2,7/6/2014 8:47,6/17/2014,10:30:00,28,1,1,75.2,1,undefined,FALSE,Good,42.98084722,-89.24745278
+417,KegonsaPier1,lamm,72.7,1,0,1,1,7/6/2014 8:48,6/20/2014,22:30:00,78,1,1,73.4,1,undefined,FALSE,Good,42.98084722,-89.24745278
+418,KegonsaPier1,lamm,78.8,1,0,1,2,7/6/2014 8:50,6/22/2014,14:33:00,90,1,1,80.1,1,undefined,FALSE,Good,42.98084722,-89.24745278
+419,KegonsaPier1,lamm,81.7,2,2,1,2,7/6/2014 8:53,6/24/2014,11:51:00,55,1,1,82.4,1,undefined,FALSE,Fair,42.98084722,-89.24745278
+420,KegonsaPier1,lamm,74.1,2,2,1,2,7/6/2014 8:56,6/26/2014,13:30:00,118,1,1,80.6,1,value exeeds length of tube,FALSE,Fair,42.98084722,-89.24745278
+421,KegonsaPier1,lamm,82.2,1,0,1,2,7/6/2014 8:58,6/30/2014,14:00:00,31,2,1,80.6,2,low secci due to sand from bottom,FALSE,Good,42.98084722,-89.24745278
+422,KegonsaPier1,lamm,65.5,1,0,1,1,7/6/2014 9:01,7/2/2014,22:13:00,118,1,1,72.1,1,Secci exceeds tube length,TRUE,Good,42.98084722,-89.24745278
+423,KegonsaPier1,lamm,73,1,0,1,1,7/8/2014 14:28,7/6/2014,11:00:00,45,1,1,72.3,1,undefined,FALSE,Good,42.98084722,-89.24745278
+424,KegonsaPier1,lamm,75.9,2,2,1,2,7/8/2014 14:29,7/8/2014,14:00:00,53,1,1,76.5,2,undefined,FALSE,Fair,42.98084722,-89.24745278
+425,KegonsaPier1,lamm,73.4,1,0,1,1,7/14/2014 14:46,7/14/2014,14:30:00,63,1,1,77.5,2,undefined,FALSE,Good,42.98084722,-89.24745278
+426,KegonsaPier1,lamm,70.4,3,2,1,2,7/17/2014 16:18,7/17/2014,23:30:00,36,3,1,77,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+427,KegonsaPier1,lamm,72.3,1,0,1,1,7/20/2014 10:35,7/20/2014,10:30:00,30,3,1,75.4,2,undefined,FALSE,Poor,42.98084722,-89.24745278
+428,KegonsaPier1,lamm,71.1,1,0,1,1,7/23/2014 14:19,7/23/2014,10:00:00,49,3,1,78.1,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+429,KegonsaPier1,lamm,72.1,1,0,1,1,7/26/2014 10:13,7/26/2014,10:00:00,19,3,1,72.3,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+430,KegonsaPier1,lamm,76.3,2,2,1,2,7/29/2014 14:32,7/29/2014,14:31:00,49,3,1,75.9,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+431,KegonsaPier1,lamm,74.7,1,0,1,1,8/1/2014 13:17,7/31/2014,11:00:00,44,3,1,73.8,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+432,KegonsaPier1,lamm,81.1,1,0,1,2,8/2/2014 15:27,8/2/2014,15:27:08,22,3,1,84.6,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+433,KegonsaPier1,lamm,80.4,1,0,1,2,8/6/2014 8:25,8/4/2014,13:30:29,23,3,1,81.1,2,Plant debris is cut weeds from the river,FALSE,Poor,42.98084722,-89.24745278
+434,KegonsaPier1,lamm,76.5,1,0,1,1,8/6/2014 18:02,8/6/2014,1:00:00,63,3,1,79.5,1,the 8/6 1:30 PM data are for 8/4.  the new  way to enter the date-time  info is not an improvement!,TRUE,Poor,42.98084722,-89.24745278
+435,KegonsaPier1,lamm,7106,1,0,1,1,8/9/2014 10:03,8/9/2014,10:00:49,36,3,1,76.1,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+436,KegonsaPier1,lamm,71.4,1,0,1,1,8/12/2014 16:32,8/12/2014,15:00:23,49,3,1,73.9,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+437,KegonsaPier1,lamm,71.1,2,2,1,1,8/16/2014 7:37,8/14/2014,14:30:39,61,3,1,78.3,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+438,KegonsaPier1,lamm,69.8,1,0,1,1,8/18/2014 16:11,8/17/2014,10:30:04,38,3,1,75.4,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+439,KegonsaPier1,lamm,83.5,1,0,1,1,8/21/2014 14:44,8/20/2014,14:00:44,38,3,1,81,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+440,KegonsaPier1,lamm,73.8,1,0,1,1,8/25/2014 14:39,8/25/2014,14:30:45,36,3,1,77,1,Heavy rain this morning,FALSE,Poor,42.98084722,-89.24745278
+441,KegonsaPier1,lamm,74.5,1,0,1,1,8/30/2014 9:34,8/28/2014,15:00:16,28,3,1,77,1,undefined,FALSE,Poor,42.98084722,-89.24745278
+442,KegonsaPier1,lamm,73.8,1,0,1,1,9/5/2014 13:58,9/5/2014,9:30:46,30,3,1,75,1,undefined,TRUE,Poor,42.98084722,-89.24745278
+443,MononaBeach3,larsenconverse,76.5,3,FALSE,1,1,6/9/2014 11:58,6/5/2014,18:00:00,85,NA,1,80.4,1,Very strong smell,TRUE,Poor,43.08973333,-89.34441667
+444,MononaBeach3,larsenconverse,70,2,FALSE,1,2,6/13/2014 18:47,6/13/2014,18:22:00,117,NA,1,73.8,1,undefined,FALSE,Unknown,43.08973333,-89.34441667
+445,MononaBeach3,larsenconverse,74.5,1,FALSE,1,2,6/25/2014 21:28,6/25/2014,21:24:00,82,NA,1,77.8,1,Smelled bad. Hard to fill the tube from a kayak. Beautiful night.,FALSE,Unknown,43.08973333,-89.34441667
+446,MononaBeach3,larsenconverse,80.1,2,2,1,3,7/19/2014 20:49,7/19/2014,19:36:00,58,3,1,78.1,2,"Beautiful night. There were about five fishing boats out in the middle of the lake. A kayaker pulled up while I was sampling. He had a wire bin with what he said was enough panfish for a good breakfast for two.  My daughter did the recording, as usual. It was great to be back in Madison enjoying some time in the lake!",TRUE,Poor,43.08973333,-89.34441667
+447,MononaBeach3,larsenconverse,76.5,2,1,1,3,8/7/2014 18:44,8/3/2014,19:00:38,55,3,1,78.8,2,undefined,TRUE,Poor,43.08973333,-89.34441667
+448,MononaBeach3,larsenconverse,72.6,1,0,0,1,8/14/2014 9:40,8/11/2014,20:00:02,85,1,1,74.7,1,undefined,FALSE,Good,43.08973333,-89.34441667
+449,MononaBeach3,larsenconverse,75.9,1,0,2,1,8/17/2014 20:56,8/17/2014,19:00:23,100,1,1,78.1,1,undefined,FALSE,Good,43.08973333,-89.34441667
+450,MononaBeach3,larsenconverse,85.3,1,0,1,1,8/25/2014 18:13,8/24/2014,18:30:24,78,2,2,82,2,undefined,FALSE,Good,43.08973333,-89.34441667
+451,MononaBeach3,larsenconverse,84.6,1,0,1,3,9/1/2014 12:05,8/31/2014,16:30:53,61,2,1,81,2,,FALSE,Poor,43.08973333,-89.34441667
+452,MononaBeach3,larsenconverse,79,1,0,1,1,9/5/2014 15:12,9/5/2014,14:10:42,83,1,1,77.4,1,undefined,TRUE,Good,43.08973333,-89.34441667
+453,Wingra1,letts,undefined,1,0,2,2,7/6/2014 17:16,6/8/2014,18:50:00,120,1,2,undefined,1,undefined,TRUE,Good,#N/A,#N/A
+454,Wingra1,letts,73.4,1,0,1,2,7/6/2014 17:18,7/6/2014,11:00:00,119,1,1,74.7,1,undefined,TRUE,Good,#N/A,#N/A
+455,Wingra1,letts,69.8,1,0,1,2,8/6/2014 21:02,8/6/2014,20:15:16,120,2,1,80.6,1,undefined,TRUE,Good,#N/A,#N/A
+456,Wingra1,letts,78.8,2,2,1,2,9/7/2014 16:04,9/7/2014,11:45:49,67,2,2,75.9,1,undefined,TRUE,Unknown,#N/A,#N/A
+457,MononaPier10,mccartney,80.1,2,1,1,2,7/8/2014 10:34,6/6/2014,13:00:00,80,1,2,78.8,2,undefined,TRUE,Fair,43.08893889,-89.34823333
+458,MononaPier10,mccartney,74.8,2,1,1,3,7/8/2014 10:35,6/26/2014,15:00:00,80,1,2,83.4,1,undefined,FALSE,Fair,43.08893889,-89.34823333
+459,MononaPier10,mccartney,77,1,1,1,2,7/8/2014 10:37,6/30/2014,11:00:00,65,1,2,76.3,3,undefined,FALSE,Good,43.08893889,-89.34823333
+460,MononaPier10,mccartney,73.4,1,1,1,1,7/8/2014 10:37,7/3/2014,14:00:00,119,1,2,76.4,1,undefined,TRUE,Good,43.08893889,-89.34823333
+461,MononaPier10,mccartney,78.6,2,1,1,2,7/21/2014 11:20,7/12/2014,11:30:00,95,1,2,74.3,1,undefined,FALSE,Fair,43.08893889,-89.34823333
+462,MononaPier10,mccartney,78.3,3,1,1,2,7/21/2014 11:21,7/18/2014,11:00:00,93,3,2,75.1,1,undefined,FALSE,Poor,43.08893889,-89.34823333
+463,MononaPier10,mccartney,66.7,2,1,1,2,8/7/2014 16:02,7/25/2014,12:30:00,73,0,2,71.6,2,I hope the system has been corected to r,FALSE,Unknown,43.08893889,-89.34823333
+464,MononaPier10,mccartney,76.5,1,1,1,1,8/7/2014 16:05,8/1/2014,14:30:00,82,2,2,75.9,1,Last entry was the jirst that went through---hooray,FALSE,Good,43.08893889,-89.34823333
+465,MononaPier10,mccartney,69.8,1,1,1,2,9/9/2014 16:09,8/15/2014,10:10:00,99,0,2,71.6,2,undefined,FALSE,Unknown,43.08893889,-89.34823333
+466,MononaPier10,mccartney,83.1,2,1,1,1,9/9/2014 16:10,8/22/2014,12:30:00,106,0,2,78.6,1,undefined,FALSE,Unknown,43.08893889,-89.34823333
+467,MononaPier10,mccartney,73.4,1,1,1,2,9/9/2014 16:11,8/30/2014,10:00:00,98,0,1,75.2,2,undefined,FALSE,Unknown,43.08893889,-89.34823333
+468,MononaPier10,mccartney,,NA,,NA,NA,9/9/2014 16:10,9/3/2014,13:00:00,,NA,NA,,NA,undefined,TRUE,Unknown,43.08893889,-89.34823333
+469,MononaPier6,meier,78.6,2,2,1,2,7/3/2014 11:00,6/9/2014,15:00:00,102,3,1,78.3,1,"This is the real entry for 6/9/14, the other lacked phosphorus checkpoint",TRUE,Poor,43.0562,-89.37806944
+470,MononaPier6,meier,69.8,1,0,1,2,7/3/2014 10:58,6/10/2014,14:55:00,59,3,2,72.5,2,undefined,FALSE,Poor,43.0562,-89.37806944
+471,MononaPier6,meier,72.3,1,0,1,2,7/3/2014 10:57,6/11/2014,17:29:00,52,3,2,72.7,2,undefined,FALSE,Poor,43.0562,-89.37806944
+472,MononaPier6,meier,77,1,0,1,2,7/3/2014 10:56,6/12/2014,15:30:00,91,3,1,73.9,1,undefined,FALSE,Poor,43.0562,-89.37806944
+473,MononaPier6,meier,72.1,1,0,1,2,7/3/2014 10:56,6/13/2014,15:00:00,112,3,2,71.6,2,undefined,FALSE,Poor,43.0562,-89.37806944
+474,MononaPier6,meier,81.5,1,0,1,2,7/3/2014 10:55,6/14/2014,15:00:00,109,3,2,74.1,1,undefined,FALSE,Poor,43.0562,-89.37806944
+475,MononaPier6,meier,77,1,0,1,1,7/3/2014 10:54,6/15/2014,20:10:00,117,3,2,71.6,1,undefined,FALSE,Poor,43.0562,-89.37806944
+476,MononaPier6,meier,88.9,1,0,1,1,7/3/2014 10:53,6/16/2014,16:18:00,111,3,2,74.8,1,undefined,FALSE,Poor,43.0562,-89.37806944
+477,MononaPier6,meier,84.2,1,0,1,2,7/3/2014 10:52,6/17/2014,16:02:00,36.8,3,2,78.8,1,Right after a huge storm,FALSE,Poor,43.0562,-89.37806944
+478,MononaPier6,meier,76.1,1,0,1,2,7/3/2014 10:51,6/18/2014,15:18:00,65,3,2,74.7,1,undefined,FALSE,Poor,43.0562,-89.37806944
+479,MononaPier6,meier,73.4,1,0,1,1,7/3/2014 10:49,6/19/2014,17:18:00,78.8,3,2,73.6,2,undefined,FALSE,Poor,43.0562,-89.37806944
+480,MononaPier6,meier,83.5,1,0,1,1,7/3/2014 10:48,6/20/2014,17:00:00,116,3,2,77.7,1,"This is the only real entry for 6/20/14, the other didn't include turbidity",FALSE,Poor,43.0562,-89.37806944
+481,MononaPier6,meier,82.4,1,0,1,2,7/3/2014 10:46,6/21/2014,18:36:00,116,3,2,76.8,1,undefined,FALSE,Poor,43.0562,-89.37806944
+482,MononaPier6,meier,79.5,1,0,1,1,7/3/2014 10:44,6/22/2014,17:07:00,116,3,2,80.1,1,undefined,FALSE,Poor,43.0562,-89.37806944
+483,MononaPier6,meier,82,1,0,1,1,7/1/2014 16:27,6/23/2014,18:37:00,116,1,1,79.3,1,undefined,FALSE,Good,43.0562,-89.37806944
+484,MononaPier6,meier,84,1,0,1,1,7/1/2014 16:25,6/24/2014,17:00:00,116,1,2,81.9,1,undefined,FALSE,Good,43.0562,-89.37806944
+485,MononaPier6,meier,78.8,1,0,1,2,7/1/2014 16:15,6/26/2014,16:30:00,89.8,1,2,81,1,undefined,FALSE,Good,43.0562,-89.37806944
+486,MononaPier6,meier,84.9,2,2,1,2,7/1/2014 16:13,6/27/2014,17:55:00,120,1,1,78.8,1,undefined,FALSE,Fair,43.0562,-89.37806944
+487,MononaPier6,meier,81,1,0,2,2,7/1/2014 16:11,6/28/2014,19:12:00,120,1,1,81,2,undefined,FALSE,Good,43.0562,-89.37806944
+488,MononaPier6,meier,78.6,1,0,1,2,7/1/2014 16:09,7/1/2014,15:35:00,92.4,3,1,77.9,1,undefined,FALSE,Poor,43.0562,-89.37806944
+489,MononaPier6,meier,68,1,0,1,2,7/9/2014 18:02,7/2/2014,15:22:00,120,1,1,67.6,2,undefined,FALSE,Good,43.0562,-89.37806944
+490,MononaPier6,meier,75.5,2,2,1,1,7/9/2014 18:00,7/3/2014,16:20:00,120,1,2,75.6,2,undefined,FALSE,Good,43.0562,-89.37806944
+491,MononaPier6,meier,74.1,2,2,1,2,7/9/2014 17:59,7/6/2014,16:20:00,120,1,1,81.7,1,undefined,FALSE,Fair,43.0562,-89.37806944
+492,MononaPier6,meier,84.9,2,2,1,2,7/9/2014 17:57,7/7/2014,17:20:00,120,1,2,78.8,1,undefined,FALSE,Fair,43.0562,-89.37806944
+493,MononaPier6,meier,78.3,2,2,1,2,7/9/2014 17:56,7/8/2014,18:15:00,120,1,1,77.7,2,undefined,TRUE,Fair,43.0562,-89.37806944
+494,MononaPier6,meier,76.1,2,2,1,1,7/9/2014 17:54,7/9/2014,16:45:00,120,1,1,76.3,2,undefined,FALSE,Good,43.0562,-89.37806944
+495,MononaPier6,meier,86,1,0,1,2,7/15/2014 10:05,7/11/2014,17:14:00,120,1,2,78.3,1,undefined,FALSE,Good,43.0562,-89.37806944
+496,MononaPier6,meier,63.1,1,0,1,2,7/15/2014 10:06,7/15/2014,10:05:00,96.8,1,2,68.7,2,undefined,FALSE,Good,43.0562,-89.37806944
+497,MendotaPier9,ostrom,77,1,FALSE,1,2,6/5/2014 21:05,6/5/2014,21:01:00,115,NA,2,73,1,samples taken 19:15,TRUE,Unknown,43.10181944,-89.48342778
+498,MendotaPier9,ostrom,72.9,1,0,1,2,7/12/2014 11:46,6/11/2014,18:30:00,77,2,1,72,2,undefined,FALSE,Good,43.10181944,-89.48342778
+499,MendotaPier9,ostrom,79.7,1,0,1,1,7/12/2014 11:48,6/16/2014,18:30:00,108,3,2,75.4,1,undefined,FALSE,Poor,43.10181944,-89.48342778
+500,MendotaPier9,ostrom,74,1,0,1,2,7/12/2014 11:51,6/18/2014,19:00:00,67,3,2,74.8,1,undefined,FALSE,Poor,43.10181944,-89.48342778
+501,MendotaPier9,ostrom,77.7,1,0,1,2,7/12/2014 11:54,6/24/2014,19:00:00,100,3,2,81,1,undefined,TRUE,Poor,43.10181944,-89.48342778
+502,MendotaPier9,ostrom,87.2,1,0,1,2,7/12/2014 11:56,6/28/2014,11:00:00,83,3,2,77.1,2,undefined,FALSE,Poor,43.10181944,-89.48342778
+503,MendotaPier9,ostrom,83.1,1,0,2,2,7/12/2014 11:59,6/29/2014,18:15:00,88,3,2,81.3,2,undefined,FALSE,Poor,43.10181944,-89.48342778
+504,MendotaPier9,ostrom,68.7,1,0,1,2,7/1/2014 19:58,7/2/2014,19:30:00,82,3,1,72.1,1,undefined,TRUE,Poor,43.10181944,-89.48342778
+505,MendotaPier9,ostrom,74.1,2,2,1,2,7/3/2014 18:26,7/3/2014,18:00:00,115,3,1,75.6,1,undefined,FALSE,Poor,43.10181944,-89.48342778
+506,MendotaPier9,ostrom,73.4,2,2,1,2,7/11/2014 15:26,7/11/2014,15:24:00,115,1,1,74.1,2,undefined,FALSE,Fair,43.10181944,-89.48342778
+507,MendotaPier9,ostrom,66.2,1,0,1,2,7/14/2014 19:02,7/14/2014,19:00:00,100,1,1,75.9,1,undefined,FALSE,Good,43.10181944,-89.48342778
+508,MendotaPier9,ostrom,74.7,3,2,1,2,7/17/2014 18:48,7/17/2014,18:45:00,107,1,2,77.9,1,undefined,FALSE,Poor,43.10181944,-89.48342778
+509,MendotaPier9,ostrom,77.4,2,2,1,2,7/18/2014 18:55,7/18/2014,18:54:00,82,3,2,77.7,2,undefined,FALSE,Poor,43.10181944,-89.48342778
+510,MendotaPier9,ostrom,83.1,1,0,1,1,7/21/2014 18:59,7/21/2014,18:57:00,76,3,2,79.5,2,undefined,FALSE,Poor,43.10181944,-89.48342778
+511,MendotaPier9,ostrom,71.2,1,0,1,1,7/25/2014 17:02,7/25/2014,17:01:00,59,3,2,72.9,2,undefined,FALSE,Poor,43.10181944,-89.48342778
+512,MendotaPier9,ostrom,75.2,1,0,1,1,8/6/2014 19:44,8/6/2014,19:41:00,71,2,3,78.8,1,undefined,TRUE,Good,43.10181944,-89.48342778
+513,MendotaPier9,ostrom,76,1,0,1,2,8/11/2014 18:31,8/11/2014,18:30:09,56,3,2,80.1,1,undefined,FALSE,Poor,43.10181944,-89.48342778
+514,MendotaPier9,ostrom,71.1,1,0,1,1,8/12/2014 19:53,8/12/2014,19:52:06,65,2,2,74.5,1,undefined,FALSE,Good,43.10181944,-89.48342778
+515,MendotaPier9,ostrom,75.2,1,0,1,1,8/13/2014 19:15,8/13/2014,19:13:31,89,2,2,76.3,1,undefined,FALSE,Good,43.10181944,-89.48342778
+516,MendotaPier9,ostrom,75.9,1,0,2,2,8/17/2014 18:40,8/17/2014,18:39:23,63,3,2,77.2,2,undefined,FALSE,Poor,43.10181944,-89.48342778
+517,MendotaPier9,ostrom,79.9,1,0,1,2,8/18/2014 19:07,8/18/2014,19:05:28,56,3,2,78.3,2,undefined,FALSE,Poor,43.10181944,-89.48342778
+518,MendotaPier9,ostrom,83.5,1,0,2,2,8/24/2014 16:52,8/24/2014,16:49:17,41,3,2,80.1,2,undefined,FALSE,Poor,43.10181944,-89.48342778
+519,MendotaPier9,ostrom,70.2,1,0,1,2,8/27/2014 19:54,8/27/2014,19:32:04,68,3,2,78.6,1,undefined,FALSE,Poor,43.10181944,-89.48342778
+520,MendotaPier11,pearson,77,1,0,1,2,8/7/2014 23:14,6/24/2014,20:30:16,65,2,1,79.9,1,undefined,FALSE,Good,43.08128889,-89.464775
+521,MendotaPier11,pearson,88,1,0,1,2,8/7/2014 23:17,7/7/2014,16:00:22,105,2,2,79.8,1,undefined,TRUE,Good,43.08128889,-89.464775
+522,MendotaPier11,pearson,74.5,2,2,1,2,8/7/2014 23:22,7/18/2014,19:30:43,55,2,2,76.5,1,undefined,FALSE,Unknown,43.08128889,-89.464775
+523,MendotaPier11,pearson,73.4,1,0,1,2,8/5/2014 15:43,8/5/2014,14:59:42,55,2,1,76.5,1,This is my first entry.  How can I enter my previous readings?,TRUE,Good,43.08128889,-89.464775
+524,MendotaPier11,pearson,77.4,1,0,1,2,9/8/2014 11:22,8/13/2014,16:00:07,65,0,1,78.8,2,undefined,FALSE,Unknown,43.08128889,-89.464775
+525,MendotaPier11,pearson,82,1,0,2,2,9/8/2014 11:23,8/20/2014,16:00:31,65,0,1,79,2,undefined,FALSE,Unknown,43.08128889,-89.464775
+526,MendotaPier11,pearson,79,1,0,1,2,9/8/2014 11:24,8/25/2014,19:00:37,65,0,2,78.5,1,undefined,FALSE,Unknown,43.08128889,-89.464775
+527,MendotaPier11,pearson,78,1,0,1,2,9/8/2014 11:25,9/2/2014,19:30:02,70,0,1,77.5,1,undefined,TRUE,Unknown,43.08128889,-89.464775
+528,KegonsaPier6,ray,60.8,1,FALSE,1,1,6/3/2014 13:36,5/23/2014,9:00:00,120,NA,2,65.7,2,20 minutes time required,FALSE,Unknown,42.94985,-89.24134167
+529,KegonsaPier6,ray,71.6,1,FALSE,1,1,6/3/2014 13:37,5/28/2014,14:30:00,120,NA,2,70.3,2,undefined,FALSE,Unknown,42.94985,-89.24134167
+530,KegonsaPier6,ray,78.1,1,FALSE,1,1,6/3/2014 13:38,6/2/2014,14:30:00,120,NA,1,73.4,2,undefined,TRUE,Unknown,42.94985,-89.24134167
+531,KegonsaPier6,ray,75.2,2,FALSE,1,2,6/9/2014 14:30,6/9/2014,14:00:00,120,NA,1,75.2,1,"Please remove previous data point. Overlaps with this one, unable to toggle qualitative parameters.",FALSE,Unknown,42.94985,-89.24134167
+532,KegonsaPier6,ray,75.2,2,FALSE,2,2,6/9/2014 14:27,6/9/2014,14:00:00,120,NA,2,75.2,2,undefined,FALSE,Unknown,42.94985,-89.24134167
+533,KegonsaPier6,ray,73.4,1,FALSE,1,2,6/16/2014 8:36,6/15/2014,10:00:00,120,NA,2,68.2,1,Submitted by CLA office. Previous entry had problems entering data. It accepted the numbers OK but it corrupts the visual observations.,FALSE,Unknown,42.94985,-89.24134167
+534,KegonsaPier6,ray,75.9,2,FALSE,1,1,6/23/2014 16:31,6/20/2014,11:30:00,109,NA,1,73.4,1,Time required: 30 minutes. Still unable to work website well. Data entered by CLA.,FALSE,Unknown,42.94985,-89.24134167
+535,KegonsaPier6,ray,77,2,FALSE,1,2,6/27/2014 8:28,6/26/2014,14:50:00,116,NA,1,78.8,1,Website still not working. CLA entered data.,FALSE,Unknown,42.94985,-89.24134167
+536,KegonsaPier6,ray,62.1,1,0,1,1,7/2/2014 10:30,7/2/2014,10:00:00,80,3,1,72.7,3,It is difficult to enter data because the screen moves with the cursor so that it is very difficult to move the cursor to the proper spot.  Please fix.,TRUE,Poor,42.94985,-89.24134167
+537,KegonsaPier6,ray,66.7,2,2,1,2,7/9/2014 7:09,7/5/2014,8:00:00,57,0,1,73.2,1,undefined,FALSE,Unknown,42.94985,-89.24134167
+538,KegonsaPier6,ray,71.2,2,0,1,1,7/25/2014 11:46,7/12/2014,8:00:00,76,0,1,74.5,1,undefined,FALSE,Unknown,42.94985,-89.24134167
+539,KegonsaPier6,ray,68,2,0,1,2,7/25/2014 11:47,7/19/2014,7:45:00,55,0,1,72.3,1,undefined,FALSE,Unknown,42.94985,-89.24134167
+540,KegonsaPier6,ray,69.8,2,0,1,1,7/26/2014 8:29,7/26/2014,8:15:00,73,0,1,73.6,1,undefined,FALSE,Unknown,42.94985,-89.24134167
+541,KegonsaPier6,ray,76.5,2,0,1,1,8/1/2014 11:04,8/1/2014,10:45:02,52,0,1,77,1,undefined,TRUE,Unknown,42.94985,-89.24134167
+542,KegonsaPier6,ray,79.2,2,0,1,1,8/6/2014 15:51,8/6/2014,15:40:51,56,0,1,82.9,1,undefined,FALSE,Unknown,42.94985,-89.24134167
+543,KegonsaPier6,ray,78.3,2,0,1,1,8/10/2014 15:38,8/10/2014,13:50:36,51.4,0,2,79,1,undefined,FALSE,Unknown,42.94985,-89.24134167
+544,KegonsaPier6,ray,74.5,2,0,0,1,8/18/2014 8:28,8/16/2014,10:15:50,50,0,2,74.7,1,undefined,FALSE,Unknown,42.94985,-89.24134167
+545,KegonsaPier6,ray,76.1,1,0,1,1,8/23/2014 11:03,8/23/2014,10:45:08,60,0,3,75.9,1,undefined,FALSE,Unknown,42.94985,-89.24134167
+546,KegonsaPier6,ray,74.5,2,0,1,1,8/28/2014 11:17,8/28/2014,10:45:59,54.5,0,1,76.5,1,undefined,FALSE,Unknown,42.94985,-89.24134167
+547,KegonsaPier6,ray,70.3,2,0,1,2,9/2/2014 9:49,9/2/2014,9:30:50,52.8,0,1,74.7,1,undefined,TRUE,Unknown,42.94985,-89.24134167
+548,MendotaBeach1,reinders,70.2,1,0,1,1,7/18/2014 11:16,6/10/2014,10:10:00,120,1,1,68.7,1,undefined,FALSE,Good,43.12808333,-89.37955556
+549,MendotaBeach1,reinders,70.9,1,0,2,1,7/18/2014 11:17,6/12/2014,10:11:00,110,1,1,65.5,2,undefined,FALSE,Good,43.12808333,-89.37955556
+550,MendotaBeach1,reinders,82.4,1,0,1,2,7/18/2014 11:18,6/24/2014,14:00:00,120,1,1,81.9,1,undefined,FALSE,Good,43.12808333,-89.37955556
+551,MendotaBeach1,reinders,70.7,1,0,1,1,7/18/2014 11:20,6/25/2014,11:15:00,120,1,1,75.7,1,undefined,FALSE,Good,43.12808333,-89.37955556
+552,MendotaBeach1,reinders,79.9,1,0,1,2,7/18/2014 11:21,6/27/2014,11:20:00,107,1,1,77.4,2,undefined,FALSE,Good,43.12808333,-89.37955556
+553,MendotaBeach1,reinders,74.5,2,1,1,2,7/18/2014 11:23,7/11/2014,11:10:00,68,3,1,74.5,3,undefined,FALSE,Poor,43.12808333,-89.37955556
+554,MendotaBeach1,reinders,78.8,3,2,1,2,7/18/2014 11:24,7/18/2014,11:00:00,88,3,1,76.3,1,undefined,FALSE,Poor,43.12808333,-89.37955556
+555,MendotaBeach1,reinders,84.2,1,0,1,2,8/7/2014 11:34,8/4/2014,11:30:28,63,2,2,79.5,1,undefined,TRUE,Good,43.12808333,-89.37955556
+556,MendotaBeach1,reinders,81,1,0,1,1,8/7/2014 11:36,8/7/2014,11:10:02,73,2,1,77,2,undefined,FALSE,Good,43.12808333,-89.37955556
+557,MendotaBeach1,reinders,74.7,1,0,1,1,9/8/2014 17:58,9/8/2014,12:40:12,82,2,1,74.5,3,undefined,TRUE,Good,43.12808333,-89.37955556
+558,KegonsaPier8,schick,80.1,1,0,1,1,8/4/2014 11:26,5/31/2014,10:01:55,115,1,2,74.7,2,,FALSE,Good,42.96215278,-89.276425
+559,KegonsaPier8,schick,83.5,1,0,1,2,8/4/2014 11:24,6/1/2014,11:00:37,109.5,1,1,75.2,2,,FALSE,Good,42.96215278,-89.276425
+560,KegonsaPier8,schick,64.4,1,0,1,1,8/4/2014 11:22,6/5/2014,9:00:48,109,1,2,71.1,1,,TRUE,Good,42.96215278,-89.276425
+561,KegonsaPier8,schick,71.6,1,0,1,1,8/4/2014 11:19,7/3/2014,8:20:31,110.9,1,2,72.9,1,,FALSE,Good,42.96215278,-89.276425
+562,KegonsaPier8,schick,78.8,2,2,1,2,8/4/2014 11:16,7/5/2014,10:15:59,64.4,2,1,79.1,3,it was rough water and turbidity was difficult to get,TRUE,Unknown,42.96215278,-89.276425
+563,KegonsaPier8,schick,81.8,2,2,1,1,8/4/2014 11:03,7/16/2014,12:30:38,77.6,2,1,75.4,2,,FALSE,Fair,42.96215278,-89.276425
+564,KegonsaPier8,schick,66.7,2,2,1,1,8/4/2014 10:58,7/20/2014,8:15:47,85,2,1,72.9,1,,FALSE,Fair,42.96215278,-89.276425
+565,KegonsaPier8,schick,75.3,3,2,1,1,8/4/2014 10:51,8/1/2014,8:45:47,58.2,2,2,73.4,1,lots of fish activity jumping.  Note that plant debris washes toward this side of Colladay Point.,FALSE,Poor,42.96215278,-89.276425
+566,KegonsaPier8,schick,68.2,3,2,1,2,8/4/2014 10:46,8/4/2014,7:55:51,65,2,1,74.7,1,lots of fish breaking surface swimming and also jumping,FALSE,Poor,42.96215278,-89.276425
+567,KegonsaPier8,schick,73.4,2,2,1,2,9/4/2014 18:57,8/7/2014,9:00:55,52.4,2,2,74.6,1,undefined,FALSE,Unknown,42.96215278,-89.276425
+568,KegonsaPier8,schick,73.4,2,2,1,2,9/4/2014 18:59,8/8/2014,10:00:13,58.2,2,2,75.6,1,undefined,FALSE,Unknown,42.96215278,-89.276425
+569,KegonsaPier8,schick,72.4,2,2,1,2,9/4/2014 19:01,8/10/2014,9:15:55,52.4,2,1,77,2,undefined,FALSE,Unknown,42.96215278,-89.276425
+570,KegonsaPier8,schick,75.2,2,2,1,3,9/4/2014 19:03,8/22/2014,17:08:09,44.2,3,2,75.3,2,undefined,FALSE,Poor,42.96215278,-89.276425
+571,KegonsaPier8,schick,82.2,2,2,1,3,9/4/2014 19:05,8/30/2014,9:25:40,57.6,2,1,75.6,1,undefined,FALSE,Poor,42.96215278,-89.276425
+572,KegonsaPier8,schick,77.4,2,2,1,2,9/4/2014 19:07,9/3/2014,9:45:38,52.2,2,1,74.7,1,undefined,FALSE,Unknown,42.96215278,-89.276425
+573,KegonsaPier8,schick,74.8,2,,1,2,,9/5/2014,8:10:00,54,NA,2,75,1,,NA,,42.96215278,-89.276425
+574,MendotaPier10,schmidtphaneuf,77,1,FALSE,1,1,6/27/2014 9:59,6/27/2014,9:30:00,91,NA,1,76,1,Seemed like we had a higher clarity reading than I might have expected. But we were in the shade and could see the disk.,FALSE,Unknown,43.087586,-89.472869
+575,MendotaPier10,schmidtphaneuf,87.3,1,0,1,1,7/7/2014 12:32,7/7/2014,12:31:00,86,1,1,74.5,1,undefined,TRUE,Good,43.087586,-89.472869
+576,MononaPier1,schroder,70,1,FALSE,1,1,6/24/2014 7:59,6/2/2014,13:05:00,90,NA,1,74,2,undefined,TRUE,Unknown,43.07579722,-89.32895278
+577,MononaPier1,schroder,70.2,2,FALSE,1,2,6/24/2014 8:01,6/8/2014,20:25:00,90,NA,2,73.9,1,undefined,FALSE,Unknown,43.07579722,-89.32895278
+578,MononaPier1,schroder,72.7,1,FALSE,1,2,6/24/2014 8:02,6/11/2014,19:10:00,105,NA,1,71.2,1,undefined,FALSE,Unknown,43.07579722,-89.32895278
+579,MononaPier1,schroder,76.5,1,FALSE,1,2,6/24/2014 8:04,6/18/2014,18:15:00,101,NA,1,74.5,1,undefined,FALSE,Unknown,43.07579722,-89.32895278
+580,MononaPier1,schroder,72.7,1,FALSE,1,2,6/24/2014 8:06,6/19/2014,17:50:00,110,NA,2,72.3,1,undefined,FALSE,Unknown,43.07579722,-89.32895278
+581,MononaPier1,schroder,77,2,FALSE,1,2,6/24/2014 8:08,6/22/2014,20:00:00,95,NA,2,75.2,1,undefined,FALSE,Unknown,43.07579722,-89.32895278
+582,MononaPier1,schroder,80.1,2,2,1,2,7/1/2014 15:15,6/24/2014,20:00:00,75,3,2,83.1,2,undefined,FALSE,Poor,43.07579722,-89.32895278
+583,MononaPier1,schroder,81.5,2,2,1,2,7/1/2014 15:17,6/29/2014,17:55:00,67,3,2,81.3,3,undefined,FALSE,Poor,43.07579722,-89.32895278
+584,MononaPier1,schroder,76.8,1,0,1,1,7/1/2014 15:23,7/1/2014,13:15:00,45,3,2,77.4,3,undefined,TRUE,Poor,43.07579722,-89.32895278
+585,MononaPier1,schroder,78.1,2,2,1,2,7/8/2014 8:53,7/4/2014,11:00:00,61,3,2,75.7,1,,FALSE,Poor,43.07579722,-89.32895278
+586,MononaPier1,schroder,75.6,1,0,1,1,7/8/2014 16:17,7/6/2014,12:00:00,115,1,2,74.1,1,,FALSE,Good,43.07579722,-89.32895278
+587,MononaPier1,schroder,77,2,2,1,2,7/14/2014 21:16,7/11/2014,18:45:00,63,3,2,76.3,1,,FALSE,Poor,43.07579722,-89.32895278
+588,MononaPier1,schroder,0,2,2,1,2,7/19/2014 9:12,7/17/2014,12:00:00,0,3,2,0,1,"Worst algal bloom so far, didn't want to put my hands in, so I did not sample water for temp and turb, didn't take air temp as well",FALSE,Poor,43.07579722,-89.32895278
+589,MononaPier1,schroder,80.6,2,2,1,2,7/19/2014 9:16,7/18/2014,17:35:00,76,3,2,78.1,1,,FALSE,Poor,43.07579722,-89.32895278
+590,MononaPier1,schroder,77.9,1,0,1,1,7/21/2014 11:46,7/20/2014,19:40:00,42,1,2,78.1,1,,FALSE,Good,43.07579722,-89.32895278
+591,MononaPier1,schroder,74.7,1,0,1,1,7/27/2014 21:46,7/23/2014,19:15:00,50,1,2,78.8,1,,FALSE,Good,43.07579722,-89.32895278
+592,MononaPier1,schroder,70.9,1,0,1,1,7/27/2014 21:49,7/27/2014,19:40:00,28,3,2,77.7,3,,FALSE,Poor,43.07579722,-89.32895278
+593,MononaPier1,schroder,80.6,1,0,0,1,8/4/2014 11:18,8/1/2014,12:30:56,72,1,2,77.4,1,,FALSE,Good,43.07579722,-89.32895278
+594,MononaPier1,schroder,80.8,1,0,1,1,8/4/2014 11:21,8/3/2014,11:30:28,82,1,2,78.6,2,,FALSE,Good,43.07579722,-89.32895278
+595,MononaPier1,schroder,78.6,1,0,1,1,8/6/2014 16:55,8/6/2014,12:35:58,65,2,3,77.4,1,,FALSE,Good,43.07579722,-89.32895278
+596,MononaPier1,schroder,78.8,1,0,1,1,8/17/2014 21:54,8/9/2014,12:10:41,79,1,3,76.5,1,,FALSE,Good,43.07579722,-89.32895278
+597,MononaPier1,schroder,72,1,0,1,1,8/17/2014 21:57,8/15/2014,11:45:19,92,1,3,74.3,1,,FALSE,Good,43.07579722,-89.32895278
+598,MononaPier1,schroder,86,2,0,1,2,8/17/2014 22:00,8/16/2014,15:00:44,95,1,3,79.9,1,,FALSE,Good,43.07579722,-89.32895278
+599,MononaPier1,schroder,79.2,1,0,1,2,8/22/2014 12:15,8/19/2014,19:05:00,62,3,3,78.3,2,,FALSE,Poor,43.07579722,-89.32895278
+600,MononaPier1,schroder,81.1,1,0,1,1,8/22/2014 12:20,8/22/2014,12:00:43,115,1,3,77.7,1,,FALSE,Good,43.07579722,-89.32895278
+601,MononaPier1,schroder,84.6,1,0,1,2,8/24/2014 18:50,8/24/2014,13:00:29,96,1,3,78.1,1,,FALSE,Good,43.07579722,-89.32895278
+602,MononaPier1,schroder,77.5,1,0,1,2,8/27/2014 8:42,8/26/2014,17:40:51,72,1,3,78.8,2,,FALSE,Good,43.07579722,-89.32895278
+603,MononaPier1,schroder,69.8,1,0,1,1,8/31/2014 8:48,8/31/2014,8:30:43,73,1,2,75.6,1,,FALSE,Good,43.07579722,-89.32895278
+604,MononaPier1,schroder,77.4,1,0,1,1,9/3/2014 21:22,9/3/2014,11:45:10,70,1,2,76.6,2,,TRUE,Good,43.07579722,-89.32895278
+605,MononaPier1,schroder,undefined,1,0,1,0,9/13/2014 21:54,9/7/2014,19:05:55,91,1,1,undefined,1,,FALSE,Unknown,43.07579722,-89.32895278
+606,MononaPier1,schroder,61,1,0,1,1,9/13/2014 21:56,9/13/2014,14:20:10,98,1,1,68,1,,FALSE,Good,43.07579722,-89.32895278
+607,MononaPier1,schroder,72.9,1,0,1,1,9/21/2014 20:22,9/20/2014,13:30:47,110,1,2,66.7,3,,FALSE,Good,43.07579722,-89.32895278
+608,MononaPier1,schroder,67.3,2,,1,1,,10/2/2014,13:20:00,116,NA,2,64.9,1,,FALSE,,43.07579722,-89.32895278
+609,MononaPier1,schroder,64.4,1,,1,1,,10/8/2014,17:15:00,66,NA,1,57.2,3,,FALSE,,43.07579722,-89.32895278
+610,WaubesaPier3,schubert,undefined,1,0,1,2,7/2/2014 19:54,5/30/2014,14:25:00,undefined,0,1,undefined,1,undefined,FALSE,Unknown,42.997964,-89.3399
+611,WaubesaPier3,schubert,60.3,2,FALSE,2,2,6/9/2014 21:09,6/6/2014,6:25:00,114,NA,2,73.4,2,undefined,FALSE,Unknown,42.997964,-89.3399
+612,WaubesaPier3,schubert,75.4,1,0,1,2,7/2/2014 19:56,6/14/2014,14:20:00,66,0,1,74.5,3,undefined,FALSE,Unknown,42.997964,-89.3399
+613,WaubesaPier3,schubert,75.2,1,0,1,2,7/2/2014 19:57,6/21/2014,17:11:00,64,0,1,76.5,1,undefined,FALSE,Unknown,42.997964,-89.3399
+614,WaubesaPier3,schubert,75.9,1,0,1,2,7/2/2014 19:59,6/28/2014,8:58:00,90,0,1,78.1,2,undefined,FALSE,Unknown,42.997964,-89.3399
+615,WaubesaPier3,schubert,60.9,1,0,1,2,7/3/2014 18:32,7/3/2014,6:45:00,108,3,1,70.9,1,undefined,TRUE,Poor,42.997964,-89.3399
+616,WaubesaPier3,schubert,74.1,2,2,1,2,7/23/2014 21:10,7/12/2014,10:25:00,88,2,1,74.5,1,undefined,FALSE,Unknown,42.997964,-89.3399
+617,WaubesaPier3,schubert,77.2,3,2,1,2,7/23/2014 21:12,7/18/2014,17:55:00,72,3,1,77,1,undefined,FALSE,Poor,42.997964,-89.3399
+618,WaubesaPier3,schubert,747.7,2,2,1,2,7/27/2014 14:13,7/26/2014,11:20:00,87,2,1,74.1,1,undefined,FALSE,Unknown,42.997964,-89.3399
+619,WaubesaPier3,schubert,81.9,2,2,1,2,8/3/2014 13:57,8/3/2014,13:52:44,80,2,1,78.4,1,undefined,TRUE,Unknown,42.997964,-89.3399
+620,WaubesaPier3,schubert,79.5,1,0,1,2,8/17/2014 21:10,8/10/2014,16:35:00,48,2,2,81.9,2,undefined,FALSE,Good,42.997964,-89.3399
+621,WaubesaPier3,schubert,79.3,2,2,1,2,8/18/2014 20:20,8/18/2014,19:05:16,59.6,2,2,78.8,1,undefined,FALSE,Unknown,42.997964,-89.3399
+622,MononaPier8,smith,73.9,2,1,1,2,8/16/2014 9:35,6/6/2014,20:20:18,85,2,1,75.2,1,undefined,FALSE,Unknown,43.05051667,-89.35006667
+623,MononaPier8,smith,70.4,1,0,1,1,8/16/2014 9:37,6/8/2014,15:25:27,97,2,1,73.4,1,undefined,TRUE,Good,43.05051667,-89.35006667
+624,MononaPier8,smith,61.5,1,0,1,1,8/16/2014 9:38,6/13/2014,9:30:24,45,3,1,66,3,undefined,FALSE,Poor,43.05051667,-89.35006667
+625,MononaPier8,smith,68.5,1,0,1,1,8/16/2014 9:39,6/16/2014,7:00:34,95,2,1,67.9,1,undefined,FALSE,Good,43.05051667,-89.35006667
+626,MononaPier8,smith,76,1,0,2,2,8/16/2014 9:41,6/18/2014,18:00:59,87,2,1,74.3,1,undefined,FALSE,Good,43.05051667,-89.35006667
+627,MononaPier8,smith,77.7,1,0,2,2,8/16/2014 9:42,6/23/2014,18:30:34,98,2,1,78.8,1,undefined,FALSE,Good,43.05051667,-89.35006667
+628,MononaPier8,smith,81,1,0,1,2,8/16/2014 9:44,6/27/2014,9:30:25,99,2,1,75.2,1,undefined,FALSE,Good,43.05051667,-89.35006667
+629,MononaPier8,smith,65.7,1,0,1,1,8/16/2014 9:45,7/2/2014,18:00:35,98,2,1,75.1,2,undefined,TRUE,Good,43.05051667,-89.35006667
+630,MononaPier8,smith,71.1,1,0,1,1,8/16/2014 9:47,7/4/2014,10:30:10,83,2,2,74.6,1,undefined,FALSE,Good,43.05051667,-89.35006667
+631,MononaPier8,smith,65.5,1,0,1,1,8/16/2014 9:48,7/15/2014,16:00:23,47,3,1,71.1,2,undefined,FALSE,Poor,43.05051667,-89.35006667
+632,MononaPier8,smith,82,1,0,2,2,8/16/2014 9:49,7/20/2014,17:30:44,67,3,2,76.8,1,undefined,FALSE,Poor,43.05051667,-89.35006667
+633,MononaPier8,smith,85.6,1,0,1,1,8/16/2014 9:51,7/21/2014,14:00:53,83,2,1,78.3,1,undefined,FALSE,Good,43.05051667,-89.35006667
+634,MononaPier8,smith,88.4,1,0,1,1,8/16/2014 9:52,7/22/2014,13:30:15,85,2,1,78.6,1,undefined,FALSE,Good,43.05051667,-89.35006667
+635,MononaPier8,smith,76.4,1,0,1,1,8/16/2014 9:53,7/24/2014,13:20:17,80,2,1,77.5,1,undefined,FALSE,Good,43.05051667,-89.35006667
+636,MononaPier8,smith,63.9,1,0,1,1,8/16/2014 9:55,7/30/2014,7:00:32,72,2,2,71.6,2,undefined,FALSE,Good,43.05051667,-89.35006667
+637,MononaPier8,smith,76.1,1,0,1,1,8/16/2014 9:55,8/1/2014,11:00:04,77,2,2,77,1,undefined,FALSE,Good,43.05051667,-89.35006667
+638,MononaPier8,smith,70.9,1,0,1,1,8/16/2014 9:57,8/3/2014,8:00:56,70,3,2,75.2,1,undefined,FALSE,Poor,43.05051667,-89.35006667
+639,MononaPier8,smith,72.9,1,0,2,3,8/16/2014 9:58,8/6/2014,20:00:04,60,3,2,77.7,2,undefined,FALSE,Poor,43.05051667,-89.35006667
+640,MononaPier8,smith,69.4,1,0,1,1,8/16/2014 10:01,8/9/2014,8:30:12,87,2,2,73.4,1,Forgot to indicate we took phosphorous sample at same time as 8/1/14 sampling.  Please add to data inventory. Thanks,FALSE,Good,43.05051667,-89.35006667
+641,MononaPier8,smith,72.5,1,0,1,1,8/16/2014 10:02,8/10/2014,12:00:26,90,2,1,73.8,1,undefined,FALSE,Good,43.05051667,-89.35006667
+642,MononaPier8,smith,68,1,0,1,1,8/16/2014 9:33,8/16/2014,8:16:08,90,2,1,73.8,1,undefined,FALSE,Good,43.05051667,-89.35006667
+643,MononaPier8,smith,81.8,1,0,1,1,9/3/2014 20:21,8/22/2014,16:45:36,100,1,2,80.8,1,undefined,FALSE,Good,43.05051667,-89.35006667
+644,MononaPier8,smith,80.1,1,0,1,1,9/3/2014 20:22,8/24/2014,12:45:41,105,1,1,77,1,undefined,FALSE,Good,43.05051667,-89.35006667
+645,MononaPier8,smith,75.2,1,0,2,2,9/3/2014 20:24,8/26/2014,19:00:01,90,2,1,77.5,2,undefined,FALSE,Good,43.05051667,-89.35006667
+646,MononaPier8,smith,77,1,0,1,1,9/3/2014 20:25,8/28/2014,13:00:27,95,1,1,77,1,undefined,FALSE,Good,43.05051667,-89.35006667
+647,MononaPier8,smith,75.6,1,0,2,1,9/3/2014 20:26,9/3/2014,19:30:35,80,2,1,77,1,undefined,TRUE,Good,43.05051667,-89.35006667
+648,MendotaBeach12,staff,77,2,FALSE,1,1,6/3/2014 15:03,5/27/2014,11:25:00,50,NA,1,72,1,undefined,FALSE,Unknown,43.08171111,-89.38331389
+649,MendotaBeach12,staff,63,1,FALSE,1,1,6/3/2014 15:05,5/28/2014,9:16:00,88,NA,2,61,2,undefined,FALSE,Unknown,43.08171111,-89.38331389
+650,MendotaBeach12,staff,64,1,FALSE,1,1,6/3/2014 15:06,5/29/2014,8:36:00,72,NA,2,63,2,undefined,FALSE,Unknown,43.08171111,-89.38331389
+651,MendotaBeach12,staff,70,1,FALSE,1,1,6/3/2014 15:08,5/30/2014,8:13:00,76,NA,2,64,1,undefined,FALSE,Unknown,43.08171111,-89.38331389
+652,MendotaBeach12,staff,74,1,FALSE,1,1,6/3/2014 15:12,6/2/2014,8:18:00,120,NA,1,66,1,undefined,FALSE,Unknown,43.08171111,-89.38331389
+653,MendotaBeach12,staff,65,1,FALSE,1,2,6/3/2014 15:13,6/3/2014,8:21:00,29,NA,1,67,3,undefined,TRUE,Unknown,43.08171111,-89.38331389
+654,MendotaBeach12,staff,66,1,FALSE,1,1,6/4/2014 10:03,6/4/2014,8:40:00,118,NA,1,71,1,Water was crystal clear with some big fish close to shore.,FALSE,Unknown,43.08171111,-89.38331389
+655,MendotaBeach12,staff,68,1,FALSE,1,1,6/5/2014 9:53,6/5/2014,8:16:00,120,NA,1,67,1,Crystal clear water,FALSE,Unknown,43.08171111,-89.38331389
+656,MendotaBeach12,staff,71,1,FALSE,1,1,6/6/2014 11:36,6/6/2014,8:06:00,120,NA,1,67,2,undefined,FALSE,Unknown,43.08171111,-89.38331389
+657,MendotaBeach12,staff,72,2,FALSE,1,1,6/9/2014 13:55,6/9/2014,10:20:00,115,NA,2,70,1,Data collecting training with other interns.,TRUE,Unknown,43.08171111,-89.38331389
+658,MendotaBeach12,staff,67,2,FALSE,1,1,6/10/2014 13:46,6/10/2014,8:58:00,115,NA,2,69,2,undefined,FALSE,Unknown,43.08171111,-89.38331389
+659,MendotaBeach12,staff,42.6,2,FALSE,1,1,6/11/2014 13:35,6/11/2014,8:15:00,62,NA,2,66.6,2,undefined,FALSE,Unknown,43.08171111,-89.38331389
+660,MendotaBeach12,staff,59,2,FALSE,1,2,6/13/2014 10:08,6/13/2014,8:14:00,55,NA,2,55,3,undefined,FALSE,Unknown,43.08171111,-89.38331389
+661,MendotaBeach12,staff,77,2,FALSE,1,2,6/16/2014 11:56,6/16/2014,8:47:00,52,NA,1,68,1,undefined,FALSE,Unknown,43.08171111,-89.38331389
+662,MendotaBeach12,staff,69,1,FALSE,1,3,6/17/2014 10:03,6/17/2014,8:21:00,40,NA,2,68,2,undefined,FALSE,Poor,43.08171111,-89.38331389
+663,MendotaBeach12,staff,72,1,FALSE,1,2,6/23/2014 9:51,6/18/2014,11:19:00,115,NA,3,71,1,undefined,FALSE,Unknown,43.08171111,-89.38331389
+664,MendotaBeach12,staff,68,1,FALSE,1,1,6/23/2014 9:52,6/19/2014,9:37:00,115,NA,3,69,1,undefined,FALSE,Unknown,43.08171111,-89.38331389
+665,MendotaBeach12,staff,70,1,FALSE,1,1,6/23/2014 9:53,6/20/2014,8:55:00,115,NA,1,69,2,undefined,FALSE,Unknown,43.08171111,-89.38331389
+666,MendotaBeach12,staff,73,1,FALSE,1,2,6/23/2014 9:54,6/23/2014,8:21:00,115,NA,2,72,1,undefined,FALSE,Unknown,43.08171111,-89.38331389
+667,MendotaBeach12,staff,81,2,FALSE,3,3,6/25/2014 16:17,6/24/2014,9:40:00,115,NA,2,71,2,Made training videos,FALSE,Poor,43.08171111,-89.38331389
+668,MendotaBeach12,staff,68,1,FALSE,1,2,6/25/2014 16:18,6/25/2014,8:23:00,117,NA,2,77,1,undefined,FALSE,Unknown,43.08171111,-89.38331389
+669,MendotaBeach12,staff,67,1,FALSE,1,2,6/26/2014 9:23,6/26/2014,8:13:00,120,NA,2,72,1,undefined,FALSE,Unknown,43.08171111,-89.38331389
+670,MendotaBeach12,staff,75,1,0,1,1,7/2/2014 10:21,6/30/2014,8:23:00,70,1,1,74.5,1,undefined,FALSE,Good,43.08171111,-89.38331389
+671,MendotaBeach12,staff,69.4,1,0,1,1,7/2/2014 10:23,7/1/2014,8:18:00,91,1,2,73.4,3,undefined,FALSE,Good,43.08171111,-89.38331389
+672,MendotaBeach12,staff,59.7,1,0,1,1,7/2/2014 10:24,7/2/2014,8:22:00,72,1,2,71.6,3,undefined,FALSE,Good,43.08171111,-89.38331389
+673,MendotaBeach12,staff,75,2,2,1,2,7/7/2014 9:33,7/7/2014,8:22:00,76,1,2,73.4,2,undefined,TRUE,Fair,43.08171111,-89.38331389
+674,MendotaBeach12,staff,69.8,1,0,1,2,7/8/2014 15:12,7/8/2014,8:23:00,71,1,2,73.6,3,undefined,FALSE,Good,43.08171111,-89.38331389
+675,MendotaBeach12,staff,65.1,1,0,1,2,7/9/2014 13:53,7/9/2014,8:29:00,66,1,2,72.1,3,undefined,FALSE,Good,43.08171111,-89.38331389
+676,MendotaBeach12,staff,70.9,1,0,1,2,7/11/2014 9:53,7/10/2014,10:50:00,87,1,2,74.3,1,undefined,FALSE,Good,43.08171111,-89.38331389
+677,MendotaBeach12,staff,78.9,1,0,1,2,7/11/2014 9:54,7/11/2014,9:53:00,112,1,2,75.2,1,undefined,FALSE,Good,43.08171111,-89.38331389
+678,MendotaBeach12,staff,72,1,0,1,2,7/14/2014 10:59,7/14/2014,8:27:00,115,1,1,73.4,2,undefined,FALSE,Good,43.08171111,-89.38331389
+679,MendotaBeach12,staff,59.5,1,0,1,2,7/15/2014 11:26,7/15/2014,8:25:00,53,1,1,68.2,3,undefined,FALSE,Good,43.08171111,-89.38331389
+680,MendotaBeach12,staff,64.4,2,1,1,1,7/18/2014 10:38,7/16/2014,8:47:00,53,3,1,69.4,1,undefined,FALSE,Poor,43.08171111,-89.38331389
+681,MendotaBeach12,staff,72.5,2,1,1,1,7/18/2014 10:39,7/17/2014,10:29:00,40,3,1,75.2,1,undefined,FALSE,Poor,43.08171111,-89.38331389
+682,MendotaBeach12,staff,73.4,1,0,1,2,7/18/2014 10:40,7/18/2014,9:37:00,54,3,1,74.3,1,undefined,FALSE,Poor,43.08171111,-89.38331389
+683,MendotaBeach12,staff,76.3,1,0,1,1,7/21/2014 10:18,7/21/2014,9:07:00,80,1,1,73.4,1,undefined,FALSE,Good,43.08171111,-89.38331389
+684,MendotaBeach12,staff,81.3,1,0,1,1,7/23/2014 15:44,7/22/2014,9:26:00,84,1,1,74.1,1,undefined,FALSE,Good,43.08171111,-89.38331389
+685,MendotaBeach12,staff,69.1,1,0,1,1,7/23/2014 15:45,7/23/2014,8:45:00,49,1,1,74.3,2,undefined,FALSE,Good,43.08171111,-89.38331389
+686,MendotaBeach12,staff,68.9,1,0,1,1,7/24/2014 10:39,7/24/2014,8:32:00,78,1,1,73.6,1,undefined,FALSE,Good,43.08171111,-89.38331389
+687,MendotaBeach12,staff,66.2,1,0,1,1,7/25/2014 9:33,7/25/2014,8:36:00,97,1,3,72.3,1,undefined,FALSE,Good,43.08171111,-89.38331389
+688,MendotaBeach12,staff,62.1,1,0,1,1,7/31/2014 8:01,7/28/2014,8:34:00,44,1,1,68.7,3,undefined,FALSE,Good,43.08171111,-89.38331389
+689,MendotaBeach12,staff,66.2,1,0,1,2,7/31/2014 8:04,7/29/2014,8:39:00,85,1,3,70.5,2,undefined,FALSE,Good,43.08171111,-89.38331389
+690,MendotaBeach12,staff,64.4,1,0,1,2,7/31/2014 8:06,7/30/2014,8:32:00,89,1,1,70.7,2,undefined,FALSE,Good,43.08171111,-89.38331389
+691,MendotaBeach12,staff,68.9,1,0,1,2,7/31/2014 9:37,7/31/2014,8:30:00,107,1,1,73.2,2,undefined,FALSE,Good,43.08171111,-89.38331389
+692,MendotaBeach12,staff,72,1,0,1,2,8/5/2014 10:29,8/1/2014,8:29:00,109,1,1,73.6,1,undefined,FALSE,Good,43.08171111,-89.38331389
+693,MendotaBeach12,staff,78.8,1,0,1,1,8/5/2014 10:30,8/4/2014,8:32:00,86,1,2,75.6,1,undefined,TRUE,Good,43.08171111,-89.38331389
+694,MendotaBeach12,staff,66.2,1,0,1,1,8/5/2014 10:31,8/5/2014,8:21:00,104,1,1,73.4,1,undefined,FALSE,Good,43.08171111,-89.38331389
+695,MendotaBeach12,staff,67.5,1,0,1,1,8/7/2014 10:44,8/6/2014,7:49:00,94,1,3,74.1,1,undefined,FALSE,Good,43.08171111,-89.38331389
+696,MendotaBeach12,staff,65.5,1,0,1,1,8/7/2014 10:46,8/7/2014,8:21:00,75,2,3,73.4,1,undefined,FALSE,Good,43.08171111,-89.38331389
+697,MendotaBeach12,staff,73.2,1,0,1,1,8/11/2014 10:56,8/8/2014,8:50:26,96,1,3,71.6,1,undefined,FALSE,Good,43.08171111,-89.38331389
+698,MendotaBeach12,staff,75.9,1,0,1,1,8/11/2014 10:57,8/11/2014,8:21:15,78,2,3,73.5,1,undefined,FALSE,Good,43.08171111,-89.38331389
+699,MendotaBeach12,staff,61.9,1,0,1,2,8/12/2014 11:57,8/12/2014,8:37:28,55,2,2,68.1,3,undefined,FALSE,Good,43.08171111,-89.38331389
+700,MendotaBeach12,staff,66.2,1,0,1,2,8/13/2014 11:03,8/13/2014,8:33:52,95,2,2,71.6,3,undefined,FALSE,Good,43.08171111,-89.38331389
+701,MendotaBeach12,staff,60.4,1,0,1,1,8/14/2014 11:57,8/14/2014,7:10:31,100,1,3,71.1,2,undefined,FALSE,Good,43.08171111,-89.38331389
+702,MendotaBeach12,staff,68.7,1,0,1,1,8/15/2014 11:27,8/15/2014,9:07:53,113,1,1,72.3,1,undefined,FALSE,Good,43.08171111,-89.38331389
+703,MendotaBeach12,staff,69.4,1,0,1,2,8/18/2014 12:55,8/18/2014,8:17:50,104,1,2,71.7,1,undefined,FALSE,Good,43.08171111,-89.38331389
+704,MendotaBeach12,staff,72,1,0,1,2,8/19/2014 10:07,8/19/2014,8:45:16,42,2,3,73,2,undefined,FALSE,Good,43.08171111,-89.38331389
+705,MendotaBeach12,staff,72.7,1,0,1,2,8/20/2014 12:43,8/20/2014,8:50:45,107,1,2,74.1,1,undefined,FALSE,Good,43.08171111,-89.38331389
+706,MendotaBeach12,staff,71.6,1,0,1,3,8/25/2014 12:58,8/21/2014,8:24:12,115,1,3,75.2,1,undefined,FALSE,Poor,43.08171111,-89.38331389
+707,MendotaBeach12,staff,73.4,1,0,1,3,8/25/2014 12:59,8/22/2014,8:38:24,115,1,3,75.7,1,undefined,FALSE,Poor,43.08171111,-89.38331389
+708,MendotaBeach12,staff,69.8,1,0,1,2,8/25/2014 13:00,8/25/2014,8:55:30,31,2,3,74.1,1,undefined,FALSE,Good,43.08171111,-89.38331389
+709,MendotaBeach12,staff,68.4,1,0,1,2,9/2/2014 9:59,8/26/2014,9:50:47,30,3,3,72.3,2,undefined,FALSE,Poor,43.08171111,-89.38331389
+710,MendotaBeach12,staff,70.1,1,0,1,1,9/2/2014 10:00,8/27/2014,10:25:46,90,1,1,75.1,1,undefined,FALSE,Good,43.08171111,-89.38331389
+711,MendotaBeach12,staff,75.2,1,0,1,1,9/2/2014 10:01,8/28/2014,9:46:41,96,1,2,74.3,1,undefined,FALSE,Good,43.08171111,-89.38331389
+712,MendotaBeach12,staff,68.9,1,0,1,1,9/2/2014 10:02,9/2/2014,8:05:35,120,1,3,73,1,undefined,FALSE,Good,43.08171111,-89.38331389
+713,MendotaPier15,stampen,76,1,,1,1,,9/5/2014,9:35:00,72,NA,2,75,1,,NA,,43.1228,-89.43883611
+714,MendotaPier15,stampen,61,1,,1,1,,9/6/2014,6:21:00,67,NA,2,71,1,,NA,,43.1228,-89.43883611
+715,MendotaPier15,stampen,66,1,,1,1,,9/7/2014,7:50:00,82,NA,1,70,1,,NA,,43.1228,-89.43883611
+716,MendotaPier15,stampen,68,1,,1,2,,9/8/2014,7:09:00,62,NA,1,72,1,,NA,,43.1228,-89.43883611
+717,MendotaPier15,stampen,68,1,,1,2,,9/9/2014,8:03:00,84,NA,2,70,1,,NA,,43.1228,-89.43883611
+718,MendotaPier15,stampen,72,1,,1,1,,9/10/2014,14:22:00,67,NA,2,73,2,,NA,,43.1228,-89.43883611
+719,MendotaPier15,stampen,54,1,,1,1,,9/11/2014,7:42:00,81,NA,1,66,1,,NA,,43.1228,-89.43883611
+720,MendotaPier15,stampen,55,1,,1,1,,9/12/2014,7:13:00,120,NA,1,66,2,,NA,,43.1228,-89.43883611
+721,MendotaPier15,stampen,57,1,,1,1,,9/13/2014,8:28:00,120,NA,1,63,1,,NA,,43.1228,-89.43883611
+722,MendotaPier15,stampen,57,1,,1,1,,9/14/2014,7:53:00,95,NA,1,65,2,,NA,,43.1228,-89.43883611
+723,MendotaPier15,stampen,63,1,,1,1,,9/15/2014,8:34:00,120,NA,1,64,1,,NA,,43.1228,-89.43883611
+724,MendotaPier15,stampen,60,1,,1,1,,9/16/2014,7:46:00,120,NA,1,61,1,,NA,,43.1228,-89.43883611
+725,MendotaPier15,stampen,61,1,,1,1,,9/17/2014,7:51:00,105,NA,1,62,1,,NA,,43.1228,-89.43883611
+726,MendotaPier15,stampen,55,1,,1,2,,9/18/2014,7:56:00,95,NA,1,63,2,,NA,,43.1228,-89.43883611
+727,MendotaPier15,stampen,61,1,,1,1,,9/19/2014,11:18:00,65,NA,2,64,2,,NA,,43.1228,-89.43883611
+728,MendotaPier15,stampen,67,1,,1,1,,9/20/2014,8:30:00,72,NA,2,64,1,,NA,,43.1228,-89.43883611
+729,MendotaPier15,stampen,63,1,,1,1,,9/21/2014,7:42:00,101,NA,2,64,1,,NA,,43.1228,-89.43883611
+730,MendotaPier15,stampen,57,1,,1,1,,9/22/2014,8:32:00,101,NA,1,61,1,,NA,,43.1228,-89.43883611
+731,MendotaPier15,stampen,61,1,,1,1,,9/23/2014,8:10:00,92,NA,1,62,1,,NA,,43.1228,-89.43883611
+732,MendotaPier15,stampen,62,1,,1,1,,9/24/2014,8:36:00,110,NA,1,63,2,,NA,,43.1228,-89.43883611
+733,MendotaPier15,stampen,62,1,,1,1,,9/25/2014,7:51:00,91,NA,2,64,1,,NA,,43.1228,-89.43883611
+734,MendotaPier15,stampen,64,1,,1,1,,9/26/2014,7:24:00,80,NA,2,65,1,,NA,,43.1228,-89.43883611
+735,MendotaPier15,stampen,61,1,,1,1,,9/27/2014,7:13:00,100,NA,1,67,1,,NA,,43.1228,-89.43883611
+736,MendotaPier15,stampen,62,1,,1,1,,9/28/2014,7:38:00,97,NA,1,68,1,,NA,,43.1228,-89.43883611
+737,MendotaPier15,stampen,68,1,,1,1,,9/29/2014,8:10:00,88,NA,2,68,1,,NA,,43.1228,-89.43883611
+738,MendotaPier15,stampen,77,2,FALSE,1,2,6/10/2014 16:27,6/7/2014,16:00:00,60,NA,1,77,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+739,MendotaPier15,stampen,65,1,FALSE,1,1,6/10/2014 16:29,6/8/2014,7:23:00,120,NA,1,67,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+740,MendotaPier15,stampen,67,1,FALSE,1,1,6/10/2014 16:31,6/9/2014,8:05:00,120,NA,1,68.5,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+741,MendotaPier15,stampen,68,1,FALSE,1,1,6/10/2014 16:32,6/10/2014,10:24:00,46,NA,1,71,2,undefined,FALSE,Unknown,43.1228,-89.43883611
+742,MendotaPier15,stampen,64,1,FALSE,1,2,6/14/2014 21:25,6/11/2014,8:05:00,33,NA,2,68,2,undefined,FALSE,Unknown,43.1228,-89.43883611
+743,MendotaPier15,stampen,66,1,FALSE,1,2,6/14/2014 21:27,6/12/2014,8:11:00,30,NA,1,70,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+744,MendotaPier15,stampen,62,2,FALSE,1,1,6/14/2014 21:29,6/13/2014,7:09:00,120,NA,1,58,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+745,MendotaPier15,stampen,72,1,FALSE,2,1,6/14/2014 21:30,6/14/2014,17:20:00,25,NA,1,72.3,3,undefined,FALSE,Unknown,43.1228,-89.43883611
+746,MendotaPier15,stampen,70,1,FALSE,1,2,6/20/2014 9:55,6/15/2014,9:36:00,67,NA,2,72,1,My comment is for yesterday not today.  At 804 yesterday the turbidity reading was 120. By 11:00 there was heavy green algea far beyond the end of my pier. Our new green carpet turned into pea soup when the wind picked up.,FALSE,Unknown,43.1228,-89.43883611
+747,MendotaPier15,stampen,80,1,FALSE,1,1,6/20/2014 9:44,6/15/2014,15:48:00,39,NA,3,70.5,2,undefined,FALSE,Unknown,43.1228,-89.43883611
+748,MendotaPier15,stampen,72,1,FALSE,1,1,6/20/2014 9:46,6/16/2014,8:04:00,120,NA,1,68,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+749,MendotaPier15,stampen,73,1,FALSE,1,2,6/20/2014 9:59,6/17/2014,9:36:00,67,NA,2,72,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+750,MendotaPier15,stampen,80,1,FALSE,1,1,6/20/2014 10:01,6/18/2014,17:04:00,72,NA,1,75,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+751,MendotaPier15,stampen,75,2,FALSE,1,1,6/20/2014 10:03,6/20/2014,9:08:00,45,NA,2,73,1,,FALSE,Unknown,43.1228,-89.43883611
+752,MendotaPier15,stampen,73,1,FALSE,1,1,6/28/2014 10:03,6/21/2014,11:07:00,78,NA,1,71,2,undefined,FALSE,Unknown,43.1228,-89.43883611
+753,MendotaPier15,stampen,75,1,FALSE,1,2,6/28/2014 10:10,6/22/2014,8:03:00,120,NA,3,72,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+754,MendotaPier15,stampen,79,2,FALSE,1,2,6/28/2014 10:11,6/23/2014,9:23:00,77,NA,1,75,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+755,MendotaPier15,stampen,76,1,FALSE,1,2,6/28/2014 10:13,6/24/2014,7:49:00,108,NA,1,75,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+756,MendotaPier15,stampen,61,1,FALSE,1,2,6/28/2014 10:14,6/25/2014,7:28:00,120,NA,2,72,2,undefined,FALSE,Unknown,43.1228,-89.43883611
+757,MendotaPier15,stampen,72,1,FALSE,1,2,6/28/2014 10:16,6/26/2014,10:23:00,55,NA,1,76,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+758,MendotaPier15,stampen,73,1,FALSE,1,1,6/28/2014 10:17,6/27/2014,7:05:00,68,NA,1,76,2,undefined,FALSE,Unknown,43.1228,-89.43883611
+759,MendotaPier15,stampen,75,1,FALSE,1,1,6/28/2014 10:18,6/28/2014,7:35:00,100,NA,2,77,3,undefined,FALSE,Unknown,43.1228,-89.43883611
+760,MendotaPier15,stampen,75,1,0,1,1,7/14/2014 15:16,6/29/2014,8:06:00,113,1,1,77,2,undefined,FALSE,Good,43.1228,-89.43883611
+761,MendotaPier15,stampen,74,1,0,1,1,7/14/2014 15:17,6/30/2014,8:43:00,36,3,2,75,2,undefined,FALSE,Poor,43.1228,-89.43883611
+762,MendotaPier15,stampen,71,1,0,1,1,7/14/2014 15:18,7/1/2014,8:00:00,62,1,2,73,2,undefined,FALSE,Good,43.1228,-89.43883611
+763,MendotaPier15,stampen,75,1,0,1,2,7/14/2014 15:20,7/3/2014,9:25:00,120,1,2,73,1,undefined,FALSE,Good,43.1228,-89.43883611
+764,MendotaPier15,stampen,77,2,2,2,2,7/14/2014 15:26,7/4/2014,12:20:00,120,1,2,76,1,undefined,FALSE,Fair,43.1228,-89.43883611
+765,MendotaPier15,stampen,75,1,0,1,1,7/14/2014 15:34,7/5/2014,10:24:00,45,1,2,73,3,undefined,FALSE,Good,43.1228,-89.43883611
+766,MendotaPier15,stampen,71,1,0,1,1,7/14/2014 15:35,7/6/2014,8:33:00,105,1,1,71,2,undefined,FALSE,Good,43.1228,-89.43883611
+767,MendotaPier15,stampen,73,1,0,1,2,7/14/2014 15:36,7/7/2014,22:02:00,120,1,1,74,1,undefined,FALSE,Good,43.1228,-89.43883611
+768,MendotaPier15,stampen,73,1,0,1,1,7/14/2014 15:37,7/8/2014,8:00:00,120,1,2,72,1,undefined,FALSE,Good,43.1228,-89.43883611
+769,MendotaPier15,stampen,68,1,0,1,1,7/14/2014 15:39,7/9/2014,8:16:00,120,1,2,72,1,undefined,FALSE,Good,43.1228,-89.43883611
+770,MendotaPier15,stampen,70,1,0,1,1,7/14/2014 15:40,7/10/2014,8:37:00,120,1,1,72,1,undefined,FALSE,Good,43.1228,-89.43883611
+771,MendotaPier15,stampen,69,1,0,1,1,7/14/2014 15:41,7/11/2014,7:19:00,86,1,1,72,2,undefined,FALSE,Good,43.1228,-89.43883611
+772,MendotaPier15,stampen,76,1,0,1,1,7/14/2014 15:42,7/12/2014,7:54:00,120,1,2,73,1,undefined,FALSE,Good,43.1228,-89.43883611
+773,MendotaPier15,stampen,74,2,2,1,1,7/14/2014 15:43,7/13/2014,9:47:00,105,1,2,74,2,undefined,FALSE,Good,43.1228,-89.43883611
+774,MendotaPier15,stampen,72,1,0,1,1,7/14/2014 15:43,7/14/2014,21:54:00,120,1,1,73,2,undefined,FALSE,Good,43.1228,-89.43883611
+775,MendotaPier15,stampen,61,1,0,1,1,8/1/2014 9:27,7/15/2014,8:05:00,120,1,2,70,2,undefined,FALSE,Good,43.1228,-89.43883611
+776,MendotaPier15,stampen,66,1,0,1,1,8/1/2014 9:28,7/16/2014,8:13:00,120,1,1,70,1,undefined,FALSE,Good,43.1228,-89.43883611
+777,MendotaPier15,stampen,70,2,2,1,1,8/1/2014 9:33,7/17/2014,9:20:00,100,1,1,71,1,undefined,FALSE,Good,43.1228,-89.43883611
+778,MendotaPier15,stampen,77,1,0,1,1,8/1/2014 9:35,7/20/2014,18:41:00,38,3,1,77,2,undefined,FALSE,Poor,43.1228,-89.43883611
+779,MendotaPier15,stampen,71,1,0,1,1,8/1/2014 9:36,7/21/2014,7:56:00,51,2,2,73,2,undefined,FALSE,Good,43.1228,-89.43883611
+780,MendotaPier15,stampen,77,1,0,1,1,8/1/2014 9:38,7/22/2014,8:24:00,49,2,2,76,2,undefined,FALSE,Good,43.1228,-89.43883611
+781,MendotaPier15,stampen,67,1,0,1,1,8/1/2014 9:39,7/23/2014,7:22:00,67,2,1,73,2,undefined,FALSE,Good,43.1228,-89.43883611
+782,MendotaPier15,stampen,71,1,0,1,1,8/1/2014 9:41,7/24/2014,8:45:00,50,2,1,73,1,undefined,FALSE,Good,43.1228,-89.43883611
+783,MendotaPier15,stampen,71,1,0,1,1,8/1/2014 9:42,7/26/2014,7:33:00,77,2,1,71,1,undefined,FALSE,Good,43.1228,-89.43883611
+784,MendotaPier15,stampen,76,1,0,1,2,8/1/2014 9:46,7/27/2014,7:50:00,63,2,1,72,2,undefined,FALSE,Good,43.1228,-89.43883611
+785,MendotaPier15,stampen,64,1,0,1,1,8/1/2014 9:49,7/28/2014,8:13:00,120,1,2,70,2,undefined,FALSE,Good,43.1228,-89.43883611
+786,MendotaPier15,stampen,69,1,0,1,1,8/1/2014 9:50,7/29/2014,8:28:00,110,1,1,71,1,undefined,FALSE,Good,43.1228,-89.43883611
+787,MendotaPier15,stampen,70,1,0,1,1,8/1/2014 9:51,7/30/2014,8:10:00,120,1,1,71,1,undefined,FALSE,Good,43.1228,-89.43883611
+788,MendotaPier15,stampen,73,1,0,1,1,8/1/2014 9:54,7/31/2014,8:44:00,88,1,1,72,1,undefined,FALSE,Good,43.1228,-89.43883611
+789,MendotaPier15,stampen,69,1,0,1,1,8/1/2014 9:54,8/1/2014,7:07:00,70,2,2,71,1,undefined,FALSE,Good,43.1228,-89.43883611
+790,MendotaPier15,stampen,65,1,0,1,1,8/18/2014 11:27,8/2/2014,7:21:19,65,0,2,70,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+791,MendotaPier15,stampen,67,1,0,1,1,8/18/2014 11:28,8/3/2014,7:12:37,73,0,2,75,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+792,MendotaPier15,stampen,75,1,0,1,1,8/18/2014 11:29,8/4/2014,8:38:55,88,0,2,73,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+793,MendotaPier15,stampen,68,1,0,1,1,8/18/2014 11:30,8/5/2014,8:29:42,80,0,2,73,2,undefined,FALSE,Unknown,43.1228,-89.43883611
+794,MendotaPier15,stampen,69,1,0,1,1,8/18/2014 11:31,8/6/2014,7:32:39,75,0,2,72,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+795,MendotaPier15,stampen,68,1,0,1,1,8/18/2014 11:32,8/7/2014,7:11:36,67,0,2,75,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+796,MendotaPier15,stampen,65,1,0,1,2,8/18/2014 11:33,8/8/2014,7:04:34,71,0,2,73,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+797,MendotaPier15,stampen,65,1,0,1,2,8/18/2014 11:34,8/9/2014,6:48:40,60,0,2,75,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+798,MendotaPier15,stampen,65,1,0,1,1,8/18/2014 11:35,8/10/2014,7:05:00,35,0,2,75,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+799,MendotaPier15,stampen,69,1,0,1,1,8/18/2014 11:36,8/11/2014,7:10:52,37,0,2,76,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+800,MendotaPier15,stampen,63,1,0,1,1,8/18/2014 11:37,8/12/2014,7:03:36,63,0,2,74,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+801,MendotaPier15,stampen,64,1,0,1,1,8/18/2014 11:38,8/13/2014,6:55:23,85,0,2,71,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+802,MendotaPier15,stampen,63,1,0,1,1,8/18/2014 11:39,8/14/2014,6:21:25,75,0,2,71,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+803,MendotaPier15,stampen,62,1,0,1,1,9/9/2014 15:28,8/15/2014,7:01:27,80,0,2,71,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+804,MendotaPier15,stampen,77,1,0,1,1,9/9/2014 15:29,8/31/2014,8:35:38,65,0,2,75,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+805,MendotaPier15,stampen,75,1,0,1,1,9/9/2014 15:30,9/1/2014,12:48:33,57,0,1,75,2,undefined,FALSE,Unknown,43.1228,-89.43883611
+806,MendotaPier15,stampen,69,1,0,1,1,9/9/2014 15:31,9/2/2014,8:00:33,82,0,2,73,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+807,MendotaPier15,stampen,72,1,0,1,1,9/9/2014 15:31,9/3/2014,8:24:14,81,0,2,73,1,undefined,FALSE,Unknown,43.1228,-89.43883611
+808,MononaPark2,swenson,74.7,1,0,1,2,9/9/2014 14:05,6/9/2014,12:00:22,117,0,2,69.8,1,actual time was not submitted,TRUE,Unknown,43.09029722,-89.33730556
+809,MononaPark2,swenson,79.7,1,0,1,2,9/9/2014 14:02,6/22/2014,17:00:37,76,0,1,77.7,2,undefined,FALSE,Unknown,43.09029722,-89.33730556
+810,MononaPark2,swenson,82.4,1,0,1,2,9/9/2014 14:03,6/27/2014,19:22:24,36,0,2,79.5,2,undefined,FALSE,Unknown,43.09029722,-89.33730556
+811,MononaPark2,swenson,74.7,1,0,1,1,7/3/2014 17:03,7/3/2014,16:12:00,108,2,2,74.1,1,"Phosphorus sample was taken at 3:43 PM and taken to the lab. Afterwards, we returned to complete the rest of the sampling.",TRUE,Good,43.09029722,-89.33730556
+812,MononaPark2,swenson,77.3,1,0,1,1,7/28/2014 8:18,7/26/2014,13:25:00,90,3,2,76.8,2,undefined,FALSE,Poor,43.09029722,-89.33730556
+813,MononaPark2,swenson,84.4,1,0,1,1,8/1/2014 17:22,8/1/2014,16:38:49,77,3,1,78.3,1,Digital thermometer seems to be acting up again. It was on when pulled from cardboard box and would shut itself off and restart without prompting. The accuracy of these temperatures should be questioned.,FALSE,Poor,43.09029722,-89.33730556
+814,MononaPark2,swenson,79.5,1,0,1,2,8/10/2014 16:35,8/8/2014,14:15:41,59,3,2,78.1,2,undefined,TRUE,Poor,43.09029722,-89.33730556
+815,MononaPark2,swenson,78.2,1,0,1,1,8/13/2014 16:14,8/13/2014,15:01:17,105,2,2,74.7,1,undefined,FALSE,Good,43.09029722,-89.33730556
+816,MononaPark2,swenson,65.1,1,0,1,1,8/28/2014 7:33,8/28/2014,7:00:12,96,2,1,74.1,1,undefined,FALSE,Good,43.09029722,-89.33730556
+817,MononaPark2,swenson,78.3,1,0,1,2,9/8/2014 10:52,9/8/2014,10:00:06,100,1,1,74.3,2,undefined,TRUE,Good,43.09029722,-89.33730556
+818,KegonsaPier2,taylor,81,2,FALSE,2,2,6/16/2014 20:47,6/15/2014,20:10:00,73.8,NA,2,72.9,2,"Cannot enter in above row:  bather load - 1, wave intensity -2, waterfowl - 1, algae bloom - 1, floating debris 2",FALSE,Unknown,#N/A,#N/A
+819,KegonsaPier2,taylor,80.4,1,0,1,2,7/31/2014 15:16,6/22/2014,18:00:00,54,2,1,78.1,1,undefined,FALSE,Good,#N/A,#N/A
+820,KegonsaPier2,taylor,undefined,1,0,1,1,7/8/2014 21:51,6/29/2014,6:00:00,undefined,3,1,undefined,3,,FALSE,Poor,#N/A,#N/A
+821,KegonsaPier2,taylor,82.3,1,0,1,3,7/31/2014 15:18,7/6/2014,19:30:00,46.3,2,1,80.7,2,undefined,FALSE,Poor,#N/A,#N/A
+822,KegonsaPier2,taylor,86.5,2,2,1,2,7/31/2014 15:20,7/14/2014,17:00:00,39.6,3,1,78.8,2,undefined,FALSE,Poor,#N/A,#N/A
+823,KegonsaPier2,taylor,76.1,1,0,1,3,7/31/2014 15:22,7/20/2014,19:00:00,43,2,1,77.4,3,undefined,FALSE,Poor,#N/A,#N/A
+824,KegonsaPier2,taylor,72.6,1,0,1,1,7/31/2014 15:26,7/27/2014,19:00:00,61,2,1,71.8,1,undefined,FALSE,Good,#N/A,#N/A
+825,KegonsaPier2,taylor,81.4,2,1,1,3,8/17/2014 20:13,8/3/2014,18:45:14,35.1,2,1,77.3,1,,FALSE,Poor,#N/A,#N/A
+826,KegonsaPier2,taylor,80.3,1,0,1,3,8/17/2014 20:17,8/10/2014,18:00:49,49.6,1,1,76.4,2,,TRUE,Poor,#N/A,#N/A
+827,KegonsaPier2,taylor,77.5,1,0,1,3,8/17/2014 20:18,8/17/2014,20:00:19,56.2,1,1,79,1,,FALSE,Poor,#N/A,#N/A
+828,MendotaPier8,tye,75.2,2,2,1,3,7/7/2014 13:43,7/7/2014,7:00:00,92,1,3,73.9,1,,TRUE,Poor,43.10816111,-89.47155
+829,MendotaPier8,tye,60.8,2,2,1,2,7/14/2014 6:29,7/14/2014,6:27:00,105,1,1,73.9,1,,FALSE,Fair,43.10816111,-89.47155
+830,MendotaPier8,tye,52.1,1,0,1,3,7/16/2014 6:56,7/16/2014,6:30:00,115,1,1,68.4,1,,FALSE,Poor,43.10816111,-89.47155
+831,MendotaPier8,tye,62.1,1,0,1,1,7/20/2014 10:37,7/18/2014,6:30:00,93,1,2,71.6,1,,FALSE,Good,43.10816111,-89.47155
+832,MendotaPier8,tye,68.7,1,0,1,1,7/21/2014 7:05,7/21/2014,7:03:00,60.1,2,1,73.2,2,,FALSE,Good,43.10816111,-89.47155
+833,MendotaPier8,tye,68,1,0,1,1,7/23/2014 7:18,7/23/2014,7:16:00,73,1,1,72.5,1,,FALSE,Good,43.10816111,-89.47155
+834,MendotaPier8,tye,79.2,1,0,1,1,7/25/2014 15:36,7/25/2014,15:29:00,36,2,1,72.7,2,,FALSE,Good,43.10816111,-89.47155
+835,MendotaPier8,tye,58.8,1,0,1,1,7/28/2014 7:03,7/28/2014,7:01:00,110,1,1,68.7,1,,FALSE,Good,43.10816111,-89.47155
+836,MendotaPier8,tye,76,1,0,1,1,7/30/2014 19:20,7/30/2014,19:17:00,68,1,1,75,1,,FALSE,Good,43.10816111,-89.47155
+837,MendotaPier8,tye,62.5,1,0,1,1,7/31/2014 6:34,7/31/2014,6:32:00,75,1,1,70.5,1,,FALSE,Good,43.10816111,-89.47155
+838,MendotaPier8,tye,68.9,1,0,1,1,8/4/2014 7:25,8/4/2014,7:24:20,55,1,1,74.1,1,,TRUE,Good,43.10816111,-89.47155
+839,MendotaPier8,tye,63.9,1,0,1,1,8/11/2014 6:30,8/11/2014,6:28:07,45,1,1,74.7,1,,FALSE,Good,43.10816111,-89.47155
+840,MendotaPier8,tye,65.5,1,0,1,1,8/20/2014 6:07,8/20/2014,6:04:46,48,2,1,74.5,1,,FALSE,Good,43.10816111,-89.47155
+841,MendotaPier8,tye,77.2,2,2,1,3,8/25/2014 6:42,8/25/2014,6:39:58,54,2,2,79.2,1,,FALSE,Poor,43.10816111,-89.47155
+842,MendotaPier8,tye,67.5,1,0,1,1,9/4/2014 8:03,9/4/2014,7:57:51,24,3,2,72.5,3,large rain event  run off to lake on north shore evident  murky brown  220ft out   wave intensity high wind from south,TRUE,Poor,43.10816111,-89.47155
+843,MononaBeach11,vanderwoude,68.7,1,FALSE,1,1,6/10/2014 19:10,6/10/2014,18:55:00,120,NA,2,71.4,1,"Water really clear! Site has a boom and roped off swim area - I sample at end of shallow water line, about 3 foot depth",FALSE,Unknown,43.07751389,-89.36871111
+844,MononaBeach11,vanderwoude,70.5,2,FALSE,1,2,6/14/2014 8:59,6/14/2014,8:52:00,115.5,NA,3,68.7,1,Lots of baby ducks,FALSE,Unknown,43.07751389,-89.36871111
+845,MononaBeach11,vanderwoude,75.2,1,FALSE,2,1,6/18/2014 19:18,6/18/2014,19:08:00,101.4,NA,3,73.2,1,undefined,FALSE,Unknown,43.07751389,-89.36871111
+846,MononaBeach11,vanderwoude,81.5,2,FALSE,2,2,6/24/2014 19:01,6/24/2014,18:50:00,101,NA,2,76.5,2,"Could not move sliders: bather load lots, plant debris none, algal bloom none, waterfowl none",FALSE,Unknown,43.07751389,-89.36871111
+847,MononaBeach11,vanderwoude,76.8,1,0,2,1,7/7/2014 19:46,7/7/2014,19:42:00,106.8,1,2,73.4,2,undefined,TRUE,Good,43.07751389,-89.36871111
+848,MononaBeach11,vanderwoude,75.2,1,0,2,1,7/17/2014 18:47,7/17/2014,18:37:00,83.8,1,2,77.5,2,undefined,FALSE,Good,43.07751389,-89.36871111
+849,MononaBeach11,vanderwoude,80.2,1,0,2,2,7/21/2014 19:09,7/21/2014,19:01:00,74.4,1,1,78.3,2,undefined,FALSE,Good,43.07751389,-89.36871111
+850,MononaBeach11,vanderwoude,79.9,1,0,2,1,7/31/2014 18:31,7/31/2014,18:20:37,89,2,2,73.6,2,undefined,FALSE,Good,43.07751389,-89.36871111
+851,MononaBeach11,vanderwoude,70.5,1,0,1,2,8/11/2014 19:50,8/11/2014,19:38:48,98.6,1,1,76.5,1,Light rain,TRUE,Good,43.07751389,-89.36871111
+852,MononaBeach11,vanderwoude,82.4,1,0,2,1,8/20/2014 18:12,8/20/2014,18:04:39,120,1,1,75.6,1,undefined,FALSE,Good,43.07751389,-89.36871111
+853,MononaBeach11,vanderwoude,72.3,1,0,2,1,8/24/2014 8:19,8/24/2014,8:15:11,120,1,1,77,2,undefined,FALSE,Good,43.07751389,-89.36871111
+854,MononaBeach11,vanderwoude,81,1,0,2,3,9/4/2014 18:04,9/4/2014,17:54:25,60,2,2,75.9,3,"Garbage, plant debris washed up on shore and floating in water due to high winds and waves that break over the booms",TRUE,Poor,43.07751389,-89.36871111
+855,MendotaPark21,wencel,77.7,2,FALSE,2,2,6/15/2014 12:10,6/6/2014,14:45:00,120,NA,1,77.5,1,undefined,TRUE,Unknown,43.102536,-89.369353
+856,MendotaPark21,wencel,70.5,1,FALSE,2,2,6/15/2014 12:12,6/13/2014,12:15:00,73,NA,1,66.4,3,Bather = kiteboarder,FALSE,Unknown,43.102536,-89.369353
+857,MendotaPark21,wencel,80.6,2,FALSE,1,2,6/20/2014 15:35,6/20/2014,15:26:00,85,NA,2,78.5,1,1 Angler on pier,FALSE,Unknown,43.102536,-89.369353
+858,MendotaPark21,wencel,82.4,1,FALSE,1,1,6/27/2014 13:00,6/27/2014,12:01:00,120,NA,3,75.4,1,Ducklings,FALSE,Unknown,43.102536,-89.369353
+859,MendotaPark21,wencel,78.8,1,0,2,2,7/4/2014 14:20,7/4/2014,14:18:00,89,3,2,77.4,2,undefined,TRUE,Poor,43.102536,-89.369353
+860,MendotaPark21,wencel,69,1,0,2,3,7/14/2014 16:49,7/14/2014,16:39:00,26.6,2,1,76.8,3,undefined,FALSE,Poor,43.102536,-89.369353
+861,MendotaPark21,wencel,79.6,1,0,1,2,7/18/2014 13:49,7/18/2014,13:43:00,83.4,3,2,76.5,2,undefined,FALSE,Poor,43.102536,-89.369353
+862,MendotaPark21,wencel,71.6,1,0,1,1,7/25/2014 18:58,7/25/2014,18:51:00,86.8,1,2,73.9,2,undefined,FALSE,Good,43.102536,-89.369353
+863,MendotaPark21,wencel,79.5,1,0,1,2,8/1/2014 11:31,8/1/2014,11:20:11,99.2,1,2,75.9,1,undefined,FALSE,Good,43.102536,-89.369353
+864,MendotaPark21,wencel,77.9,1,0,1,2,9/4/2014 13:56,9/4/2014,13:43:47,35.4,2,1,76.3,3,undefined,TRUE,Good,43.102536,-89.369353
+865,KegonsaPier7,wilcox,68.7,1,0,1,1,7/1/2014 12:39,6/6/2014,8:41:00,120,1,1,71.1,1,undefined,TRUE,Good,42.95130556,-89.23577222
+866,KegonsaPier7,wilcox,69.4,2,2,1,2,7/1/2014 12:43,6/7/2014,10:05:00,120,1,1,73.8,1,undefined,FALSE,Fair,42.95130556,-89.23577222
+867,KegonsaPier7,wilcox,67.5,1,0,1,1,7/1/2014 12:45,6/8/2014,11:06:00,77,2,1,68,2,Heavy rain last night,FALSE,Good,42.95130556,-89.23577222
+868,KegonsaPier7,wilcox,60.8,1,0,1,1,7/1/2014 12:48,6/9/2014,8:29:00,65,2,1,68,1,undefined,FALSE,Good,42.95130556,-89.23577222
+869,KegonsaPier7,wilcox,66.2,1,0,1,1,7/1/2014 12:51,6/10/2014,9:58:00,113,2,1,69.8,1,undefined,FALSE,Good,42.95130556,-89.23577222
+870,KegonsaPier7,wilcox,62.4,1,0,1,1,7/1/2014 12:53,6/11/2014,9:58:00,120,2,1,68,2,White suds on water,FALSE,Good,42.95130556,-89.23577222
+871,KegonsaPier7,wilcox,75.9,1,0,1,1,7/1/2014 12:56,6/12/2014,15:50:00,79,2,1,73.6,2,White suds on water,FALSE,Good,42.95130556,-89.23577222
+872,KegonsaPier7,wilcox,72.7,1,0,1,2,7/1/2014 12:59,6/13/2014,15:11:00,38,2,1,70.9,3,undefined,FALSE,Good,42.95130556,-89.23577222
+873,KegonsaPier7,wilcox,71.1,2,2,1,2,7/1/2014 13:02,6/14/2014,9:23:00,51,3,1,68.8,1,Today was the first day of significant algae presence.,FALSE,Poor,42.95130556,-89.23577222
+874,KegonsaPier7,wilcox,71.6,2,2,1,0,7/1/2014 13:05,6/15/2014,8:45:00,112,3,2,69.3,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+875,KegonsaPier7,wilcox,73.8,1,0,1,1,7/1/2014 13:07,6/16/2014,8:35:00,120,2,1,70,0,undefined,FALSE,Good,42.95130556,-89.23577222
+876,KegonsaPier7,wilcox,70.9,1,0,1,1,7/1/2014 13:10,6/17/2014,9:21:00,78,2,1,71.4,0,Strong winds and heavy rain last night.,FALSE,Good,42.95130556,-89.23577222
+877,KegonsaPier7,wilcox,66.9,1,0,1,2,7/1/2014 13:13,6/18/2014,10:44:00,53,2,1,73,2,Heavy rain and strong winds last night.,FALSE,Good,42.95130556,-89.23577222
+878,KegonsaPier7,wilcox,67.5,1,0,1,1,7/1/2014 13:16,6/19/2014,9:35:00,65,2,1,71.6,1,Heavy rain for last three days.,FALSE,Good,42.95130556,-89.23577222
+879,KegonsaPier7,wilcox,69.8,1,0,1,2,7/1/2014 13:21,6/20/2014,8:59:00,72,2,1,70.7,1,"White suds on water, heavy rain last night.",FALSE,Good,42.95130556,-89.23577222
+880,KegonsaPier7,wilcox,68.7,2,2,1,1,7/1/2014 13:23,6/21/2014,9:00:00,83,2,1,73.6,1,undefined,FALSE,Fair,42.95130556,-89.23577222
+881,KegonsaPier7,wilcox,79.5,3,2,1,2,7/1/2014 13:26,6/22/2014,9:54:00,51,3,1,75.6,1,Water surface looks like pea soup.,FALSE,Poor,42.95130556,-89.23577222
+882,KegonsaPier7,wilcox,71.1,3,1,1,2,7/1/2014 13:28,6/23/2014,9:40:00,47,3,1,74.7,1,Water surface looks like pea soup.,FALSE,Poor,42.95130556,-89.23577222
+883,KegonsaPier7,wilcox,78.3,3,1,1,3,7/1/2014 13:31,6/24/2014,10:55:00,48,3,1,80.1,1,Slime at shore.,FALSE,Poor,42.95130556,-89.23577222
+884,KegonsaPier7,wilcox,69.3,3,1,1,3,7/1/2014 13:34,6/25/2014,9:28:00,36,3,1,78.6,1,Slime at shore.,FALSE,Poor,42.95130556,-89.23577222
+885,KegonsaPier7,wilcox,67.3,2,2,1,2,7/1/2014 13:36,6/26/2014,9:15:00,113,3,2,75.6,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+886,KegonsaPier7,wilcox,79.7,2,2,1,2,7/1/2014 13:38,6/27/2014,9:40:00,102,3,1,75.6,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+887,KegonsaPier7,wilcox,78.3,2,2,1,2,7/1/2014 13:40,6/28/2014,8:59:00,114,3,2,75.9,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+888,KegonsaPier7,wilcox,74.1,1,0,1,2,7/1/2014 13:41,6/29/2014,9:36:00,105,3,1,76.3,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+889,KegonsaPier7,wilcox,83.6,2,2,2,2,7/1/2014 13:44,6/30/2014,14:12:00,101,3,1,80.6,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+890,KegonsaPier7,wilcox,72.5,2,2,1,2,7/1/2014 13:46,7/1/2014,9:45:00,68,3,1,74.8,3,Heavy rain and high winds last night.  White suds on water.,TRUE,Poor,42.95130556,-89.23577222
+891,KegonsaPier7,wilcox,62.1,1,0,0,2,7/2/2014 10:12,7/2/2014,9:50:00,69,3,1,72.3,3,Lots of white suds on water.,FALSE,Poor,42.95130556,-89.23577222
+892,KegonsaPier7,wilcox,62.6,2,2,1,2,7/4/2014 10:13,7/3/2014,8:28:00,41,3,1,69.8,2,undefined,FALSE,Poor,42.95130556,-89.23577222
+893,KegonsaPier7,wilcox,71.6,3,2,1,3,7/4/2014 10:15,7/4/2014,9:55:00,35,3,2,75.2,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+894,KegonsaPier7,wilcox,68.4,2,2,1,2,7/6/2014 10:03,7/5/2014,9:04:00,39,3,1,73.6,1,Lots of weeds washed up on shoreline.,FALSE,Poor,42.95130556,-89.23577222
+895,KegonsaPier7,wilcox,73.6,2,2,2,2,7/6/2014 10:05,7/6/2014,9:43:00,87,3,1,73.4,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+896,KegonsaPier7,wilcox,74.5,2,2,1,2,7/7/2014 9:23,7/7/2014,9:03:00,50,3,1,74.7,2,undefined,FALSE,Poor,42.95130556,-89.23577222
+897,KegonsaPier7,wilcox,70,1,0,1,2,7/8/2014 11:27,7/8/2014,8:45:00,31,3,1,74.1,3,undefined,FALSE,Poor,42.95130556,-89.23577222
+898,KegonsaPier7,wilcox,66.2,1,0,1,2,7/9/2014 9:42,7/9/2014,9:12:00,41,2,2,72.3,3,Heavy white suds on water.,FALSE,Good,42.95130556,-89.23577222
+899,KegonsaPier7,wilcox,71.8,2,2,1,2,7/12/2014 10:15,7/10/2014,9:51:00,63,3,1,75.7,1,Several (6) dead fish at shore.,FALSE,Poor,42.95130556,-89.23577222
+900,KegonsaPier7,wilcox,70,1,0,1,2,7/12/2014 10:17,7/11/2014,8:16:00,38,3,1,74.5,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+901,KegonsaPier7,wilcox,74.7,2,2,1,2,7/12/2014 10:19,7/12/2014,9:46:00,55,3,3,75.2,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+902,KegonsaPier7,wilcox,81.9,1,0,1,2,7/13/2014 15:57,7/13/2014,15:20:00,35,3,1,78.1,3,undefined,FALSE,Poor,42.95130556,-89.23577222
+903,KegonsaPier7,wilcox,69.8,1,0,1,2,8/2/2014 8:42,7/14/2014,8:35:04,53,3,1,74.1,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+904,KegonsaPier7,wilcox,59.5,1,0,1,2,8/2/2014 8:45,7/15/2014,6:29:51,27,3,1,68.4,3,Lots of white suds on water.,FALSE,Poor,42.95130556,-89.23577222
+905,KegonsaPier7,wilcox,70.9,2,2,1,2,8/2/2014 8:47,7/27/2014,6:35:48,41,3,2,75.2,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+906,KegonsaPier7,wilcox,61.9,1,0,1,1,8/2/2014 8:50,7/28/2014,8:11:03,18,3,1,69.1,3,White suds on water and foam on shore.,FALSE,Poor,42.95130556,-89.23577222
+907,KegonsaPier7,wilcox,65.5,1,0,1,2,8/2/2014 8:53,7/29/2014,8:04:45,36,3,1,69.6,2,White suds on water and foam on shore.,FALSE,Poor,42.95130556,-89.23577222
+908,KegonsaPier7,wilcox,64.4,2,2,1,2,8/2/2014 8:56,7/30/2014,7:50:34,42,3,1,71.4,1,White suds on water and foam on shore.,FALSE,Poor,42.95130556,-89.23577222
+909,KegonsaPier7,wilcox,71.6,2,2,1,2,8/2/2014 8:58,7/31/2014,9:27:13,37,3,1,75,1,White foam on shore.,FALSE,Poor,42.95130556,-89.23577222
+910,KegonsaPier7,wilcox,68.7,1,0,1,1,8/2/2014 9:00,8/1/2014,8:02:38,43,3,1,74.1,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+911,KegonsaPier7,wilcox,69.1,2,2,1,2,8/2/2014 9:28,8/2/2014,9:12:15,42,3,1,75.6,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+912,KegonsaPier7,wilcox,76.3,2,2,1,1,8/3/2014 9:48,8/3/2014,9:23:31,45,3,1,77.7,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+913,KegonsaPier7,wilcox,78.8,1,0,1,1,8/4/2014 10:15,8/4/2014,10:11:37,45,3,1,78.3,2,undefined,FALSE,Poor,42.95130556,-89.23577222
+914,KegonsaPier7,wilcox,66.4,1,0,1,1,8/5/2014 8:22,8/5/2014,8:04:18,52,3,1,75.2,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+915,KegonsaPier7,wilcox,70.2,2,2,1,1,8/6/2014 9:29,8/6/2014,9:13:58,51,3,1,76.8,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+916,KegonsaPier7,wilcox,69.8,2,2,1,1,8/7/2014 9:05,8/7/2014,8:41:08,42,3,1,74.7,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+917,KegonsaPier7,wilcox,72.9,3,2,1,2,8/11/2014 10:04,8/11/2014,9:41:08,44,3,2,76.8,1,Today is the most surface algae/scum of the season.,FALSE,Poor,42.95130556,-89.23577222
+918,KegonsaPier7,wilcox,64.9,1,0,1,1,8/12/2014 9:32,8/12/2014,9:17:53,17,3,1,71.1,3,undefined,FALSE,Poor,42.95130556,-89.23577222
+919,KegonsaPier7,wilcox,68.7,1,0,1,2,8/13/2014 10:03,8/13/2014,9:06:52,42,3,1,72.9,2,undefined,FALSE,Poor,42.95130556,-89.23577222
+920,KegonsaPier7,wilcox,60.8,1,0,1,1,8/14/2014 8:58,8/14/2014,8:41:19,37,3,1,73,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+921,KegonsaPier7,wilcox,56.1,1,0,1,1,8/15/2014 7:36,8/15/2014,7:23:42,39,3,1,72.3,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+922,KegonsaPier7,wilcox,62.6,1,0,1,1,8/16/2014 7:03,8/16/2014,6:49:31,41,3,1,74.1,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+923,KegonsaPier7,wilcox,64.4,1,0,1,1,8/20/2014 6:59,8/20/2014,6:46:09,43,3,1,75.2,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+924,KegonsaPier7,wilcox,71.4,1,0,1,1,8/21/2014 8:38,8/21/2014,8:19:45,40,3,1,77.4,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+925,KegonsaPier7,wilcox,74.1,2,2,1,1,8/22/2014 7:52,8/22/2014,7:38:26,48,3,1,76.3,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+926,KegonsaPier7,wilcox,76.5,2,2,1,3,8/23/2014 8:55,8/23/2014,8:40:42,38,3,1,76.8,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+927,KegonsaPier7,wilcox,79.2,3,2,1,1,8/24/2014 10:00,8/24/2014,9:33:54,47,3,1,76.3,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+928,KegonsaPier7,wilcox,72.3,1,0,1,1,8/25/2014 12:24,8/25/2014,12:08:58,51,3,1,74.7,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+929,KegonsaPier7,wilcox,70,1,0,1,1,8/26/2014 7:52,8/26/2014,7:35:17,47,3,1,75,2,undefined,FALSE,Poor,42.95130556,-89.23577222
+930,KegonsaPier7,wilcox,66.2,1,0,1,1,8/27/2014 15:45,8/27/2014,7:11:08,47,3,1,76.3,1,Lots of white foamy suds along shoreline.,FALSE,Poor,42.95130556,-89.23577222
+931,KegonsaPier7,wilcox,61,1,0,1,1,8/28/2014 6:43,8/28/2014,6:40:31,38,3,1,75.2,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+932,KegonsaPier7,wilcox,70.5,1,0,1,1,9/1/2014 8:29,9/1/2014,8:13:13,46,3,2,75.9,1,undefined,FALSE,Poor,42.95130556,-89.23577222
+933,KegonsaPier7,wilcox,67.5,2,2,1,1,9/2/2014 8:28,9/2/2014,8:19:11,46,3,1,74.5,1,undefined,TRUE,Poor,42.95130556,-89.23577222
+934,WaubesaPier2,Christenson,83,NA,,1,1,,6/1/2014,10:30:00,120,NA,1,77,3,,NA,,43.006184,-89.33457
+935,WaubesaPier2,Christenson,80,NA,,1,1,,6/2/2014,10:30:00,120,NA,1,77,2,,NA,,43.006184,-89.33457
+936,WaubesaPier2,Christenson,81,NA,,1,1,,6/16/2014,10:30:00,97,NA,1,73,2,,NA,,43.006184,-89.33457
+937,WaubesaPier2,Christenson,76,NA,,1,1,,6/27/2014,10:30:00,83,NA,1,78,2,,NA,,43.006184,-89.33457
+938,WaubesaPier2,Christenson,69,NA,,1,2,,7/3/2014,10:30:00,70,NA,1,75,2,,NA,,43.006184,-89.33457
+939,WaubesaPier2,Christenson,70,NA,,1,2,,7/28/2014,10:30:00,70,NA,1,74,3,,NA,,43.006184,-89.33457
+940,WaubesaPier2,Christenson,76,NA,,1,1,,7/29/2014,10:30:00,70,NA,1,73,1,,NA,,43.006184,-89.33457
+941,WaubesaPier2,Christenson,78,NA,,1,3,,8/1/2014,10:30:00,66,NA,1,75,3,,NA,,43.006184,-89.33457
+942,WaubesaPier2,Christenson,76,NA,,1,2,,8/6/2014,10:30:00,63,NA,1,79,2,,NA,,43.006184,-89.33457

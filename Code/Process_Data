@@ -1,0 +1,9 @@
+ #!/bin/bash
+
+python3 Matrix_Build_no_no.py
+python3 Monthly_Matrix_no_na.py
+python3 Location_Matrix_Build_no_na.py
+python3 Compute_Eigenvectors.py
+python3 eigen_no_algae_indicator.py
+python3 Data_Projection.py
+
