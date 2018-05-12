@@ -9,31 +9,31 @@ def main():
     print('\n\t##### EXECUTING MONTHLY_MATRIX_BUILD_ALL.PY #####')
 
     path = [
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2015_month_03_matrix.csv',    # 5 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2015_month_04_matrix.csv',    # 22 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2015_month_05_matrix.csv',    # 170 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2015_month_06_matrix.csv',    # 360 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2015_month_07_matrix.csv',    # 365 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2015_month_08_matrix.csv',    # 277 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2015_month_09_matrix.csv',    # 64 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2016_month_03_matrix.csv',    # 14 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2016_month_04_matrix.csv',    # 18 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2016_month_05_matrix.csv',    # 180 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2016_month_06_matrix.csv',    # 503 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2016_month_07_matrix.csv',    # 462 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2016_month_08_matrix.csv',    # 378 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2016_month_09_matrix.csv',    # 82 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2017_month_03_matrix.csv',    # 4 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2017_month_04_matrix.csv',    # 76 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2017_month_05_matrix.csv',    # 234 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2017_month_06_matrix.csv',    # 459 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2017_month_07_matrix.csv',    # 501 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2017_month_08_matrix.csv',    # 426 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2017_month_09_matrix.csv',    # 166 columns
-        '/Users/Alliot/Documents/CLA Project/Data/matrices/2017_month_010_matrix.csv'     # 47 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2015_month_03_matrix.csv',    # 5 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2015_month_04_matrix.csv',    # 22 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2015_month_05_matrix.csv',    # 170 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2015_month_06_matrix.csv',    # 360 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2015_month_07_matrix.csv',    # 365 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2015_month_08_matrix.csv',    # 277 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2015_month_09_matrix.csv',    # 64 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2016_month_03_matrix.csv',    # 14 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2016_month_04_matrix.csv',    # 18 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2016_month_05_matrix.csv',    # 180 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2016_month_06_matrix.csv',    # 503 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2016_month_07_matrix.csv',    # 462 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2016_month_08_matrix.csv',    # 378 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2016_month_09_matrix.csv',    # 82 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2017_month_03_matrix.csv',    # 4 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2017_month_04_matrix.csv',    # 76 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2017_month_05_matrix.csv',    # 234 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2017_month_06_matrix.csv',    # 459 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2017_month_07_matrix.csv',    # 501 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2017_month_08_matrix.csv',    # 426 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2017_month_09_matrix.csv',    # 166 columns
+        '/Users/Alliot/Documents/CLA-Project/Data/matrices/2017_month_010_matrix.csv'     # 47 columns
     ]
 
-    destination_folder = '/Users/Alliot/Documents/CLA Project/Data/matrices/'
+    destination_folder = '/Users/Alliot/Documents/CLA-Project/Data/matrices/'
 
     # These matrices contain all the data from each month for all three years
     all_month_03_matrix = np.empty([15, 23], dtype=(str, 15))

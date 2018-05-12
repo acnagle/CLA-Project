@@ -10,12 +10,12 @@ def main():
 
     # File locations of each csv
     file_paths = [
-        "/Users/Alliot/documents/CLA project/Data/CM2015_edit.csv",
-        "/Users/Alliot/documents/CLA project/Data/CM2016_edit.csv",
-        "/Users/Alliot/documents/CLA project/Data/CM2017_edit.csv"
+        "/Users/Alliot/documents/CLA-project/Data/CM2015_edit.csv",
+        "/Users/Alliot/documents/CLA-project/Data/CM2016_edit.csv",
+        "/Users/Alliot/documents/CLA-project/Data/CM2017_edit.csv"
     ]
 
-    destination_folder = '/Users/Alliot/Documents/CLA Project/Data/matrices/'
+    destination_folder = '/Users/Alliot/Documents/CLA-Project/Data/matrices/'
 
     # Define a matrix for each year of data
     mat15_year = np.empty([15, 1264], dtype=(str, 15))

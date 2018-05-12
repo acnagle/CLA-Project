@@ -11,13 +11,13 @@ def main():
     print('\n\t##### EXECUTING COMPUTE_EIGENVECTORS.PY #####')
 
     # source directories
-    path_matrices_no_na = '/Users/Alliot/documents/cla project/data/matrices-no-na/normalized'
+    path_matrices_no_na = '/Users/Alliot/documents/cla-project/data/matrices-no-na/normalized'
     path_all_data = \
-        '/Users/Alliot/documents/cla project/data/all-data-no-na/normalized/algal_bloom_locations_summaries_norm.csv'
+        '/Users/Alliot/documents/cla-project/data/all-data-no-na/normalized/algal_bloom_locations_summaries_norm.csv'
 
     # destination directories for eigenvectors
-    dest_path_matrices_no_na_eigen = '/Users/Alliot/documents/cla project/data/matrices-no-na/eigenvectors/'
-    dest_path_all_data_eigen = '/Users/Alliot/documents/cla project/data/all-data-no-na/eigenvectors/'
+    dest_path_matrices_no_na_eigen = '/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/'
+    dest_path_all_data_eigen = '/Users/Alliot/documents/cla-project/data/all-data-no-na/eigenvectors/'
 
     # get all file paths in matrices-no-na directory
     files_matrices_no_na = [filename for filename in glob.glob(os.path.join(path_matrices_no_na, '*.csv'))]

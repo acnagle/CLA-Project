@@ -10,12 +10,12 @@ def main():
     print('\n\t##### EXECUTING DATA_PROJECTION.PY #####')
 
     # source directories
-    path_matrices_no_na_eigen_no_alg_ind = '/Users/Alliot/documents/cla project/data/matrices-no-na/eigen-no-alg-ind/'
-    path_all_data_eigen_no_alg_ind = '/Users/Alliot/documents/cla project/data/all-data-no-na/eigen-no-alg-ind/'
+    path_matrices_no_na_eigen_no_alg_ind = '/Users/Alliot/documents/cla-project/data/matrices-no-na/eigen-no-alg-ind/'
+    path_all_data_eigen_no_alg_ind = '/Users/Alliot/documents/cla-project/data/all-data-no-na/eigen-no-alg-ind/'
 
     # destination directories for projection vectors
-    dest_path_matrices_no_na_proj = '/Users/Alliot/documents/cla project/data/matrices-no-na/projections/'
-    dest_path_all_data_proj = '/Users/Alliot/documents/cla project/data/all-data-no-na/projections/'
+    dest_path_matrices_no_na_proj = '/Users/Alliot/documents/cla-project/data/matrices-no-na/projections/'
+    dest_path_all_data_proj = '/Users/Alliot/documents/cla-project/data/all-data-no-na/projections/'
 
     # get all subdirectories within path_matrices_no_na_eigen_no_alg_ind
     dirnames = [x[0] for x in os.walk(path_matrices_no_na_eigen_no_alg_ind)]

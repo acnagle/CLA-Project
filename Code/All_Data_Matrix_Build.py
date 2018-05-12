@@ -7,9 +7,9 @@ def main():
 
     print('\n\t##### EXECUTING ALL_DATA_MATRIX_BUILD.PY #####')
 
-    src_path = '/Users/Alliot/documents/cla project/data/algal_bloom_locations_summaries.csv'
-    orig_path = '/Users/Alliot/documents/cla project/data/all-data-no-na/original/'     # path to original data folder
-    norm_path = '/Users/Alliot/documents/cla project/data/all-data-no-na/normalized/'   # path to normalized data folder
+    src_path = '/Users/Alliot/documents/cla-project/data/algal_bloom_locations_summaries.csv'
+    orig_path = '/Users/Alliot/documents/cla-project/data/all-data-no-na/original/'     # path to original data folder
+    norm_path = '/Users/Alliot/documents/cla-project/data/all-data-no-na/normalized/'   # path to normalized data folder
 
     # read in .csv file and store into mat (matrix)
     file = open(src_path, newline='')

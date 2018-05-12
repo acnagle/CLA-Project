@@ -9,12 +9,12 @@ def main():
     print('\n\t##### EXECUTING DATA_NORM.PY #####')
 
     # source directories
-    path_matrices = '/Users/Alliot/documents/cla project/data/matrices/original'
-    path_matrices_no_na = '/Users/Alliot/documents/cla project/data/matrices-no-na/original'
+    path_matrices = '/Users/Alliot/documents/cla-project/data/matrices/original'
+    path_matrices_no_na = '/Users/Alliot/documents/cla-project/data/matrices-no-na/original'
 
     # destination directories for normalized data
-    dest_path_matrices_normalized = '/Users/Alliot/documents/cla project/data/matrices/normalized/'
-    dest_path_matrices_no_na_normalized = '/Users/Alliot/documents/cla project/data/matrices-no-na/normalized/'
+    dest_path_matrices_normalized = '/Users/Alliot/documents/cla-project/data/matrices/normalized/'
+    dest_path_matrices_no_na_normalized = '/Users/Alliot/documents/cla-project/data/matrices-no-na/normalized/'
 
     # get all file paths in matrices and matrices-no-na directories
     files_matrices = [filename for filename in glob.glob(os.path.join(path_matrices, "*.csv"))]

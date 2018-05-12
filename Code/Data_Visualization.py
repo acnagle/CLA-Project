@@ -10,7 +10,7 @@ def main():
     print('\n\t##### EXECUTING DATA_VISUALIZATION.PY #####')
 
     # source directories
-    path_matrices_no_na_proj = '/Users/Alliot/documents/cla project/data/matrices-no-na/projections/'
+    path_matrices_no_na_proj = '/Users/Alliot/documents/cla-project/data/matrices-no-na/projections/'
 
     # get all subdirectories within path_matrices_no_na_projections
     dirnames = [x[0] for x in os.walk(path_matrices_no_na_proj)]

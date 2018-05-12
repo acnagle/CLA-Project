@@ -8,9 +8,9 @@ def main():
 
     # File locations of each csv
     file_paths = [
-        "/Users/Alliot/Documents/CLA Project/Data/matrices-no-na/original/2015_year_matrix.csv",
-        "/Users/Alliot/Documents/CLA Project/Data/matrices-no-na/original/2016_year_matrix.csv",
-        "/Users/Alliot/Documents/CLA Project/Data/matrices-no-na/original/2017_year_matrix.csv"
+        "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/2015_year_matrix.csv",
+        "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/2016_year_matrix.csv",
+        "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/2017_year_matrix.csv"
     ]
 
     destination_folder = '/Users/Alliot/Documents/CLA Project/Data/matrices-no-na/original/'
