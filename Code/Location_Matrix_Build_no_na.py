@@ -4,7 +4,7 @@ import numpy as np
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print('\n\t##### EXECUTING LOCATION_MATRIX_BUILD_NO_NA.PY #####')
+    print("\n\t##### EXECUTING LOCATION_MATRIX_BUILD_NO_NA.PY #####")
 
     # File locations of each csv
     file_paths = [
@@ -13,7 +13,7 @@ def main():
         "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/2017_year_matrix.csv"
     ]
 
-    destination_folder = '/Users/Alliot/Documents/CLA Project/Data/matrices-no-na/original/'
+    destination_folder = "/Users/Alliot/Documents/CLA Project/Data/matrices-no-na/original/"
 
     lakes = ["Waubesa", "Kegonsa", "Monona", "Mendota", "Wingra"]
 

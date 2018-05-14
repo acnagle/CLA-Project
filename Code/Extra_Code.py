@@ -121,4 +121,24 @@
     #         svdvals[i] = -temp
     #     else:
     #         svdvals[i] = math.sqrt(eigvals[i])
-    #
+
+
+
+# # create matrices for each summer month for each year
+# month_06_2015 = np.genfromtxt(open(summer_month_paths[0], "rb"), delimiter=",", dtype="str")
+# month_07_2015 = np.genfromtxt(open(summer_month_paths[1], "rb"), delimiter=",", dtype="str")
+# month_08_2015 = np.genfromtxt(open(summer_month_paths[2], "rb"), delimiter=",", dtype="str")
+# month_06_2016 = np.genfromtxt(open(summer_month_paths[3], "rb"), delimiter=",", dtype="str")
+# month_07_2016 = np.genfromtxt(open(summer_month_paths[4], "rb"), delimiter=",", dtype="str")
+# month_08_2016 = np.genfromtxt(open(summer_month_paths[5], "rb"), delimiter=",", dtype="str")
+# month_06_2017 = np.genfromtxt(open(summer_month_paths[6], "rb"), delimiter=",", dtype="str")
+# month_07_2017 = np.genfromtxt(open(summer_month_paths[7], "rb"), delimiter=",", dtype="str")
+# month_08_2017 = np.genfromtxt(open(summer_month_paths[8], "rb"), delimiter=",", dtype="str")
+#
+# # concatenate all summer month matrices into a single matrix for each year
+# summer_2015 = np.hstack((month_06_2015, month_07_2015))
+# summer_2015 = np.hstack((summer_2015, month_08_2015))
+# summer_2016 = np.hstack((month_06_2016, month_07_2016))
+# summer_2016 = np.hstack((summer_2016, month_08_2016))
+# summer_2017 = np.hstack((month_06_2017, month_07_2017))
+# summer_2017 = np.hstack((summer_2017, month_08_2017))

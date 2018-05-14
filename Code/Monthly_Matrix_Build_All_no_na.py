@@ -6,7 +6,7 @@ import numpy as np
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print('\n\t##### EXECUTING MONTHLU_MATRIX_BUILD_ALL_NO_NA.PY #####')
+    print('\n\t##### EXECUTING MONTHLY_MATRIX_BUILD_ALL_NO_NA.PY #####')
 
     path = [
         '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/2015_month_03_matrix.csv',    # 5 columns

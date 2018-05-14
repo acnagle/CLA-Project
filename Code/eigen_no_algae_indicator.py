@@ -8,23 +8,23 @@ import errno
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print('\n\t##### EXECUTING MATRIX_BUILD_NO_NA.PY #####')
+    print("\n\t##### EXECUTING EIGEN_NO_ALGAE_INDICATOR.PY #####")
 
     # source directories
-    path_matrices_no_na = '/Users/Alliot/documents/cla-project/data/matrices-no-na/normalized'
+    path_matrices_no_na = "/Users/Alliot/documents/cla-project/data/matrices-no-na/normalized"
     path_all_data = \
-        '/Users/Alliot/documents/cla-project/data/all-data-no-na/normalized/algal_bloom_locations_summaries_norm.csv'
+        "/Users/Alliot/documents/cla-project/data/all-data-no-na/normalized/algal_bloom_locations_summaries_norm.csv"
 
     # destination directories for eigenvectors
-    dest_path_matrices_no_na = '/Users/Alliot/documents/cla-project/data/matrices-no-na/eigen-no-alg-ind/'
-    dest_path_all_data = '/Users/Alliot/documents/cla-project/data/all-data-no-na/eigen-no-alg-ind/'
+    dest_path_matrices_no_na = "/Users/Alliot/documents/cla-project/data/matrices-no-na/eigen-no-alg-ind/"
+    dest_path_all_data = "/Users/Alliot/documents/cla-project/data/all-data-no-na/eigen-no-alg-ind/"
 
     # get all file paths in matrices-no-na directory
-    files_matrices_no_na = [filename for filename in glob.glob(os.path.join(path_matrices_no_na, '*.csv'))]
+    files_matrices_no_na = [filename for filename in glob.glob(os.path.join(path_matrices_no_na, "*.csv"))]
 
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_matrices_no_na directory
     for filename_w_directory in files_matrices_no_na:
-        mat = np.genfromtxt(open(filename_w_directory, 'rb'), delimiter=',', dtype='str')
+        mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
         mat = matrix_str_to_float(mat, 5, 15)
 
         # Remove algae indicator (row 2 (index 1) for this set of matrices)
@@ -32,16 +32,16 @@ def main():
 
         # get filename of mat and compute eigenvectors, eigenvalues, and svd values
         filename = filename_w_directory[67:]
-        print('Processing file ' + filename + ' ...')
+        print("Processing file " + filename + " ...")
         eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)
 
         # final_directory is the final location of mat and its eigenvectors
-        final_directory = dest_path_matrices_no_na + filename[:-4] + '/'
-        eigv1_filename = filename[:-4] + '_eigv1.csv'
-        eigv2_filename = filename[:-4] + '_eigv2.csv'
-        eigv3_filename = filename[:-4] + '_eigv3.csv'
-        eigvals_filename = filename[:-4] + '_eigenvalues.csv'
-        svdvals_filename = filename[:-4] + '_singularvalues.csv'
+        final_directory = dest_path_matrices_no_na + filename[:-4] + "/"
+        eigv1_filename = filename[:-4] + "_eigv1.csv"
+        eigv2_filename = filename[:-4] + "_eigv2.csv"
+        eigv3_filename = filename[:-4] + "_eigv3.csv"
+        eigvals_filename = filename[:-4] + "_eigenvalues.csv"
+        svdvals_filename = filename[:-4] + "_singularvalues.csv"
 
         # if final_directory does not exist, create it
         if not os.path.exists(final_directory):
@@ -59,19 +59,19 @@ def main():
         vector_to_file(svdvals, svdvals_filename, final_directory)
 
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_matrices_no_na directory
-    mat = np.genfromtxt(open(path_all_data, 'rb'), delimiter=',', dtype='str')
+    mat = np.genfromtxt(open(path_all_data, "rb"), delimiter=",", dtype="str")
     mat = matrix_str_to_float(mat, 2, 16)
     filename = path_all_data[67:]
-    print('Processing file ' + filename + ' ...')
+    print("Processing file " + filename + " ...")
     mat = np.delete(mat, 1, 0)  # delete algal indicator (algalBloomSheen)
     eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)
 
     # final_directory is the final location of mat and its eigenvectors
-    eigv1_filename = filename[:-8] + 'eigv1.csv'
-    eigv2_filename = filename[:-8] + 'eigv2.csv'
-    eigv3_filename = filename[:-8] + 'eigv3.csv'
-    eigvals_filename = filename[:-8] + 'eigenvalues.csv'
-    svdvals_filename = filename[:-8] + 'singularvalues.csv'
+    eigv1_filename = filename[:-8] + "eigv1.csv"
+    eigv2_filename = filename[:-8] + "eigv2.csv"
+    eigv3_filename = filename[:-8] + "eigv3.csv"
+    eigvals_filename = filename[:-8] + "eigenvalues.csv"
+    svdvals_filename = filename[:-8] + "singularvalues.csv"
 
     # if final_directory does not exist, create it
     if not os.path.exists(dest_path_all_data):
@@ -100,7 +100,7 @@ def matrix_str_to_float(mat, first, last):
             try:
                 new_mat[i-first, j] = float(mat[i, j])
             except ValueError:
-                print('The value at index ' + str(j) + ' could not be cast to a float.')
+                print("The value at index " + str(j) + " could not be cast to a float.")
 
     return new_mat
 
@@ -125,8 +125,6 @@ def get_eigenvectors(mat):
     w = w[idx]
     v = v[:, idx]
 
-    print(w)
-
     eigv1 = v[0]
     eigv2 = v[1]
     eigv3 = v[2]
@@ -140,14 +138,14 @@ def get_eigenvectors(mat):
 # Writes a matrix to a .csv file. mat is the matrix being written to a file. filename is the name
 # of the .csv file. destination_folder is the path to the destination folder where the .csv file will be stored
 def matrix_to_file(mat, filename, destination_folder):
-    file = open(destination_folder + filename, 'w')
+    file = open(destination_folder + filename, "w")
 
     for i in range(0, mat.shape[0]):
         for j in range(0, mat.shape[1]):
             if j < mat.shape[1] - 1:
-                file.write(str(mat[i, j]) + ',')
+                file.write(str(mat[i, j]) + ",")
             else:
-                file.write(str(mat[i, j]) + '\n')
+                file.write(str(mat[i, j]) + "\n")
 
     file.close()
 
@@ -155,12 +153,12 @@ def matrix_to_file(mat, filename, destination_folder):
 # This method writes a vector to a .csv file. vec is the vector being written to a file. filename is the name
 # # of the .csv file. destination_folder is the path to the destination folder where the .csv file will be stored
 def vector_to_file(vec, filename, destination_folder):
-    file = open(destination_folder + filename, 'w')
+    file = open(destination_folder + filename, "w")
 
     for i in range(0, vec.shape[0]):
-            file.write(str(vec[i]) + '\n')
+            file.write(str(vec[i]) + "\n")
 
     file.close()
 
 
-if __name__ == '__main__': main()
+if __name__ == "__main__": main()

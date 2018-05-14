@@ -6,7 +6,7 @@ import numpy as np
 def main():
     np.set_printoptions(threshold=np.inf)   # prints a full matrix rather than an abbreviated matrix
 
-    print('\n\t##### EXECUTING MATRIX_BUILD_NO_NA.PY #####')
+    print("\n\t##### EXECUTING MATRIX_BUILD_NO_NA.PY #####")
 
     # File locations of each csv
     file_paths = [
@@ -15,7 +15,7 @@ def main():
         "/Users/Alliot/documents/CLA-project/Data/CM2017_edit.csv"
     ]
 
-    destination_folder = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/'
+    destination_folder = "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/"
 
     # Define a matrix for each year of data
     mat15_year = np.empty([15, 1264], dtype=(str, 15))  # 1243
@@ -27,8 +27,8 @@ def main():
 
     # Create matrices for each year
     for path in file_paths:
-        print('Processing file ' + path[41:] + ' ...')
-        file = open(path, newline='')
+        print("Processing file " + path[41:] + " ...")
+        file = open(path, newline="")
         data_reader = csv.reader(file)
         file_year = path[43:-9]
         matrix_year(yearly_matrices[mat_index], data_reader, file_year)
@@ -46,10 +46,10 @@ def main():
 
     mat_all = build_all_year_matrix(mat15_year, mat16_year, mat17_year)
 
-    write_to_csv(mat15_year, indices15_months, '2015', destination_folder)
-    write_to_csv(mat16_year, indices16_months, '2016', destination_folder)
-    write_to_csv(mat17_year, indices17_months, '2017', destination_folder)
-    write_to_csv(mat_all, None, 'All', destination_folder)
+    write_to_csv(mat15_year, indices15_months, "2015", destination_folder)
+    write_to_csv(mat16_year, indices16_months, "2016", destination_folder)
+    write_to_csv(mat17_year, indices17_months, "2017", destination_folder)
+    write_to_csv(mat_all, None, "All", destination_folder)
 
 
 # Create matrices for each year. mat is the matrix for a particular year. data_reader is used to read each line
@@ -58,7 +58,7 @@ def matrix_year(mat, data_reader, file_year):
     data_reader.__next__()  # Remove the first line
 
     for row in data_reader:
-        if row[0] != '':
+        if row[0] != "":
             col = int(row[0])  # Get the column
             new_col = np.empty([15, 1], dtype=(str, 15))  # Holds the column currently being processed
 
@@ -79,7 +79,7 @@ def matrix_year(mat, data_reader, file_year):
             new_col[14, 0] = row[24]                    # poor water quality flag
 
             # adjust column entries for poor water quality flag
-            if row[16] == 'NA' or row[19] == 'NA':
+            if row[16] == "NA" or row[19] == "NA":
                 continue
             elif float(row[16]) <= 50:
                 new_col[14, 0] = 1
@@ -88,23 +88,23 @@ def matrix_year(mat, data_reader, file_year):
             for i in range(5, 12):
                 if i != 6:          # ignore algalBloomSheen measurement
                     if float(new_col[i, 0]) == 0:
-                        new_col[i, 0] = '1'
+                        new_col[i, 0] = "1"
 
-            date = datetime.datetime.strptime(date, '%m/%d/%y')
-            time = datetime.datetime.strptime(time, '%H:%M:%S')
+            date = datetime.datetime.strptime(date, "%m/%d/%y")
+            time = datetime.datetime.strptime(time, "%H:%M:%S")
 
             # sort rows based on dates and time
             for i in range(0, mat.shape[1]):  # .shape[1] gets the length of the first row of the matrix
-                if mat[3, i] == '':
+                if mat[3, i] == "":
                     insert_column(i, col, mat, new_col[:, 0])
                     break
 
-                elif date == datetime.datetime.strptime(mat[3, i], '%m/%d/%y'):
-                    if time < datetime.datetime.strptime(mat[4, i], '%H:%M:%S'):
+                elif date == datetime.datetime.strptime(mat[3, i], "%m/%d/%y"):
+                    if time < datetime.datetime.strptime(mat[4, i], "%H:%M:%S"):
                         insert_column(i, col, mat, new_col[:, 0])
                         break
 
-                elif date < datetime.datetime.strptime(mat[3, i], '%m/%d/%y'):
+                elif date < datetime.datetime.strptime(mat[3, i], "%m/%d/%y"):
                     insert_column(i, col, mat, new_col[:, 0])
                     break
 
@@ -112,18 +112,18 @@ def matrix_year(mat, data_reader, file_year):
 # This writes the matrix_year and data for each of its months to their own csv files. matrix_year is the data in
 # the matrix representing a particular year. month_list is the list of indices for which each month begins
 # in the matrix_year matrix. file_year is a string which contains the year for the data in matrix_year.
-# destination_folder is the path to the destination folder where the csv file will be stored. If 'None' is passed in
+# destination_folder is the path to the destination folder where the csv file will be stored. If "None" is passed in
 # place of month_list, this method will simply just write the entire matrix to a file
 def write_to_csv(mat_year, month_list, file_year, destination_folder):
-    file = open(destination_folder + file_year + '_year_matrix.csv', 'w')
+    file = open(destination_folder + file_year + "_year_matrix.csv", "w")
 
     # Create matrix for the year
     for i in range(0, mat_year.shape[0]):
         for j in range(0, mat_year.shape[1]):
             if j < mat_year.shape[1]-1:
-                file.write(mat_year[i, j] + ',')
+                file.write(mat_year[i, j] + ",")
             else:
-                file.write(mat_year[i, j] + '\n')
+                file.write(mat_year[i, j] + "\n")
 
     if month_list is not None:
 
@@ -135,7 +135,7 @@ def write_to_csv(mat_year, month_list, file_year, destination_folder):
                 break
 
             else:
-                file = open(destination_folder + file_year + '_month_0' + str(i + 3) + '_matrix.csv', 'w')
+                file = open(destination_folder + file_year + "_month_0" + str(i + 3) + "_matrix.csv", "w")
                 for j in range(0, mat_year.shape[0]):
                     try:
                         end = int(month_list[i+1])
@@ -143,12 +143,12 @@ def write_to_csv(mat_year, month_list, file_year, destination_folder):
                         break
 
                     for k in range(int(month_list[i]), end):
-                        if mat_year[j, k] == '':
+                        if mat_year[j, k] == "":
                             break
                         if k < month_list[i+1]-1:
-                            file.write(mat_year[j, k] + ',')
+                            file.write(mat_year[j, k] + ",")
                         else:
-                            file.write(mat_year[j, k] + '\n')
+                            file.write(mat_year[j, k] + "\n")
 
 
     file.close()
@@ -171,7 +171,7 @@ def month_index(mat_year):
 
     num_months = 1  # count the number of months
     # get number of months for data for same year as mat_year
-    while col[0] != '':
+    while col[0] != "":
         while curr_month == j:
             i = i + 1
             col = mat_year[:, i]
@@ -179,7 +179,7 @@ def month_index(mat_year):
                 curr_month = int(col[3][0:2])
             except ValueError:
                 curr_month = col[3][0:2]
-                if curr_month != '':
+                if curr_month != "":
                     curr_month = int(col[3][0:1])
             if curr_month != j:
                 num_months = num_months + 1
@@ -192,7 +192,7 @@ def month_index(mat_year):
     j = curr_month = first_month
     i = 0
     k = 0   # used to index month_list
-    while col[0] != '':
+    while col[0] != "":
         while curr_month == j:
             i = i + 1
             col = mat_year[:, i]
@@ -200,7 +200,7 @@ def month_index(mat_year):
                 curr_month = int(col[3][0:2])
             except ValueError:
                 curr_month = col[3][0:2]
-                if curr_month != '':
+                if curr_month != "":
                     curr_month = int(col[3][0:1])
 
         k = k + 1
@@ -225,13 +225,13 @@ def insert_column(index, total_col, mat, new_col):
         mat[:, index] = new_col
 
 
-# This method removes the empty entries (i.e. ',,,') located at the ends of the .csv files. new_mat is the matrix
+# This method removes the empty entries (i.e. ",,,") located at the ends of the .csv files. new_mat is the matrix
 # with empty entries removed.
 def remove_empty_entries(mat):
     new_mat = mat
 
     for col in range(0, mat.shape[1]):
-        if mat[0, col] == '':
+        if mat[0, col] == "":
             new_mat = mat[:, 0:col]
             break
 
