@@ -33,7 +33,7 @@ mat_All_additional_3d = csvread(strcat(dir_All_additional,'algal_bloom_locations
 mat_All_additional_norm = csvread('/Users/Alliot/documents/cla project/data/all-data-no-na/eigenvectors/algal_bloom_locations_summaries_norm.csv');
 
 dir_summer_2017 = '/Users/Alliot/documents/cla-project/data/matrices-no-na/projections/summer_2017_matrix/';
-mat_summer_2017_norm = csvread(strcat(dir_summer_2017, 'summer_2017_matrix.csv'));
+mat_summer_2017_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/summer_2017_matrix/summer_2017_matrix.csv');
 mat_summer_2017_1d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_1d.csv'));
 mat_summer_2017_2d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_2d.csv'));
 mat_summer_2017_3d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_3d.csv'));
@@ -42,15 +42,15 @@ mat_summer_2017_3d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_3d
 %% Compute vectors to plot
 
 for i=1:length(mat_summer_2017_norm)
-    if mat_All_additional_norm(2, i) == 0
+    if mat_summer_2017_norm(2, i) == 0
         no_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
         no_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
         no_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
-    elseif mat_All_additional_norm(2, i) == 0.5
+    elseif mat_summer_2017_norm(2, i) == 0.5
         bg_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
         bg_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
         bg_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
-    elseif mat_All_additional_norm(2, i) == 1
+    elseif mat_summer_2017_norm(2, i) == 1
         gr_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
         gr_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
         gr_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
@@ -303,7 +303,7 @@ title('Summer 2017 1D')
 % end
 % title('2017 1D')
 % 
-% %% Plot All Data Points
+%% Plot All Data Points
 % 
 % figure
 % scatter3(no_alg_3d_All(1, :), no_alg_3d_All(2, :), no_alg_3d_All(3, :), 'r')
