@@ -38,8 +38,13 @@ mat_summer_2017_norm = csvread('/Users/Alliot/documents/cla-project/data/matrice
 % mat_summer_2017_2d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_2d.csv'));
 mat_summer_2017_3d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_3d.csv'));
 
+dir_mendota_summer = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/projections/Mendota_summer_matrix/';
+mat_mendota_summer_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/Mendota_summer_matrix/Mendota_summer_matrix.csv');
+mat_mendota_summer_3d = csvread(strcat(dir_mendota_summer, 'Mendota_summer_matrix_proj_3d.csv'));
 
-
+dir_monona_summer = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/projections/Monona_summer_matrix/';
+mat_monona_summer_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/Monona_summer_matrix/Monona_summer_matrix.csv');
+mat_monona_summer_3d = csvread(strcat(dir_monona_summer, 'Monona_summer_matrix_proj_3d.csv'));
 
 %% Compute vectors to plot
 
@@ -56,6 +61,26 @@ for i=1:length(mat_summer_2017_norm)
 %         gr_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
 %         gr_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
         gr_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
+    end
+end
+
+for i=1:length(mat_mendota_summer_norm)
+    if mat_mendota_summer_norm(2, i) == 0
+        no_alg_3d_mendota_summer(:, i) = mat_mendota_summer_3d(:, i);
+    elseif mat_mendota_summer_norm(2, i) == 0.5
+        bg_alg_3d_mendota_summer(:, i) = mat_mendota_summer_3d(:, i);
+    elseif mat_mendota_summer_norm(2, i) == 1
+        gr_alg_3d_mendota_summer(:, i) = mat_mendota_summer_3d(:, i);
+    end
+end
+
+for i=1:length(mat_monona_summer_norm)
+    if mat_monona_summer_norm(2, i) == 0
+        no_alg_3d_monona_summer(:, i) = mat_monona_summer_3d(:, i);
+    elseif mat_monona_summer_norm(2, i) == 0.5
+        bg_alg_3d_monona_summer(:, i) = mat_monona_summer_3d(:, i);
+    elseif mat_monona_summer_norm(2, i) == 1
+        gr_alg_3d_monona_summer(:, i) = mat_monona_summer_3d(:, i);
     end
 end
 
@@ -172,7 +197,29 @@ legend('no algae', 'blue-green algae', 'green algae')
 % end
 % title('Summer 2017 1D')
 
-% %% Plot All Data points (with additional measurements)
+%% Plot Mendota Summer Data Points
+
+figure
+scatter3(no_alg_3d_mendota_summer(1, :), no_alg_3d_mendota_summer(2, :), no_alg_3d_mendota_summer(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_mendota_summer(1, :), bg_alg_3d_mendota_summer(2, :), bg_alg_3d_mendota_summer(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_mendota_summer(1, :), gr_alg_3d_mendota_summer(2, :), gr_alg_3d_mendota_summer(3, :), 'g')
+title('Mendota Summer (June-August) 3D')
+legend('no algae', 'blue-green algae', 'green algae')
+
+%% Plot Monona Summer Data Points
+
+figure
+scatter3(no_alg_3d_monona_summer(1, :), no_alg_3d_monona_summer(2, :), no_alg_3d_monona_summer(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_monona_summer(1, :), bg_alg_3d_monona_summer(2, :), bg_alg_3d_monona_summer(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_monona_summer(1, :), gr_alg_3d_monona_summer(2, :), gr_alg_3d_monona_summer(3, :), 'g')
+title('Monona Summer (June-August) 3D')
+legend('no algae', 'blue-green algae', 'green algae')
+
+%% Plot All Data points (with additional measurements)
 % 
 % figure
 % scatter3(no_alg_3d(1, :), no_alg_3d(2, :), no_alg_3d(3, :), 'r')
