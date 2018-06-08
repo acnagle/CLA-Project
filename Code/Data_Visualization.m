@@ -34,25 +34,27 @@ mat_All_additional_norm = csvread('/Users/Alliot/documents/cla project/data/all-
 
 dir_summer_2017 = '/Users/Alliot/documents/cla-project/data/matrices-no-na/projections/summer_2017_matrix/';
 mat_summer_2017_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/summer_2017_matrix/summer_2017_matrix.csv');
-mat_summer_2017_1d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_1d.csv'));
-mat_summer_2017_2d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_2d.csv'));
+% mat_summer_2017_1d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_1d.csv'));
+% mat_summer_2017_2d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_2d.csv'));
 mat_summer_2017_3d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_3d.csv'));
+
+
 
 
 %% Compute vectors to plot
 
 for i=1:length(mat_summer_2017_norm)
     if mat_summer_2017_norm(2, i) == 0
-        no_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
-        no_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
+%         no_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
+%         no_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
         no_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
     elseif mat_summer_2017_norm(2, i) == 0.5
-        bg_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
-        bg_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
+%         bg_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
+%         bg_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
         bg_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
     elseif mat_summer_2017_norm(2, i) == 1
-        gr_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
-        gr_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
+%         gr_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
+%         gr_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
         gr_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
     end
 end
@@ -148,27 +150,27 @@ scatter3(gr_alg_3d_summer_2017(1, :), gr_alg_3d_summer_2017(2, :), gr_alg_3d_sum
 title('Summer 2017 3D')
 legend('no algae', 'blue-green algae', 'green algae')
 
-figure
-scatter(no_alg_2d_summer_2017(1, :), no_alg_2d_summer_2017(2, :), 'r')
-hold on
-scatter(bg_alg_2d_summer_2017(1, :), bg_alg_2d_summer_2017(2, :), 'b')
-hold on
-scatter(gr_alg_2d_summer_2017(1, :), gr_alg_2d_summer_2017(2, :), 'g')
-title('Summer 2017 2D')
-legend('no algae', 'blue-green algae', 'green algae')
-
-figure
-for i=1:length(mat_summer_2017_norm)
-    if mat_summer_2017_norm(2, i) == 0
-        plot(no_alg_1d_summer_2017(i), 'or')
-    elseif mat_summer_2017_norm(2, i) == 0.5
-        plot(bg_alg_1d_summer_2017(i), 'ob')
-    elseif mat_summer_2017_norm(2, i) == 1
-        plot(gr_alg_1d_summer_2017(i), 'og')
-    end
-    hold on
-end
-title('Summer 2017 1D')
+% figure
+% scatter(no_alg_2d_summer_2017(1, :), no_alg_2d_summer_2017(2, :), 'r')
+% hold on
+% scatter(bg_alg_2d_summer_2017(1, :), bg_alg_2d_summer_2017(2, :), 'b')
+% hold on
+% scatter(gr_alg_2d_summer_2017(1, :), gr_alg_2d_summer_2017(2, :), 'g')
+% title('Summer 2017 2D')
+% legend('no algae', 'blue-green algae', 'green algae')
+% 
+% figure
+% for i=1:length(mat_summer_2017_norm)
+%     if mat_summer_2017_norm(2, i) == 0
+%         plot(no_alg_1d_summer_2017(i), 'or')
+%     elseif mat_summer_2017_norm(2, i) == 0.5
+%         plot(bg_alg_1d_summer_2017(i), 'ob')
+%     elseif mat_summer_2017_norm(2, i) == 1
+%         plot(gr_alg_1d_summer_2017(i), 'og')
+%     end
+%     hold on
+% end
+% title('Summer 2017 1D')
 
 % %% Plot All Data points (with additional measurements)
 % 
