@@ -38,13 +38,22 @@ mat_summer_2017_norm = csvread('/Users/Alliot/documents/cla-project/data/matrice
 % mat_summer_2017_2d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_2d.csv'));
 mat_summer_2017_3d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_3d.csv'));
 
+dir_summer_2017_randn = '/Users/Alliot/documents/cla-project/data/matrices-no-na/gaussian-randn-projections/summer_2017_matrix/';
+mat_summer_2017_3d_randn = csvread(strcat(dir_summer_2017_randn, 'summer_2017_matrix_proj_3d.csv'));
+
 dir_mendota_summer = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/projections/Mendota_summer_matrix/';
 mat_mendota_summer_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/Mendota_summer_matrix/Mendota_summer_matrix.csv');
 mat_mendota_summer_3d = csvread(strcat(dir_mendota_summer, 'Mendota_summer_matrix_proj_3d.csv'));
 
+dir_mendota_summer_randn = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/gaussian-randn-projections/Mendota_summer_matrix/';
+mat_mendota_summer_3d_randn = csvread(strcat(dir_mendota_summer_randn, 'Mendota_summer_matrix_proj_3d.csv'));
+
 dir_monona_summer = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/projections/Monona_summer_matrix/';
-mat_monona_summer_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/Monona_summer_matrix/Monona_summer_matrix.csv');
 mat_monona_summer_3d = csvread(strcat(dir_monona_summer, 'Monona_summer_matrix_proj_3d.csv'));
+
+dir_monona_summer_randn = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/gaussian-randn-projections/Monona_summer_matrix/';
+mat_monona_summer_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/Monona_summer_matrix/Monona_summer_matrix.csv');
+mat_monona_summer_3d_randn = csvread(strcat(dir_monona_summer_randn, 'Monona_summer_matrix_proj_3d.csv'));
 
 %% Compute vectors to plot
 
@@ -67,20 +76,26 @@ end
 for i=1:length(mat_mendota_summer_norm)
     if mat_mendota_summer_norm(2, i) == 0
         no_alg_3d_mendota_summer(:, i) = mat_mendota_summer_3d(:, i);
+        no_alg_3d_mendota_summer_randn(:, i) = mat_mendota_summer_3d_randn(:, i);
     elseif mat_mendota_summer_norm(2, i) == 0.5
         bg_alg_3d_mendota_summer(:, i) = mat_mendota_summer_3d(:, i);
+        bg_alg_3d_mendota_summer_randn(:, i) = mat_mendota_summer_3d_randn(:, i);
     elseif mat_mendota_summer_norm(2, i) == 1
         gr_alg_3d_mendota_summer(:, i) = mat_mendota_summer_3d(:, i);
+        gr_alg_3d_mendota_summer_randn(:, i) = mat_mendota_summer_3d_randn(:, i);
     end
 end
 
 for i=1:length(mat_monona_summer_norm)
     if mat_monona_summer_norm(2, i) == 0
         no_alg_3d_monona_summer(:, i) = mat_monona_summer_3d(:, i);
+        no_alg_3d_monona_summer_randn(:, i) = mat_monona_summer_3d_randn(:, i);
     elseif mat_monona_summer_norm(2, i) == 0.5
         bg_alg_3d_monona_summer(:, i) = mat_monona_summer_3d(:, i);
+        bg_alg_3d_monona_summer_randn(:, i) = mat_monona_summer_3d_randn(:, i);
     elseif mat_monona_summer_norm(2, i) == 1
         gr_alg_3d_monona_summer(:, i) = mat_monona_summer_3d(:, i);
+        gr_alg_3d_monona_summer_randn(:, i) = mat_monona_summer_3d_randn(:, i);
     end
 end
 

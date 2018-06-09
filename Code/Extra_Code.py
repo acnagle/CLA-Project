@@ -142,3 +142,23 @@
 # summer_2016 = np.hstack((summer_2016, month_08_2016))
 # summer_2017 = np.hstack((month_06_2017, month_07_2017))
 # summer_2017 = np.hstack((summer_2017, month_08_2017))
+
+# Was Used in Gaussian_rand_Projection
+# determine the rows of proj_mat_3d, proj_mat_2d, and proj_mat_1d, where proj_mat_ed, for example,
+# is the matrix containing the "projection" of the data matrix, mat, on V = [eigv1 eigv2 eigv3].
+# Each column in proj_mat corresponds to the projection of a particular row in
+# mat on V. let V = [eigv1 eigv2 eigv3], and let A represent mat so that A_i is the ith column in mat.
+# (U^T)A_i = [(eigv1^T)A_i; (eigv2^T)A_i; (eigv3^T)A_i] = proj_mat_3d[i]
+# proj_mat_3d = np.zeros((3, mat.shape[1]), dtype=float)
+# proj_mat_2d = np.zeros((2, mat.shape[1]), dtype=float)
+# proj_mat_1d = np.zeros((1, mat.shape[1]), dtype=float)
+#
+# for i in range(0, mat.shape[1]):
+#     proj_mat_3d[0, i] = eigv1.T.dot(mat[:, i])
+#     proj_mat_3d[1, i] = eigv2.T.dot(mat[:, i])
+#     proj_mat_3d[2, i] = eigv3.T.dot(mat[:, i])
+#
+#     proj_mat_2d[0, i] = eigv1.T.dot(mat[:, i])
+#     proj_mat_2d[1, i] = eigv2.T.dot(mat[:, i])
+#
+#     proj_mat_1d[0, i] = eigv1.T.dot(mat[:, i])

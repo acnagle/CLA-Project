@@ -56,10 +56,10 @@ def main():
 
     # Create location matrices for summer months: June (06), July (07), and August (08)
     mat_waubesa_summer = create_summer_location_matrix(mat_waubesa, lakes[0])
-    mat_kegonsa_summer = create_summer_location_matrix(mat_waubesa, lakes[1])
-    mat_monona_summer = create_summer_location_matrix(mat_waubesa, lakes[2])
-    mat_mendota_summer = create_summer_location_matrix(mat_waubesa, lakes[3])
-    mat_wingra_summer = create_summer_location_matrix(mat_waubesa, lakes[4])
+    mat_kegonsa_summer = create_summer_location_matrix(mat_kegonsa, lakes[1])
+    mat_monona_summer = create_summer_location_matrix(mat_monona, lakes[2])
+    mat_mendota_summer = create_summer_location_matrix(mat_mendota, lakes[3])
+    mat_wingra_summer = create_summer_location_matrix(mat_wingra, lakes[4])
 
     # Write the matrices to csv files
     matrix_to_file(mat_waubesa, lakes[0], destination_folder)
