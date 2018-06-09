@@ -13,7 +13,7 @@ def main():
     # source directories
     path_matrices_no_na = '/Users/Alliot/documents/cla-project/data/matrices-no-na/normalized'
     path_all_data = \
-        '/Users/Alliot/documents/cla-project/data/all-data-no-na/normalized/algal_bloom_locations_summaries_norm.csv'
+        '/Users/Alliot/documents/cla-project/data/all-data-no-na/normalized/algal_bloom_locations_summaries_matrix.csv'
 
     # destination directories for eigenvectors
     dest_path_matrices_no_na_eigen = '/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/'
@@ -61,12 +61,11 @@ def main():
     eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)
 
     # final_directory is the final location of mat and its eigenvectors
-    final_directory = dest_path_matrices_no_na_eigen + filename[:-4] + '/'
-    eigv1_filename = filename[:-8] + 'eigv1.csv'
-    eigv2_filename = filename[:-8] + 'eigv2.csv'
-    eigv3_filename = filename[:-8] + 'eigv3.csv'
-    eigvals_filename = filename[:-8] + 'eigenvalues.csv'
-    svdvals_filename = filename[:-8] + 'singularvalues.csv'
+    eigv1_filename = filename[:-10] + 'eigv1.csv'
+    eigv2_filename = filename[:-10] + 'eigv2.csv'
+    eigv3_filename = filename[:-10] + 'eigv3.csv'
+    eigvals_filename = filename[:-10] + 'eigenvalues.csv'
+    svdvals_filename = filename[:-10] + 'singularvalues.csv'
 
     # if final_directory does not exist, create it
     if not os.path.exists(dest_path_all_data_eigen):

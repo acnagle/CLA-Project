@@ -35,14 +35,14 @@ def main():
             summer_2017 = np.hstack((summer_2017, np.genfromtxt(open(path, "rb"), delimiter=",", dtype="str")))
 
     # write summer matrices to .csv file
-    print("Processing file " + "summer_2015_matrix.csv ...")
-    matrix_to_file(summer_2015, "summer_2015_matrix.csv", dest_path)
+    print("Processing file " + "2015_summer_matrix.csv ...")
+    matrix_to_file(summer_2015, "2015_summer_matrix.csv", dest_path)
 
-    print("Processing file " + "summer_2016_matrix.csv ...")
-    matrix_to_file(summer_2016, "summer_2016_matrix.csv", dest_path)
+    print("Processing file " + "2016_summer_matrix.csv ...")
+    matrix_to_file(summer_2016, "2016_summer_matrix.csv", dest_path)
 
-    print("Processing file " + "summer_2017_matrix.csv ...")
-    matrix_to_file(summer_2017, "summer_2017_matrix.csv", dest_path)
+    print("Processing file " + "2017_summer_matrix.csv ...")
+    matrix_to_file(summer_2017, "2017_summer_matrix.csv", dest_path)
 
 
 # Writes a matrix to a .csv file. mat is the matrix being written to a file. filename is the name

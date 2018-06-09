@@ -1,5 +1,6 @@
 import numpy as np
 import os
+import errno
 import glob
 
 
@@ -19,6 +20,14 @@ def main():
     # get all file paths in matrices and matrices-no-na directories
     files_matrices = [filename for filename in glob.glob(os.path.join(path_matrices, "*.csv"))]
     files_matrices_no_na = [filename for filename in glob.glob(os.path.join(path_matrices_no_na, "*.csv"))]
+
+    # if final_directory does not exist, create it
+    if not os.path.exists(dest_path_matrices_no_na_normalized):
+        try:
+            os.makedirs(dest_path_matrices_no_na_normalized)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
 
     # normalize and store all matrices in path_matrices_no_na
     for filename in files_matrices_no_na:

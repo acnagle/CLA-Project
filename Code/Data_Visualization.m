@@ -32,28 +32,34 @@ mat_All_additional_2d = csvread(strcat(dir_All_additional,'algal_bloom_locations
 mat_All_additional_3d = csvread(strcat(dir_All_additional,'algal_bloom_locations_summaries_norm_proj_3d.csv'));
 mat_All_additional_norm = csvread('/Users/Alliot/documents/cla project/data/all-data-no-na/eigenvectors/algal_bloom_locations_summaries_norm.csv');
 
-dir_summer_2017 = '/Users/Alliot/documents/cla-project/data/matrices-no-na/projections/summer_2017_matrix/';
-mat_summer_2017_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/summer_2017_matrix/summer_2017_matrix.csv');
+dir_summer_2017 = '/Users/Alliot/documents/cla-project/data/matrices-no-na/projections/2017_summer_matrix/';
+mat_summer_2017_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/2017_summer_matrix/2017_summer_matrix.csv');
 % mat_summer_2017_1d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_1d.csv'));
 % mat_summer_2017_2d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_2d.csv'));
-mat_summer_2017_3d = csvread(strcat(dir_summer_2017, 'summer_2017_matrix_proj_3d.csv'));
+mat_summer_2017_w_ind_3d = csvread(strcat(dir_summer_2017, '2017_summer_matrix_proj_w-alg-ind_3d.csv'));
+mat_summer_2017_no_ind_3d = csvread(strcat(dir_summer_2017, '2017_summer_matrix_proj_no-alg-ind_3d.csv'));
 
-dir_summer_2017_randn = '/Users/Alliot/documents/cla-project/data/matrices-no-na/gaussian-randn-projections/summer_2017_matrix/';
-mat_summer_2017_3d_randn = csvread(strcat(dir_summer_2017_randn, 'summer_2017_matrix_proj_3d.csv'));
+dir_summer_2017_randn = '/Users/Alliot/documents/cla-project/data/matrices-no-na/gaussian-randn-projections/2017_summer_matrix/';
+mat_summer_2017_randn_w_ind_3d = csvread(strcat(dir_summer_2017_randn, '2017_summer_matrix_proj_randn_w-alg-ind_3d.csv'));
+mat_summer_2017_randn_no_ind_3d = csvread(strcat(dir_summer_2017_randn, '2017_summer_matrix_proj_randn_no-alg-ind_3d.csv'));
 
 dir_mendota_summer = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/projections/Mendota_summer_matrix/';
 mat_mendota_summer_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/Mendota_summer_matrix/Mendota_summer_matrix.csv');
-mat_mendota_summer_3d = csvread(strcat(dir_mendota_summer, 'Mendota_summer_matrix_proj_3d.csv'));
+mat_mendota_summer_w_ind_3d = csvread(strcat(dir_mendota_summer, 'Mendota_summer_matrix_proj_w-alg-ind_3d.csv'));
+mat_mendota_summer_no_ind_3d = csvread(strcat(dir_mendota_summer, 'Mendota_summer_matrix_proj_no-alg-ind_3d.csv'));
 
 dir_mendota_summer_randn = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/gaussian-randn-projections/Mendota_summer_matrix/';
-mat_mendota_summer_3d_randn = csvread(strcat(dir_mendota_summer_randn, 'Mendota_summer_matrix_proj_3d.csv'));
+mat_mendota_summer_randn_w_ind_3d = csvread(strcat(dir_mendota_summer_randn, 'Mendota_summer_matrix_proj_randn_w-alg-ind_3d.csv'));
+mat_mendota_summer_randn_no_ind_3d = csvread(strcat(dir_mendota_summer_randn, 'Mendota_summer_matrix_proj_randn_no-alg-ind_3d.csv'));
 
 dir_monona_summer = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/projections/Monona_summer_matrix/';
-mat_monona_summer_3d = csvread(strcat(dir_monona_summer, 'Monona_summer_matrix_proj_3d.csv'));
+mat_monona_summer_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/Monona_summer_matrix/Monona_summer_matrix.csv');
+mat_monona_summer_w_ind_3d = csvread(strcat(dir_monona_summer, 'Monona_summer_matrix_proj_w-alg-ind_3d.csv'));
+mat_monona_summer_no_ind_3d = csvread(strcat(dir_monona_summer, 'Monona_summer_matrix_proj_no-alg-ind_3d.csv'));
 
 dir_monona_summer_randn = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/gaussian-randn-projections/Monona_summer_matrix/';
-mat_monona_summer_norm = csvread('/Users/Alliot/documents/cla-project/data/matrices-no-na/eigenvectors/Monona_summer_matrix/Monona_summer_matrix.csv');
-mat_monona_summer_3d_randn = csvread(strcat(dir_monona_summer_randn, 'Monona_summer_matrix_proj_3d.csv'));
+mat_monona_summer_randn_w_ind_3d = csvread(strcat(dir_monona_summer_randn, 'Monona_summer_matrix_proj_randn_w-alg-ind_3d.csv'));
+mat_monona_summer_randn_no_ind_3d = csvread(strcat(dir_monona_summer_randn, 'Monona_summer_matrix_proj_randn_no-alg-ind_3d.csv'));
 
 %% Compute vectors to plot
 
@@ -61,41 +67,62 @@ for i=1:length(mat_summer_2017_norm)
     if mat_summer_2017_norm(2, i) == 0
 %         no_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
 %         no_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
-        no_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
+        no_alg_3d_summer_2017_w_ind(:, i) = mat_summer_2017_w_ind_3d(:, i);
+        no_alg_3d_summer_2017_no_ind(:, i) = mat_summer_2017_no_ind_3d(:, i);
+        no_alg_3d_summer_2017_randn_w_ind(:, i) = mat_summer_2017_randn_w_ind_3d(:, i);
+        no_alg_3d_summer_2017_randn_no_ind(:, i) = mat_summer_2017_randn_no_ind_3d(:, i);
     elseif mat_summer_2017_norm(2, i) == 0.5
 %         bg_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
 %         bg_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
-        bg_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
+        bg_alg_3d_summer_2017_w_ind(:, i) = mat_summer_2017_w_ind_3d(:, i);
+        bg_alg_3d_summer_2017_no_ind(:, i) = mat_summer_2017_no_ind_3d(:, i);
+        bg_alg_3d_summer_2017_randn_w_ind(:, i) = mat_summer_2017_randn_w_ind_3d(:, i);
+        bg_alg_3d_summer_2017_randn_no_ind(:, i) = mat_summer_2017_randn_no_ind_3d(:, i);
     elseif mat_summer_2017_norm(2, i) == 1
 %         gr_alg_1d_summer_2017(:, i) = mat_summer_2017_1d(:, i);
 %         gr_alg_2d_summer_2017(:, i) = mat_summer_2017_2d(:, i);
-        gr_alg_3d_summer_2017(:, i) = mat_summer_2017_3d(:, i);
+        gr_alg_3d_summer_2017_w_ind(:, i) = mat_summer_2017_w_ind_3d(:, i);
+        gr_alg_3d_summer_2017_no_ind(:, i) = mat_summer_2017_no_ind_3d(:, i);
+        gr_alg_3d_summer_2017_randn_w_ind(:, i) = mat_summer_2017_randn_w_ind_3d(:, i);
+        gr_alg_3d_summer_2017_randn_no_ind(:, i) = mat_summer_2017_randn_no_ind_3d(:, i);
     end
 end
 
 for i=1:length(mat_mendota_summer_norm)
     if mat_mendota_summer_norm(2, i) == 0
-        no_alg_3d_mendota_summer(:, i) = mat_mendota_summer_3d(:, i);
-        no_alg_3d_mendota_summer_randn(:, i) = mat_mendota_summer_3d_randn(:, i);
+        no_alg_3d_mendota_summer_w_ind(:, i) = mat_mendota_summer_w_ind_3d(:, i);
+        no_alg_3d_mendota_summer_no_ind(:, i) = mat_mendota_summer_no_ind_3d(:, i);
+        no_alg_3d_mendota_summer_randn_w_ind(:, i) = mat_mendota_summer_randn_w_ind_3d(:, i);
+        no_alg_3d_mendota_summer_randn_no_ind(:, i) = mat_mendota_summer_randn_no_ind_3d(:, i);
     elseif mat_mendota_summer_norm(2, i) == 0.5
-        bg_alg_3d_mendota_summer(:, i) = mat_mendota_summer_3d(:, i);
-        bg_alg_3d_mendota_summer_randn(:, i) = mat_mendota_summer_3d_randn(:, i);
+        bg_alg_3d_mendota_summer_w_ind(:, i) = mat_mendota_summer_w_ind_3d(:, i);
+        bg_alg_3d_mendota_summer_no_ind(:, i) = mat_mendota_summer_no_ind_3d(:, i);
+        bg_alg_3d_mendota_summer_randn_w_ind(:, i) = mat_mendota_summer_randn_w_ind_3d(:, i);
+        bg_alg_3d_mendota_summer_randn_no_ind(:, i) = mat_mendota_summer_randn_no_ind_3d(:, i);
     elseif mat_mendota_summer_norm(2, i) == 1
-        gr_alg_3d_mendota_summer(:, i) = mat_mendota_summer_3d(:, i);
-        gr_alg_3d_mendota_summer_randn(:, i) = mat_mendota_summer_3d_randn(:, i);
+        gr_alg_3d_mendota_summer_w_ind(:, i) = mat_mendota_summer_w_ind_3d(:, i);
+        gr_alg_3d_mendota_summer_no_ind(:, i) = mat_mendota_summer_no_ind_3d(:, i);
+        gr_alg_3d_mendota_summer_randn_w_ind(:, i) = mat_mendota_summer_randn_w_ind_3d(:, i);
+        gr_alg_3d_mendota_summer_randn_no_ind(:, i) = mat_mendota_summer_randn_no_ind_3d(:, i);
     end
 end
 
 for i=1:length(mat_monona_summer_norm)
     if mat_monona_summer_norm(2, i) == 0
-        no_alg_3d_monona_summer(:, i) = mat_monona_summer_3d(:, i);
-        no_alg_3d_monona_summer_randn(:, i) = mat_monona_summer_3d_randn(:, i);
+        no_alg_3d_monona_summer_w_ind(:, i) = mat_monona_summer_w_ind_3d(:, i);
+        no_alg_3d_monona_summer_no_ind(:, i) = mat_monona_summer_no_ind_3d(:, i);
+        no_alg_3d_monona_summer_randn_w_ind(:, i) = mat_monona_summer_randn_w_ind_3d(:, i);
+        no_alg_3d_monona_summer_randn_no_ind(:, i) = mat_monona_summer_randn_no_ind_3d(:, i);
     elseif mat_monona_summer_norm(2, i) == 0.5
-        bg_alg_3d_monona_summer(:, i) = mat_monona_summer_3d(:, i);
-        bg_alg_3d_monona_summer_randn(:, i) = mat_monona_summer_3d_randn(:, i);
+        bg_alg_3d_monona_summer_w_ind(:, i) = mat_monona_summer_w_ind_3d(:, i);
+        bg_alg_3d_monona_summer_no_ind(:, i) = mat_monona_summer_no_ind_3d(:, i);
+        bg_alg_3d_monona_summer_randn_w_ind(:, i) = mat_monona_summer_randn_w_ind_3d(:, i);
+        bg_alg_3d_monona_summer_randn_no_ind(:, i) = mat_monona_summer_randn_no_ind_3d(:, i);
     elseif mat_monona_summer_norm(2, i) == 1
-        gr_alg_3d_monona_summer(:, i) = mat_monona_summer_3d(:, i);
-        gr_alg_3d_monona_summer_randn(:, i) = mat_monona_summer_3d_randn(:, i);
+        gr_alg_3d_monona_summer_w_ind(:, i) = mat_monona_summer_w_ind_3d(:, i);
+        gr_alg_3d_monona_summer_no_ind(:, i) = mat_monona_summer_no_ind_3d(:, i);
+        gr_alg_3d_monona_summer_randn_w_ind(:, i) = mat_monona_summer_randn_w_ind_3d(:, i);
+        gr_alg_3d_monona_summer_randn_no_ind(:, i) = mat_monona_summer_randn_no_ind_3d(:, i);
     end
 end
 
@@ -182,12 +209,39 @@ end
 %% Plot Summer 2017 Data Points
 
 figure
-scatter3(no_alg_3d_summer_2017(1, :), no_alg_3d_summer_2017(2, :), no_alg_3d_summer_2017(3, :), 'r')
+scatter3(no_alg_3d_summer_2017_w_ind(1, :), no_alg_3d_summer_2017_w_ind(2, :), no_alg_3d_summer_2017_w_ind(3, :), 'r')
 hold on
-scatter3(bg_alg_3d_summer_2017(1, :), bg_alg_3d_summer_2017(2, :), bg_alg_3d_summer_2017(3, :), 'b')
+scatter3(bg_alg_3d_summer_2017_w_ind(1, :), bg_alg_3d_summer_2017_w_ind(2, :), bg_alg_3d_summer_2017_w_ind(3, :), 'b')
 hold on
-scatter3(gr_alg_3d_summer_2017(1, :), gr_alg_3d_summer_2017(2, :), gr_alg_3d_summer_2017(3, :), 'g')
-title('Summer 2017 3D')
+scatter3(gr_alg_3d_summer_2017_w_ind(1, :), gr_alg_3d_summer_2017_w_ind(2, :), gr_alg_3d_summer_2017_w_ind(3, :), 'g')
+title('Summer 2017 3D, With Indicator')
+legend('no algae', 'blue-green algae', 'green algae')
+
+figure
+scatter3(no_alg_3d_summer_2017_no_ind(1, :), no_alg_3d_summer_2017_no_ind(2, :), no_alg_3d_summer_2017_no_ind(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_summer_2017_no_ind(1, :), bg_alg_3d_summer_2017_no_ind(2, :), bg_alg_3d_summer_2017_no_ind(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_summer_2017_no_ind(1, :), gr_alg_3d_summer_2017_no_ind(2, :), gr_alg_3d_summer_2017_no_ind(3, :), 'g')
+title('Summer 2017 3D, No Indicator')
+legend('no algae', 'blue-green algae', 'green algae')
+
+figure
+scatter3(no_alg_3d_summer_2017_randn_w_ind(1, :), no_alg_3d_summer_2017_randn_w_ind(2, :), no_alg_3d_summer_2017_randn_w_ind(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_summer_2017_randn_w_ind(1, :), bg_alg_3d_summer_2017_randn_w_ind(2, :), bg_alg_3d_summer_2017_randn_w_ind(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_summer_2017_randn_w_ind(1, :), gr_alg_3d_summer_2017_randn_w_ind(2, :), gr_alg_3d_summer_2017_randn_w_ind(3, :), 'g')
+title('Summer 2017 3D Randn Projection, With Indicator')
+legend('no algae', 'blue-green algae', 'green algae')
+
+figure
+scatter3(no_alg_3d_summer_2017_randn_no_ind(1, :), no_alg_3d_summer_2017_randn_no_ind(2, :), no_alg_3d_summer_2017_randn_no_ind(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_summer_2017_randn_no_ind(1, :), bg_alg_3d_summer_2017_randn_no_ind(2, :), bg_alg_3d_summer_2017_randn_no_ind(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_summer_2017_randn_no_ind(1, :), gr_alg_3d_summer_2017_randn_no_ind(2, :), gr_alg_3d_summer_2017_randn_no_ind(3, :), 'g')
+title('Summer 2017 3D Randn Projection, No Indicator')
 legend('no algae', 'blue-green algae', 'green algae')
 
 % figure
@@ -215,23 +269,77 @@ legend('no algae', 'blue-green algae', 'green algae')
 %% Plot Mendota Summer Data Points
 
 figure
-scatter3(no_alg_3d_mendota_summer(1, :), no_alg_3d_mendota_summer(2, :), no_alg_3d_mendota_summer(3, :), 'r')
+scatter3(no_alg_3d_mendota_summer_w_ind(1, :), no_alg_3d_mendota_summer_w_ind(2, :), no_alg_3d_mendota_summer_w_ind(3, :), 'r')
 hold on
-scatter3(bg_alg_3d_mendota_summer(1, :), bg_alg_3d_mendota_summer(2, :), bg_alg_3d_mendota_summer(3, :), 'b')
+scatter3(bg_alg_3d_mendota_summer_w_ind(1, :), bg_alg_3d_mendota_summer_w_ind(2, :), bg_alg_3d_mendota_summer_w_ind(3, :), 'b')
 hold on
-scatter3(gr_alg_3d_mendota_summer(1, :), gr_alg_3d_mendota_summer(2, :), gr_alg_3d_mendota_summer(3, :), 'g')
-title('Mendota Summer (June-August) 3D')
+scatter3(gr_alg_3d_mendota_summer_w_ind(1, :), gr_alg_3d_mendota_summer_w_ind(2, :), gr_alg_3d_mendota_summer_w_ind(3, :), 'g')
+title('Mendota Summer (June-August) 3D, With Indicator')
+legend('no algae', 'blue-green algae', 'green algae')
+
+figure
+scatter3(no_alg_3d_mendota_summer_no_ind(1, :), no_alg_3d_mendota_summer_no_ind(2, :), no_alg_3d_mendota_summer_no_ind(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_mendota_summer_no_ind(1, :), bg_alg_3d_mendota_summer_no_ind(2, :), bg_alg_3d_mendota_summer_no_ind(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_mendota_summer_no_ind(1, :), gr_alg_3d_mendota_summer_no_ind(2, :), gr_alg_3d_mendota_summer_no_ind(3, :), 'g')
+title('Mendota Summer (June-August) 3D, No Indicator')
+legend('no algae', 'blue-green algae', 'green algae')
+
+figure
+scatter3(no_alg_3d_mendota_summer_randn_w_ind(1, :), no_alg_3d_mendota_summer_randn_w_ind(2, :), no_alg_3d_mendota_summer_randn_w_ind(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_mendota_summer_randn_w_ind(1, :), bg_alg_3d_mendota_summer_randn_w_ind(2, :), bg_alg_3d_mendota_summer_randn_w_ind(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_mendota_summer_randn_w_ind(1, :), gr_alg_3d_mendota_summer_randn_w_ind(2, :), gr_alg_3d_mendota_summer_randn_w_ind(3, :), 'g')
+title('Mendota Summer (June-August) 3D Randn Projection, With Indicator')
+legend('no algae', 'blue-green algae', 'green algae')
+
+figure
+scatter3(no_alg_3d_mendota_summer_randn_no_ind(1, :), no_alg_3d_mendota_summer_randn_no_ind(2, :), no_alg_3d_mendota_summer_randn_no_ind(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_mendota_summer_randn_no_ind(1, :), bg_alg_3d_mendota_summer_randn_no_ind(2, :), bg_alg_3d_mendota_summer_randn_no_ind(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_mendota_summer_randn_no_ind(1, :), gr_alg_3d_mendota_summer_randn_no_ind(2, :), gr_alg_3d_mendota_summer_randn_no_ind(3, :), 'g')
+title('Mendota Summer (June-August) 3D Randn Projection, No Indicator')
 legend('no algae', 'blue-green algae', 'green algae')
 
 %% Plot Monona Summer Data Points
 
 figure
-scatter3(no_alg_3d_monona_summer(1, :), no_alg_3d_monona_summer(2, :), no_alg_3d_monona_summer(3, :), 'r')
+scatter3(no_alg_3d_monona_summer_w_ind(1, :), no_alg_3d_monona_summer_w_ind(2, :), no_alg_3d_monona_summer_w_ind(3, :), 'r')
 hold on
-scatter3(bg_alg_3d_monona_summer(1, :), bg_alg_3d_monona_summer(2, :), bg_alg_3d_monona_summer(3, :), 'b')
+scatter3(bg_alg_3d_monona_summer_w_ind(1, :), bg_alg_3d_monona_summer_w_ind(2, :), bg_alg_3d_monona_summer_w_ind(3, :), 'b')
 hold on
-scatter3(gr_alg_3d_monona_summer(1, :), gr_alg_3d_monona_summer(2, :), gr_alg_3d_monona_summer(3, :), 'g')
-title('Monona Summer (June-August) 3D')
+scatter3(gr_alg_3d_monona_summer_w_ind(1, :), gr_alg_3d_monona_summer_w_ind(2, :), gr_alg_3d_monona_summer_w_ind(3, :), 'g')
+title('Monona Summer (June-August) 3D, With Indicator')
+legend('no algae', 'blue-green algae', 'green algae')
+
+figure
+scatter3(no_alg_3d_monona_summer_no_ind(1, :), no_alg_3d_monona_summer_no_ind(2, :), no_alg_3d_monona_summer_no_ind(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_monona_summer_no_ind(1, :), bg_alg_3d_monona_summer_no_ind(2, :), bg_alg_3d_monona_summer_no_ind(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_monona_summer_no_ind(1, :), gr_alg_3d_monona_summer_no_ind(2, :), gr_alg_3d_monona_summer_no_ind(3, :), 'g')
+title('Monona Summer (June-August) 3D, No Indicator')
+legend('no algae', 'blue-green algae', 'green algae')
+
+figure
+scatter3(no_alg_3d_monona_summer_randn_w_ind(1, :), no_alg_3d_monona_summer_randn_w_ind(2, :), no_alg_3d_monona_summer_randn_w_ind(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_monona_summer_randn_w_ind(1, :), bg_alg_3d_monona_summer_randn_w_ind(2, :), bg_alg_3d_monona_summer_randn_w_ind(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_monona_summer_randn_w_ind(1, :), gr_alg_3d_monona_summer_randn_w_ind(2, :), gr_alg_3d_monona_summer_randn_w_ind(3, :), 'g')
+title('Monona Summer (June-August) 3D Randn Project, With Indicator')
+legend('no algae', 'blue-green algae', 'green algae')
+
+figure
+scatter3(no_alg_3d_monona_summer_randn_no_ind(1, :), no_alg_3d_monona_summer_randn_no_ind(2, :), no_alg_3d_monona_summer_randn_no_ind(3, :), 'r')
+hold on
+scatter3(bg_alg_3d_monona_summer_randn_no_ind(1, :), bg_alg_3d_monona_summer_randn_no_ind(2, :), bg_alg_3d_monona_summer_randn_no_ind(3, :), 'b')
+hold on
+scatter3(gr_alg_3d_monona_summer_randn_no_ind(1, :), gr_alg_3d_monona_summer_randn_no_ind(2, :), gr_alg_3d_monona_summer_randn_no_ind(3, :), 'g')
+title('Monona Summer (June-August) 3D Randn Project, No Indicator')
 legend('no algae', 'blue-green algae', 'green algae')
 
 %% Plot All Data points (with additional measurements)

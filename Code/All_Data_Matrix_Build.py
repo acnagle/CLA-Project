@@ -20,7 +20,7 @@ def main():
     mat = remove_empty_entries(mat)
     matrix_to_file(mat, filename, orig_path)
     normalize_data(mat)
-    matrix_to_file(mat, filename[0:31] + '_norm.csv', norm_path)
+    matrix_to_file(mat, filename[0:31] + '_matrix.csv', norm_path)
 
 
 # Build a matrix from .csv file. data_reader allow direct access to the .csv file
