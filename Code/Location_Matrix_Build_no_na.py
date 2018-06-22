@@ -2,6 +2,11 @@ import numpy as np
 from datetime import datetime
 
 
+# the height of the matrices. ie the number of measurements per sample. IMPORTANT NOTE: The .csv files being read in
+# by this code has 15 rows. The last row is a "poor water quality flag" (binary) that is 1 if the turbidity is below
+# 50 and 0 otherwise. By choosing num_rows = 14, I'm eliminating this row.
+num_rows = 14
+
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
@@ -36,15 +41,15 @@ def main():
     get_num_locations(mat17_year, num_measurements_per_location17, lakes)
 
     # Define a matrix for each location where measurements were gathered
-    mat_waubesa = np.empty([15, num_measurements_per_location15[0] + num_measurements_per_location16[0] +
+    mat_waubesa = np.empty([num_rows, num_measurements_per_location15[0] + num_measurements_per_location16[0] +
                            num_measurements_per_location17[0]], dtype=(str, 15))
-    mat_kegonsa = np.empty([15, num_measurements_per_location15[1] + num_measurements_per_location16[1] +
+    mat_kegonsa = np.empty([num_rows, num_measurements_per_location15[1] + num_measurements_per_location16[1] +
                            num_measurements_per_location17[1]], dtype=(str, 15))
-    mat_monona = np.empty([15, num_measurements_per_location15[2] + num_measurements_per_location16[2] +
+    mat_monona = np.empty([num_rows, num_measurements_per_location15[2] + num_measurements_per_location16[2] +
                            num_measurements_per_location17[2]], dtype=(str, 15))
-    mat_mendota = np.empty([15, num_measurements_per_location15[3] + num_measurements_per_location16[3] +
+    mat_mendota = np.empty([num_rows, num_measurements_per_location15[3] + num_measurements_per_location16[3] +
                            num_measurements_per_location17[3]], dtype=(str, 15))
-    mat_wingra = np.empty([15, num_measurements_per_location15[4] + num_measurements_per_location16[4] +
+    mat_wingra = np.empty([num_rows, num_measurements_per_location15[4] + num_measurements_per_location16[4] +
                            num_measurements_per_location17[4]], dtype=(str, 15))
 
     # Create location matrices
@@ -121,7 +126,7 @@ def create_location_matrix(yearly_matrices, mat_loc, loc):
 # mat_loc_summer is the output matrix of this method.
 def create_summer_location_matrix(mat_loc, loc):
     print("Building " + loc + " summer matrix ...")
-    mat_loc_summer = np.transpose([np.empty((15, ))])
+    mat_loc_summer = np.transpose([np.empty((num_rows, ))])
     for j in range(1, mat_loc.shape[1]):
         new_date_str = mat_loc[3, j]
         if "6" == new_date_str[:1] or "7" == new_date_str[:1] or "8" == new_date_str[:1]:

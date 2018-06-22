@@ -4,6 +4,11 @@ import os
 import glob
 import errno
 
+# the height of the matrices. ie the number of measurements per sample. IMPORTANT NOTE: The .csv files being read in
+# by this code has 15 rows. The last row is a "poor water quality flag" (binary) that is 1 if the turbidity is below
+# 50 and 0 otherwise. By choosing num_rows = 14, I'm eliminating this row.
+num_rows = 14
+
 
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
@@ -25,7 +30,7 @@ def main():
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_matrices_no_na directory
     for filename_w_directory in files_matrices_no_na:
         mat = np.genfromtxt(open(filename_w_directory, 'rb'), delimiter=',', dtype='str')
-        mat = matrix_str_to_float(mat, 5, 15)
+        mat = matrix_str_to_float(mat, 5, num_rows)
         filename = filename_w_directory[67:]
         print('Processing file ' + filename + ' ...')
         eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)

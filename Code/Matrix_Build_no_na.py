@@ -1,7 +1,14 @@
 import csv
 import datetime
 import numpy as np
+import os
+import errno
 
+# the height of the matrices. ie the number of measurements per sample. IMPORTANT NOTE: The .csv files being read in 
+# by this code has 15 rows. The last row is a "poor water quality flag" (binary) that is 1 if the turbidity is below
+# 50 and 0 otherwise. By choosing num_rows = 14, I'm eliminating this row. Note that lines 84 and 100-101 need to be
+# uncommented if num_rows is changed back to 15.
+num_rows = 14 
 
 def main():
     np.set_printoptions(threshold=np.inf)   # prints a full matrix rather than an abbreviated matrix
@@ -18,9 +25,9 @@ def main():
     destination_folder = "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/"
 
     # Define a matrix for each year of data
-    mat15_year = np.empty([15, 1264], dtype=(str, 15))  # 1243
-    mat16_year = np.empty([15, 1638], dtype=(str, 15))  # 1603
-    mat17_year = np.empty([15, 1914], dtype=(str, 15))  # 1853
+    mat15_year = np.empty([num_rows, 1264], dtype=(str, 15))  # 1243
+    mat16_year = np.empty([num_rows, 1638], dtype=(str, 15))  # 1603
+    mat17_year = np.empty([num_rows, 1914], dtype=(str, 15))  # 1853
 
     yearly_matrices = [mat15_year, mat16_year, mat17_year]
     mat_index = 0   # used to index each matrix in yearly_matrices
@@ -46,6 +53,14 @@ def main():
 
     mat_all = build_all_year_matrix(mat15_year, mat16_year, mat17_year)
 
+    # if destination_folder does not exist, create it
+    if not os.path.exists(destination_folder):
+        try:
+            os.makedirs(destination_folder)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+
     write_to_csv(mat15_year, indices15_months, "2015", destination_folder)
     write_to_csv(mat16_year, indices16_months, "2016", destination_folder)
     write_to_csv(mat17_year, indices17_months, "2017", destination_folder)
@@ -60,7 +75,7 @@ def matrix_year(mat, data_reader, file_year):
     for row in data_reader:
         if row[0] != "":
             col = int(row[0])  # Get the column
-            new_col = np.empty([15, 1], dtype=(str, 15))  # Holds the column currently being processed
+            new_col = np.empty([num_rows, 1], dtype=(str, num_rows))  # Holds the column currently being processed
 
             new_col[0, 0] = str(col) + "-" + file_year  # ID
             new_col[1, 0] = row[1]                      # Locations (Specific locations for each lake)
@@ -76,13 +91,13 @@ def matrix_year(mat, data_reader, file_year):
             new_col[11, 0] = row[20]                    # waveIntensity
             new_col[12, 0] = row[19]                    # waterTemp
             new_col[13, 0] = row[16]                    # turbidity
-            new_col[14, 0] = row[24]                    # poor water quality flag
+            # new_col[14, 0] = row[24]                    # poor water quality flag
 
             # adjust column entries for poor water quality flag
             if row[16] == "NA" or row[19] == "NA":
                 continue
-            elif float(row[16]) <= 50:
-                new_col[14, 0] = 1
+            # elif float(row[16]) <= 50:
+            #     new_col[14, 0] = 1
 
             # adjust data entries so that qualitative measurements (except algalBloomSheen) have values [1, 3]
             for i in range(5, 12):

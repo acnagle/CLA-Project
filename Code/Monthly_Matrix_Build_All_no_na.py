@@ -2,6 +2,12 @@ import csv
 import datetime
 import numpy as np
 
+# the height of the matrices. ie the number of measurements per sample. IMPORTANT NOTE: The .csv files being read in
+# by this code has 15 rows. The last row is a "poor water quality flag" (binary) that is 1 if the turbidity is below
+# 50 and 0 otherwise. By choosing num_rows = 14, I'm eliminating this row. Note that line 307 will need to be
+# uncommented if num_rows is changed back to 15.
+num_rows = 14
+
 
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
@@ -36,14 +42,14 @@ def main():
     destination_folder = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/'
 
     # These matrices contain all the data from each month for all three years
-    all_month_03_matrix = np.empty([15, 23], dtype=(str, 15))
-    all_month_04_matrix = np.empty([15, 114], dtype=(str, 15))
-    all_month_05_matrix = np.empty([15, 574], dtype=(str, 15))
-    all_month_06_matrix = np.empty([15, 1292], dtype=(str, 15))
-    all_month_07_matrix = np.empty([15, 1296], dtype=(str, 15))
-    all_month_08_matrix = np.empty([15, 1046], dtype=(str, 15))
-    all_month_09_matrix = np.empty([15, 306], dtype=(str, 15))
-    all_month_10_matrix = np.empty([15, 45], dtype=(str, 15))
+    all_month_03_matrix = np.empty([num_rows, 23], dtype=(str, 15))
+    all_month_04_matrix = np.empty([num_rows, 114], dtype=(str, 15))
+    all_month_05_matrix = np.empty([num_rows, 574], dtype=(str, 15))
+    all_month_06_matrix = np.empty([num_rows, 1292], dtype=(str, 15))
+    all_month_07_matrix = np.empty([num_rows, 1296], dtype=(str, 15))
+    all_month_08_matrix = np.empty([num_rows, 1046], dtype=(str, 15))
+    all_month_09_matrix = np.empty([num_rows, 306], dtype=(str, 15))
+    all_month_10_matrix = np.empty([num_rows, 45], dtype=(str, 15))
 
     # Create 03 matrix
     print('Building month 03 matrix ...')
@@ -284,7 +290,7 @@ def matrix_to_file(mat, month_number, destination_folder):
 # This method puts all data points in a matrix in order according to dates. mat is the matrix than needs to be sorted.
 def order_matrix(mat):
     for i in range(0, mat.shape[1]-1):
-        col = np.empty([15, 1], dtype=(str, 15))  # Holds the column currently being processed
+        col = np.empty([num_rows, 1], dtype=(str, 15))  # Holds the column currently being processed
         col[0, 0] = mat[0, i]  # ID
         col[1, 0] = mat[1, i]  # Locations (Specific locations on each lake)
         col[2, 0] = mat[2, i]  # Locations (lake names)
@@ -299,7 +305,7 @@ def order_matrix(mat):
         col[11, 0] = mat[11, i]  # waveIntensity
         col[12, 0] = mat[12, i]  # waterTemp
         col[13, 0] = mat[13, i]  # turbidity
-        col[14, 0] = mat[14, i]  # poor water quality flag
+        # col[14, 0] = mat[14, i]  # poor water quality flag
 
         date = datetime.datetime.strptime(mat[3, i], '%m/%d/%y')
         time = datetime.datetime.strptime(mat[4, i], '%H:%M:%S')

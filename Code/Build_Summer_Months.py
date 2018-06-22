@@ -4,6 +4,11 @@ import numpy as np
 import os
 import glob
 
+# the height of the matrices. ie the number of measurements per sample. IMPORTANT NOTE: The .csv files being read in
+# by this code has 15 rows. The last row is a "poor water quality flag" (binary) that is 1 if the turbidity is below
+# 50 and 0 otherwise. By choosing num_rows = 14, I'm eliminating this row.
+num_rows = 14
+
 def main():
     np.set_printoptions(threshold=np.inf)   # prints a full matrix rather than an abbreviated matrix
 
@@ -22,9 +27,9 @@ def main():
     summer_month_paths = np.sort(summer_month_paths)
 
     # create matrices the summer months of each year
-    summer_2015 = np.empty((15, 0))
-    summer_2016 = np.empty((15, 0))
-    summer_2017 = np.empty((15, 0))
+    summer_2015 = np.empty((num_rows, 0))
+    summer_2016 = np.empty((num_rows, 0))
+    summer_2017 = np.empty((num_rows, 0))
 
     for path in summer_month_paths:
         if "2015" in path:
