@@ -2,10 +2,11 @@ import numpy as np
 from datetime import datetime
 
 
-# the height of the matrices. ie the number of measurements per sample. IMPORTANT NOTE: The .csv files being read in
-# by this code has 15 rows. The last row is a "poor water quality flag" (binary) that is 1 if the turbidity is below
-# 50 and 0 otherwise. By choosing num_rows = 14, I'm eliminating this row.
+# the height of the matrices for matrices_no_na file paths. ie the number of measurements per sample. IMPORTANT NOTE:
+# The .csv files being read in by this code has 15 rows. The last row is a "poor water quality flag" (binary) that is 1
+# if the turbidity is below 50 and 0 otherwise. By choosing num_rows = 14, I'm eliminating this row.
 num_rows = 14
+
 
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
@@ -16,10 +17,12 @@ def main():
     file_paths = [
         "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/2015_year_matrix.csv",
         "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/2016_year_matrix.csv",
-        "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/2017_year_matrix.csv"
+        "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/2017_year_matrix.csv",
+        "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/original/All_data_matrix.csv"
     ]
 
-    destination_folder = "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/"
+    destination_folder_no_na = "/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/"
+    destination_folder_all_data = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/original/"
 
     lakes = ["Waubesa", "Kegonsa", "Monona", "Mendota", "Wingra"]
 
@@ -60,28 +63,78 @@ def main():
     create_location_matrix(yearly_matrices, mat_wingra, lakes[4])
 
     # Create location matrices for summer months: June (06), July (07), and August (08)
-    mat_waubesa_summer = create_summer_location_matrix(mat_waubesa, lakes[0])
-    mat_kegonsa_summer = create_summer_location_matrix(mat_kegonsa, lakes[1])
-    mat_monona_summer = create_summer_location_matrix(mat_monona, lakes[2])
-    mat_mendota_summer = create_summer_location_matrix(mat_mendota, lakes[3])
-    mat_wingra_summer = create_summer_location_matrix(mat_wingra, lakes[4])
+    mat_waubesa_summer = create_summer_location_matrix(mat_waubesa, lakes[0], 3)
+    mat_kegonsa_summer = create_summer_location_matrix(mat_kegonsa, lakes[1], 3)
+    mat_monona_summer = create_summer_location_matrix(mat_monona, lakes[2], 3)
+    mat_mendota_summer = create_summer_location_matrix(mat_mendota, lakes[3], 3)
+    mat_wingra_summer = create_summer_location_matrix(mat_wingra, lakes[4], 3)
 
     # Write the matrices to csv files
-    matrix_to_file(mat_waubesa, lakes[0], destination_folder)
-    matrix_to_file(mat_kegonsa, lakes[1], destination_folder)
-    matrix_to_file(mat_monona, lakes[2], destination_folder)
-    matrix_to_file(mat_mendota, lakes[3], destination_folder)
-    matrix_to_file(mat_wingra, lakes[4], destination_folder)
+    matrix_to_file(mat_waubesa, lakes[0], destination_folder_no_na)
+    matrix_to_file(mat_kegonsa, lakes[1], destination_folder_no_na)
+    matrix_to_file(mat_monona, lakes[2], destination_folder_no_na)
+    matrix_to_file(mat_mendota, lakes[3], destination_folder_no_na)
+    matrix_to_file(mat_wingra, lakes[4], destination_folder_no_na)
 
-    matrix_to_file(mat_waubesa_summer, lakes[0] + "_summer", destination_folder)
-    matrix_to_file(mat_kegonsa_summer, lakes[1] + "_summer", destination_folder)
-    matrix_to_file(mat_monona_summer, lakes[2] + "_summer", destination_folder)
-    matrix_to_file(mat_mendota_summer, lakes[3] + "_summer", destination_folder)
-    matrix_to_file(mat_wingra_summer, lakes[4] + "_summer", destination_folder)
+    matrix_to_file(mat_waubesa_summer, lakes[0] + "_summer", destination_folder_no_na)
+    matrix_to_file(mat_kegonsa_summer, lakes[1] + "_summer", destination_folder_no_na)
+    matrix_to_file(mat_monona_summer, lakes[2] + "_summer", destination_folder_no_na)
+    matrix_to_file(mat_mendota_summer, lakes[3] + "_summer", destination_folder_no_na)
+    matrix_to_file(mat_wingra_summer, lakes[4] + "_summer", destination_folder_no_na)
+
+    # Create location matrices for All_Data_matrix
+    mat_all_data = np.genfromtxt(file_paths[3], dtype=str, delimiter=',')
+
+    mat_waubesa = np.transpose([np.empty((mat_all_data.shape[0], ), dtype=(str, 15))])
+    mat_kegonsa = np.transpose([np.empty((mat_all_data.shape[0], ), dtype=(str, 15))])
+    mat_monona = np.transpose([np.empty((mat_all_data.shape[0], ), dtype=(str, 15))])
+    mat_mendota = np.transpose([np.empty((mat_all_data.shape[0], ), dtype=(str, 15))])
+    mat_wingra = np.transpose([np.empty((mat_all_data.shape[0], ), dtype=(str, 15))])
+
+    for i in range(0, mat_all_data.shape[1]-1):
+        location = mat_all_data[0, i]
+        if lakes[0] in location:
+            mat_waubesa = np.hstack([mat_waubesa, np.transpose([mat_all_data[:, i]])])
+        if lakes[1] in location:
+            mat_kegonsa = np.hstack([mat_kegonsa, np.transpose([mat_all_data[:, i]])])
+        if lakes[2] in location:
+            mat_monona = np.hstack([mat_monona, np.transpose([mat_all_data[:, i]])])
+        if lakes[3] in location:
+            mat_mendota = np.hstack([mat_mendota, np.transpose([mat_all_data[:, i]])])
+        if lakes[4] in location:
+            mat_wingra = np.hstack([mat_wingra, np.transpose([mat_all_data[:, i]])])
+
+    print("Building " + lakes[0] + " All Data matrix ...")
+    mat_waubesa = mat_waubesa[:, 1:]
+    matrix_to_file(mat_waubesa, lakes[0], destination_folder_all_data)
+    print("Building " + lakes[1] + " All Data matrix ...")
+    mat_kegonsa = mat_kegonsa[:, 1:]
+    matrix_to_file(mat_kegonsa, lakes[1], destination_folder_all_data)
+    print("Building " + lakes[2] + " All Data matrix ...")
+    mat_monona = mat_monona[:, 1:]
+    matrix_to_file(mat_monona, lakes[2], destination_folder_all_data)
+    print("Building " + lakes[3] + " All Data matrix ...")
+    mat_mendota = mat_mendota[:, 1:]
+    matrix_to_file(mat_mendota, lakes[3], destination_folder_all_data)
+    print("Building " + lakes[4] + " All Data matrix ...")
+    mat_wingra = mat_wingra[:, 1:]
+    matrix_to_file(mat_wingra, lakes[4], destination_folder_all_data)
+
+    mat_waubesa_summer = create_summer_location_matrix(mat_waubesa, lakes[0] + " All Data", 1)
+    mat_kegonsa_summer = create_summer_location_matrix(mat_kegonsa, lakes[1] + " All Data", 1)
+    mat_monona_summer = create_summer_location_matrix(mat_monona, lakes[2] + " All Data", 1)
+    mat_mendota_summer = create_summer_location_matrix(mat_mendota, lakes[3] + " All Data", 1)
+    mat_wingra_summer = create_summer_location_matrix(mat_wingra, lakes[4] + " All Data", 1)
+
+    matrix_to_file(mat_waubesa_summer, lakes[0] + "_All_Data_summer", destination_folder_all_data)
+    matrix_to_file(mat_kegonsa_summer, lakes[1] + "_All_Data_summer", destination_folder_all_data)
+    matrix_to_file(mat_monona_summer, lakes[2] + "_All_Data_summer", destination_folder_all_data)
+    matrix_to_file(mat_mendota_summer, lakes[3] + "_All_Data_summer", destination_folder_all_data)
+    matrix_to_file(mat_wingra_summer, lakes[4] + "_All_Data_summer", destination_folder_all_data)
 
 
 # Writes a matrix to a csv file. mat is the matrix being written to a file. lake_name is a string of the name of the
-# lake. It is used in writing a file name. destination_folder is the path to the destination folder where the
+# lake. It is used in writing a file name. destination_folder_no_na is the path to the destination folder where the
 # csv file will be stored
 def matrix_to_file(mat, lake_name, destination_folder):
     file = open(destination_folder + lake_name + "_matrix.csv", "w")
@@ -123,12 +176,12 @@ def create_location_matrix(yearly_matrices, mat_loc, loc):
 # This method creates a matrix for only the summer months (June through August) for each lake location. mat_loc is the
 # matrix containing all data points across years 2015, 2016, and 2017 for one lake location (same matrix as the output
 # of create_location_matrix method). loc is the name of the lake for which the output matrix of this method is for.
-# mat_loc_summer is the output matrix of this method.
-def create_summer_location_matrix(mat_loc, loc):
+# mat_loc_summer is the output matrix of this method. date_row is the row in which the date is stored in mat_loc.
+def create_summer_location_matrix(mat_loc, loc, date_row):
     print("Building " + loc + " summer matrix ...")
-    mat_loc_summer = np.transpose([np.empty((num_rows, ))])
+    mat_loc_summer = np.transpose([np.empty((mat_loc.shape[0], ))])
     for j in range(1, mat_loc.shape[1]):
-        new_date_str = mat_loc[3, j]
+        new_date_str = mat_loc[date_row, j]
         if "6" == new_date_str[:1] or "7" == new_date_str[:1] or "8" == new_date_str[:1]:
             mat_loc_summer = np.hstack([mat_loc_summer, np.transpose([mat_loc[:, j]])])
 
@@ -137,5 +190,6 @@ def create_summer_location_matrix(mat_loc, loc):
     mat_loc_summer = mat_loc_summer[:, 1:]
 
     return mat_loc_summer
+
 
 if __name__ == "__main__": main()

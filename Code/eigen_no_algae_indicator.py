@@ -17,8 +17,7 @@ def main():
 
     # source directories
     path_matrices_no_na = "/Users/Alliot/documents/cla-project/data/matrices-no-na/normalized"
-    path_all_data = \
-        "/Users/Alliot/documents/cla-project/data/all-data-no-na/normalized/algal_bloom_locations_summaries_matrix.csv"
+    path_all_data = "/Users/Alliot/documents/cla-project/data/all-data-no-na/normalized/"
 
     # destination directories for eigenvectors
     dest_path_matrices_no_na = "/Users/Alliot/documents/cla-project/data/matrices-no-na/eigen-no-alg-ind/"
@@ -63,35 +62,43 @@ def main():
         vector_to_file(eigvals, eigvals_filename, final_directory)
         vector_to_file(svdvals, svdvals_filename, final_directory)
 
-    # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_matrices_no_na directory
-    mat = np.genfromtxt(open(path_all_data, "rb"), delimiter=",", dtype="str")
-    mat = matrix_str_to_float(mat, 2, 16)
-    filename = path_all_data[67:]
-    print("Processing file " + filename + " ...")
-    mat = np.delete(mat, 1, 0)  # delete algal indicator (algalBloomSheen)
-    eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)
+    # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_all_data directory
+    # get all file paths in all-data-no-na directory
+    files_matrices_all_data = [filename for filename in glob.glob(os.path.join(path_all_data, "*.csv"))]
+    for filename_w_directory in files_matrices_all_data:
+        mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
+        mat = matrix_str_to_float(mat, 2, 15)
 
-    # final_directory is the final location of mat and its eigenvectors
-    eigv1_filename = filename[:-10] + "eigv1.csv"
-    eigv2_filename = filename[:-10] + "eigv2.csv"
-    eigv3_filename = filename[:-10] + "eigv3.csv"
-    eigvals_filename = filename[:-10] + "eigenvalues.csv"
-    svdvals_filename = filename[:-10] + "singularvalues.csv"
+        # Remove algae indicator (row 2 (index 1) for this set of matrices)
+        mat = np.delete(mat, 1, 0)  # delete algal indicator (algalBloomSheen)
 
-    # if final_directory does not exist, create it
-    if not os.path.exists(dest_path_all_data):
-        try:
-            os.makedirs(dest_path_all_data)
-        except OSError as e:
-            if e.errno != errno.EEXIST:
-                raise
+        # get filename of mat and compute eigenvectors, eigenvalues, and svd values
+        filename = filename_w_directory[67:]
+        print("Processing file " + filename + " ...")
+        eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)
 
-    matrix_to_file(mat, filename, dest_path_all_data)
-    vector_to_file(eigv1, eigv1_filename, dest_path_all_data)
-    vector_to_file(eigv2, eigv2_filename, dest_path_all_data)
-    vector_to_file(eigv3, eigv3_filename, dest_path_all_data)
-    vector_to_file(eigvals, eigvals_filename, dest_path_all_data)
-    vector_to_file(svdvals, svdvals_filename, dest_path_all_data)
+        # final_directory is the final location of mat and its eigenvectors
+        final_directory = dest_path_all_data + filename[:-4] + "/"
+        eigv1_filename = filename[:-4] + "_eigv1.csv"
+        eigv2_filename = filename[:-4] + "_eigv2.csv"
+        eigv3_filename = filename[:-4] + "_eigv3.csv"
+        eigvals_filename = filename[:-4] + "_eigenvalues.csv"
+        svdvals_filename = filename[:-4] + "_singularvalues.csv"
+
+        # if final_directory does not exist, create it
+        if not os.path.exists(final_directory):
+            try:
+                os.makedirs(final_directory)
+            except OSError as e:
+                if e.errno != errno.EEXIST:
+                    raise
+
+        matrix_to_file(mat, filename, final_directory)
+        vector_to_file(eigv1, eigv1_filename, final_directory)
+        vector_to_file(eigv2, eigv2_filename, final_directory)
+        vector_to_file(eigv3, eigv3_filename, final_directory)
+        vector_to_file(eigvals, eigvals_filename, final_directory)
+        vector_to_file(svdvals, svdvals_filename, final_directory)
 
 
 # This method takes a matrix mat, which is a matrix of string, and converts it into a matrix of float so the data
@@ -100,7 +107,7 @@ def main():
 # last is the last row index
 def matrix_str_to_float(mat, first, last):
     new_mat = np.zeros((last - first, mat.shape[1]), dtype=float)
-    for i in range(first, last):  # rows 5 through 14 contain numerical data
+    for i in range(first, last):
         for j in range(0, mat.shape[1]):
             try:
                 new_mat[i-first, j] = float(mat[i, j])

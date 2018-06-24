@@ -2,9 +2,9 @@
 
 python3 Matrix_Build_no_na.py
 python3 Monthly_Matrix_Build_All_Years_no_na.py
+python3 All_Data_Matrix_Build.py
 python3 Location_Matrix_Build_no_na.py
 python3 Build_Summer_Months.py
-python3 All_Data_Matrix_Build.py
 python3 Data_Norm.py
 python3 Compute_Eigenvectors.py
 python3 eigen_no_algae_indicator.py
