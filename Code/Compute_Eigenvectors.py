@@ -55,7 +55,7 @@ def main():
         vector_to_file(eigv2, eigv2_filename, final_directory)
         vector_to_file(eigv3, eigv3_filename, final_directory)
         vector_to_file(eigvals, eigvals_filename, final_directory)
-        vector_to_file(svdvals, svdvals_filename, final_directory)
+        matrix_to_file(svdvals, svdvals_filename, final_directory)
 
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_all_data directory
     # get all file paths in all-data-no-na directory
@@ -131,7 +131,7 @@ def get_eigenvectors(mat):
     eigv3 = v[2]
     eigvals = w
 
-    svdvals = np.sqrt(w)
+    svdvals = np.diag(np.sqrt(w))
 
     return eigv1, eigv2, eigv3, eigvals, svdvals
 
