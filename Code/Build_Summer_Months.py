@@ -55,7 +55,9 @@ def main():
     # get filenames of all files for the summer months: June (06), July (07), and August (08)
     for filename in glob.glob(os.path.join(src_path_all_data, "*.csv")):
         if "summer" in filename:
-            summer_month_paths_all_data.append(filename)
+            if "Wingra" in filename or "Mendota" in filename or "Monona" in filename or \
+                    "Kegonsa" in filename or "Waubesa" in filename:
+                summer_month_paths_all_data.append(filename)
 
     # put the filenames in chronological order
     summer_month_paths_all_data = np.sort(summer_month_paths_all_data)
