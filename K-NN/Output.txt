@@ -1,0 +1,1863 @@
+
+	##### EXECUTING COMPUTE_K_NEAREST_NEIGHBOR.PY #####
+
+
+	%%%%% COMPUTING K-NN FOR K = 1 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[487   0   5]
+ [  3   7  14]
+ [ 11  11  64]]
+
+Balanced Error Rate (BER):	     0.324769962816
+No Algae Label Error Rate:	     0.010162601626
+Blue-Green Algae Label Error Rate:   0.708333333333
+Green Label Error Rate:		     0.255813953488
+Accuracy:			     0.926910299003 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[473   3  16]
+ [ 10   4  10]
+ [ 25  12  49]]
+
+Balanced Error Rate (BER):	     0.434061259217
+No Algae Label Error Rate:	     0.0386178861789
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.43023255814
+Accuracy:			     0.873754152824 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[209   0   1]
+ [  0   0   6]
+ [  4   3  19]]
+
+Balanced Error Rate (BER):	     0.424664224664
+No Algae Label Error Rate:	     0.0047619047619
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.269230769231
+Accuracy:			     0.942148760331 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[187   4  19]
+ [  3   0   3]
+ [ 15   2   9]]
+
+Balanced Error Rate (BER):	     0.58778998779
+No Algae Label Error Rate:	     0.109523809524
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.653846153846
+Accuracy:			     0.809917355372 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [  6   4  17]]
+
+Balanced Error Rate (BER):	     0.237392759992
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.37037037037
+Accuracy:			     0.918918918919 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[103   5  10]
+ [  2   1   0]
+ [ 14   2  11]]
+
+Balanced Error Rate (BER):	     0.462125967776
+No Algae Label Error Rate:	     0.127118644068
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.592592592593
+Accuracy:			     0.777027027027 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 2 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[487   0   5]
+ [  3   7  14]
+ [ 11  11  64]]
+
+Balanced Error Rate (BER):	     0.324769962816
+No Algae Label Error Rate:	     0.010162601626
+Blue-Green Algae Label Error Rate:   0.708333333333
+Green Label Error Rate:		     0.255813953488
+Accuracy:			     0.926910299003 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[473   3  16]
+ [ 10   4  10]
+ [ 25  12  49]]
+
+Balanced Error Rate (BER):	     0.434061259217
+No Algae Label Error Rate:	     0.0386178861789
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.43023255814
+Accuracy:			     0.873754152824 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[209   0   1]
+ [  0   0   6]
+ [  4   3  19]]
+
+Balanced Error Rate (BER):	     0.424664224664
+No Algae Label Error Rate:	     0.0047619047619
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.269230769231
+Accuracy:			     0.942148760331 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[187   4  19]
+ [  3   0   3]
+ [ 15   2   9]]
+
+Balanced Error Rate (BER):	     0.58778998779
+No Algae Label Error Rate:	     0.109523809524
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.653846153846
+Accuracy:			     0.809917355372 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [  6   4  17]]
+
+Balanced Error Rate (BER):	     0.237392759992
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.37037037037
+Accuracy:			     0.918918918919 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[103   5  10]
+ [  2   1   0]
+ [ 14   2  11]]
+
+Balanced Error Rate (BER):	     0.462125967776
+No Algae Label Error Rate:	     0.127118644068
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.592592592593
+Accuracy:			     0.777027027027 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 3 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  3   6  15]
+ [  7  12  67]]
+
+Balanced Error Rate (BER):	     0.327708451503
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.75
+Green Label Error Rate:		     0.220930232558
+Accuracy:			     0.928571428571 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[482   0  10]
+ [  8   4  12]
+ [ 21  12  53]]
+
+Balanced Error Rate (BER):	     0.412459822273
+No Algae Label Error Rate:	     0.020325203252
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.383720930233
+Accuracy:			     0.895348837209 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  0   1   5]
+ [  6   3  17]]
+
+Balanced Error Rate (BER):	     0.393162393162
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.346153846154
+Accuracy:			     0.942148760331 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[200   3   7]
+ [  4   1   1]
+ [ 17   1   8]]
+
+Balanced Error Rate (BER):	     0.52442002442
+No Algae Label Error Rate:	     0.047619047619
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.692307692308
+Accuracy:			     0.863636363636 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[118   0   0]
+ [  0   2   1]
+ [  8   2  17]]
+
+Balanced Error Rate (BER):	     0.234567901235
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.37037037037
+Accuracy:			     0.925675675676 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[112   2   4]
+ [  2   1   0]
+ [ 19   2   6]]
+
+Balanced Error Rate (BER):	     0.498430634024
+No Algae Label Error Rate:	     0.0508474576271
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.777777777778
+Accuracy:			     0.804054054054 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 4 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  3   8  13]
+ [  8   8  70]]
+
+Balanced Error Rate (BER):	     0.288302766749
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.186046511628
+Accuracy:			     0.936877076412 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[481   0  11]
+ [  9   2  13]
+ [ 24  12  50]]
+
+Balanced Error Rate (BER):	     0.452543013802
+No Algae Label Error Rate:	     0.0223577235772
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.418604651163
+Accuracy:			     0.885382059801 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  0   0   6]
+ [  5   1  20]]
+
+Balanced Error Rate (BER):	     0.410256410256
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.230769230769
+Accuracy:			     0.95041322314 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[197   3  10]
+ [  2   1   3]
+ [ 16   1   9]]
+
+Balanced Error Rate (BER):	     0.516361416361
+No Algae Label Error Rate:	     0.0619047619048
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.653846153846
+Accuracy:			     0.855371900826 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[118   0   0]
+ [  0   2   1]
+ [  6   2  19]]
+
+Balanced Error Rate (BER):	     0.20987654321
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.296296296296
+Accuracy:			     0.939189189189 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[112   2   4]
+ [  2   1   0]
+ [ 19   1   7]]
+
+Balanced Error Rate (BER):	     0.486084955012
+No Algae Label Error Rate:	     0.0508474576271
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.740740740741
+Accuracy:			     0.810810810811 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 5 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  3   7  14]
+ [  9   6  71]]
+
+Balanced Error Rate (BER):	     0.298315686645
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.708333333333
+Green Label Error Rate:		     0.174418604651
+Accuracy:			     0.936877076412 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[486   0   6]
+ [ 10   2  12]
+ [ 27   6  53]]
+
+Balanced Error Rate (BER):	     0.43752757295
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.383720930233
+Accuracy:			     0.898671096346 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  0   1   5]
+ [  5   0  21]]
+
+Balanced Error Rate (BER):	     0.34188034188
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.192307692308
+Accuracy:			     0.95867768595 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[200   2   8]
+ [  3   1   2]
+ [ 15   1  10]]
+
+Balanced Error Rate (BER):	     0.498778998779
+No Algae Label Error Rate:	     0.047619047619
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.615384615385
+Accuracy:			     0.871900826446 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [  5   3  19]]
+
+Balanced Error Rate (BER):	     0.212701401967
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.296296296296
+Accuracy:			     0.932432432432 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[113   1   4]
+ [  2   1   0]
+ [ 19   1   7]]
+
+Balanced Error Rate (BER):	     0.483260096254
+No Algae Label Error Rate:	     0.0423728813559
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.740740740741
+Accuracy:			     0.817567567568 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 6 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  3   8  13]
+ [  8   7  71]]
+
+Balanced Error Rate (BER):	     0.284426797756
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.174418604651
+Accuracy:			     0.93853820598 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[486   0   6]
+ [  9   1  14]
+ [ 26   6  54]]
+
+Balanced Error Rate (BER):	     0.447540492847
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.372093023256
+Accuracy:			     0.898671096346 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  0   1   5]
+ [  4   4  18]]
+
+Balanced Error Rate (BER):	     0.380341880342
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.307692307692
+Accuracy:			     0.946280991736 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[201   3   6]
+ [  3   0   3]
+ [ 15   1  10]]
+
+Balanced Error Rate (BER):	     0.552747252747
+No Algae Label Error Rate:	     0.0428571428571
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.615384615385
+Accuracy:			     0.871900826446 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [  6   3  18]]
+
+Balanced Error Rate (BER):	     0.225047080979
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.333333333333
+Accuracy:			     0.925675675676 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[114   1   3]
+ [  2   1   0]
+ [ 20   0   7]]
+
+Balanced Error Rate (BER):	     0.480435237497
+No Algae Label Error Rate:	     0.0338983050847
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.740740740741
+Accuracy:			     0.824324324324 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 7 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  4   5  15]
+ [  9   6  71]]
+
+Balanced Error Rate (BER):	     0.326093464423
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.791666666667
+Green Label Error Rate:		     0.174418604651
+Accuracy:			     0.933554817276 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[485   0   7]
+ [  9   1  14]
+ [ 25   5  56]]
+
+Balanced Error Rate (BER):	     0.440466061637
+No Algae Label Error Rate:	     0.0142276422764
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.348837209302
+Accuracy:			     0.900332225914 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  0   1   5]
+ [  5   3  18]]
+
+Balanced Error Rate (BER):	     0.380341880342
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.307692307692
+Accuracy:			     0.946280991736 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[202   1   7]
+ [  3   0   3]
+ [ 17   1   8]]
+
+Balanced Error Rate (BER):	     0.576800976801
+No Algae Label Error Rate:	     0.0380952380952
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.692307692308
+Accuracy:			     0.867768595041 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [  8   2  17]]
+
+Balanced Error Rate (BER):	     0.237392759992
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.37037037037
+Accuracy:			     0.918918918919 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[113   1   4]
+ [  2   1   0]
+ [ 20   0   7]]
+
+Balanced Error Rate (BER):	     0.483260096254
+No Algae Label Error Rate:	     0.0423728813559
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.740740740741
+Accuracy:			     0.817567567568 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 8 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  3   6  15]
+ [  8   5  73]]
+
+Balanced Error Rate (BER):	     0.30445263755
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.75
+Green Label Error Rate:		     0.151162790698
+Accuracy:			     0.93853820598 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[485   0   7]
+ [ 10   1  13]
+ [ 25   3  58]]
+
+Balanced Error Rate (BER):	     0.432714123653
+No Algae Label Error Rate:	     0.0142276422764
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.325581395349
+Accuracy:			     0.90365448505 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  0   1   5]
+ [  5   2  19]]
+
+Balanced Error Rate (BER):	     0.367521367521
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.269230769231
+Accuracy:			     0.95041322314 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[203   1   6]
+ [  3   0   3]
+ [ 18   0   8]]
+
+Balanced Error Rate (BER):	     0.575213675214
+No Algae Label Error Rate:	     0.0333333333333
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.692307692308
+Accuracy:			     0.871900826446 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [ 10   1  16]]
+
+Balanced Error Rate (BER):	     0.249738439004
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.407407407407
+Accuracy:			     0.912162162162 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[114   1   3]
+ [  2   1   0]
+ [ 19   0   8]]
+
+Balanced Error Rate (BER):	     0.468089558485
+No Algae Label Error Rate:	     0.0338983050847
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.831081081081 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 9 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  5   3  16]
+ [ 11   3  72]]
+
+Balanced Error Rate (BER):	     0.349995273209
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.875
+Green Label Error Rate:		     0.162790697674
+Accuracy:			     0.931893687708 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[485   0   7]
+ [  9   0  15]
+ [ 26   3  57]]
+
+Balanced Error Rate (BER):	     0.450478981534
+No Algae Label Error Rate:	     0.0142276422764
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.337209302326
+Accuracy:			     0.900332225914 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  1   1   4]
+ [  7   2  17]]
+
+Balanced Error Rate (BER):	     0.393162393162
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.346153846154
+Accuracy:			     0.942148760331 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[204   1   5]
+ [  4   0   2]
+ [ 17   0   9]]
+
+Balanced Error Rate (BER):	     0.560805860806
+No Algae Label Error Rate:	     0.0285714285714
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.653846153846
+Accuracy:			     0.880165289256 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   1   2]
+ [  8   1  18]]
+
+Balanced Error Rate (BER):	     0.33615819209
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.333333333333
+Accuracy:			     0.918918918919 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[113   1   4]
+ [  2   1   0]
+ [ 19   0   8]]
+
+Balanced Error Rate (BER):	     0.470914417242
+No Algae Label Error Rate:	     0.0423728813559
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.824324324324 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 10 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  6   3  15]
+ [ 11   2  73]]
+
+Balanced Error Rate (BER):	     0.346119304216
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.875
+Green Label Error Rate:		     0.151162790698
+Accuracy:			     0.933554817276 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[486   0   6]
+ [  9   0  15]
+ [ 26   2  58]]
+
+Balanced Error Rate (BER):	     0.445925505767
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.325581395349
+Accuracy:			     0.90365448505 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  1   1   4]
+ [  6   2  18]]
+
+Balanced Error Rate (BER):	     0.380341880342
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.307692307692
+Accuracy:			     0.946280991736 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[205   1   4]
+ [  4   0   2]
+ [ 17   0   9]]
+
+Balanced Error Rate (BER):	     0.559218559219
+No Algae Label Error Rate:	     0.0238095238095
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.653846153846
+Accuracy:			     0.884297520661 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [  8   1  18]]
+
+Balanced Error Rate (BER):	     0.225047080979
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.333333333333
+Accuracy:			     0.925675675676 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[115   0   3]
+ [  3   0   0]
+ [ 20   0   7]]
+
+Balanced Error Rate (BER):	     0.588721489851
+No Algae Label Error Rate:	     0.0254237288136
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.740740740741
+Accuracy:			     0.824324324324 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 11 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  5   3  16]
+ [ 14   2  70]]
+
+Balanced Error Rate (BER):	     0.357747211193
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.875
+Green Label Error Rate:		     0.186046511628
+Accuracy:			     0.928571428571 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[484   0   8]
+ [  9   0  15]
+ [ 29   2  55]]
+
+Balanced Error Rate (BER):	     0.458908426294
+No Algae Label Error Rate:	     0.0162601626016
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.360465116279
+Accuracy:			     0.895348837209 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  1   1   4]
+ [  8   2  16]]
+
+Balanced Error Rate (BER):	     0.405982905983
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.384615384615
+Accuracy:			     0.938016528926 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[205   1   4]
+ [  5   0   1]
+ [ 18   1   7]]
+
+Balanced Error Rate (BER):	     0.58485958486
+No Algae Label Error Rate:	     0.0238095238095
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.730769230769
+Accuracy:			     0.876033057851 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [ 10   1  16]]
+
+Balanced Error Rate (BER):	     0.249738439004
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.407407407407
+Accuracy:			     0.912162162162 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[115   0   3]
+ [  3   0   0]
+ [ 20   0   7]]
+
+Balanced Error Rate (BER):	     0.588721489851
+No Algae Label Error Rate:	     0.0254237288136
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.740740740741
+Accuracy:			     0.824324324324 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 12 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  6   3  15]
+ [ 13   1  72]]
+
+Balanced Error Rate (BER):	     0.349995273209
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.875
+Green Label Error Rate:		     0.162790697674
+Accuracy:			     0.931893687708 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[483   0   9]
+ [  9   0  15]
+ [ 29   1  56]]
+
+Balanced Error Rate (BER):	     0.455709964076
+No Algae Label Error Rate:	     0.0182926829268
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.348837209302
+Accuracy:			     0.895348837209 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  0   1   5]
+ [  9   2  15]]
+
+Balanced Error Rate (BER):	     0.418803418803
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.423076923077
+Accuracy:			     0.933884297521 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[205   1   4]
+ [  5   0   1]
+ [ 18   1   7]]
+
+Balanced Error Rate (BER):	     0.58485958486
+No Algae Label Error Rate:	     0.0238095238095
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.730769230769
+Accuracy:			     0.876033057851 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [  9   1  17]]
+
+Balanced Error Rate (BER):	     0.237392759992
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.37037037037
+Accuracy:			     0.918918918919 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[115   0   3]
+ [  3   0   0]
+ [ 21   0   6]]
+
+Balanced Error Rate (BER):	     0.601067168864
+No Algae Label Error Rate:	     0.0254237288136
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.777777777778
+Accuracy:			     0.817567567568 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 13 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[486   0   6]
+ [  6   3  15]
+ [ 15   0  71]]
+
+Balanced Error Rate (BER):	     0.353871242201
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   0.875
+Green Label Error Rate:		     0.174418604651
+Accuracy:			     0.93023255814 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[482   0  10]
+ [  9   0  15]
+ [ 28   2  56]]
+
+Balanced Error Rate (BER):	     0.456387470851
+No Algae Label Error Rate:	     0.020325203252
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.348837209302
+Accuracy:			     0.893687707641 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  0   1   5]
+ [ 10   2  14]]
+
+Balanced Error Rate (BER):	     0.431623931624
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.461538461538
+Accuracy:			     0.929752066116 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[206   0   4]
+ [  5   0   1]
+ [ 19   1   6]]
+
+Balanced Error Rate (BER):	     0.596092796093
+No Algae Label Error Rate:	     0.0190476190476
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.769230769231
+Accuracy:			     0.876033057851 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [ 10   0  17]]
+
+Balanced Error Rate (BER):	     0.237392759992
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.37037037037
+Accuracy:			     0.918918918919 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[117   0   1]
+ [  3   0   0]
+ [ 21   0   6]]
+
+Balanced Error Rate (BER):	     0.59541745135
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.777777777778
+Accuracy:			     0.831081081081 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 14 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[487   0   5]
+ [  4   2  18]
+ [ 15   1  70]]
+
+Balanced Error Rate (BER):	     0.370958593307
+No Algae Label Error Rate:	     0.010162601626
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.186046511628
+Accuracy:			     0.928571428571 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[483   0   9]
+ [  9   0  15]
+ [ 29   1  56]]
+
+Balanced Error Rate (BER):	     0.455709964076
+No Algae Label Error Rate:	     0.0182926829268
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.348837209302
+Accuracy:			     0.895348837209 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[210   0   0]
+ [  0   1   5]
+ [  9   2  15]]
+
+Balanced Error Rate (BER):	     0.418803418803
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.423076923077
+Accuracy:			     0.933884297521 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[205   0   5]
+ [  5   0   1]
+ [ 20   0   6]]
+
+Balanced Error Rate (BER):	     0.59768009768
+No Algae Label Error Rate:	     0.0238095238095
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.769230769231
+Accuracy:			     0.871900826446 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  0   2   1]
+ [ 12   0  15]]
+
+Balanced Error Rate (BER):	     0.262084118016
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.333333333333
+Green Label Error Rate:		     0.444444444444
+Accuracy:			     0.905405405405 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[118   0   0]
+ [  3   0   0]
+ [ 21   0   6]]
+
+Balanced Error Rate (BER):	     0.592592592593
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.777777777778
+Accuracy:			     0.837837837838 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 15 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[487   0   5]
+ [  3   1  20]
+ [ 16   1  69]]
+
+Balanced Error Rate (BER):	     0.388723451188
+No Algae Label Error Rate:	     0.010162601626
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.197674418605
+Accuracy:			     0.925249169435 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[483   0   9]
+ [ 10   0  14]
+ [ 29   1  56]]
+
+Balanced Error Rate (BER):	     0.455709964076
+No Algae Label Error Rate:	     0.0182926829268
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.348837209302
+Accuracy:			     0.895348837209 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[209   0   1]
+ [  0   1   5]
+ [ 11   2  13]]
+
+Balanced Error Rate (BER):	     0.446031746032
+No Algae Label Error Rate:	     0.0047619047619
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.5
+Accuracy:			     0.921487603306 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[205   0   5]
+ [  5   0   1]
+ [ 21   0   5]]
+
+Balanced Error Rate (BER):	     0.610500610501
+No Algae Label Error Rate:	     0.0238095238095
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.807692307692
+Accuracy:			     0.867768595041 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  1   1   1]
+ [ 11   0  16]]
+
+Balanced Error Rate (BER):	     0.360849550115
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.407407407407
+Accuracy:			     0.905405405405 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[118   0   0]
+ [  3   0   0]
+ [ 23   0   4]]
+
+Balanced Error Rate (BER):	     0.617283950617
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.851851851852
+Accuracy:			     0.824324324324 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 16 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[487   0   5]
+ [  3   2  19]
+ [ 17   1  68]]
+
+Balanced Error Rate (BER):	     0.378710531291
+No Algae Label Error Rate:	     0.010162601626
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.209302325581
+Accuracy:			     0.925249169435 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[484   0   8]
+ [ 10   0  14]
+ [ 33   1  52]]
+
+Balanced Error Rate (BER):	     0.47053633327
+No Algae Label Error Rate:	     0.0162601626016
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.395348837209
+Accuracy:			     0.890365448505 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[209   0   1]
+ [  0   1   5]
+ [ 12   1  13]]
+
+Balanced Error Rate (BER):	     0.446031746032
+No Algae Label Error Rate:	     0.0047619047619
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.5
+Accuracy:			     0.921487603306 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[205   0   5]
+ [  5   0   1]
+ [ 20   0   6]]
+
+Balanced Error Rate (BER):	     0.59768009768
+No Algae Label Error Rate:	     0.0238095238095
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.769230769231
+Accuracy:			     0.871900826446 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  1   1   1]
+ [ 12   0  15]]
+
+Balanced Error Rate (BER):	     0.373195229127
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   0.666666666667
+Green Label Error Rate:		     0.444444444444
+Accuracy:			     0.898648648649 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[118   0   0]
+ [  3   0   0]
+ [ 23   0   4]]
+
+Balanced Error Rate (BER):	     0.617283950617
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.851851851852
+Accuracy:			     0.824324324324 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 17 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[487   0   5]
+ [  4   1  19]
+ [ 17   0  69]]
+
+Balanced Error Rate (BER):	     0.388723451188
+No Algae Label Error Rate:	     0.010162601626
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.197674418605
+Accuracy:			     0.925249169435 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[483   0   9]
+ [ 10   0  14]
+ [ 32   1  53]]
+
+Balanced Error Rate (BER):	     0.467337871053
+No Algae Label Error Rate:	     0.0182926829268
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.383720930233
+Accuracy:			     0.890365448505 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[209   0   1]
+ [  1   1   4]
+ [ 13   1  12]]
+
+Balanced Error Rate (BER):	     0.458852258852
+No Algae Label Error Rate:	     0.0047619047619
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.538461538462
+Accuracy:			     0.917355371901 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[206   0   4]
+ [  6   0   0]
+ [ 20   0   6]]
+
+Balanced Error Rate (BER):	     0.596092796093
+No Algae Label Error Rate:	     0.0190476190476
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.769230769231
+Accuracy:			     0.876033057851 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  1   0   2]
+ [ 13   0  14]]
+
+Balanced Error Rate (BER):	     0.496652019251
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.481481481481
+Accuracy:			     0.885135135135 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[118   0   0]
+ [  3   0   0]
+ [ 24   0   3]]
+
+Balanced Error Rate (BER):	     0.62962962963
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.888888888889
+Accuracy:			     0.817567567568 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 18 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[487   0   5]
+ [  4   1  19]
+ [ 18   1  67]]
+
+Balanced Error Rate (BER):	     0.396475389172
+No Algae Label Error Rate:	     0.010162601626
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.220930232558
+Accuracy:			     0.921926910299 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[486   0   6]
+ [ 10   0  14]
+ [ 31   1  54]]
+
+Balanced Error Rate (BER):	     0.461429381736
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.372093023256
+Accuracy:			     0.897009966777 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[209   0   1]
+ [  1   1   4]
+ [ 12   1  13]]
+
+Balanced Error Rate (BER):	     0.446031746032
+No Algae Label Error Rate:	     0.0047619047619
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.5
+Accuracy:			     0.921487603306 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[206   0   4]
+ [  6   0   0]
+ [ 20   0   6]]
+
+Balanced Error Rate (BER):	     0.596092796093
+No Algae Label Error Rate:	     0.0190476190476
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.769230769231
+Accuracy:			     0.876033057851 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  1   0   2]
+ [ 14   0  13]]
+
+Balanced Error Rate (BER):	     0.508997698263
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.518518518519
+Accuracy:			     0.878378378378 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[118   0   0]
+ [  3   0   0]
+ [ 24   0   3]]
+
+Balanced Error Rate (BER):	     0.62962962963
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.888888888889
+Accuracy:			     0.817567567568 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 19 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[487   0   5]
+ [  5   0  19]
+ [ 18   1  67]]
+
+Balanced Error Rate (BER):	     0.410364278061
+No Algae Label Error Rate:	     0.010162601626
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.220930232558
+Accuracy:			     0.920265780731 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[484   0   8]
+ [ 10   0  14]
+ [ 31   1  54]]
+
+Balanced Error Rate (BER):	     0.462784395286
+No Algae Label Error Rate:	     0.0162601626016
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.372093023256
+Accuracy:			     0.893687707641 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[209   0   1]
+ [  1   1   4]
+ [ 14   1  11]]
+
+Balanced Error Rate (BER):	     0.471672771673
+No Algae Label Error Rate:	     0.0047619047619
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.576923076923
+Accuracy:			     0.913223140496 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[207   0   3]
+ [  5   0   1]
+ [ 20   0   6]]
+
+Balanced Error Rate (BER):	     0.594505494505
+No Algae Label Error Rate:	     0.0142857142857
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.769230769231
+Accuracy:			     0.880165289256 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  1   0   2]
+ [ 13   0  14]]
+
+Balanced Error Rate (BER):	     0.496652019251
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.481481481481
+Accuracy:			     0.885135135135 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[118   0   0]
+ [  3   0   0]
+ [ 25   0   2]]
+
+Balanced Error Rate (BER):	     0.641975308642
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.925925925926
+Accuracy:			     0.810810810811 
+
+===========================================================
+
+
+	%%%%% COMPUTING K-NN FOR K = 20 %%%%%
+
+
+k-nearest neighbors for summer, all data:
+Original Data:
+
+Confusion matrix:
+[[487   0   5]
+ [  5   0  19]
+ [ 18   0  68]]
+
+Balanced Error Rate (BER):	     0.406488309069
+No Algae Label Error Rate:	     0.010162601626
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.209302325581
+Accuracy:			     0.921926910299 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[486   0   6]
+ [ 10   0  14]
+ [ 32   1  53]]
+
+Balanced Error Rate (BER):	     0.465305350728
+No Algae Label Error Rate:	     0.0121951219512
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.383720930233
+Accuracy:			     0.895348837209 
+
+===========================================================
+
+k-nearest neighbors for summer, Mendota:
+
+Original Data:
+
+Confusion matrix:
+[[209   0   1]
+ [  1   1   4]
+ [ 14   1  11]]
+
+Balanced Error Rate (BER):	     0.471672771673
+No Algae Label Error Rate:	     0.0047619047619
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.576923076923
+Accuracy:			     0.913223140496 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[206   0   4]
+ [  6   0   0]
+ [ 20   0   6]]
+
+Balanced Error Rate (BER):	     0.596092796093
+No Algae Label Error Rate:	     0.0190476190476
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.769230769231
+Accuracy:			     0.876033057851 
+
+===========================================================
+
+k-nearest neighbors for summer, Monona:
+
+Original Data:
+
+Confusion matrix:
+[[117   0   1]
+ [  1   0   2]
+ [ 13   0  14]]
+
+Balanced Error Rate (BER):	     0.496652019251
+No Algae Label Error Rate:	     0.00847457627119
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.481481481481
+Accuracy:			     0.885135135135 
+
+Projected Data (3D):
+
+Confusion matrix:
+[[118   0   0]
+ [  3   0   0]
+ [ 24   0   3]]
+
+Balanced Error Rate (BER):	     0.62962962963
+No Algae Label Error Rate:	     0.0
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.888888888889
+Accuracy:			     0.817567567568 
+
+===========================================================
+
