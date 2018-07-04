@@ -1,6 +1,8 @@
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
+import os
+import errno
 
 
 num_rows_no_ind = 12   # number of measurements per data point for data with no indicator
@@ -35,6 +37,16 @@ def main():
                                   "Mendota_All_Data_summer_matrix/Mendota_All_Data_summer_matrix_proj_no-alg-ind_3d.csv"
     src_path_monona_proj_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/projections/" \
                                  "Monona_All_Data_summer_matrix/Monona_All_Data_summer_matrix_proj_no-alg-ind_3d.csv"
+
+    dest_path = "/Users/Alliot/Documents/CLA-Project/K-NN/"
+
+    # if dest_path does not exist, create it
+    if not os.path.exists(dest_path):
+        try:
+            os.makedirs(dest_path)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
 
     # read in files from source directories
     mat_all_data_orig_w_ind = np.genfromtxt(open(src_path_all_data_orig_w_ind, "rb"), delimiter=",", dtype=float)
@@ -79,25 +91,38 @@ def main():
     all_data_orig_ber = np.empty((k_arr.shape[0]))
     mendota_orig_ber = np.empty((k_arr.shape[0]))
     monona_orig_ber = np.empty((k_arr.shape[0]))
+    all_data_orig_ber_bin = np.empty((k_arr.shape[0]))
+    mendota_orig_ber_bin = np.empty((k_arr.shape[0]))
+    monona_orig_ber_bin = np.empty((k_arr.shape[0]))
 
     # create vectors to store various balanced error rates (BER) for 3D projections
     all_data_proj_3d_ber = np.empty((k_arr.shape[0]))
     mendota_proj_3d_ber = np.empty((k_arr.shape[0]))
     monona_proj_3d_ber = np.empty((k_arr.shape[0]))
+    all_data_proj_3d_ber_bin = np.empty((k_arr.shape[0]))
+    mendota_proj_3d_ber_bin = np.empty((k_arr.shape[0]))
+    monona_proj_3d_ber_bin = np.empty((k_arr.shape[0]))
 
     # create vectors to store accuracies for original data
     all_data_orig_acc = np.empty((k_arr.shape[0]))
     mendota_orig_acc = np.empty((k_arr.shape[0]))
     monona_orig_acc = np.empty((k_arr.shape[0]))
+    all_data_orig_acc_bin = np.empty((k_arr.shape[0]))
+    mendota_orig_acc_bin = np.empty((k_arr.shape[0]))
+    monona_orig_acc_bin = np.empty((k_arr.shape[0]))
 
     # create vectors to store accuracies for 3D projections
     all_data_proj_3d_acc = np.empty((k_arr.shape[0]))
     mendota_proj_3d_acc = np.empty((k_arr.shape[0]))
     monona_proj_3d_acc = np.empty((k_arr.shape[0]))
+    all_data_proj_3d_acc_bin = np.empty((k_arr.shape[0]))
+    mendota_proj_3d_acc_bin = np.empty((k_arr.shape[0]))
+    monona_proj_3d_acc_bin = np.empty((k_arr.shape[0]))
 
     for k in k_arr:
         print("\n\t%%%%% COMPUTING K-NN FOR K =", k, "%%%%%\n\n")
         print("k-nearest neighbors for summer, all data:")
+        print("None vs. Blue-Green vs. Green\n")
         print("Original Data:\n")
         all_data_orig_ber[k - 1], all_data_orig_acc[k-1] = \
             calculate_k_nn(mat_all_data_orig_train_w_ind, mat_all_data_orig_train_no_ind,
@@ -106,8 +131,17 @@ def main():
         all_data_proj_3d_ber[k-1], all_data_proj_3d_acc[k-1] = \
             calculate_k_nn(mat_all_data_orig_train_w_ind, mat_all_data_proj_train_no_ind,
                            mat_all_data_orig_val_w_ind, mat_all_data_proj_val_no_ind, k)
+        print("None vs. Algae\n")
+        all_data_orig_ber_bin[k-1], all_data_orig_acc_bin[k-1] = \
+            calculate_k_nn_binary(mat_all_data_orig_train_w_ind, mat_all_data_orig_train_no_ind,
+                           mat_all_data_orig_val_w_ind, mat_all_data_orig_val_no_ind, k)
+        print("Projected Data (3D):\n")
+        all_data_proj_3d_ber_bin[k-1], all_data_proj_3d_acc_bin[k-1] = \
+            calculate_k_nn_binary(mat_all_data_orig_train_w_ind, mat_all_data_proj_train_no_ind,
+                           mat_all_data_orig_val_w_ind, mat_all_data_proj_val_no_ind, k)
         print("===========================================================\n")
         print("k-nearest neighbors for summer, Mendota:\n")
+        print("None vs. Blue-Green vs. Green\n")
         print("Original Data:\n")
         mendota_orig_ber[k-1], mendota_orig_acc[k-1] = \
             calculate_k_nn(mat_mendota_orig_train_w_ind, mat_mendota_orig_train_no_ind,
@@ -116,8 +150,17 @@ def main():
         mendota_proj_3d_ber[k-1], mendota_proj_3d_acc[k-1] = \
             calculate_k_nn(mat_mendota_orig_train_w_ind, mat_mendota_proj_train_no_ind,
                            mat_mendota_orig_val_w_ind, mat_mendota_proj_val_no_ind, k)
+        print("None vs. Algae\n")
+        mendota_orig_ber_bin[k-1], mendota_orig_acc_bin[k-1] = \
+            calculate_k_nn_binary(mat_mendota_orig_train_w_ind, mat_mendota_orig_train_no_ind,
+                           mat_mendota_orig_val_w_ind, mat_mendota_orig_val_no_ind, k)
+        print("Projected Data (3D):\n")
+        mendota_proj_3d_ber_bin[k-1], mendota_proj_3d_acc_bin[k-1] = \
+            calculate_k_nn_binary(mat_mendota_orig_train_w_ind, mat_mendota_proj_train_no_ind,
+                           mat_mendota_orig_val_w_ind, mat_mendota_proj_val_no_ind, k)
         print("===========================================================\n")
         print("k-nearest neighbors for summer, Monona:\n")
+        print("None vs. Blue-Green vs. Green\n")
         print("Original Data:\n")
         monona_orig_ber[k-1], monona_orig_acc[k-1] = \
             calculate_k_nn(mat_monona_orig_train_w_ind, mat_monona_orig_train_no_ind,
@@ -126,6 +169,14 @@ def main():
         monona_proj_3d_ber[k-1], monona_proj_3d_acc[k-1] = \
             calculate_k_nn(mat_monona_orig_train_w_ind, mat_monona_proj_train_no_ind,
                            mat_monona_orig_val_w_ind, mat_monona_proj_val_no_ind, k)
+        print("None vs. Algae\n")
+        monona_orig_ber_bin[k-1], monona_orig_acc_bin[k-1] = \
+            calculate_k_nn_binary(mat_monona_orig_train_w_ind, mat_monona_orig_train_no_ind,
+                           mat_monona_orig_val_w_ind, mat_monona_orig_val_no_ind, k)
+        print("Projected Data (3D):\n")
+        monona_proj_3d_ber_bin[k-1], monona_proj_3d_acc_bin[k-1] = \
+            calculate_k_nn_binary(mat_monona_orig_train_w_ind, mat_monona_proj_train_no_ind,
+                           mat_monona_orig_val_w_ind, mat_monona_proj_val_no_ind, k)
         print("===========================================================\n")
 
     plt.figure(1)
@@ -133,32 +184,74 @@ def main():
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Balanced Error Rate")
     plt.xlabel("k")
+    plt.xticks(np.arange(2, k_arr.shape[0]+1, 2))
     plt.title("K-NN Balanced Error Rate (BER) vs. k, Original Data (Summer only)")
-    plt.show()
+    plt.savefig(os.path.join(dest_path, "Original Data BER.png"))
 
     plt.figure(2)
     plt.plot(k_arr, all_data_proj_3d_ber, "r", k_arr, mendota_proj_3d_ber, "b", k_arr, monona_proj_3d_ber, "g")
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Balanced Error Rate")
     plt.xlabel("k")
+    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
     plt.title("K-NN Balanced Error Rate (BER) vs. k, 3D Projection (Summer only)")
-    plt.show()
+    plt.savefig(os.path.join(dest_path, "3D Projection BER.png"))
 
     plt.figure(3)
     plt.plot(k_arr, all_data_orig_acc, "r", k_arr, mendota_orig_acc, "b", k_arr, monona_orig_acc, "g")
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Accuracy")
     plt.xlabel("k")
+    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
     plt.title("K-NN Accuracy vs. k, Original Data (Summer only)")
-    plt.show()
+    plt.savefig(os.path.join(dest_path, "Original Data Accuracy.png"))
 
     plt.figure(4)
     plt.plot(k_arr, all_data_proj_3d_acc, "r", k_arr, mendota_proj_3d_acc, "b", k_arr, monona_proj_3d_acc, "g")
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Accuracy")
     plt.xlabel("k")
+    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
     plt.title("K-NN Accuracy vs. k, 3D Projection (Summer only)")
-    plt.show()
+    plt.savefig(os.path.join(dest_path, "3D Projection Accuracy.png"))
+
+    plt.figure(5)
+    plt.plot(k_arr, all_data_orig_ber_bin, "r", k_arr, mendota_orig_ber_bin, "b", k_arr, monona_orig_ber_bin, "g")
+    plt.legend(("All Data", "Mendota", "Monona"))
+    plt.ylabel("Balanced Error Rate")
+    plt.xlabel("k")
+    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.title("K-NN Balanced Error Rate (BER) vs. k, Original Data (Summer only) [Binary]")
+    plt.savefig(os.path.join(dest_path, "Original Data BER (Binary).png"))
+
+    plt.figure(6)
+    plt.plot(k_arr, all_data_proj_3d_ber_bin, "r", k_arr, mendota_proj_3d_ber_bin, "b", k_arr, 
+             monona_proj_3d_ber_bin, "g")
+    plt.legend(("All Data", "Mendota", "Monona"))
+    plt.ylabel("Balanced Error Rate")
+    plt.xlabel("k")
+    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.title("K-NN Balanced Error Rate (BER) vs. k, 3D Projection (Summer only) [Binary]")
+    plt.savefig(os.path.join(dest_path, "3D Projection BER (Binary).png"))
+
+    plt.figure(7)
+    plt.plot(k_arr, all_data_orig_acc_bin, "r", k_arr, mendota_orig_acc_bin, "b", k_arr, monona_orig_acc_bin, "g")
+    plt.legend(("All Data", "Mendota", "Monona"))
+    plt.ylabel("Accuracy")
+    plt.xlabel("k")
+    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.title("K-NN Accuracy vs. k, Original Data (Summer only) [Binary]")
+    plt.savefig(os.path.join(dest_path, "Original Data Accuracy (Binary).png"))
+
+    plt.figure(8)
+    plt.plot(k_arr, all_data_proj_3d_acc_bin, "r", k_arr, mendota_proj_3d_acc_bin, "b", k_arr,
+             monona_proj_3d_acc_bin, "g")
+    plt.legend(("All Data", "Mendota", "Monona"))
+    plt.ylabel("Accuracy")
+    plt.xlabel("k")
+    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.title("K-NN Accuracy vs. k, 3D Projection (Summer only) [Binary]")
+    plt.savefig(os.path.join(dest_path, "3D Projection Accuracy (Binary).png"))
 
 
 # This method creates and returns the validation set for a matrix, mat. The validation set consists of 20% of the data
@@ -349,5 +442,127 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     print("Accuracy:\t\t\t    ", accuracy, "\n")
 
     return ber, accuracy
+
+
+# NOTE: This method is nearly the same as calculate_k_nn. The only difference is that the two distinct algae bloom
+# types (blue-green and green) are grouped into one. In this way we have two options: no algae bloom or algae bloom.
+# Hence the use of the word "binary" in the method name.
+# This method predicts the labels for each point in the validation set, mat_val, used k-nearest neighbors in the
+# training dataset, mat_train. k is the number of neighbors checked for in mat_train. mat_train_w_ind and mat_w_ind
+# have the algae indicator included, whereas mat_val_no_ind and mat_train_no_ind do not. ber is the Balanced Error
+# Rate, and is returned from this method. accuracy is the accuracy of label predication, and is returned
+# from this method.
+def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_ind, k):
+    # 1. Create a matrix of L2-norms. For each column (x_val) in mat_val_no_ind, calculate || x_val - x_train ||^2,
+    # where x_train is every column in mat_train_no_ind. A row in l2_mat corresponds to a column in mat_val_no_ind,
+    # and a column in l2_mat corresponds to a column in mat_train_no_ind. For example,
+    # l2_mat[2, 5] = || x_val_2 - x_train ||^2
+    l2_mat = np.empty((mat_val_no_ind.shape[1], mat_train_no_ind.shape[1]), dtype=float)
+    for i in range(0, mat_val_no_ind.shape[1]):
+        for j in range(0, mat_train_no_ind.shape[1]):
+            l2_mat[i, j] = (np.linalg.norm(mat_val_no_ind[:, i] - mat_train_no_ind[:, j])) ** 2
+
+    # 2. Determine k-nn for each row in l2_mat. For each nearest neighbor we will need the column index from
+    # mat_train_no_ind and the label of the column from mat_train_no_ind.
+    # a. Get column indices from mat_train
+    k_nn_idx = np.empty((mat_val_no_ind.shape[1], k), dtype=int)
+    for i in range(0, mat_val_no_ind.shape[1]):
+        for j in range(0, k):
+            k_nn_idx[i, j] = np.argmin(l2_mat[i, :])
+            l2_mat[i, k_nn_idx[i, j]] = float("inf")
+
+    # b. Create a matrix containing the k-nearest neighbor label for each vector in mat_val. The rows correspond to
+    # the labels of each data point in mat_train_w_ind. The columns represent each of the k-nearest neighbors.
+    k_nn_labels = np.empty((mat_val_no_ind.shape[1], k))
+    for i in range(0, mat_val_no_ind.shape[1]):
+        for j in range(0, k):
+            k_nn_labels[i, j] = mat_train_w_ind[1, k_nn_idx[i, j]]
+
+    # 3. predict the label of each point in the validation set. In mat_train_w_ind, the algae bloom indicator is
+    # located in row index 1. The single most abundant label in the nearest neighbor of a data point will be stored in
+    # row index 1 of mat_val_label. This matrix will be an exact copy of mat_val_no_ind, except most of the rows will
+    # be shifted down to make room for the new row of labels. If there are ever the same number of labels among the
+    # different labels in the neighbors, the data point will get the label of whichever label is closet to the point.
+    # Additionally, the label chosen must be in the set of labels that has the same number of different labels.
+    num_no_alg = 0  # tally of number of data points in k-nn with no indication of algal bloom
+    num_w_alg = 0   # tally of number of data points in k-nn with algal bloom
+    label = 0       # label for data point
+    mat_val_label = np.insert(mat_val_no_ind, 1, 0, axis=0)
+    for i in range(0, mat_val_no_ind.shape[1]):
+        for j in range(0, k):
+            if k_nn_labels[i, j] == 0:
+                num_no_alg = num_no_alg + 1
+            elif k_nn_labels[i, j] == 0.5:
+                num_w_alg = num_w_alg + 1
+            elif k_nn_labels[i, j] == 1:
+                num_w_alg = num_w_alg + 1
+            else:
+                print("Error: Invalid algae indicator value for labeling!")
+
+        if num_no_alg > num_w_alg:
+            label = 0
+        elif num_w_alg > num_no_alg:
+            label = 1
+        elif num_no_alg == num_w_alg:
+            for l in range(0, k):
+                if k_nn_labels[i, l] == 0:
+                    label = 0
+                    break
+                elif (k_nn_labels[i, l] == 0.5) or (k_nn_labels[i, l] == 1):
+                    label = 1
+                    break
+
+        mat_val_label[1, i] = label
+
+        # reset tallies
+        num_no_alg = 0
+        num_w_alg = 0
+
+    # 4. Construct a confusion matrix, mat_conf. A confusion matrix consists of the true labels for the data points
+    # along its rows, and the predicted labels from k-nearest neighbors along its columns. The confusion matrix will
+    # necessary to calculate the balanced error rate (BER), accuracy, and other relevant errors for evaluation of the
+    # k-nn method. mat_conf is a 3x3 matrix because we only have three labels: no algae, blue-green algae, and green
+    # algae. Each entry in mat_conf is the sum of occurrences of each predicted label for each true label.
+    mat_conf = np.zeros((2, 2), dtype=int)
+
+    # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
+    for i in range(0, mat_val_w_ind.shape[1]):
+        if mat_val_w_ind[1, i] == 0:
+            if mat_val_label[1, i] == 0:
+                mat_conf[0, 0] = mat_conf[0, 0] + 1
+            elif mat_val_label[1, i] == 1:
+                mat_conf[0, 1] = mat_conf[0, 1] + 1
+        elif mat_val_w_ind[1, i] == 1:
+            if mat_val_label[1, i] == 0:
+                mat_conf[1, 0] = mat_conf[1, 0] + 1
+            elif mat_val_label[1, i] == 1:
+                mat_conf[1, 1] = mat_conf[1, 1] + 1
+
+    print("Confusion matrix:")
+    print(mat_conf)
+
+    # 5. Calculate relevant errors and accuracies
+    # Given a confusion matrix as follows:
+    # [ a b ]
+    # [ c d ]
+    # We can define the following equations:
+    # Balanced Error Rate (BER) = (b / (a + b) + c / (c + d)) / 2
+    # accuracy = (a + d) / (sum(C[i, j])), where C[i, j] is the [i, j] entry of the confusion matrix
+    # error per label = each of the terms in the numerator of BER. ex: b / (a + b)
+
+    ber = (mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1]) + mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])) / 2
+
+    no_alg_error = mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1])
+    w_alg_error = mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])
+
+    accuracy = (mat_conf[0, 0] + mat_conf[1, 1]) / (mat_conf.sum())
+
+    print("\nBalanced Error Rate (BER):\t    ", ber)
+    print("No Algae Label Error Rate:\t    ", no_alg_error)
+    print("With Algae Label Error Rate:\t    ", w_alg_error)
+    print("Accuracy:\t\t\t    ", accuracy, "\n")
+
+    return ber, accuracy
+
 
 if __name__ == "__main__": main()
