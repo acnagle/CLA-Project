@@ -59,8 +59,6 @@ dir_monona_summer_randn = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-
 mat_monona_summer_randn_w_ind_3d = csvread(strcat(dir_monona_summer_randn, 'Monona_summer_matrix_proj_randn_w-alg-ind_3d.csv'));
 mat_monona_summer_randn_no_ind_3d = csvread(strcat(dir_monona_summer_randn, 'Monona_summer_matrix_proj_randn_no-alg-ind_3d.csv'));
 
-
-
 dir_all_data_summer = '/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/projections/All_Data_summer_matrix/';
 mat_all_data_summer_norm = csvread('/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/All_Data_summer_matrix/All_Data_summer_matrix.csv');
 mat_all_data_summer_w_ind_3d = csvread(strcat(dir_all_data_summer, 'All_Data_summer_matrix_proj_w-alg-ind_3d.csv'));
@@ -76,6 +74,12 @@ mat_monona_all_data_summer_norm = csvread('/Users/Alliot/documents/cla-project/d
 mat_monona_all_data_summer_w_ind_3d = csvread(strcat(dir_monona_all_data_summer, 'Monona_All_Data_summer_matrix_proj_w-alg-ind_3d.csv'));
 mat_monona_all_data_summer_no_ind_3d = csvread(strcat(dir_monona_all_data_summer, 'Monona_All_Data_summer_matrix_proj_no-alg-ind_3d.csv'));
 
+%% PCA
+
+dir_pca = '/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/PCA/';
+pca_all_data = csvread(strcat(dir_pca, 'All_Data_summer_matrix_pca.csv'));
+pca_mendota = csvread(strcat(dir_pca, 'Mendota_All_Data_summer_matrix_pca.csv'));
+pca_monona = csvread(strcat(dir_pca, 'Monona_All_Data_summer_matrix_pca.csv'));
 
 %% Save variables to .mat folder
 

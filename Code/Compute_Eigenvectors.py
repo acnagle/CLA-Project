@@ -126,9 +126,9 @@ def get_eigenvectors(mat):
     w = w[idx]
     v = v[:, idx]
 
-    eigv1 = v[0]
-    eigv2 = v[1]
-    eigv3 = v[2]
+    eigv1 = v[:, 0]
+    eigv2 = v[:, 1]
+    eigv3 = v[:, 2]
     eigvals = w
 
     svdvals = np.diag(np.sqrt(w))

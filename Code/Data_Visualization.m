@@ -140,12 +140,12 @@ legend('no algae', 'blue-green algae', 'green algae')
 
 PCA_3D_algae_plot(no_alg_3d_all_data_summer_w_ind, bg_alg_3d_all_data_summer_w_ind, ...
     gr_alg_3d_all_data_summer_w_ind)
-title('All Data 3D, With Indicator')
+title('All Data Summer (June-August) 3D, With Indicator')
 legend('no algae', 'blue-green algae', 'green algae')
 
 PCA_3D_algae_plot(no_alg_3d_all_data_summer_no_ind, bg_alg_3d_all_data_summer_no_ind, ...
     gr_alg_3d_all_data_summer_no_ind)
-title('All Data 3D, No Indicator')
+title('All Data Summer (June-August) 3D, No Indicator')
 legend('no algae', 'blue-green algae', 'green algae')
 
 %% Plot All Data Mendota Points
