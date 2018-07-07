@@ -1,4 +1,8 @@
 %% Import matrices
+
+clear all
+close all
+
 % Directories
 % dir_2015 = '/Users/Alliot/documents/cla project/data/matrices-no-na/projections/2015_year_matrix/';
 % dir_2016 = '/Users/Alliot/documents/cla project/data/matrices-no-na/projections/2016_year_matrix/';

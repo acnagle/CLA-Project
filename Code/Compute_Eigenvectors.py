@@ -113,25 +113,33 @@ def matrix_str_to_float(mat, first, last):
 # of singular values
 def get_eigenvectors(mat):
     # compute the eigenvalues and store in w, and compute vectors and store them in v.
-    a = mat.dot(mat.T)
-    w, v = np.linalg.eig(a)
+    # a = mat.dot(mat.T)
+    # w, v = np.linalg.eig(a)
+    #
+    # w = np.around(w, decimals=10)
+    # v = np.around(v, decimals=10)
+    #
+    # w = np.real(w)
+    # v = np.real(v)
+    #
+    # idx = w.argsort()[::-1]
+    # w = w[idx]
+    # v = v[:, idx]
+    #
+    # eigv1 = v[:, 0]
+    # eigv2 = v[:, 1]
+    # eigv3 = v[:, 2]
+    # eigvals = w
+    #
+    # svdvals = np.diag(np.sqrt(w))
 
-    w = np.around(w, decimals=10)
-    v = np.around(v, decimals=10)
+    u, s, v = np.linalg.svd(mat, full_matrices=True)
 
-    w = np.real(w)
-    v = np.real(v)
+    eigv1 = u[:, 0]
+    eigv2 = u[:, 1]
+    eigv3 = u[:, 2]
 
-    idx = w.argsort()[::-1]
-    w = w[idx]
-    v = v[:, idx]
-
-    eigv1 = v[:, 0]
-    eigv2 = v[:, 1]
-    eigv3 = v[:, 2]
-    eigvals = w
-
-    svdvals = np.diag(np.sqrt(w))
+    eigvals = svdvals = np.diag(np.sqrt(s))
 
     return eigv1, eigv2, eigv3, eigvals, svdvals
 

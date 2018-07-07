@@ -46,11 +46,11 @@ def main():
     mat_mendota_pca = pca(mat_mendota)
     mat_monona_pca = pca(mat_monona)
 
-    print("Processing ", src_path_all_data[65:], " ...")
+    print("Processing file", src_path_all_data[65:], " ...")
     matrix_to_file(mat_all_data_pca, src_path_all_data[65:-4] + "_pca.csv", dest_path)
-    print("Processing ", src_path_mendota[65:], " ...")
+    print("Processing file", src_path_mendota[65:], " ...")
     matrix_to_file(mat_mendota_pca, src_path_mendota[65:-4] + "_pca.csv", dest_path)
-    print("Processing ", src_path_monona[65:], " ...")
+    print("Processing file", src_path_monona[65:], " ...")
     matrix_to_file(mat_monona_pca, src_path_monona[65:-4] + "_pca.csv", dest_path)
 
 
@@ -66,19 +66,22 @@ def pca(mat):
             mat_adj[i, j] = mat_adj[i, j] - mean[i]
 
     # 2. Calculate the covariance matrix
-    mat_cov = np.cov(mat_adj)
+    # mat_cov = np.cov(mat_adj)
+    #
+    # # 3. Calculate eigenvectors and eigenvalues of the covariance matrix
+    # w, v = np.linalg.eig(mat_cov)
+    #
+    # # Sort the eigenvalues from greatest to smallest and adjust eigenvectors accordingly
+    # idx = w.argsort()[::-1]
+    # w = w[idx]
+    # v = v[:, idx]
 
-    # 3. Calculate eigenvectors and eigenvalues of the covariance matrix
-    w, v = np.linalg.eig(mat_cov)
+    # Or, just calculate the SVD
+    u, s, v = np.linalg.svd(mat, full_matrices=True)
 
-    # Sort the eigenvalues from greatest to smallest and adjust eigenvectors accordingly
-    idx = w.argsort()[::-1]
-    w = w[idx]
-    v = v[:, idx]
-
-    # 4. Form a feature vector. Keep only the top three eigenvectors so PCA can be visualized in 3D. The feature vector
-    # is a vector of the eigenvectors
-    feat_vec = np.array([v[:, 0], v[:, 1], v[:, 2]])
+    # 4. Form a feature vector. Keep only the top three eigenvectors (singluar vectors) so PCA can be visualized in 3D.
+    # The feature vector is a vector of the eigenvectors (singluar vectors)
+    feat_vec = np.array([u[:, 0], u[:, 1], u[:, 2]])
 
     # 5. Put data in its final form.
     pca_data = np.dot(feat_vec, mat_adj)

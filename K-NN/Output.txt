@@ -24,15 +24,15 @@ Accuracy:			     0.926910299003
 Projected Data (3D):
 
 Confusion matrix:
-[[473   3  16]
+[[455   8  29]
  [ 10   4  10]
- [ 25  12  49]]
+ [ 44   8  34]]
 
-Balanced Error Rate (BER):	     0.434061259217
-No Algae Label Error Rate:	     0.0386178861789
+Balanced Error Rate (BER):	     0.504395916052
+No Algae Label Error Rate:	     0.0752032520325
 Blue-Green Algae Label Error Rate:   0.833333333333
-Green Label Error Rate:		     0.43023255814
-Accuracy:			     0.873754152824 
+Green Label Error Rate:		     0.604651162791
+Accuracy:			     0.818936877076 
 
 None vs. Algae
 
@@ -48,13 +48,13 @@ Accuracy:			     0.9723183391
 Projected Data (3D):
 
 Confusion matrix:
-[[473  19]
- [ 25  61]]
+[[455  37]
+ [ 44  42]]
 
-Balanced Error Rate (BER):	     0.164657780299
-No Algae Label Error Rate:	     0.0386178861789
-With Algae Label Error Rate:	     0.290697674419
-Accuracy:			     0.923875432526 
+Balanced Error Rate (BER):	     0.293415579505
+No Algae Label Error Rate:	     0.0752032520325
+With Algae Label Error Rate:	     0.511627906977
+Accuracy:			     0.859861591696 
 
 ===========================================================
 
@@ -78,15 +78,15 @@ Accuracy:			     0.942148760331
 Projected Data (3D):
 
 Confusion matrix:
-[[187   4  19]
- [  3   0   3]
- [ 15   2   9]]
+[[187   8  15]
+ [  4   1   1]
+ [ 19   2   5]]
 
-Balanced Error Rate (BER):	     0.58778998779
+Balanced Error Rate (BER):	     0.583516483516
 No Algae Label Error Rate:	     0.109523809524
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.653846153846
-Accuracy:			     0.809917355372 
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.807692307692
+Accuracy:			     0.797520661157 
 
 None vs. Algae
 
@@ -103,12 +103,12 @@ Projected Data (3D):
 
 Confusion matrix:
 [[187  23]
- [ 15  11]]
+ [ 19   7]]
 
-Balanced Error Rate (BER):	     0.343223443223
+Balanced Error Rate (BER):	     0.420146520147
 No Algae Label Error Rate:	     0.109523809524
-With Algae Label Error Rate:	     0.576923076923
-Accuracy:			     0.838983050847 
+With Algae Label Error Rate:	     0.730769230769
+Accuracy:			     0.822033898305 
 
 ===========================================================
 
@@ -132,15 +132,15 @@ Accuracy:			     0.918918918919
 Projected Data (3D):
 
 Confusion matrix:
-[[103   5  10]
- [  2   1   0]
- [ 14   2  11]]
+[[109   3   6]
+ [  1   0   2]
+ [ 16   2   9]]
 
-Balanced Error Rate (BER):	     0.462125967776
-No Algae Label Error Rate:	     0.127118644068
-Blue-Green Algae Label Error Rate:   0.666666666667
-Green Label Error Rate:		     0.592592592593
-Accuracy:			     0.777027027027 
+Balanced Error Rate (BER):	     0.580979284369
+No Algae Label Error Rate:	     0.0762711864407
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.666666666667
+Accuracy:			     0.797297297297 
 
 None vs. Algae
 
@@ -156,13 +156,13 @@ Accuracy:			     0.951724137931
 Projected Data (3D):
 
 Confusion matrix:
-[[103  15]
- [ 14  13]]
+[[109   9]
+ [ 16  11]]
 
-Balanced Error Rate (BER):	     0.322818581293
-No Algae Label Error Rate:	     0.127118644068
-With Algae Label Error Rate:	     0.518518518519
-Accuracy:			     0.8 
+Balanced Error Rate (BER):	     0.334431889517
+No Algae Label Error Rate:	     0.0762711864407
+With Algae Label Error Rate:	     0.592592592593
+Accuracy:			     0.827586206897 
 
 ===========================================================
 
@@ -189,15 +189,15 @@ Accuracy:			     0.926910299003
 Projected Data (3D):
 
 Confusion matrix:
-[[473   3  16]
+[[455   8  29]
  [ 10   4  10]
- [ 25  12  49]]
+ [ 44   8  34]]
 
-Balanced Error Rate (BER):	     0.434061259217
-No Algae Label Error Rate:	     0.0386178861789
+Balanced Error Rate (BER):	     0.504395916052
+No Algae Label Error Rate:	     0.0752032520325
 Blue-Green Algae Label Error Rate:   0.833333333333
-Green Label Error Rate:		     0.43023255814
-Accuracy:			     0.873754152824 
+Green Label Error Rate:		     0.604651162791
+Accuracy:			     0.818936877076 
 
 None vs. Algae
 
@@ -213,13 +213,13 @@ Accuracy:			     0.9723183391
 Projected Data (3D):
 
 Confusion matrix:
-[[473  19]
- [ 25  61]]
+[[455  37]
+ [ 44  42]]
 
-Balanced Error Rate (BER):	     0.164657780299
-No Algae Label Error Rate:	     0.0386178861789
-With Algae Label Error Rate:	     0.290697674419
-Accuracy:			     0.923875432526 
+Balanced Error Rate (BER):	     0.293415579505
+No Algae Label Error Rate:	     0.0752032520325
+With Algae Label Error Rate:	     0.511627906977
+Accuracy:			     0.859861591696 
 
 ===========================================================
 
@@ -243,15 +243,15 @@ Accuracy:			     0.942148760331
 Projected Data (3D):
 
 Confusion matrix:
-[[187   4  19]
- [  3   0   3]
- [ 15   2   9]]
+[[187   8  15]
+ [  4   1   1]
+ [ 19   2   5]]
 
-Balanced Error Rate (BER):	     0.58778998779
+Balanced Error Rate (BER):	     0.583516483516
 No Algae Label Error Rate:	     0.109523809524
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.653846153846
-Accuracy:			     0.809917355372 
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.807692307692
+Accuracy:			     0.797520661157 
 
 None vs. Algae
 
@@ -268,12 +268,12 @@ Projected Data (3D):
 
 Confusion matrix:
 [[187  23]
- [ 15  11]]
+ [ 19   7]]
 
-Balanced Error Rate (BER):	     0.343223443223
+Balanced Error Rate (BER):	     0.420146520147
 No Algae Label Error Rate:	     0.109523809524
-With Algae Label Error Rate:	     0.576923076923
-Accuracy:			     0.838983050847 
+With Algae Label Error Rate:	     0.730769230769
+Accuracy:			     0.822033898305 
 
 ===========================================================
 
@@ -297,15 +297,15 @@ Accuracy:			     0.918918918919
 Projected Data (3D):
 
 Confusion matrix:
-[[103   5  10]
- [  2   1   0]
- [ 14   2  11]]
+[[109   3   6]
+ [  1   0   2]
+ [ 16   2   9]]
 
-Balanced Error Rate (BER):	     0.462125967776
-No Algae Label Error Rate:	     0.127118644068
-Blue-Green Algae Label Error Rate:   0.666666666667
-Green Label Error Rate:		     0.592592592593
-Accuracy:			     0.777027027027 
+Balanced Error Rate (BER):	     0.580979284369
+No Algae Label Error Rate:	     0.0762711864407
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.666666666667
+Accuracy:			     0.797297297297 
 
 None vs. Algae
 
@@ -321,13 +321,13 @@ Accuracy:			     0.951724137931
 Projected Data (3D):
 
 Confusion matrix:
-[[103  15]
- [ 14  13]]
+[[109   9]
+ [ 16  11]]
 
-Balanced Error Rate (BER):	     0.322818581293
-No Algae Label Error Rate:	     0.127118644068
-With Algae Label Error Rate:	     0.518518518519
-Accuracy:			     0.8 
+Balanced Error Rate (BER):	     0.334431889517
+No Algae Label Error Rate:	     0.0762711864407
+With Algae Label Error Rate:	     0.592592592593
+Accuracy:			     0.827586206897 
 
 ===========================================================
 
@@ -354,15 +354,15 @@ Accuracy:			     0.928571428571
 Projected Data (3D):
 
 Confusion matrix:
-[[482   0  10]
+[[469   3  20]
  [  8   4  12]
- [ 21  12  53]]
+ [ 40  12  34]]
 
-Balanced Error Rate (BER):	     0.412459822273
-No Algae Label Error Rate:	     0.020325203252
+Balanced Error Rate (BER):	     0.494910821201
+No Algae Label Error Rate:	     0.0467479674797
 Blue-Green Algae Label Error Rate:   0.833333333333
-Green Label Error Rate:		     0.383720930233
-Accuracy:			     0.895348837209 
+Green Label Error Rate:		     0.604651162791
+Accuracy:			     0.84219269103 
 
 None vs. Algae
 
@@ -378,13 +378,13 @@ Accuracy:			     0.977508650519
 Projected Data (3D):
 
 Confusion matrix:
-[[482  10]
- [ 19  67]]
+[[469  23]
+ [ 35  51]]
 
-Balanced Error Rate (BER):	     0.120627717905
-No Algae Label Error Rate:	     0.020325203252
-With Algae Label Error Rate:	     0.220930232558
-Accuracy:			     0.949826989619 
+Balanced Error Rate (BER):	     0.226862355833
+No Algae Label Error Rate:	     0.0467479674797
+With Algae Label Error Rate:	     0.406976744186
+Accuracy:			     0.899653979239 
 
 ===========================================================
 
@@ -408,15 +408,15 @@ Accuracy:			     0.942148760331
 Projected Data (3D):
 
 Confusion matrix:
-[[200   3   7]
- [  4   1   1]
- [ 17   1   8]]
+[[200   6   4]
+ [  3   1   2]
+ [ 20   1   5]]
 
-Balanced Error Rate (BER):	     0.52442002442
+Balanced Error Rate (BER):	     0.562881562882
 No Algae Label Error Rate:	     0.047619047619
 Blue-Green Algae Label Error Rate:   0.833333333333
-Green Label Error Rate:		     0.692307692308
-Accuracy:			     0.863636363636 
+Green Label Error Rate:		     0.807692307692
+Accuracy:			     0.851239669421 
 
 None vs. Algae
 
@@ -432,13 +432,13 @@ Accuracy:			     0.974576271186
 Projected Data (3D):
 
 Confusion matrix:
-[[199  11]
- [ 15  11]]
+[[200  10]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.314652014652
-No Algae Label Error Rate:	     0.052380952381
-With Algae Label Error Rate:	     0.576923076923
-Accuracy:			     0.889830508475 
+Balanced Error Rate (BER):	     0.408424908425
+No Algae Label Error Rate:	     0.047619047619
+With Algae Label Error Rate:	     0.769230769231
+Accuracy:			     0.872881355932 
 
 ===========================================================
 
@@ -462,15 +462,15 @@ Accuracy:			     0.925675675676
 Projected Data (3D):
 
 Confusion matrix:
-[[112   2   4]
- [  2   1   0]
- [ 19   2   6]]
+[[114   1   3]
+ [  1   0   2]
+ [ 16   3   8]]
 
-Balanced Error Rate (BER):	     0.498430634024
-No Algae Label Error Rate:	     0.0508474576271
-Blue-Green Algae Label Error Rate:   0.666666666667
-Green Label Error Rate:		     0.777777777778
-Accuracy:			     0.804054054054 
+Balanced Error Rate (BER):	     0.579200669596
+No Algae Label Error Rate:	     0.0338983050847
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.824324324324 
 
 None vs. Algae
 
@@ -486,13 +486,13 @@ Accuracy:			     0.944827586207
 Projected Data (3D):
 
 Confusion matrix:
-[[112   6]
- [ 18   9]]
+[[114   4]
+ [ 14  13]]
 
-Balanced Error Rate (BER):	     0.358757062147
-No Algae Label Error Rate:	     0.0508474576271
-With Algae Label Error Rate:	     0.666666666667
-Accuracy:			     0.834482758621 
+Balanced Error Rate (BER):	     0.276208411802
+No Algae Label Error Rate:	     0.0338983050847
+With Algae Label Error Rate:	     0.518518518519
+Accuracy:			     0.875862068966 
 
 ===========================================================
 
@@ -519,15 +519,15 @@ Accuracy:			     0.936877076412
 Projected Data (3D):
 
 Confusion matrix:
-[[481   0  11]
- [  9   2  13]
- [ 24  12  50]]
+[[468   5  19]
+ [  9   4  11]
+ [ 42  10  34]]
 
-Balanced Error Rate (BER):	     0.452543013802
-No Algae Label Error Rate:	     0.0223577235772
-Blue-Green Algae Label Error Rate:   0.916666666667
-Green Label Error Rate:		     0.418604651163
-Accuracy:			     0.885382059801 
+Balanced Error Rate (BER):	     0.495588327976
+No Algae Label Error Rate:	     0.0487804878049
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.604651162791
+Accuracy:			     0.840531561462 
 
 None vs. Algae
 
@@ -543,13 +543,13 @@ Accuracy:			     0.975778546713
 Projected Data (3D):
 
 Confusion matrix:
-[[481  11]
- [ 22  64]]
+[[468  24]
+ [ 40  46]]
 
-Balanced Error Rate (BER):	     0.139085838533
-No Algae Label Error Rate:	     0.0223577235772
-With Algae Label Error Rate:	     0.255813953488
-Accuracy:			     0.942906574394 
+Balanced Error Rate (BER):	     0.256948383437
+No Algae Label Error Rate:	     0.0487804878049
+With Algae Label Error Rate:	     0.46511627907
+Accuracy:			     0.889273356401 
 
 ===========================================================
 
@@ -573,15 +573,15 @@ Accuracy:			     0.95041322314
 Projected Data (3D):
 
 Confusion matrix:
-[[197   3  10]
- [  2   1   3]
- [ 16   1   9]]
+[[203   4   3]
+ [  5   0   1]
+ [ 21   0   5]]
 
-Balanced Error Rate (BER):	     0.516361416361
-No Algae Label Error Rate:	     0.0619047619048
-Blue-Green Algae Label Error Rate:   0.833333333333
-Green Label Error Rate:		     0.653846153846
-Accuracy:			     0.855371900826 
+Balanced Error Rate (BER):	     0.613675213675
+No Algae Label Error Rate:	     0.0333333333333
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.807692307692
+Accuracy:			     0.859504132231 
 
 None vs. Algae
 
@@ -597,13 +597,13 @@ Accuracy:			     0.983050847458
 Projected Data (3D):
 
 Confusion matrix:
-[[197  13]
- [ 15  11]]
+[[201   9]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.319413919414
-No Algae Label Error Rate:	     0.0619047619048
-With Algae Label Error Rate:	     0.576923076923
-Accuracy:			     0.881355932203 
+Balanced Error Rate (BER):	     0.406043956044
+No Algae Label Error Rate:	     0.0428571428571
+With Algae Label Error Rate:	     0.769230769231
+Accuracy:			     0.877118644068 
 
 ===========================================================
 
@@ -627,15 +627,15 @@ Accuracy:			     0.939189189189
 Projected Data (3D):
 
 Confusion matrix:
-[[112   2   4]
- [  2   1   0]
- [ 19   1   7]]
+[[114   1   3]
+ [  1   0   2]
+ [ 17   1   9]]
 
-Balanced Error Rate (BER):	     0.486084955012
-No Algae Label Error Rate:	     0.0508474576271
-Blue-Green Algae Label Error Rate:   0.666666666667
-Green Label Error Rate:		     0.740740740741
-Accuracy:			     0.810810810811 
+Balanced Error Rate (BER):	     0.566854990584
+No Algae Label Error Rate:	     0.0338983050847
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.666666666667
+Accuracy:			     0.831081081081 
 
 None vs. Algae
 
@@ -651,13 +651,13 @@ Accuracy:			     0.951724137931
 Projected Data (3D):
 
 Confusion matrix:
-[[111   7]
- [ 17  10]]
+[[113   5]
+ [ 16  11]]
 
-Balanced Error Rate (BER):	     0.344475831764
-No Algae Label Error Rate:	     0.0593220338983
-With Algae Label Error Rate:	     0.62962962963
-Accuracy:			     0.834482758621 
+Balanced Error Rate (BER):	     0.317482736974
+No Algae Label Error Rate:	     0.0423728813559
+With Algae Label Error Rate:	     0.592592592593
+Accuracy:			     0.855172413793 
 
 ===========================================================
 
@@ -684,15 +684,15 @@ Accuracy:			     0.936877076412
 Projected Data (3D):
 
 Confusion matrix:
-[[486   0   6]
- [ 10   2  12]
- [ 27   6  53]]
+[[469   4  19]
+ [  9   5  10]
+ [ 39   7  40]]
 
-Balanced Error Rate (BER):	     0.43752757295
-No Algae Label Error Rate:	     0.0121951219512
-Blue-Green Algae Label Error Rate:   0.916666666667
-Green Label Error Rate:		     0.383720930233
-Accuracy:			     0.898671096346 
+Balanced Error Rate (BER):	     0.457766118359
+No Algae Label Error Rate:	     0.0467479674797
+Blue-Green Algae Label Error Rate:   0.791666666667
+Green Label Error Rate:		     0.53488372093
+Accuracy:			     0.853820598007 
 
 None vs. Algae
 
@@ -708,13 +708,13 @@ Accuracy:			     0.975778546713
 Projected Data (3D):
 
 Confusion matrix:
-[[486   6]
- [ 24  62]]
+[[469  23]
+ [ 36  50]]
 
-Balanced Error Rate (BER):	     0.145632444697
-No Algae Label Error Rate:	     0.0121951219512
-With Algae Label Error Rate:	     0.279069767442
-Accuracy:			     0.948096885813 
+Balanced Error Rate (BER):	     0.232676309321
+No Algae Label Error Rate:	     0.0467479674797
+With Algae Label Error Rate:	     0.418604651163
+Accuracy:			     0.897923875433 
 
 ===========================================================
 
@@ -738,15 +738,15 @@ Accuracy:			     0.95867768595
 Projected Data (3D):
 
 Confusion matrix:
-[[200   2   8]
- [  3   1   2]
- [ 15   1  10]]
+[[205   4   1]
+ [  4   1   1]
+ [ 20   0   6]]
 
-Balanced Error Rate (BER):	     0.498778998779
-No Algae Label Error Rate:	     0.047619047619
+Balanced Error Rate (BER):	     0.542124542125
+No Algae Label Error Rate:	     0.0238095238095
 Blue-Green Algae Label Error Rate:   0.833333333333
-Green Label Error Rate:		     0.615384615385
-Accuracy:			     0.871900826446 
+Green Label Error Rate:		     0.769230769231
+Accuracy:			     0.876033057851 
 
 None vs. Algae
 
@@ -762,13 +762,13 @@ Accuracy:			     0.991525423729
 Projected Data (3D):
 
 Confusion matrix:
-[[197  13]
- [ 14  12]]
+[[204   6]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.300183150183
-No Algae Label Error Rate:	     0.0619047619048
-With Algae Label Error Rate:	     0.538461538462
-Accuracy:			     0.885593220339 
+Balanced Error Rate (BER):	     0.398901098901
+No Algae Label Error Rate:	     0.0285714285714
+With Algae Label Error Rate:	     0.769230769231
+Accuracy:			     0.889830508475 
 
 ===========================================================
 
@@ -792,15 +792,15 @@ Accuracy:			     0.932432432432
 Projected Data (3D):
 
 Confusion matrix:
-[[113   1   4]
- [  2   1   0]
+[[112   2   4]
+ [  1   0   2]
  [ 19   1   7]]
 
-Balanced Error Rate (BER):	     0.483260096254
-No Algae Label Error Rate:	     0.0423728813559
-Blue-Green Algae Label Error Rate:   0.666666666667
+Balanced Error Rate (BER):	     0.597196066123
+No Algae Label Error Rate:	     0.0508474576271
+Blue-Green Algae Label Error Rate:   1.0
 Green Label Error Rate:		     0.740740740741
-Accuracy:			     0.817567567568 
+Accuracy:			     0.804054054054 
 
 None vs. Algae
 
@@ -816,13 +816,13 @@ Accuracy:			     0.958620689655
 Projected Data (3D):
 
 Confusion matrix:
-[[113   5]
- [ 19   8]]
+[[112   6]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.37303829253
-No Algae Label Error Rate:	     0.0423728813559
-With Algae Label Error Rate:	     0.703703703704
-Accuracy:			     0.834482758621 
+Balanced Error Rate (BER):	     0.340238543628
+No Algae Label Error Rate:	     0.0508474576271
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.841379310345 
 
 ===========================================================
 
@@ -849,15 +849,15 @@ Accuracy:			     0.93853820598
 Projected Data (3D):
 
 Confusion matrix:
-[[486   0   6]
- [  9   1  14]
- [ 26   6  54]]
+[[471   2  19]
+ [ 11   2  11]
+ [ 44   5  37]]
 
-Balanced Error Rate (BER):	     0.447540492847
-No Algae Label Error Rate:	     0.0121951219512
-Blue-Green Algae Label Error Rate:   0.958333333333
-Green Label Error Rate:		     0.372093023256
-Accuracy:			     0.898671096346 
+Balanced Error Rate (BER):	     0.509705678452
+No Algae Label Error Rate:	     0.0426829268293
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.56976744186
+Accuracy:			     0.847176079734 
 
 None vs. Algae
 
@@ -873,13 +873,13 @@ Accuracy:			     0.977508650519
 Projected Data (3D):
 
 Confusion matrix:
-[[485   7]
- [ 26  60]]
+[[469  23]
+ [ 39  47]]
 
-Balanced Error Rate (BER):	     0.158276611836
-No Algae Label Error Rate:	     0.0142276422764
-With Algae Label Error Rate:	     0.302325581395
-Accuracy:			     0.942906574394 
+Balanced Error Rate (BER):	     0.250118169786
+No Algae Label Error Rate:	     0.0467479674797
+With Algae Label Error Rate:	     0.453488372093
+Accuracy:			     0.892733564014 
 
 ===========================================================
 
@@ -903,15 +903,15 @@ Accuracy:			     0.946280991736
 Projected Data (3D):
 
 Confusion matrix:
-[[201   3   6]
- [  3   0   3]
- [ 15   1  10]]
+[[204   4   2]
+ [  5   0   1]
+ [ 20   1   5]]
 
-Balanced Error Rate (BER):	     0.552747252747
-No Algae Label Error Rate:	     0.0428571428571
+Balanced Error Rate (BER):	     0.612087912088
+No Algae Label Error Rate:	     0.0285714285714
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.615384615385
-Accuracy:			     0.871900826446 
+Green Label Error Rate:		     0.807692307692
+Accuracy:			     0.863636363636 
 
 None vs. Algae
 
@@ -927,13 +927,13 @@ Accuracy:			     0.991525423729
 Projected Data (3D):
 
 Confusion matrix:
-[[199  11]
- [ 15  11]]
+[[203   7]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.314652014652
-No Algae Label Error Rate:	     0.052380952381
-With Algae Label Error Rate:	     0.576923076923
-Accuracy:			     0.889830508475 
+Balanced Error Rate (BER):	     0.401282051282
+No Algae Label Error Rate:	     0.0333333333333
+With Algae Label Error Rate:	     0.769230769231
+Accuracy:			     0.885593220339 
 
 ===========================================================
 
@@ -957,15 +957,15 @@ Accuracy:			     0.925675675676
 Projected Data (3D):
 
 Confusion matrix:
-[[114   1   3]
- [  2   1   0]
- [ 20   0   7]]
+[[113   1   4]
+ [  1   0   2]
+ [ 19   1   7]]
 
-Balanced Error Rate (BER):	     0.480435237497
-No Algae Label Error Rate:	     0.0338983050847
-Blue-Green Algae Label Error Rate:   0.666666666667
+Balanced Error Rate (BER):	     0.594371207366
+No Algae Label Error Rate:	     0.0423728813559
+Blue-Green Algae Label Error Rate:   1.0
 Green Label Error Rate:		     0.740740740741
-Accuracy:			     0.824324324324 
+Accuracy:			     0.810810810811 
 
 None vs. Algae
 
@@ -981,12 +981,12 @@ Accuracy:			     0.951724137931
 Projected Data (3D):
 
 Confusion matrix:
-[[113   5]
- [ 18   9]]
+[[112   6]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.354519774011
-No Algae Label Error Rate:	     0.0423728813559
-With Algae Label Error Rate:	     0.666666666667
+Balanced Error Rate (BER):	     0.340238543628
+No Algae Label Error Rate:	     0.0508474576271
+With Algae Label Error Rate:	     0.62962962963
 Accuracy:			     0.841379310345 
 
 ===========================================================
@@ -1014,15 +1014,15 @@ Accuracy:			     0.933554817276
 Projected Data (3D):
 
 Confusion matrix:
-[[485   0   7]
- [  9   1  14]
- [ 25   5  56]]
+[[471   2  19]
+ [ 11   2  11]
+ [ 40   3  43]]
 
-Balanced Error Rate (BER):	     0.440466061637
-No Algae Label Error Rate:	     0.0142276422764
-Blue-Green Algae Label Error Rate:   0.958333333333
-Green Label Error Rate:		     0.348837209302
-Accuracy:			     0.900332225914 
+Balanced Error Rate (BER):	     0.486449864499
+No Algae Label Error Rate:	     0.0426829268293
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.5
+Accuracy:			     0.857142857143 
 
 None vs. Algae
 
@@ -1038,13 +1038,13 @@ Accuracy:			     0.977508650519
 Projected Data (3D):
 
 Confusion matrix:
-[[484   8]
- [ 25  61]]
+[[471  21]
+ [ 39  47]]
 
-Balanced Error Rate (BER):	     0.15347891851
-No Algae Label Error Rate:	     0.0162601626016
-With Algae Label Error Rate:	     0.290697674419
-Accuracy:			     0.942906574394 
+Balanced Error Rate (BER):	     0.248085649461
+No Algae Label Error Rate:	     0.0426829268293
+With Algae Label Error Rate:	     0.453488372093
+Accuracy:			     0.896193771626 
 
 ===========================================================
 
@@ -1068,15 +1068,15 @@ Accuracy:			     0.946280991736
 Projected Data (3D):
 
 Confusion matrix:
-[[202   1   7]
- [  3   0   3]
- [ 17   1   8]]
+[[206   3   1]
+ [  5   0   1]
+ [ 21   0   5]]
 
-Balanced Error Rate (BER):	     0.576800976801
-No Algae Label Error Rate:	     0.0380952380952
+Balanced Error Rate (BER):	     0.608913308913
+No Algae Label Error Rate:	     0.0190476190476
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.692307692308
-Accuracy:			     0.867768595041 
+Green Label Error Rate:		     0.807692307692
+Accuracy:			     0.871900826446 
 
 None vs. Algae
 
@@ -1092,12 +1092,12 @@ Accuracy:			     0.983050847458
 Projected Data (3D):
 
 Confusion matrix:
-[[201   9]
- [ 16  10]]
+[[205   5]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.329120879121
-No Algae Label Error Rate:	     0.0428571428571
-With Algae Label Error Rate:	     0.615384615385
+Balanced Error Rate (BER):	     0.39652014652
+No Algae Label Error Rate:	     0.0238095238095
+With Algae Label Error Rate:	     0.769230769231
 Accuracy:			     0.89406779661 
 
 ===========================================================
@@ -1122,14 +1122,14 @@ Accuracy:			     0.918918918919
 Projected Data (3D):
 
 Confusion matrix:
-[[113   1   4]
- [  2   1   0]
- [ 20   0   7]]
+[[113   0   5]
+ [  1   0   2]
+ [ 18   1   8]]
 
-Balanced Error Rate (BER):	     0.483260096254
+Balanced Error Rate (BER):	     0.582025528353
 No Algae Label Error Rate:	     0.0423728813559
-Blue-Green Algae Label Error Rate:   0.666666666667
-Green Label Error Rate:		     0.740740740741
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.703703703704
 Accuracy:			     0.817567567568 
 
 None vs. Algae
@@ -1146,13 +1146,13 @@ Accuracy:			     0.944827586207
 Projected Data (3D):
 
 Confusion matrix:
-[[112   6]
- [ 19   8]]
+[[113   5]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.377275580665
-No Algae Label Error Rate:	     0.0508474576271
-With Algae Label Error Rate:	     0.703703703704
-Accuracy:			     0.827586206897 
+Balanced Error Rate (BER):	     0.336001255493
+No Algae Label Error Rate:	     0.0423728813559
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.848275862069 
 
 ===========================================================
 
@@ -1179,15 +1179,15 @@ Accuracy:			     0.93853820598
 Projected Data (3D):
 
 Confusion matrix:
-[[485   0   7]
- [ 10   1  13]
- [ 25   3  58]]
+[[473   2  17]
+ [ 11   2  11]
+ [ 41   4  41]]
 
-Balanced Error Rate (BER):	     0.432714123653
-No Algae Label Error Rate:	     0.0142276422764
-Blue-Green Algae Label Error Rate:   0.958333333333
-Green Label Error Rate:		     0.325581395349
-Accuracy:			     0.90365448505 
+Balanced Error Rate (BER):	     0.492846788933
+No Algae Label Error Rate:	     0.0386178861789
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.523255813953
+Accuracy:			     0.857142857143 
 
 None vs. Algae
 
@@ -1203,13 +1203,13 @@ Accuracy:			     0.977508650519
 Projected Data (3D):
 
 Confusion matrix:
-[[485   7]
- [ 24  62]]
+[[472  20]
+ [ 38  48]]
 
-Balanced Error Rate (BER):	     0.146648704859
-No Algae Label Error Rate:	     0.0142276422764
-With Algae Label Error Rate:	     0.279069767442
-Accuracy:			     0.946366782007 
+Balanced Error Rate (BER):	     0.24125543581
+No Algae Label Error Rate:	     0.0406504065041
+With Algae Label Error Rate:	     0.441860465116
+Accuracy:			     0.899653979239 
 
 ===========================================================
 
@@ -1233,14 +1233,14 @@ Accuracy:			     0.95041322314
 Projected Data (3D):
 
 Confusion matrix:
-[[203   1   6]
- [  3   0   3]
- [ 18   0   8]]
+[[206   3   1]
+ [  5   0   1]
+ [ 21   0   5]]
 
-Balanced Error Rate (BER):	     0.575213675214
-No Algae Label Error Rate:	     0.0333333333333
+Balanced Error Rate (BER):	     0.608913308913
+No Algae Label Error Rate:	     0.0190476190476
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.692307692308
+Green Label Error Rate:		     0.807692307692
 Accuracy:			     0.871900826446 
 
 None vs. Algae
@@ -1257,12 +1257,12 @@ Accuracy:			     0.991525423729
 Projected Data (3D):
 
 Confusion matrix:
-[[201   9]
- [ 16  10]]
+[[205   5]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.329120879121
-No Algae Label Error Rate:	     0.0428571428571
-With Algae Label Error Rate:	     0.615384615385
+Balanced Error Rate (BER):	     0.39652014652
+No Algae Label Error Rate:	     0.0238095238095
+With Algae Label Error Rate:	     0.769230769231
 Accuracy:			     0.89406779661 
 
 ===========================================================
@@ -1287,15 +1287,15 @@ Accuracy:			     0.912162162162
 Projected Data (3D):
 
 Confusion matrix:
-[[114   1   3]
- [  2   1   0]
- [ 19   0   8]]
+[[114   0   4]
+ [  1   0   2]
+ [ 20   0   7]]
 
-Balanced Error Rate (BER):	     0.468089558485
+Balanced Error Rate (BER):	     0.591546348608
 No Algae Label Error Rate:	     0.0338983050847
-Blue-Green Algae Label Error Rate:   0.666666666667
-Green Label Error Rate:		     0.703703703704
-Accuracy:			     0.831081081081 
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.740740740741
+Accuracy:			     0.817567567568 
 
 None vs. Algae
 
@@ -1344,15 +1344,15 @@ Accuracy:			     0.931893687708
 Projected Data (3D):
 
 Confusion matrix:
-[[485   0   7]
- [  9   0  15]
- [ 26   3  57]]
+[[473   0  19]
+ [ 11   2  11]
+ [ 42   5  39]]
 
-Balanced Error Rate (BER):	     0.450478981534
-No Algae Label Error Rate:	     0.0142276422764
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.337209302326
-Accuracy:			     0.900332225914 
+Balanced Error Rate (BER):	     0.500598726918
+No Algae Label Error Rate:	     0.0386178861789
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.546511627907
+Accuracy:			     0.853820598007 
 
 None vs. Algae
 
@@ -1368,13 +1368,13 @@ Accuracy:			     0.975778546713
 Projected Data (3D):
 
 Confusion matrix:
-[[483   9]
- [ 24  62]]
+[[471  21]
+ [ 35  51]]
 
-Balanced Error Rate (BER):	     0.148681225184
-No Algae Label Error Rate:	     0.0182926829268
-With Algae Label Error Rate:	     0.279069767442
-Accuracy:			     0.942906574394 
+Balanced Error Rate (BER):	     0.224829835508
+No Algae Label Error Rate:	     0.0426829268293
+With Algae Label Error Rate:	     0.406976744186
+Accuracy:			     0.903114186851 
 
 ===========================================================
 
@@ -1398,15 +1398,15 @@ Accuracy:			     0.942148760331
 Projected Data (3D):
 
 Confusion matrix:
-[[204   1   5]
- [  4   0   2]
- [ 17   0   9]]
+[[207   3   0]
+ [  5   0   1]
+ [ 21   0   5]]
 
-Balanced Error Rate (BER):	     0.560805860806
-No Algae Label Error Rate:	     0.0285714285714
+Balanced Error Rate (BER):	     0.607326007326
+No Algae Label Error Rate:	     0.0142857142857
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.653846153846
-Accuracy:			     0.880165289256 
+Green Label Error Rate:		     0.807692307692
+Accuracy:			     0.876033057851 
 
 None vs. Algae
 
@@ -1422,13 +1422,13 @@ Accuracy:			     0.983050847458
 Projected Data (3D):
 
 Confusion matrix:
-[[200  10]
- [ 17   9]]
+[[205   5]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.350732600733
-No Algae Label Error Rate:	     0.047619047619
-With Algae Label Error Rate:	     0.653846153846
-Accuracy:			     0.885593220339 
+Balanced Error Rate (BER):	     0.39652014652
+No Algae Label Error Rate:	     0.0238095238095
+With Algae Label Error Rate:	     0.769230769231
+Accuracy:			     0.89406779661 
 
 ===========================================================
 
@@ -1452,15 +1452,15 @@ Accuracy:			     0.918918918919
 Projected Data (3D):
 
 Confusion matrix:
-[[113   1   4]
- [  2   1   0]
- [ 19   0   8]]
+[[113   0   5]
+ [  1   0   2]
+ [ 20   0   7]]
 
-Balanced Error Rate (BER):	     0.470914417242
+Balanced Error Rate (BER):	     0.594371207366
 No Algae Label Error Rate:	     0.0423728813559
-Blue-Green Algae Label Error Rate:   0.666666666667
-Green Label Error Rate:		     0.703703703704
-Accuracy:			     0.824324324324 
+Blue-Green Algae Label Error Rate:   1.0
+Green Label Error Rate:		     0.740740740741
+Accuracy:			     0.810810810811 
 
 None vs. Algae
 
@@ -1476,13 +1476,13 @@ Accuracy:			     0.951724137931
 Projected Data (3D):
 
 Confusion matrix:
-[[112   6]
- [ 19   8]]
+[[113   5]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.377275580665
-No Algae Label Error Rate:	     0.0508474576271
-With Algae Label Error Rate:	     0.703703703704
-Accuracy:			     0.827586206897 
+Balanced Error Rate (BER):	     0.336001255493
+No Algae Label Error Rate:	     0.0423728813559
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.848275862069 
 
 ===========================================================
 
@@ -1509,15 +1509,15 @@ Accuracy:			     0.933554817276
 Projected Data (3D):
 
 Confusion matrix:
-[[486   0   6]
- [  9   0  15]
- [ 26   2  58]]
+[[475   0  17]
+ [ 11   2  11]
+ [ 43   2  41]]
 
-Balanced Error Rate (BER):	     0.445925505767
-No Algae Label Error Rate:	     0.0121951219512
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.325581395349
-Accuracy:			     0.90365448505 
+Balanced Error Rate (BER):	     0.491491775383
+No Algae Label Error Rate:	     0.0345528455285
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.523255813953
+Accuracy:			     0.860465116279 
 
 None vs. Algae
 
@@ -1533,13 +1533,13 @@ Accuracy:			     0.974048442907
 Projected Data (3D):
 
 Confusion matrix:
-[[485   7]
- [ 24  62]]
+[[473  19]
+ [ 38  48]]
 
-Balanced Error Rate (BER):	     0.146648704859
-No Algae Label Error Rate:	     0.0142276422764
-With Algae Label Error Rate:	     0.279069767442
-Accuracy:			     0.946366782007 
+Balanced Error Rate (BER):	     0.240239175648
+No Algae Label Error Rate:	     0.0386178861789
+With Algae Label Error Rate:	     0.441860465116
+Accuracy:			     0.901384083045 
 
 ===========================================================
 
@@ -1563,15 +1563,15 @@ Accuracy:			     0.946280991736
 Projected Data (3D):
 
 Confusion matrix:
-[[205   1   4]
- [  4   0   2]
- [ 17   0   9]]
+[[207   3   0]
+ [  4   1   1]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.559218559219
-No Algae Label Error Rate:	     0.0238095238095
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.653846153846
-Accuracy:			     0.884297520661 
+Balanced Error Rate (BER):	     0.564590964591
+No Algae Label Error Rate:	     0.0142857142857
+Blue-Green Algae Label Error Rate:   0.833333333333
+Green Label Error Rate:		     0.846153846154
+Accuracy:			     0.876033057851 
 
 None vs. Algae
 
@@ -1587,13 +1587,13 @@ Accuracy:			     0.987288135593
 Projected Data (3D):
 
 Confusion matrix:
-[[200  10]
- [ 16  10]]
+[[206   4]
+ [ 21   5]]
 
-Balanced Error Rate (BER):	     0.331501831502
-No Algae Label Error Rate:	     0.047619047619
-With Algae Label Error Rate:	     0.615384615385
-Accuracy:			     0.889830508475 
+Balanced Error Rate (BER):	     0.41336996337
+No Algae Label Error Rate:	     0.0190476190476
+With Algae Label Error Rate:	     0.807692307692
+Accuracy:			     0.89406779661 
 
 ===========================================================
 
@@ -1617,15 +1617,15 @@ Accuracy:			     0.925675675676
 Projected Data (3D):
 
 Confusion matrix:
-[[115   0   3]
- [  3   0   0]
+[[114   0   4]
+ [  1   0   2]
  [ 20   0   7]]
 
-Balanced Error Rate (BER):	     0.588721489851
-No Algae Label Error Rate:	     0.0254237288136
+Balanced Error Rate (BER):	     0.591546348608
+No Algae Label Error Rate:	     0.0338983050847
 Blue-Green Algae Label Error Rate:   1.0
 Green Label Error Rate:		     0.740740740741
-Accuracy:			     0.824324324324 
+Accuracy:			     0.817567567568 
 
 None vs. Algae
 
@@ -1642,12 +1642,12 @@ Projected Data (3D):
 
 Confusion matrix:
 [[114   4]
- [ 19   8]]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.368801004394
+Balanced Error Rate (BER):	     0.331763967357
 No Algae Label Error Rate:	     0.0338983050847
-With Algae Label Error Rate:	     0.703703703704
-Accuracy:			     0.841379310345 
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.855172413793 
 
 ===========================================================
 
@@ -1674,15 +1674,15 @@ Accuracy:			     0.928571428571
 Projected Data (3D):
 
 Confusion matrix:
-[[484   0   8]
- [  9   0  15]
- [ 29   2  55]]
+[[477   0  15]
+ [ 11   1  12]
+ [ 44   2  40]]
 
-Balanced Error Rate (BER):	     0.458908426294
-No Algae Label Error Rate:	     0.0162601626016
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.360465116279
-Accuracy:			     0.895348837209 
+Balanced Error Rate (BER):	     0.507901619714
+No Algae Label Error Rate:	     0.030487804878
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.53488372093
+Accuracy:			     0.860465116279 
 
 None vs. Algae
 
@@ -1698,13 +1698,13 @@ Accuracy:			     0.970588235294
 Projected Data (3D):
 
 Confusion matrix:
-[[480  12]
- [ 25  61]]
+[[472  20]
+ [ 38  48]]
 
-Balanced Error Rate (BER):	     0.157543959161
-No Algae Label Error Rate:	     0.0243902439024
-With Algae Label Error Rate:	     0.290697674419
-Accuracy:			     0.93598615917 
+Balanced Error Rate (BER):	     0.24125543581
+No Algae Label Error Rate:	     0.0406504065041
+With Algae Label Error Rate:	     0.441860465116
+Accuracy:			     0.899653979239 
 
 ===========================================================
 
@@ -1728,14 +1728,14 @@ Accuracy:			     0.938016528926
 Projected Data (3D):
 
 Confusion matrix:
-[[205   1   4]
- [  5   0   1]
- [ 18   1   7]]
+[[208   2   0]
+ [  6   0   0]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.58485958486
-No Algae Label Error Rate:	     0.0238095238095
+Balanced Error Rate (BER):	     0.618559218559
+No Algae Label Error Rate:	     0.00952380952381
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.730769230769
+Green Label Error Rate:		     0.846153846154
 Accuracy:			     0.876033057851 
 
 None vs. Algae
@@ -1752,13 +1752,13 @@ Accuracy:			     0.978813559322
 Projected Data (3D):
 
 Confusion matrix:
-[[204   6]
- [ 17   9]]
+[[206   4]
+ [ 22   4]]
 
-Balanced Error Rate (BER):	     0.341208791209
-No Algae Label Error Rate:	     0.0285714285714
-With Algae Label Error Rate:	     0.653846153846
-Accuracy:			     0.902542372881 
+Balanced Error Rate (BER):	     0.432600732601
+No Algae Label Error Rate:	     0.0190476190476
+With Algae Label Error Rate:	     0.846153846154
+Accuracy:			     0.889830508475 
 
 ===========================================================
 
@@ -1782,15 +1782,15 @@ Accuracy:			     0.912162162162
 Projected Data (3D):
 
 Confusion matrix:
-[[115   0   3]
- [  3   0   0]
- [ 20   0   7]]
+[[114   0   4]
+ [  1   0   2]
+ [ 18   0   9]]
 
-Balanced Error Rate (BER):	     0.588721489851
-No Algae Label Error Rate:	     0.0254237288136
+Balanced Error Rate (BER):	     0.566854990584
+No Algae Label Error Rate:	     0.0338983050847
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.740740740741
-Accuracy:			     0.824324324324 
+Green Label Error Rate:		     0.666666666667
+Accuracy:			     0.831081081081 
 
 None vs. Algae
 
@@ -1806,13 +1806,13 @@ Accuracy:			     0.937931034483
 Projected Data (3D):
 
 Confusion matrix:
-[[113   5]
- [ 20   7]]
+[[114   4]
+ [ 16  11]]
 
-Balanced Error Rate (BER):	     0.391556811048
-No Algae Label Error Rate:	     0.0423728813559
-With Algae Label Error Rate:	     0.740740740741
-Accuracy:			     0.827586206897 
+Balanced Error Rate (BER):	     0.313245448839
+No Algae Label Error Rate:	     0.0338983050847
+With Algae Label Error Rate:	     0.592592592593
+Accuracy:			     0.862068965517 
 
 ===========================================================
 
@@ -1839,15 +1839,15 @@ Accuracy:			     0.931893687708
 Projected Data (3D):
 
 Confusion matrix:
-[[483   0   9]
- [  9   0  15]
- [ 29   1  56]]
+[[479   0  13]
+ [ 12   2  10]
+ [ 44   1  41]]
 
-Balanced Error Rate (BER):	     0.455709964076
-No Algae Label Error Rate:	     0.0182926829268
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.348837209302
-Accuracy:			     0.895348837209 
+Balanced Error Rate (BER):	     0.488781748283
+No Algae Label Error Rate:	     0.0264227642276
+Blue-Green Algae Label Error Rate:   0.916666666667
+Green Label Error Rate:		     0.523255813953
+Accuracy:			     0.867109634551 
 
 None vs. Algae
 
@@ -1863,13 +1863,13 @@ Accuracy:			     0.974048442907
 Projected Data (3D):
 
 Confusion matrix:
-[[481  11]
- [ 24  62]]
+[[475  17]
+ [ 38  48]]
 
-Balanced Error Rate (BER):	     0.15071374551
-No Algae Label Error Rate:	     0.0223577235772
-With Algae Label Error Rate:	     0.279069767442
-Accuracy:			     0.939446366782 
+Balanced Error Rate (BER):	     0.238206655322
+No Algae Label Error Rate:	     0.0345528455285
+With Algae Label Error Rate:	     0.441860465116
+Accuracy:			     0.904844290657 
 
 ===========================================================
 
@@ -1893,14 +1893,14 @@ Accuracy:			     0.933884297521
 Projected Data (3D):
 
 Confusion matrix:
-[[205   1   4]
+[[208   2   0]
  [  5   0   1]
- [ 18   1   7]]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.58485958486
-No Algae Label Error Rate:	     0.0238095238095
+Balanced Error Rate (BER):	     0.618559218559
+No Algae Label Error Rate:	     0.00952380952381
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.730769230769
+Green Label Error Rate:		     0.846153846154
 Accuracy:			     0.876033057851 
 
 None vs. Algae
@@ -1917,13 +1917,13 @@ Accuracy:			     0.974576271186
 Projected Data (3D):
 
 Confusion matrix:
-[[202   8]
- [ 16  10]]
+[[206   4]
+ [ 22   4]]
 
-Balanced Error Rate (BER):	     0.32673992674
-No Algae Label Error Rate:	     0.0380952380952
-With Algae Label Error Rate:	     0.615384615385
-Accuracy:			     0.898305084746 
+Balanced Error Rate (BER):	     0.432600732601
+No Algae Label Error Rate:	     0.0190476190476
+With Algae Label Error Rate:	     0.846153846154
+Accuracy:			     0.889830508475 
 
 ===========================================================
 
@@ -1947,15 +1947,15 @@ Accuracy:			     0.918918918919
 Projected Data (3D):
 
 Confusion matrix:
-[[115   0   3]
- [  3   0   0]
- [ 21   0   6]]
+[[114   0   4]
+ [  1   0   2]
+ [ 19   0   8]]
 
-Balanced Error Rate (BER):	     0.601067168864
-No Algae Label Error Rate:	     0.0254237288136
+Balanced Error Rate (BER):	     0.579200669596
+No Algae Label Error Rate:	     0.0338983050847
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.777777777778
-Accuracy:			     0.817567567568 
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.824324324324 
 
 None vs. Algae
 
@@ -1972,12 +1972,12 @@ Projected Data (3D):
 
 Confusion matrix:
 [[114   4]
- [ 19   8]]
+ [ 16  11]]
 
-Balanced Error Rate (BER):	     0.368801004394
+Balanced Error Rate (BER):	     0.313245448839
 No Algae Label Error Rate:	     0.0338983050847
-With Algae Label Error Rate:	     0.703703703704
-Accuracy:			     0.841379310345 
+With Algae Label Error Rate:	     0.592592592593
+Accuracy:			     0.862068965517 
 
 ===========================================================
 
@@ -2004,15 +2004,15 @@ Accuracy:			     0.93023255814
 Projected Data (3D):
 
 Confusion matrix:
-[[482   0  10]
- [  9   0  15]
- [ 28   2  56]]
+[[481   0  11]
+ [ 12   1  11]
+ [ 45   1  40]]
 
-Balanced Error Rate (BER):	     0.456387470851
-No Algae Label Error Rate:	     0.020325203252
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.348837209302
-Accuracy:			     0.893687707641 
+Balanced Error Rate (BER):	     0.505191592614
+No Algae Label Error Rate:	     0.0223577235772
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.53488372093
+Accuracy:			     0.867109634551 
 
 None vs. Algae
 
@@ -2028,13 +2028,13 @@ Accuracy:			     0.9723183391
 Projected Data (3D):
 
 Confusion matrix:
-[[480  12]
- [ 27  59]]
+[[477  15]
+ [ 41  45]]
 
-Balanced Error Rate (BER):	     0.169171866137
-No Algae Label Error Rate:	     0.0243902439024
-With Algae Label Error Rate:	     0.313953488372
-Accuracy:			     0.932525951557 
+Balanced Error Rate (BER):	     0.253615995462
+No Algae Label Error Rate:	     0.030487804878
+With Algae Label Error Rate:	     0.476744186047
+Accuracy:			     0.903114186851 
 
 ===========================================================
 
@@ -2058,14 +2058,14 @@ Accuracy:			     0.929752066116
 Projected Data (3D):
 
 Confusion matrix:
-[[206   0   4]
+[[208   2   0]
  [  5   0   1]
- [ 19   1   6]]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.596092796093
-No Algae Label Error Rate:	     0.0190476190476
+Balanced Error Rate (BER):	     0.618559218559
+No Algae Label Error Rate:	     0.00952380952381
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.769230769231
+Green Label Error Rate:		     0.846153846154
 Accuracy:			     0.876033057851 
 
 None vs. Algae
@@ -2082,13 +2082,13 @@ Accuracy:			     0.96186440678
 Projected Data (3D):
 
 Confusion matrix:
-[[202   8]
- [ 18   8]]
+[[207   3]
+ [ 22   4]]
 
-Balanced Error Rate (BER):	     0.365201465201
-No Algae Label Error Rate:	     0.0380952380952
-With Algae Label Error Rate:	     0.692307692308
-Accuracy:			     0.889830508475 
+Balanced Error Rate (BER):	     0.43021978022
+No Algae Label Error Rate:	     0.0142857142857
+With Algae Label Error Rate:	     0.846153846154
+Accuracy:			     0.89406779661 
 
 ===========================================================
 
@@ -2112,15 +2112,15 @@ Accuracy:			     0.918918918919
 Projected Data (3D):
 
 Confusion matrix:
-[[117   0   1]
- [  3   0   0]
- [ 21   0   6]]
+[[114   0   4]
+ [  2   0   1]
+ [ 19   0   8]]
 
-Balanced Error Rate (BER):	     0.59541745135
-No Algae Label Error Rate:	     0.00847457627119
+Balanced Error Rate (BER):	     0.579200669596
+No Algae Label Error Rate:	     0.0338983050847
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.777777777778
-Accuracy:			     0.831081081081 
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.824324324324 
 
 None vs. Algae
 
@@ -2136,13 +2136,13 @@ Accuracy:			     0.937931034483
 Projected Data (3D):
 
 Confusion matrix:
-[[113   5]
- [ 20   7]]
+[[114   4]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.391556811048
-No Algae Label Error Rate:	     0.0423728813559
-With Algae Label Error Rate:	     0.740740740741
-Accuracy:			     0.827586206897 
+Balanced Error Rate (BER):	     0.331763967357
+No Algae Label Error Rate:	     0.0338983050847
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.855172413793 
 
 ===========================================================
 
@@ -2169,15 +2169,15 @@ Accuracy:			     0.928571428571
 Projected Data (3D):
 
 Confusion matrix:
-[[483   0   9]
- [  9   0  15]
- [ 29   1  56]]
+[[479   0  13]
+ [ 10   1  13]
+ [ 44   0  42]]
 
-Balanced Error Rate (BER):	     0.455709964076
-No Algae Label Error Rate:	     0.0182926829268
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.348837209302
-Accuracy:			     0.895348837209 
+Balanced Error Rate (BER):	     0.498794668179
+No Algae Label Error Rate:	     0.0264227642276
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.511627906977
+Accuracy:			     0.867109634551 
 
 None vs. Algae
 
@@ -2193,13 +2193,13 @@ Accuracy:			     0.974048442907
 Projected Data (3D):
 
 Confusion matrix:
-[[481  11]
- [ 26  60]]
+[[476  16]
+ [ 39  47]]
 
-Balanced Error Rate (BER):	     0.162341652486
-No Algae Label Error Rate:	     0.0223577235772
-With Algae Label Error Rate:	     0.302325581395
-Accuracy:			     0.93598615917 
+Balanced Error Rate (BER):	     0.243004348648
+No Algae Label Error Rate:	     0.0325203252033
+With Algae Label Error Rate:	     0.453488372093
+Accuracy:			     0.904844290657 
 
 ===========================================================
 
@@ -2223,15 +2223,15 @@ Accuracy:			     0.933884297521
 Projected Data (3D):
 
 Confusion matrix:
-[[205   0   5]
- [  5   0   1]
- [ 20   0   6]]
+[[208   2   0]
+ [  6   0   0]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.59768009768
-No Algae Label Error Rate:	     0.0238095238095
+Balanced Error Rate (BER):	     0.618559218559
+No Algae Label Error Rate:	     0.00952380952381
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.769230769231
-Accuracy:			     0.871900826446 
+Green Label Error Rate:		     0.846153846154
+Accuracy:			     0.876033057851 
 
 None vs. Algae
 
@@ -2247,13 +2247,13 @@ Accuracy:			     0.970338983051
 Projected Data (3D):
 
 Confusion matrix:
-[[202   8]
- [ 19   7]]
+[[207   3]
+ [ 21   5]]
 
-Balanced Error Rate (BER):	     0.384432234432
-No Algae Label Error Rate:	     0.0380952380952
-With Algae Label Error Rate:	     0.730769230769
-Accuracy:			     0.885593220339 
+Balanced Error Rate (BER):	     0.410989010989
+No Algae Label Error Rate:	     0.0142857142857
+With Algae Label Error Rate:	     0.807692307692
+Accuracy:			     0.898305084746 
 
 ===========================================================
 
@@ -2277,15 +2277,15 @@ Accuracy:			     0.905405405405
 Projected Data (3D):
 
 Confusion matrix:
-[[118   0   0]
- [  3   0   0]
- [ 21   0   6]]
+[[115   0   3]
+ [  2   0   1]
+ [ 19   0   8]]
 
-Balanced Error Rate (BER):	     0.592592592593
-No Algae Label Error Rate:	     0.0
+Balanced Error Rate (BER):	     0.576375810839
+No Algae Label Error Rate:	     0.0254237288136
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.777777777778
-Accuracy:			     0.837837837838 
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.831081081081 
 
 None vs. Algae
 
@@ -2301,13 +2301,13 @@ Accuracy:			     0.937931034483
 Projected Data (3D):
 
 Confusion matrix:
-[[114   4]
- [ 19   8]]
+[[115   3]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.368801004394
-No Algae Label Error Rate:	     0.0338983050847
-With Algae Label Error Rate:	     0.703703703704
-Accuracy:			     0.841379310345 
+Balanced Error Rate (BER):	     0.327526679222
+No Algae Label Error Rate:	     0.0254237288136
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.862068965517 
 
 ===========================================================
 
@@ -2334,15 +2334,15 @@ Accuracy:			     0.925249169435
 Projected Data (3D):
 
 Confusion matrix:
-[[483   0   9]
- [ 10   0  14]
- [ 29   1  56]]
+[[479   0  13]
+ [ 11   1  12]
+ [ 47   0  39]]
 
-Balanced Error Rate (BER):	     0.455709964076
-No Algae Label Error Rate:	     0.0182926829268
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.348837209302
-Accuracy:			     0.895348837209 
+Balanced Error Rate (BER):	     0.510422575156
+No Algae Label Error Rate:	     0.0264227642276
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.546511627907
+Accuracy:			     0.862126245847 
 
 None vs. Algae
 
@@ -2358,13 +2358,13 @@ Accuracy:			     0.968858131488
 Projected Data (3D):
 
 Confusion matrix:
-[[481  11]
- [ 28  58]]
+[[476  16]
+ [ 43  43]]
 
-Balanced Error Rate (BER):	     0.173969559463
-No Algae Label Error Rate:	     0.0223577235772
-With Algae Label Error Rate:	     0.325581395349
-Accuracy:			     0.932525951557 
+Balanced Error Rate (BER):	     0.266260162602
+No Algae Label Error Rate:	     0.0325203252033
+With Algae Label Error Rate:	     0.5
+Accuracy:			     0.897923875433 
 
 ===========================================================
 
@@ -2388,15 +2388,15 @@ Accuracy:			     0.921487603306
 Projected Data (3D):
 
 Confusion matrix:
-[[205   0   5]
- [  5   0   1]
- [ 21   0   5]]
+[[208   2   0]
+ [  6   0   0]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.610500610501
-No Algae Label Error Rate:	     0.0238095238095
+Balanced Error Rate (BER):	     0.618559218559
+No Algae Label Error Rate:	     0.00952380952381
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.807692307692
-Accuracy:			     0.867768595041 
+Green Label Error Rate:		     0.846153846154
+Accuracy:			     0.876033057851 
 
 None vs. Algae
 
@@ -2412,13 +2412,13 @@ Accuracy:			     0.957627118644
 Projected Data (3D):
 
 Confusion matrix:
-[[204   6]
- [ 18   8]]
+[[207   3]
+ [ 22   4]]
 
-Balanced Error Rate (BER):	     0.36043956044
-No Algae Label Error Rate:	     0.0285714285714
-With Algae Label Error Rate:	     0.692307692308
-Accuracy:			     0.898305084746 
+Balanced Error Rate (BER):	     0.43021978022
+No Algae Label Error Rate:	     0.0142857142857
+With Algae Label Error Rate:	     0.846153846154
+Accuracy:			     0.89406779661 
 
 ===========================================================
 
@@ -2442,15 +2442,15 @@ Accuracy:			     0.905405405405
 Projected Data (3D):
 
 Confusion matrix:
-[[118   0   0]
- [  3   0   0]
- [ 23   0   4]]
+[[115   0   3]
+ [  2   0   1]
+ [ 19   0   8]]
 
-Balanced Error Rate (BER):	     0.617283950617
-No Algae Label Error Rate:	     0.0
+Balanced Error Rate (BER):	     0.576375810839
+No Algae Label Error Rate:	     0.0254237288136
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.851851851852
-Accuracy:			     0.824324324324 
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.831081081081 
 
 None vs. Algae
 
@@ -2466,13 +2466,13 @@ Accuracy:			     0.924137931034
 Projected Data (3D):
 
 Confusion matrix:
-[[117   1]
- [ 23   4]]
+[[115   3]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.430163214062
-No Algae Label Error Rate:	     0.00847457627119
-With Algae Label Error Rate:	     0.851851851852
-Accuracy:			     0.834482758621 
+Balanced Error Rate (BER):	     0.327526679222
+No Algae Label Error Rate:	     0.0254237288136
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.862068965517 
 
 ===========================================================
 
@@ -2499,15 +2499,15 @@ Accuracy:			     0.925249169435
 Projected Data (3D):
 
 Confusion matrix:
-[[484   0   8]
- [ 10   0  14]
- [ 33   1  52]]
+[[480   0  12]
+ [ 11   1  12]
+ [ 46   0  40]]
 
-Balanced Error Rate (BER):	     0.47053633327
-No Algae Label Error Rate:	     0.0162601626016
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.395348837209
-Accuracy:			     0.890365448505 
+Balanced Error Rate (BER):	     0.505869099389
+No Algae Label Error Rate:	     0.0243902439024
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.53488372093
+Accuracy:			     0.865448504983 
 
 None vs. Algae
 
@@ -2523,13 +2523,13 @@ Accuracy:			     0.9723183391
 Projected Data (3D):
 
 Confusion matrix:
-[[482  10]
- [ 27  59]]
+[[476  16]
+ [ 41  45]]
 
-Balanced Error Rate (BER):	     0.167139345812
-No Algae Label Error Rate:	     0.020325203252
-With Algae Label Error Rate:	     0.313953488372
-Accuracy:			     0.93598615917 
+Balanced Error Rate (BER):	     0.254632255625
+No Algae Label Error Rate:	     0.0325203252033
+With Algae Label Error Rate:	     0.476744186047
+Accuracy:			     0.901384083045 
 
 ===========================================================
 
@@ -2553,15 +2553,15 @@ Accuracy:			     0.921487603306
 Projected Data (3D):
 
 Confusion matrix:
-[[205   0   5]
- [  5   0   1]
- [ 20   0   6]]
+[[209   1   0]
+ [  6   0   0]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.59768009768
-No Algae Label Error Rate:	     0.0238095238095
+Balanced Error Rate (BER):	     0.616971916972
+No Algae Label Error Rate:	     0.0047619047619
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.769230769231
-Accuracy:			     0.871900826446 
+Green Label Error Rate:		     0.846153846154
+Accuracy:			     0.880165289256 
 
 None vs. Algae
 
@@ -2577,13 +2577,13 @@ Accuracy:			     0.966101694915
 Projected Data (3D):
 
 Confusion matrix:
-[[204   6]
- [ 17   9]]
+[[206   4]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.341208791209
-No Algae Label Error Rate:	     0.0285714285714
-With Algae Label Error Rate:	     0.653846153846
-Accuracy:			     0.902542372881 
+Balanced Error Rate (BER):	     0.394139194139
+No Algae Label Error Rate:	     0.0190476190476
+With Algae Label Error Rate:	     0.769230769231
+Accuracy:			     0.898305084746 
 
 ===========================================================
 
@@ -2607,15 +2607,15 @@ Accuracy:			     0.898648648649
 Projected Data (3D):
 
 Confusion matrix:
-[[118   0   0]
- [  3   0   0]
- [ 23   0   4]]
+[[115   0   3]
+ [  1   0   2]
+ [ 19   0   8]]
 
-Balanced Error Rate (BER):	     0.617283950617
-No Algae Label Error Rate:	     0.0
+Balanced Error Rate (BER):	     0.576375810839
+No Algae Label Error Rate:	     0.0254237288136
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.851851851852
-Accuracy:			     0.824324324324 
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.831081081081 
 
 None vs. Algae
 
@@ -2632,12 +2632,12 @@ Projected Data (3D):
 
 Confusion matrix:
 [[115   3]
- [ 21   6]]
+ [ 18   9]]
 
-Balanced Error Rate (BER):	     0.401600753296
+Balanced Error Rate (BER):	     0.34604519774
 No Algae Label Error Rate:	     0.0254237288136
-With Algae Label Error Rate:	     0.777777777778
-Accuracy:			     0.834482758621 
+With Algae Label Error Rate:	     0.666666666667
+Accuracy:			     0.855172413793 
 
 ===========================================================
 
@@ -2664,15 +2664,15 @@ Accuracy:			     0.925249169435
 Projected Data (3D):
 
 Confusion matrix:
-[[483   0   9]
- [ 10   0  14]
- [ 32   1  53]]
+[[480   0  12]
+ [ 11   1  12]
+ [ 48   2  36]]
 
-Balanced Error Rate (BER):	     0.467337871053
-No Algae Label Error Rate:	     0.0182926829268
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.383720930233
-Accuracy:			     0.890365448505 
+Balanced Error Rate (BER):	     0.521372975358
+No Algae Label Error Rate:	     0.0243902439024
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.581395348837
+Accuracy:			     0.858803986711 
 
 None vs. Algae
 
@@ -2688,13 +2688,13 @@ Accuracy:			     0.965397923875
 Projected Data (3D):
 
 Confusion matrix:
-[[482  10]
- [ 29  57]]
+[[475  17]
+ [ 44  42]]
 
-Balanced Error Rate (BER):	     0.178767252789
-No Algae Label Error Rate:	     0.020325203252
-With Algae Label Error Rate:	     0.337209302326
-Accuracy:			     0.932525951557 
+Balanced Error Rate (BER):	     0.273090376253
+No Algae Label Error Rate:	     0.0345528455285
+With Algae Label Error Rate:	     0.511627906977
+Accuracy:			     0.89446366782 
 
 ===========================================================
 
@@ -2718,15 +2718,15 @@ Accuracy:			     0.917355371901
 Projected Data (3D):
 
 Confusion matrix:
-[[206   0   4]
+[[209   1   0]
  [  6   0   0]
- [ 20   0   6]]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.596092796093
-No Algae Label Error Rate:	     0.0190476190476
+Balanced Error Rate (BER):	     0.616971916972
+No Algae Label Error Rate:	     0.0047619047619
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.769230769231
-Accuracy:			     0.876033057851 
+Green Label Error Rate:		     0.846153846154
+Accuracy:			     0.880165289256 
 
 None vs. Algae
 
@@ -2742,13 +2742,13 @@ Accuracy:			     0.944915254237
 Projected Data (3D):
 
 Confusion matrix:
-[[203   7]
- [ 18   8]]
+[[206   4]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.362820512821
-No Algae Label Error Rate:	     0.0333333333333
-With Algae Label Error Rate:	     0.692307692308
-Accuracy:			     0.89406779661 
+Balanced Error Rate (BER):	     0.394139194139
+No Algae Label Error Rate:	     0.0190476190476
+With Algae Label Error Rate:	     0.769230769231
+Accuracy:			     0.898305084746 
 
 ===========================================================
 
@@ -2772,15 +2772,15 @@ Accuracy:			     0.885135135135
 Projected Data (3D):
 
 Confusion matrix:
-[[118   0   0]
- [  3   0   0]
- [ 24   0   3]]
+[[115   0   3]
+ [  2   0   1]
+ [ 19   0   8]]
 
-Balanced Error Rate (BER):	     0.62962962963
-No Algae Label Error Rate:	     0.0
+Balanced Error Rate (BER):	     0.576375810839
+No Algae Label Error Rate:	     0.0254237288136
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.888888888889
-Accuracy:			     0.817567567568 
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.831081081081 
 
 None vs. Algae
 
@@ -2796,13 +2796,13 @@ Accuracy:			     0.924137931034
 Projected Data (3D):
 
 Confusion matrix:
-[[117   1]
- [ 22   5]]
+[[115   3]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.411644695543
-No Algae Label Error Rate:	     0.00847457627119
-With Algae Label Error Rate:	     0.814814814815
-Accuracy:			     0.841379310345 
+Balanced Error Rate (BER):	     0.327526679222
+No Algae Label Error Rate:	     0.0254237288136
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.862068965517 
 
 ===========================================================
 
@@ -2829,15 +2829,15 @@ Accuracy:			     0.921926910299
 Projected Data (3D):
 
 Confusion matrix:
-[[486   0   6]
- [ 10   0  14]
- [ 31   1  54]]
+[[480   0  12]
+ [ 13   1  10]
+ [ 48   2  36]]
 
-Balanced Error Rate (BER):	     0.461429381736
-No Algae Label Error Rate:	     0.0121951219512
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.372093023256
-Accuracy:			     0.897009966777 
+Balanced Error Rate (BER):	     0.521372975358
+No Algae Label Error Rate:	     0.0243902439024
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.581395348837
+Accuracy:			     0.858803986711 
 
 None vs. Algae
 
@@ -2853,13 +2853,13 @@ Accuracy:			     0.968858131488
 Projected Data (3D):
 
 Confusion matrix:
-[[484   8]
- [ 27  59]]
+[[474  18]
+ [ 43  43]]
 
-Balanced Error Rate (BER):	     0.165106825487
-No Algae Label Error Rate:	     0.0162601626016
-With Algae Label Error Rate:	     0.313953488372
-Accuracy:			     0.939446366782 
+Balanced Error Rate (BER):	     0.268292682927
+No Algae Label Error Rate:	     0.0365853658537
+With Algae Label Error Rate:	     0.5
+Accuracy:			     0.89446366782 
 
 ===========================================================
 
@@ -2883,14 +2883,14 @@ Accuracy:			     0.921487603306
 Projected Data (3D):
 
 Confusion matrix:
-[[206   0   4]
+[[208   2   0]
  [  6   0   0]
- [ 20   0   6]]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.596092796093
-No Algae Label Error Rate:	     0.0190476190476
+Balanced Error Rate (BER):	     0.618559218559
+No Algae Label Error Rate:	     0.00952380952381
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.769230769231
+Green Label Error Rate:		     0.846153846154
 Accuracy:			     0.876033057851 
 
 None vs. Algae
@@ -2907,13 +2907,13 @@ Accuracy:			     0.953389830508
 Projected Data (3D):
 
 Confusion matrix:
-[[202   8]
- [ 18   8]]
+[[206   4]
+ [ 20   6]]
 
-Balanced Error Rate (BER):	     0.365201465201
-No Algae Label Error Rate:	     0.0380952380952
-With Algae Label Error Rate:	     0.692307692308
-Accuracy:			     0.889830508475 
+Balanced Error Rate (BER):	     0.394139194139
+No Algae Label Error Rate:	     0.0190476190476
+With Algae Label Error Rate:	     0.769230769231
+Accuracy:			     0.898305084746 
 
 ===========================================================
 
@@ -2937,15 +2937,15 @@ Accuracy:			     0.878378378378
 Projected Data (3D):
 
 Confusion matrix:
-[[118   0   0]
- [  3   0   0]
- [ 24   0   3]]
+[[115   0   3]
+ [  2   0   1]
+ [ 19   0   8]]
 
-Balanced Error Rate (BER):	     0.62962962963
-No Algae Label Error Rate:	     0.0
+Balanced Error Rate (BER):	     0.576375810839
+No Algae Label Error Rate:	     0.0254237288136
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.888888888889
-Accuracy:			     0.817567567568 
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.831081081081 
 
 None vs. Algae
 
@@ -2961,13 +2961,13 @@ Accuracy:			     0.924137931034
 Projected Data (3D):
 
 Confusion matrix:
-[[116   2]
- [ 21   6]]
+[[115   3]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.39736346516
-No Algae Label Error Rate:	     0.0169491525424
-With Algae Label Error Rate:	     0.777777777778
-Accuracy:			     0.841379310345 
+Balanced Error Rate (BER):	     0.327526679222
+No Algae Label Error Rate:	     0.0254237288136
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.862068965517 
 
 ===========================================================
 
@@ -2994,15 +2994,15 @@ Accuracy:			     0.920265780731
 Projected Data (3D):
 
 Confusion matrix:
-[[484   0   8]
- [ 10   0  14]
- [ 31   1  54]]
+[[481   0  11]
+ [ 11   1  12]
+ [ 47   2  37]]
 
-Balanced Error Rate (BER):	     0.462784395286
-No Algae Label Error Rate:	     0.0162601626016
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.372093023256
-Accuracy:			     0.893687707641 
+Balanced Error Rate (BER):	     0.51681949959
+No Algae Label Error Rate:	     0.0223577235772
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.56976744186
+Accuracy:			     0.862126245847 
 
 None vs. Algae
 
@@ -3018,13 +3018,13 @@ Accuracy:			     0.965397923875
 Projected Data (3D):
 
 Confusion matrix:
-[[484   8]
- [ 28  58]]
+[[478  14]
+ [ 45  41]]
 
-Balanced Error Rate (BER):	     0.170920778975
-No Algae Label Error Rate:	     0.0162601626016
-With Algae Label Error Rate:	     0.325581395349
-Accuracy:			     0.937716262976 
+Balanced Error Rate (BER):	     0.275855549253
+No Algae Label Error Rate:	     0.0284552845528
+With Algae Label Error Rate:	     0.523255813953
+Accuracy:			     0.897923875433 
 
 ===========================================================
 
@@ -3048,14 +3048,14 @@ Accuracy:			     0.913223140496
 Projected Data (3D):
 
 Confusion matrix:
-[[207   0   3]
- [  5   0   1]
- [ 20   0   6]]
+[[209   1   0]
+ [  6   0   0]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.594505494505
-No Algae Label Error Rate:	     0.0142857142857
+Balanced Error Rate (BER):	     0.616971916972
+No Algae Label Error Rate:	     0.0047619047619
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.769230769231
+Green Label Error Rate:		     0.846153846154
 Accuracy:			     0.880165289256 
 
 None vs. Algae
@@ -3072,13 +3072,13 @@ Accuracy:			     0.944915254237
 Projected Data (3D):
 
 Confusion matrix:
-[[203   7]
- [ 18   8]]
+[[206   4]
+ [ 22   4]]
 
-Balanced Error Rate (BER):	     0.362820512821
-No Algae Label Error Rate:	     0.0333333333333
-With Algae Label Error Rate:	     0.692307692308
-Accuracy:			     0.89406779661 
+Balanced Error Rate (BER):	     0.432600732601
+No Algae Label Error Rate:	     0.0190476190476
+With Algae Label Error Rate:	     0.846153846154
+Accuracy:			     0.889830508475 
 
 ===========================================================
 
@@ -3102,15 +3102,15 @@ Accuracy:			     0.885135135135
 Projected Data (3D):
 
 Confusion matrix:
-[[118   0   0]
- [  3   0   0]
- [ 25   0   2]]
+[[115   0   3]
+ [  2   0   1]
+ [ 19   0   8]]
 
-Balanced Error Rate (BER):	     0.641975308642
-No Algae Label Error Rate:	     0.0
+Balanced Error Rate (BER):	     0.576375810839
+No Algae Label Error Rate:	     0.0254237288136
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.925925925926
-Accuracy:			     0.810810810811 
+Green Label Error Rate:		     0.703703703704
+Accuracy:			     0.831081081081 
 
 None vs. Algae
 
@@ -3126,13 +3126,13 @@ Accuracy:			     0.910344827586
 Projected Data (3D):
 
 Confusion matrix:
-[[118   0]
- [ 23   4]]
+[[115   3]
+ [ 17  10]]
 
-Balanced Error Rate (BER):	     0.425925925926
-No Algae Label Error Rate:	     0.0
-With Algae Label Error Rate:	     0.851851851852
-Accuracy:			     0.841379310345 
+Balanced Error Rate (BER):	     0.327526679222
+No Algae Label Error Rate:	     0.0254237288136
+With Algae Label Error Rate:	     0.62962962963
+Accuracy:			     0.862068965517 
 
 ===========================================================
 
@@ -3159,15 +3159,15 @@ Accuracy:			     0.921926910299
 Projected Data (3D):
 
 Confusion matrix:
-[[486   0   6]
- [ 10   0  14]
- [ 32   1  53]]
+[[481   0  11]
+ [ 12   1  11]
+ [ 48   1  37]]
 
-Balanced Error Rate (BER):	     0.465305350728
-No Algae Label Error Rate:	     0.0121951219512
-Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.383720930233
-Accuracy:			     0.895348837209 
+Balanced Error Rate (BER):	     0.51681949959
+No Algae Label Error Rate:	     0.0223577235772
+Blue-Green Algae Label Error Rate:   0.958333333333
+Green Label Error Rate:		     0.56976744186
+Accuracy:			     0.862126245847 
 
 None vs. Algae
 
@@ -3183,13 +3183,13 @@ Accuracy:			     0.967128027682
 Projected Data (3D):
 
 Confusion matrix:
-[[485   7]
- [ 27  59]]
+[[475  17]
+ [ 45  41]]
 
-Balanced Error Rate (BER):	     0.164090565324
-No Algae Label Error Rate:	     0.0142276422764
-With Algae Label Error Rate:	     0.313953488372
-Accuracy:			     0.941176470588 
+Balanced Error Rate (BER):	     0.278904329741
+No Algae Label Error Rate:	     0.0345528455285
+With Algae Label Error Rate:	     0.523255813953
+Accuracy:			     0.892733564014 
 
 ===========================================================
 
@@ -3213,15 +3213,15 @@ Accuracy:			     0.913223140496
 Projected Data (3D):
 
 Confusion matrix:
-[[206   0   4]
+[[209   1   0]
  [  6   0   0]
- [ 20   0   6]]
+ [ 22   0   4]]
 
-Balanced Error Rate (BER):	     0.596092796093
-No Algae Label Error Rate:	     0.0190476190476
+Balanced Error Rate (BER):	     0.616971916972
+No Algae Label Error Rate:	     0.0047619047619
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.769230769231
-Accuracy:			     0.876033057851 
+Green Label Error Rate:		     0.846153846154
+Accuracy:			     0.880165289256 
 
 None vs. Algae
 
@@ -3237,13 +3237,13 @@ Accuracy:			     0.944915254237
 Projected Data (3D):
 
 Confusion matrix:
-[[204   6]
- [ 18   8]]
+[[206   4]
+ [ 22   4]]
 
-Balanced Error Rate (BER):	     0.36043956044
-No Algae Label Error Rate:	     0.0285714285714
-With Algae Label Error Rate:	     0.692307692308
-Accuracy:			     0.898305084746 
+Balanced Error Rate (BER):	     0.432600732601
+No Algae Label Error Rate:	     0.0190476190476
+With Algae Label Error Rate:	     0.846153846154
+Accuracy:			     0.889830508475 
 
 ===========================================================
 
@@ -3267,15 +3267,15 @@ Accuracy:			     0.885135135135
 Projected Data (3D):
 
 Confusion matrix:
-[[118   0   0]
- [  3   0   0]
- [ 24   0   3]]
+[[115   0   3]
+ [  2   0   1]
+ [ 20   0   7]]
 
-Balanced Error Rate (BER):	     0.62962962963
-No Algae Label Error Rate:	     0.0
+Balanced Error Rate (BER):	     0.588721489851
+No Algae Label Error Rate:	     0.0254237288136
 Blue-Green Algae Label Error Rate:   1.0
-Green Label Error Rate:		     0.888888888889
-Accuracy:			     0.817567567568 
+Green Label Error Rate:		     0.740740740741
+Accuracy:			     0.824324324324 
 
 None vs. Algae
 
@@ -3291,13 +3291,13 @@ Accuracy:			     0.91724137931
 Projected Data (3D):
 
 Confusion matrix:
-[[118   0]
- [ 22   5]]
+[[115   3]
+ [ 18   9]]
 
-Balanced Error Rate (BER):	     0.407407407407
-No Algae Label Error Rate:	     0.0
-With Algae Label Error Rate:	     0.814814814815
-Accuracy:			     0.848275862069 
+Balanced Error Rate (BER):	     0.34604519774
+No Algae Label Error Rate:	     0.0254237288136
+With Algae Label Error Rate:	     0.666666666667
+Accuracy:			     0.855172413793 
 
 ===========================================================
 

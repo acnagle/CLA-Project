@@ -1,7 +1,5 @@
 %% Import Matrices
 
-clear all
-close all
 load matlab_matrices.mat
 
 %% Compute vectors to plot
