@@ -38,7 +38,7 @@ def main():
     src_path_monona_proj_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/projections/" \
                                  "Monona_All_Data_summer_matrix/Monona_All_Data_summer_matrix_proj_no-alg-ind_3d.csv"
 
-    dest_path = "/Users/Alliot/Documents/CLA-Project/K-NN/"
+    dest_path = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/K-NN/"
 
     # if dest_path does not exist, create it
     if not os.path.exists(dest_path):
@@ -563,6 +563,20 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     print("Accuracy:\t\t\t    ", accuracy, "\n")
 
     return ber, accuracy
+
+# Writes a matrix to a .csv file. mat is the matrix being written to a file. filename is the name
+# of the .csv file. destination_folder is the path to the destination folder where the .csv file will be stored
+def matrix_to_file(mat, filename, destination_folder):
+    file = open(destination_folder + filename, "w")
+
+    for i in range(0, mat.shape[0]):
+        for j in range(0, mat.shape[1]):
+            if j < mat.shape[1] - 1:
+                file.write(str(mat[i, j]) + ",")
+            else:
+                file.write(str(mat[i, j]) + "\n")
+
+    file.close()
 
 
 if __name__ == "__main__": main()
