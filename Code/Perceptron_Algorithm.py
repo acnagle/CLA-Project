@@ -55,8 +55,17 @@ def main():
     mat_mendota_proj_no_ind = np.genfromtxt(open(src_path_mendota_proj_no_ind, "rb"), delimiter=",", dtype=float)
     mat_monona_proj_no_ind = np.genfromtxt(open(src_path_monona_proj_no_ind, "rb"), delimiter=",", dtype=float)
 
+    # update labels. Indication of an algae bloom (blue-green and green) will have a label of 1. The data points that
+    # have an indication of no algae bloom will be updated to have a label of -1
     mat_all_data_orig_w_ind_update = update_labels(mat_all_data_orig_w_ind)
-    print(mat_all_data_orig_w_ind_update)
+    mat_mendota_orig_w_ind_update = update_labels(mat_mendota_orig_w_ind)
+    mat_monona_orig_w_ind_update = update_labels(mat_monona_orig_w_ind)
+
+    # insert row into matrices with no indicator. This row will hold the predicted labels during training
+    mat_all_data_orig_pred = np.insert(mat_all_data_orig_no_ind, 1, 0, axis=0)
+    mat_mendota_orig_pred = np.insert(mat_mendota_orig_no_ind, 1, 0, axis=0)
+    mat_monona_orig_pred = np.insert(mat_monona_orig_no_ind, 1, 0, axis=0)
+
 
 # This method adjusts the labels in the "w_ind" (with algae indicator) matrices to be more useful for the perceptron
 # algorithm. Namely, this method will change the data points with indication of an algae bloom (blue-green and green)
@@ -74,6 +83,40 @@ def update_labels(mat):
             print("Unexpected algae label at index", j)
 
     return new_mat
+
+
+# This method runs the perceptron algortihm on a training data set. The perceptron learning algorithm tries to find a
+# separating hyperplane by minimizing the distance of misclassified points to the decision boundary. (Hastie, Trevor,
+# et al. “Elements of Statistical Learning: Data Mining, Inference, and Prediction. 2nd Edition.” Springer Series
+# in Statistics, Springer, 2009, web.stanford.edu/~hastie/ElemStatLearn/.)
+def perceptron_algorithm(mat_train):
+    # Compute SGD (stochastic gradient descent) and retrieve weights
+    weight, bias = sgd(mat_train)
+
+
+# This method performs stochastic gradient descent. The training data set, mat_train, is passed in. weight, the weight
+# vector, and bias, the bias value, is returned.
+def sgd(mat_train):
+    # define the weight vector. The ith entry in weight is the weight of measurement mat_train[i, j]
+    weight = np.zeros(num_rows_no_ind)
+
+    # define the bias value
+    bias = 0
+
+    # # sgd_idx holds the indices of data points already used. This ensures that no data point is used more than once
+    # sgd_idx = np.zeros(mat_train.shape[1])
+    mat_train_sgd = mat_train   # mat_train_sgd will be a modified version of mat_train during computation of SGD
+
+    for i in range(0, mat_train.shape[1]):
+        # idx is the index of the data point in mat_train being evaluated
+        idx = int(np.floor(np.random.rand() * mat_train.shape[1]))
+
+
+
+        # remove data point at idx from training data set
+        mat_train_sgd = np.delete(mat_train_sgd, idx, 1)
+
+    return weight, bias
 
 
 if __name__ == "__main__": main()
