@@ -66,7 +66,7 @@ def main():
     mat_mendota_orig_pred = np.insert(mat_mendota_orig_no_ind, 1, 0, axis=0)
     mat_monona_orig_pred = np.insert(mat_monona_orig_no_ind, 1, 0, axis=0)
 
-    perceptron_algorithm(mat_all_data_orig_no_ind)
+    perceptron_algorithm(mat_all_data_orig_no_ind, mat_all_data_orig_w_ind)
 
 
 # This method adjusts the labels in the "w_ind" (with algae indicator) matrices to be more useful for the perceptron
@@ -90,37 +90,52 @@ def update_labels(mat):
 # This method runs the perceptron algortihm on a training data set. The perceptron learning algorithm tries to find a
 # separating hyperplane by minimizing the distance of misclassified points to the decision boundary. (Hastie, Trevor,
 # et al. “Elements of Statistical Learning: Data Mining, Inference, and Prediction. 2nd Edition.” Springer Series
-# in Statistics, Springer, 2009, web.stanford.edu/~hastie/ElemStatLearn/.)
-def perceptron_algorithm(mat_train):
+# in Statistics, Springer, 2009, web.stanford.edu/~hastie/ElemStatLearn/.) mat_train_no_ind is the training data set
+# with no algal bloom indicator, and mat_train_w_ind is the training data set with the algal bloom indicator.
+def perceptron_algorithm(mat_train_no_ind, mat_train_w_ind):
     rate = 0.5   # learning rate
+    # define the weight vector. The ith entry in weight is the weight of measurement mat_train[i, j]
+    weight = np.zeros(num_rows_no_ind)
+    # define the bias value
+    bias = 0
+
     # Compute SGD (stochastic gradient descent) and retrieve weights
-    weight, bias = sgd(mat_train, rate)
+    weight, bias = sgd(mat_train_no_ind, mat_train_w_ind, rate, weight, bias)
 
     print(weight)
+    print(bias)
 
 
 # This method performs stochastic gradient descent. The training data set, mat_train, is passed in. rate is the learning
 # rate, and is passed into the method. weight, the weight vector, and bias, the bias value, is returned.
-def sgd(mat_train, rate):
-    # define the weight vector. The ith entry in weight is the weight of measurement mat_train[i, j]
-    weight = np.zeros(num_rows_no_ind)
-
-    # define the bias value
-    bias = 0
-
+def sgd(mat_train_no_ind, mat_train_w_ind, rate, weight, bias):
     # # sgd_idx holds the indices of data points already used. This ensures that no data point is used more than once
     # sgd_idx = np.zeros(mat_train.shape[1])
-    mat_train_sgd = mat_train   # mat_train_sgd will be a modified version of mat_train during computation of SGD
 
-    for i in range(0, mat_train.shape[1]):
+    # mat_train_sgd's will be modified versions of mat_train during computation of SGD
+    mat_train_sgd_no_ind = mat_train_no_ind
+    mat_train_sgd_w_ind = mat_train_w_ind
+
+    for i in range(0, mat_train_no_ind.shape[1]):
         # idx is the index of the data point in mat_train being evaluated
-        idx = int(np.floor(np.random.rand() * mat_train_sgd.shape[1]))
+        idx = int(np.floor(np.random.rand() * mat_train_sgd_no_ind.shape[1]))
 
-        weight = weight + rate * mat_train[:, idx]
-        bias = bias + 
+        pred_label = np.sign(mat_train_sgd_no_ind[:, idx].dot(weight.T))   # predicted label
+        label = mat_train_sgd_w_ind[1, idx]     # actual label
+        print("predicted:", pred_label)
+        print("actual:", label)
+
+        if pred_label != label:
+            print("### label mismatch ### ")
+            if label == 1 or pred_label == 0:
+                weight = weight + rate * mat_train_sgd_no_ind[:, idx]
+            if label == -1:
+                weight = weight - rate * mat_train_sgd_no_ind[:, idx]
+            # bias = bias + rate * pred_label
 
         # remove data point at idx from training data set
-        mat_train_sgd = np.delete(mat_train_sgd, idx, 1)
+        mat_train_sgd_no_ind = np.delete(mat_train_sgd_no_ind, idx, 1)
+        mat_train_sgd_w_ind = np.delete(mat_train_sgd_w_ind, idx, 1)
 
     return weight, bias
 
