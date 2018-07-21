@@ -31,8 +31,9 @@ def main():
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
         mat = matrix_str_to_float(mat, 5, num_rows)
 
-        # Remove algae indicator (row 2 (index 1) for this set of matrices)
-        mat = np.delete(mat, 1, 0)  # delete algal indicator (algalBloomSheen)
+        # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
+        mat = np.delete(mat, 0, 0)  # delete algae intensity (algalBloom)
+        mat = np.delete(mat, 0, 0)  # delete algae indicator (algalBloomSheen)
 
         # get filename of mat and compute eigenvectors, eigenvalues, and svd values
         filename = filename_w_directory[67:]
@@ -69,8 +70,9 @@ def main():
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
         mat = matrix_str_to_float(mat, 2, 15)
 
-        # Remove algae indicator (row 2 (index 1) for this set of matrices)
-        mat = np.delete(mat, 1, 0)  # delete algal indicator (algalBloomSheen)
+        # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
+        mat = np.delete(mat, 0, 0)  # delete algae intensity (algalBloom)
+        mat = np.delete(mat, 0, 0)  # delete algal indicator (algalBloomSheen)
 
         # get filename of mat and compute eigenvectors, eigenvalues, and svd values
         filename = filename_w_directory[67:]
@@ -102,7 +104,7 @@ def main():
 
 
 # This method takes a matrix mat, which is a matrix of string, and converts it into a matrix of float so the data
-# can be analyze numerically. It also trims any non-numerical entries, such as location, ID, etc. new_mat is returned,
+# can be analyzed numerically. It also trims any non-numerical entries, such as location, ID, etc. new_mat is returned,
 # which is the trimmed version of mat with float elements. first is the first row index of numerical entires, and
 # last is the last row index
 def matrix_str_to_float(mat, first, last):

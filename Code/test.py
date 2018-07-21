@@ -18,7 +18,7 @@ def main():
                [7.673756466, 3.508563011, 1]]
 
     weights = [-0.1, 0.20653640140000007, -0.23418117710000003]
-
+w
     for row in dataset:
         prediction = predict(row, weights)
         print("Expected=%d, Predicted=%d" % (row[-1], prediction))

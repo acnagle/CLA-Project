@@ -30,6 +30,7 @@ def main():
     build_randn_projection_vectors(dirnames_w_alg_ind_no_na, dest_path_matrices_no_na_proj)
     build_randn_projection_vectors(dirnames_w_alg_ind_all_data, dest_path_all_data_proj)
 
+
 def build_randn_projection_vectors(dirnames, dest_path):
     if len(dirnames) > 1:
         dirnames = dirnames[1:]
@@ -74,6 +75,7 @@ def build_randn_projection_vectors(dirnames, dest_path):
 
         matrix_to_file(mat, mat_name, final_directory)
         matrix_to_file(proj_mat_3d, proj_name + "_3d.csv", final_directory)
+
 
 # Writes a matrix to a .csv file. mat is the matrix being written to a file. filename is the name
 # of the .csv file. destination_folder is the path to the destination folder where the .csv file will be stored

@@ -4,7 +4,7 @@ import os
 import errno
 
 
-num_rows_no_ind = 12   # number of measurements per data point for data with no indicator
+num_rows_no_ind = 11   # number of measurements per data point for data with no indicator
 num_rows_w_ind = 13   # number of measurements per data point for data with indicator
 num_rows_3d_proj = 3    # number of rows in a 3D projection matrix
 
