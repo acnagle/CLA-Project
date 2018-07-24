@@ -126,25 +126,23 @@ def sgd(mat_train_no_ind, mat_train_w_ind, rate, weight, bias):
         # idx is the index of the data point in mat_train being evaluated
         idx = int(np.floor(np.random.rand() * mat_train_sgd_no_ind.shape[1]))
 
-        pred_label = np.sign(mat_train_sgd_no_ind[:, idx].dot(weight.T))   # predicted label
+        pred_label = np.sign(mat_train_sgd_no_ind[:, idx].dot(weight.T))  # predicted label
         label = mat_train_sgd_w_ind[1, idx]     # actual label
-        # print("predicted:", pred_label)
-        # print("actual:", label)
 
         if pred_label != label:
-            # print("### label mismatch ### ")
             num_mismatch = num_mismatch + 1
             if label == 1 or pred_label == 0:
                 weight = weight + rate * mat_train_sgd_no_ind[:, idx]
             if label == -1:
                 weight = weight - rate * mat_train_sgd_no_ind[:, idx]
-            # bias = bias + rate * pred_label
+
+            # bias = bias + rate * label
 
         # remove data point at idx from training data set
         mat_train_sgd_no_ind = np.delete(mat_train_sgd_no_ind, idx, 1)
         mat_train_sgd_w_ind = np.delete(mat_train_sgd_w_ind, idx, 1)
 
-    print("Percent label mismatch:", num_mismatch / mat_train_no_ind.shape[1])
+    print("Percent label mismatch:", num_mismatch / mat_train_no_ind.shape[1], "\n")
 
     return weight, bias
 

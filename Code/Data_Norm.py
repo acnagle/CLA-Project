@@ -2,6 +2,7 @@ import numpy as np
 import os
 import errno
 import glob
+from datetime import datetime, timedelta
 
 
 def main():
@@ -29,13 +30,16 @@ def main():
             if e.errno != errno.EEXIST:
                 raise
 
+    # define
+
     # normalize and store all matrices in path_matrices_no_na
     for filename in files_matrices_no_na:
         print("Processing file " + filename[65:] + " ...")
         mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype="str")
         mat = remove_empty_entries(mat)
+        convert_datetime_to_seconds(mat)
         normalize_data(mat, 5, 14)
-        matrix_to_file(mat, filename[65:], dest_path_matrices_no_na_normalized)
+        # matrix_to_file(mat, filename[65:], dest_path_matrices_no_na_normalized)   # TODO UNCOMMENT THIS LINE
 
     # if dest_path_matrices_all_data_normalized does not exist, create it
     if not os.path.exists(dest_path_matrices_all_data_normalized):
@@ -50,8 +54,9 @@ def main():
         print("Processing file " + filename[65:] + " ...")
         mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype="str")
         mat = remove_empty_entries(mat)
+        convert_datetime_to_seconds(mat)
         normalize_data(mat, 2, 15)
-        matrix_to_file(mat, filename[65:], dest_path_matrices_all_data_normalized)
+        # matrix_to_file(mat, filename[65:], dest_path_matrices_all_data_normalized)    # TODO UNCOMMENT THIS LINE
 
 
 # This method removes the empty entries (i.e. ",,,") located at the ends of the .csv files in the matrices_no_na
@@ -110,6 +115,31 @@ def matrix_to_file(mat, filename, destination_folder):
                 file.write(mat[i, j] + "\n")
 
     file.close()
+
+
+# This method converts all date and time entries into datetime objects. The datetime objects are then converted into
+# the number of seconds since 12:00 AM that day. This method takes in mat, the matrix which will have dates and times
+# modified, and returns an updated version of the matrix, new_mat.
+def convert_datetime_to_seconds(mat):
+    new_mat = mat
+
+    for j in range(0, mat.shape[1]):
+        date_str = mat[1, j]
+        date_arr = date_str.split("/")
+
+        month = int(date_arr[0])
+        day = int(date_arr[1])
+        year = int("20" + date_arr[2].split()[0])
+
+        time = date_arr[2].split()[1].split(":")
+
+        hour = int(time[0])
+        minute = int(time[1])
+
+        # determine the number of seconds since 12:00 AM on the day of the measurement to the actual measurement time
+        num_seconds = (datetime(year, month, day, hour, minute) - datetime(year, month, day, 0, 0)).total_seconds()
+
+        new_mat[1, j] = num_seconds
 
 
 if __name__ == "__main__": main()
