@@ -32,13 +32,23 @@ def main():
 
     # define
 
+
     # normalize and store all matrices in path_matrices_no_na
     for filename in files_matrices_no_na:
         print("Processing file " + filename[65:] + " ...")
-        mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype="str")
+        mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype=(str, 15))
         mat = remove_empty_entries(mat)
+
+        # reformat data
+        mat = np.delete(mat, 0, axis=0)
+        mat = np.delete(mat, 1, axis=0)
+        for j in range(0, mat.shape[1]):
+            mat[1, j] = str(mat[1, j]) + " " + str(mat[2, j][:-3])
+
+        mat = np.delete(mat, 2, axis=0)
+
         convert_datetime_to_seconds(mat)
-        normalize_data(mat, 5, 14)
+        normalize_data(mat, 1, 11)
         # matrix_to_file(mat, filename[65:], dest_path_matrices_no_na_normalized)   # TODO UNCOMMENT THIS LINE
 
     # if dest_path_matrices_all_data_normalized does not exist, create it
@@ -52,10 +62,10 @@ def main():
     # normalize and store all matrices in path_matrices_no_na
     for filename in files_matrices_all_data:
         print("Processing file " + filename[65:] + " ...")
-        mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype="str")
+        mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype=(str, 15))
         mat = remove_empty_entries(mat)
         convert_datetime_to_seconds(mat)
-        normalize_data(mat, 2, 15)
+        normalize_data(mat, 1, 15)
         # matrix_to_file(mat, filename[65:], dest_path_matrices_all_data_normalized)    # TODO UNCOMMENT THIS LINE
 
 
@@ -83,7 +93,7 @@ def normalize_data(mat, first, last):
 
         # convert all elements in norm_arr to float
         # norm_arr is the float representation of norm_arr_str
-        norm_arr = np.zeros(len(norm_arr_str), dtype="float")
+        norm_arr = np.zeros(len(norm_arr_str), dtype=float)
         for j in range(0, len(norm_arr)):
             try:
                 norm_arr[j] = float(norm_arr_str[j])
@@ -126,20 +136,25 @@ def convert_datetime_to_seconds(mat):
     for j in range(0, mat.shape[1]):
         date_str = mat[1, j]
         date_arr = date_str.split("/")
-
-        month = int(date_arr[0])
-        day = int(date_arr[1])
-        year = int("20" + date_arr[2].split()[0])
-
         time = date_arr[2].split()[1].split(":")
 
-        hour = int(time[0])
-        minute = int(time[1])
+        time_meas = int(time[0]) + (int(time[1]) / 60)
 
-        # determine the number of seconds since 12:00 AM on the day of the measurement to the actual measurement time
-        num_seconds = (datetime(year, month, day, hour, minute) - datetime(year, month, day, 0, 0)).total_seconds()
+        # month = int(date_arr[0])
+        # day = int(date_arr[1])
+        # year = int("20" + date_arr[2].split()[0])
+        #
+        # time = date_arr[2].split()[1].split(":")
+        #
+        # hour = int(time[0])
+        # minute = int(time[1])
+        #
+        # # determine the number of seconds since 12:00 AM on the day of the measurement to the actual measurement time
+        # num_seconds = (datetime(year, month, day, hour, minute) - datetime(year, month, day, 0, 0)).total_seconds()
+        #
+        # new_mat[1, j] = num_seconds
 
-        new_mat[1, j] = num_seconds
+        new_mat[1, j] = time_meas
 
 
 if __name__ == "__main__": main()
