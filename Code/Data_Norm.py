@@ -11,8 +11,8 @@ def main():
     print("\n\t##### EXECUTING DATA_NORM.PY #####")
 
     # source directories
-    path_matrices_no_na = "/Users/Alliot/documents/cla-project/data/matrices-no-na/original"
-    path_all_data = "/Users/Alliot/documents/cla-project/data/all-data-no-na/original"
+    path_matrices_no_na = "/Users/Alliot/documents/cla-project/data/matrices-no-na/original/"
+    path_all_data = "/Users/Alliot/documents/cla-project/data/all-data-no-na/original/"
 
     # destination directories for normalized data
     dest_path_matrices_no_na_normalized = "/Users/Alliot/documents/cla-project/data/matrices-no-na/normalized/"
@@ -30,8 +30,21 @@ def main():
             if e.errno != errno.EEXIST:
                 raise
 
-    # define
+    # define a location key matrix in order to quantize locations. For each location (row 0), define an integer to
+    # represent that location (row 1). Note: there are exactly 77 locations
+    num_locs = 77
+    mat = np.genfromtxt(open(path_all_data + "All_Data_matrix.csv", "rb"), delimiter=",", dtype=(str, 15))
+    loc_key = np.empty((2, num_locs), dtype=(str, 15))
+    int_rep = 0     # holds integer to represent next location added to loc_key
+    for j in range(0, mat.shape[1]):
+        if mat[0, j] not in loc_key[0, :]:
+            loc_key[0, int_rep] = mat[0, j]
+            loc_key[1, int_rep] = str(int_rep)
+            int_rep = int_rep + 1
 
+    print(loc_key)
+    print("Processing Location Key ...")
+    matrix_to_file(loc_key, "Location Key.csv", "/Users/Alliot/Documents/CLA-Project/Data/")
 
     # normalize and store all matrices in path_matrices_no_na
     for filename in files_matrices_no_na:
@@ -46,8 +59,9 @@ def main():
             mat[1, j] = str(mat[1, j]) + " " + str(mat[2, j][:-3])
 
         mat = np.delete(mat, 2, axis=0)
-
-        convert_datetime_to_seconds(mat)
+        convert_datetime_to_measurement(mat)
+        convert_locs_to_measurement(mat, loc_key)
+        print(mat)
         normalize_data(mat, 1, 11)
         # matrix_to_file(mat, filename[65:], dest_path_matrices_no_na_normalized)   # TODO UNCOMMENT THIS LINE
 
@@ -64,7 +78,7 @@ def main():
         print("Processing file " + filename[65:] + " ...")
         mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype=(str, 15))
         mat = remove_empty_entries(mat)
-        convert_datetime_to_seconds(mat)
+        convert_datetime_to_measurement(mat)
         normalize_data(mat, 1, 15)
         # matrix_to_file(mat, filename[65:], dest_path_matrices_all_data_normalized)    # TODO UNCOMMENT THIS LINE
 
@@ -127,18 +141,17 @@ def matrix_to_file(mat, filename, destination_folder):
     file.close()
 
 
-# This method converts all date and time entries into datetime objects. The datetime objects are then converted into
-# the number of seconds since 12:00 AM that day. This method takes in mat, the matrix which will have dates and times
-# modified, and returns an updated version of the matrix, new_mat.
-def convert_datetime_to_seconds(mat):
-    new_mat = mat
-
+# This method converts all date and times into a number between [0, 24). This way, we can use time as a quantitative
+# measurement.
+def convert_datetime_to_measurement(mat):
     for j in range(0, mat.shape[1]):
         date_str = mat[1, j]
         date_arr = date_str.split("/")
         time = date_arr[2].split()[1].split(":")
 
         time_meas = int(time[0]) + (int(time[1]) / 60)
+
+        mat[1, j] = time_meas
 
         # month = int(date_arr[0])
         # day = int(date_arr[1])
@@ -154,7 +167,15 @@ def convert_datetime_to_seconds(mat):
         #
         # new_mat[1, j] = num_seconds
 
-        new_mat[1, j] = time_meas
+
+# This method converts the locations (there are 77 of them) where the measurements were gathered into an integer. In
+# this way, we can quantify location. mat, the matrix of data, and loc_key, the matrix of locations and their
+# corresponding integers, is passed into the method.
+def convert_locs_to_measurement(mat, loc_key):
+    for j in range(0, mat.shape[1]):
+        idx = np.where(mat[0, j] == loc_key)
+        print(idx[1][0])
+        mat[0, j] = loc_key[1, idx[1][0]]   # TODO DEBUG THIS CODE
 
 
 if __name__ == "__main__": main()
