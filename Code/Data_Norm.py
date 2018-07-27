@@ -2,7 +2,6 @@ import numpy as np
 import os
 import errno
 import glob
-from datetime import datetime, timedelta
 
 
 def main():
@@ -31,8 +30,8 @@ def main():
                 raise
 
     # define a location key matrix in order to quantize locations. For each location (row 0), define an integer to
-    # represent that location (row 1). Note: there are exactly 77 locations
-    num_locs = 77
+    # represent that location (row 1). Note: there are exactly 78 locations
+    num_locs = 78
     mat = np.genfromtxt(open(path_all_data + "All_Data_matrix.csv", "rb"), delimiter=",", dtype=(str, 15))
     loc_key = np.empty((2, num_locs), dtype=(str, 15))
     int_rep = 0     # holds integer to represent next location added to loc_key
@@ -42,7 +41,10 @@ def main():
             loc_key[1, int_rep] = str(int_rep)
             int_rep = int_rep + 1
 
-    print(loc_key)
+    # add more locations
+    loc_key[0, 77] = "MendotaPier18"
+    loc_key[1, 77] = "77"
+
     print("Processing Location Key ...")
     matrix_to_file(loc_key, "Location Key.csv", "/Users/Alliot/Documents/CLA-Project/Data/")
 
@@ -61,9 +63,8 @@ def main():
         mat = np.delete(mat, 2, axis=0)
         convert_datetime_to_measurement(mat)
         convert_locs_to_measurement(mat, loc_key)
-        print(mat)
-        normalize_data(mat, 1, 11)
-        # matrix_to_file(mat, filename[65:], dest_path_matrices_no_na_normalized)   # TODO UNCOMMENT THIS LINE
+        normalize_data(mat, 0, 11)
+        matrix_to_file(mat, filename[65:], dest_path_matrices_no_na_normalized)
 
     # if dest_path_matrices_all_data_normalized does not exist, create it
     if not os.path.exists(dest_path_matrices_all_data_normalized):
@@ -79,8 +80,9 @@ def main():
         mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype=(str, 15))
         mat = remove_empty_entries(mat)
         convert_datetime_to_measurement(mat)
-        normalize_data(mat, 1, 15)
-        # matrix_to_file(mat, filename[65:], dest_path_matrices_all_data_normalized)    # TODO UNCOMMENT THIS LINE
+        convert_locs_to_measurement(mat, loc_key)
+        normalize_data(mat, 0, 15)
+        matrix_to_file(mat, filename[65:], dest_path_matrices_all_data_normalized)
 
 
 # This method removes the empty entries (i.e. ",,,") located at the ends of the .csv files in the matrices_no_na
@@ -170,12 +172,14 @@ def convert_datetime_to_measurement(mat):
 
 # This method converts the locations (there are 77 of them) where the measurements were gathered into an integer. In
 # this way, we can quantify location. mat, the matrix of data, and loc_key, the matrix of locations and their
-# corresponding integers, is passed into the method.
+# corresponding integers, is passed into the method. new_mat is the matrix with the updated location values, and is
+# returned
 def convert_locs_to_measurement(mat, loc_key):
+    # new_mat = mat
     for j in range(0, mat.shape[1]):
-        idx = np.where(mat[0, j] == loc_key)
-        print(idx[1][0])
-        mat[0, j] = loc_key[1, idx[1][0]]   # TODO DEBUG THIS CODE
+        idx = np.where(mat[0, j] == loc_key[0, :])
+        mat[0, j] = loc_key[1, idx[0][0]]
 
+    # return new_mat
 
 if __name__ == "__main__": main()

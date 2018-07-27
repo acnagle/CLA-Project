@@ -29,7 +29,7 @@ def main():
     # compute eigenvectors, eigenvalues, and singular values of all the matrices in path_matrices_no_na directory
     for filename_w_directory in files_matrices_no_na:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, 5, num_rows)
+        mat = matrix_str_to_float(mat, 0, mat.shape[0])
         filename = filename_w_directory[67:]
         print("Processing file " + filename + " ...")
         eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)
@@ -62,7 +62,7 @@ def main():
     files_matrices_all_data = [filename for filename in glob.glob(os.path.join(path_all_data, "*.csv"))]
     for filename_w_directory in files_matrices_all_data:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, 2, 15)
+        mat = matrix_str_to_float(mat, 0, mat.shape[0])
         filename = filename_w_directory[67:]
         print("Processing file " + filename + " ...")
         eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)
@@ -89,6 +89,7 @@ def main():
         vector_to_file(eigv3, eigv3_filename, final_directory)
         vector_to_file(eigvals, eigvals_filename, final_directory)
         vector_to_file(svdvals, svdvals_filename, final_directory)
+
 
 # This method takes a matrix mat, which is a matrix of string, and converts it into a matrix of float so the data
 # can be analyze numerically. It also trims any non-numerical entries, such as location, ID, etc. new_mat is returned,
