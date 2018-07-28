@@ -5,11 +5,11 @@ function [no_alg, bg_alg, gr_alg] = data_vectors(mat_norm, mat_proj)
 % green algae, and blue-green algae blooms.
 
     for i=1:length(mat_norm)
-        if mat_norm(2, i) == 0
+        if mat_norm(4, i) == 0
             no_alg(:, i) = mat_proj(:, i);
-        elseif mat_norm(2, i) == 0.5
+        elseif mat_norm(4, i) == 0.5
             bg_alg(:, i) = mat_proj(:, i);
-        elseif mat_norm(2, i) == 1
+        elseif mat_norm(4, i) == 1
             gr_alg(:, i) = mat_proj(:, i);
         end
     end

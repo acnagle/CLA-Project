@@ -32,8 +32,8 @@ def main():
         mat = matrix_str_to_float(mat, 0, mat.shape[0])
 
         # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
-        mat = np.delete(mat, 0, 0)  # delete algae intensity (algalBloom)
-        mat = np.delete(mat, 0, 0)  # delete algae indicator (algalBloomSheen)
+        mat = np.delete(mat, 2, 0)  # delete algae intensity (algalBloom)
+        mat = np.delete(mat, 2, 0)  # delete algae indicator (algalBloomSheen)
 
         # get filename of mat and compute eigenvectors, eigenvalues, and svd values
         filename = filename_w_directory[67:]
@@ -71,8 +71,8 @@ def main():
         mat = matrix_str_to_float(mat, 0, mat.shape[0])
 
         # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
-        mat = np.delete(mat, 0, 0)  # delete algae intensity (algalBloom)
-        mat = np.delete(mat, 0, 0)  # delete algal indicator (algalBloomSheen)
+        mat = np.delete(mat, 2, 0)  # delete algae intensity (algalBloom)
+        mat = np.delete(mat, 2, 0)  # delete algal indicator (algalBloomSheen)
 
         # get filename of mat and compute eigenvectors, eigenvalues, and svd values
         filename = filename_w_directory[67:]
