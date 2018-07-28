@@ -5,8 +5,8 @@ import os
 import errno
 
 
-num_rows_no_ind = 11   # number of measurements per data point for data with no indicator
-num_rows_w_ind = 13   # number of measurements per data point for data with indicator
+num_rows_no_ind = 13    # number of measurements per data point for data with no indicator
+num_rows_w_ind = 15     # number of measurements per data point for data with indicator
 num_rows_3d_proj = 3    # number of rows in a 3D projection matrix
 
 
@@ -283,7 +283,7 @@ def create_val_set(mat):
     # SPECIAL NOTE: for some reason I can't explain, the above code in this method appends an extra column to the front
     # of mat_val with values that are extremely tiny and large (order of 10^-250 to 10^314 or so). This code deletes
     # that column
-    mat_val = np.delete(mat_val, 0, 1)
+    mat_val = np.delete(mat_val, obj=0, axis=1)
 
     return mat_val, val_idx
 
@@ -294,7 +294,7 @@ def create_val_set(mat):
 def create_training_set(mat, val_idx):
     mat_train = mat
     for i in np.flip(val_idx, 0):
-        mat_train = np.delete(mat_train, i, 1)
+        mat_train = np.delete(mat_train, obj=i, axis=1)
 
     return mat_train
 
@@ -328,7 +328,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     k_nn_labels = np.empty((mat_val_no_ind.shape[1], k))
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, k):
-            k_nn_labels[i, j] = mat_train_w_ind[1, k_nn_idx[i, j]]
+            k_nn_labels[i, j] = mat_train_w_ind[3, k_nn_idx[i, j]]
 
     # 3. predict the label of each point in the validation set. In mat_train_w_ind, the algae bloom indicator is
     # located in row index 1. The single most abundant label in the nearest neighbor of a data point will be stored in
@@ -340,7 +340,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     num_bg_alg = 0  # tally of number of data points in k-nn with blue-green algal bloom
     num_gr_alg = 0  # tally of number of data points in k-nn with green algal bloom
     label = 0       # label for data point
-    mat_val_label = np.insert(mat_val_no_ind, 1, 0, axis=0)
+    mat_val_label = np.insert(mat_val_no_ind, obj=3, values=0, axis=0)
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, k):
             if k_nn_labels[i, j] == 0:
@@ -374,7 +374,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
                     label = k_nn_labels[i, l]
                     break
 
-        mat_val_label[1, i] = label
+        mat_val_label[3, i] = label
 
         # reset tallies
         num_no_alg = 0
@@ -390,26 +390,26 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
     for i in range(0, mat_val_w_ind.shape[1]):
-        if mat_val_w_ind[1, i] == 0:
-            if mat_val_label[1, i] == 0:
+        if mat_val_w_ind[3, i] == 0:
+            if mat_val_label[3, i] == 0:
                 mat_conf[0, 0] = mat_conf[0, 0] + 1
-            elif mat_val_label[1, i] == 0.5:
+            elif mat_val_label[3, i] == 0.5:
                 mat_conf[0, 1] = mat_conf[0, 1] + 1
-            elif mat_val_label[1, i] == 1:
+            elif mat_val_label[3, i] == 1:
                 mat_conf[0, 2] = mat_conf[0, 2] + 1
-        elif mat_val_w_ind[1, i] == 0.5:
-            if mat_val_label[1, i] == 0:
+        elif mat_val_w_ind[3, i] == 0.5:
+            if mat_val_label[3, i] == 0:
                 mat_conf[1, 0] = mat_conf[1, 0] + 1
-            elif mat_val_label[1, i] == 0.5:
+            elif mat_val_label[3, i] == 0.5:
                 mat_conf[1, 1] = mat_conf[1, 1] + 1
-            elif mat_val_label[1, i] == 1:
+            elif mat_val_label[3, i] == 1:
                 mat_conf[1, 2] = mat_conf[1, 2] + 1
-        elif mat_val_w_ind[1, i] == 1:
-            if mat_val_label[1, i] == 0:
+        elif mat_val_w_ind[3, i] == 1:
+            if mat_val_label[3, i] == 0:
                 mat_conf[2, 0] = mat_conf[2, 0] + 1
-            elif mat_val_label[1, i] == 0.5:
+            elif mat_val_label[3, i] == 0.5:
                 mat_conf[2, 1] = mat_conf[2, 1] + 1
-            elif mat_val_label[1, i] == 1:
+            elif mat_val_label[3, i] == 1:
                 mat_conf[2, 2] = mat_conf[2, 2] + 1
 
     print("Confusion matrix:")
@@ -476,7 +476,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     k_nn_labels = np.empty((mat_val_no_ind.shape[1], k))
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, k):
-            k_nn_labels[i, j] = mat_train_w_ind[1, k_nn_idx[i, j]]
+            k_nn_labels[i, j] = mat_train_w_ind[3, k_nn_idx[i, j]]
 
     # 3. predict the label of each point in the validation set. In mat_train_w_ind, the algae bloom indicator is
     # located in row index 1. The single most abundant label in the nearest neighbor of a data point will be stored in
@@ -487,7 +487,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     num_no_alg = 0  # tally of number of data points in k-nn with no indication of algal bloom
     num_w_alg = 0   # tally of number of data points in k-nn with algal bloom
     label = 0       # label for data point
-    mat_val_label = np.insert(mat_val_no_ind, 1, 0, axis=0)
+    mat_val_label = np.insert(mat_val_no_ind, obj=3, values=0, axis=0)
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, k):
             if k_nn_labels[i, j] == 0:
@@ -512,7 +512,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
                     label = 1
                     break
 
-        mat_val_label[1, i] = label
+        mat_val_label[3, i] = label
 
         # reset tallies
         num_no_alg = 0
@@ -527,15 +527,15 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
     for i in range(0, mat_val_w_ind.shape[1]):
-        if mat_val_w_ind[1, i] == 0:
-            if mat_val_label[1, i] == 0:
+        if mat_val_w_ind[3, i] == 0:
+            if mat_val_label[3, i] == 0:
                 mat_conf[0, 0] = mat_conf[0, 0] + 1
-            elif mat_val_label[1, i] == 1:
+            elif mat_val_label[3, i] == 1:
                 mat_conf[0, 1] = mat_conf[0, 1] + 1
-        elif mat_val_w_ind[1, i] == 1:
-            if mat_val_label[1, i] == 0:
+        elif mat_val_w_ind[3, i] == 1:
+            if mat_val_label[3, i] == 0:
                 mat_conf[1, 0] = mat_conf[1, 0] + 1
-            elif mat_val_label[1, i] == 1:
+            elif mat_val_label[3, i] == 1:
                 mat_conf[1, 1] = mat_conf[1, 1] + 1
 
     print("Confusion matrix:")
@@ -563,6 +563,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     print("Accuracy:\t\t\t    ", accuracy, "\n")
 
     return ber, accuracy
+
 
 # Writes a matrix to a .csv file. mat is the matrix being written to a file. filename is the name
 # of the .csv file. destination_folder is the path to the destination folder where the .csv file will be stored
