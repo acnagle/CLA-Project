@@ -2,7 +2,7 @@ import numpy as np
 import os
 import errno
 
-num_rows_no_ind = 11   # number of measurements per data point for data with no indicator
+num_rows_no_ind = 13   # number of measurements per data point for data with no indicator
 num_rows_3d_proj = 3    # number of rows in a 3D projection matrix
 
 def main():
@@ -79,10 +79,10 @@ def main():
 def update_labels(mat):
     new_mat = mat
     for j in range(0, mat.shape[1]):
-        if mat[1, j] >= 0.5:
-            new_mat[1, j] = 1
-        elif mat[1, j] == 0:
-            new_mat[1, j] = -1
+        if mat[3, j] >= 0.5:
+            new_mat[3, j] = 1
+        elif mat[3, j] == 0:
+            new_mat[3, j] = -1
         else:
             print("Unexpected algae label at index", j)
 
@@ -127,7 +127,7 @@ def sgd(mat_train_no_ind, mat_train_w_ind, rate, weight, bias):
         idx = int(np.floor(np.random.rand() * mat_train_sgd_no_ind.shape[1]))
 
         pred_label = np.sign(mat_train_sgd_no_ind[:, idx].dot(weight.T))  # predicted label
-        label = mat_train_sgd_w_ind[1, idx]     # actual label
+        label = mat_train_sgd_w_ind[3, idx]     # actual label
 
         if pred_label != label:
             num_mismatch = num_mismatch + 1
