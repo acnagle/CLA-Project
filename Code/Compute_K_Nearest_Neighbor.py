@@ -300,10 +300,10 @@ def create_training_set(mat, val_idx):
 
 
 # This method predicts the labels for each point in the validation set, mat_val, used k-nearest neighbors in the
-# training dataset, mat_train. k is the number of neighbors checked for in mat_train. mat_train_w_ind and mat_w_ind
-# have the algae indicator included, whereas mat_val_no_ind and mat_train_no_ind do not. ber is the Balanced Error
-# Rate, and is returned from this method. accuracy is the accuracy of label predication, and is returned
-# from this method.
+# training dataset, mat_train. This method uses a weighted K-NN approach. k is the number of neighbors checked for
+# in mat_train. mat_train_w_ind and mat_w_ind have the algae indicator included, whereas mat_val_no_ind and
+# mat_train_no_ind do not. ber is the Balanced Error Rate, and is returned from this method. accuracy is the accuracy
+# of label predication, and is returned from this method.
 def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_ind, k):
     # 1. Create a matrix of L2-norms. For each column (x_val) in mat_val_no_ind, calculate || x_val - x_train ||^2,
     # where x_train is every column in mat_train_no_ind. A row in l2_mat corresponds to a column in mat_val_no_ind,
@@ -324,11 +324,14 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
             l2_mat[i, k_nn_idx[i, j]] = float("inf")
 
     # b. Create a matrix containing the k-nearest neighbor label for each vector in mat_val. The rows correspond to
-    # the labels of each data point in mat_train_w_ind. The columns represent each of the k-nearest neighbors.
+    # the labels of each data point in mat_train_w_ind. The columns represent each of the k-nearest neighbors. Also,
+    # determine the weights for a weighted k-nn approach.
     k_nn_labels = np.empty((mat_val_no_ind.shape[1], k))
+    weights = np.empty((mat_val_no_ind.shape[1], k))
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, k):
             k_nn_labels[i, j] = mat_train_w_ind[3, k_nn_idx[i, j]]
+            weights[i, j] = 1 / l2_mat[i, k_nn_idx[i, j]]
 
     # 3. predict the label of each point in the validation set. In mat_train_w_ind, the algae bloom indicator is
     # located in row index 1. The single most abundant label in the nearest neighbor of a data point will be stored in
