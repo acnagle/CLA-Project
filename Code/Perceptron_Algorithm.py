@@ -1,9 +1,7 @@
 import numpy as np
 import os
 import errno
-
-num_rows_no_ind = 13   # number of measurements per data point for data with no indicator
-num_rows_3d_proj = 3    # number of rows in a 3D projection matrix
+import Constants
 
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
@@ -32,16 +30,6 @@ def main():
                                   "Mendota_All_Data_summer_matrix/Mendota_All_Data_summer_matrix_proj_no-alg-ind_3d.csv"
     src_path_monona_proj_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/projections/" \
                                  "Monona_All_Data_summer_matrix/Monona_All_Data_summer_matrix_proj_no-alg-ind_3d.csv"
-
-    # dest_path = "/Users/Alliot/Documents/CLA-Project/Perceptron/"
-    #
-    # # if dest_path does not exist, create it
-    # if not os.path.exists(dest_path):
-    #     try:
-    #         os.makedirs(dest_path)
-    #     except OSError as e:
-    #         if e.errno != errno.EEXIST:
-    #             raise
 
     # read in files from source directories
     mat_all_data_orig_w_ind = np.genfromtxt(open(src_path_all_data_orig_w_ind, "rb"), delimiter=",", dtype=float)
@@ -97,7 +85,7 @@ def update_labels(mat):
 def perceptron_algorithm(mat_train_no_ind, mat_train_w_ind, num_epochs):
     rate = 0.5   # learning rate
     # define the weight vector. The ith entry in weight is the weight of measurement mat_train[i, j]
-    weight = np.zeros(num_rows_no_ind)
+    weight = np.zeros(Constants.NUM_ROWS_NO_IND)
     # define the bias value
     bias = 0
 

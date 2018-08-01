@@ -1,13 +1,7 @@
 import numpy as np
-import math
 import os
 import glob
 import errno
-
-# the height of the matrices. ie the number of measurements per sample. IMPORTANT NOTE: The .csv files being read in
-# by this code has 15 rows. The last row is a "poor water quality flag" (binary) that is 1 if the turbidity is below
-# 50 and 0 otherwise. By choosing num_rows = 14, I'm eliminating this row.
-num_rows = 14
 
 
 def main():
@@ -29,11 +23,11 @@ def main():
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_matrices_no_na directory
     for filename_w_directory in files_matrices_no_na:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, 0, mat.shape[0])
+        mat = matrix_str_to_float(mat, first=0, last=mat.shape[0])
 
         # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
-        mat = np.delete(mat, 2, 0)  # delete algae intensity (algalBloom)
-        mat = np.delete(mat, 2, 0)  # delete algae indicator (algalBloomSheen)
+        mat = np.delete(mat, obj=2, axis=0)  # delete algae intensity (algalBloom)
+        mat = np.delete(mat, obj=2, axis=0)  # delete algae indicator (algalBloomSheen)
 
         # get filename of mat and compute eigenvectors, eigenvalues, and svd values
         filename = filename_w_directory[67:]
@@ -56,23 +50,23 @@ def main():
                 if e.errno != errno.EEXIST:
                     raise
 
-        matrix_to_file(mat, filename, final_directory)
-        vector_to_file(eigv1, eigv1_filename, final_directory)
-        vector_to_file(eigv2, eigv2_filename, final_directory)
-        vector_to_file(eigv3, eigv3_filename, final_directory)
-        vector_to_file(eigvals, eigvals_filename, final_directory)
-        vector_to_file(svdvals, svdvals_filename, final_directory)
+        matrix_to_file(mat, filename=filename, destination_folder=final_directory)
+        vector_to_file(eigv1, filename=eigv1_filename, destination_folder=final_directory)
+        vector_to_file(eigv2, filename=eigv2_filename, destination_folder=final_directory)
+        vector_to_file(eigv3, filename=eigv3_filename, destination_folder=final_directory)
+        vector_to_file(eigvals, filename=eigvals_filename, destination_folder=final_directory)
+        vector_to_file(svdvals, filename=svdvals_filename, destination_folder=final_directory)
 
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_all_data directory
     # get all file paths in all-data-no-na directory
     files_matrices_all_data = [filename for filename in glob.glob(os.path.join(path_all_data, "*.csv"))]
     for filename_w_directory in files_matrices_all_data:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, 0, mat.shape[0])
+        mat = matrix_str_to_float(mat, first=0, last=mat.shape[0])
 
         # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
-        mat = np.delete(mat, 2, 0)  # delete algae intensity (algalBloom)
-        mat = np.delete(mat, 2, 0)  # delete algal indicator (algalBloomSheen)
+        mat = np.delete(mat, obj=2, axis=0)  # delete algae intensity (algalBloom)
+        mat = np.delete(mat, obj=2, axis=0)  # delete algal indicator (algalBloomSheen)
 
         # get filename of mat and compute eigenvectors, eigenvalues, and svd values
         filename = filename_w_directory[67:]
@@ -95,12 +89,12 @@ def main():
                 if e.errno != errno.EEXIST:
                     raise
 
-        matrix_to_file(mat, filename, final_directory)
-        vector_to_file(eigv1, eigv1_filename, final_directory)
-        vector_to_file(eigv2, eigv2_filename, final_directory)
-        vector_to_file(eigv3, eigv3_filename, final_directory)
-        vector_to_file(eigvals, eigvals_filename, final_directory)
-        matrix_to_file(svdvals, svdvals_filename, final_directory)
+        matrix_to_file(mat, filename=filename, destination_folder=final_directory)
+        vector_to_file(eigv1, filename=eigv1_filename, destination_folder=final_directory)
+        vector_to_file(eigv2, filename=eigv2_filename, destination_folder=final_directory)
+        vector_to_file(eigv3, filename=eigv3_filename, destination_folder=final_directory)
+        vector_to_file(eigvals, filename=eigvals_filename, destination_folder=final_directory)
+        matrix_to_file(svdvals, filename=svdvals_filename, destination_folder=final_directory)
 
 
 # This method takes a matrix mat, which is a matrix of string, and converts it into a matrix of float so the data
@@ -125,7 +119,7 @@ def matrix_str_to_float(mat, first, last):
 # which is the vector of sorted (from greatest to least) eigenvalues, and svdvals, which is the vector
 # of singular values
 def get_eigenvectors(mat):
-    ## compute the eigenvalues and store in w, and compute vectors and store them in v.
+    # compute the eigenvalues and store in w, and compute vectors and store them in v.
     # a = mat.dot(mat.T)
     # w, v = np.linalg.eig(a)
     #

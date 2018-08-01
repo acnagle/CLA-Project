@@ -3,12 +3,7 @@ import sys
 import matplotlib.pyplot as plt
 import os
 import errno
-
-
-num_rows_no_ind = 13    # number of measurements per data point for data with no indicator
-num_rows_w_ind = 15     # number of measurements per data point for data with indicator
-num_rows_3d_proj = 3    # number of rows in a 3D projection matrix
-
+import Constants
 
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
@@ -267,12 +262,12 @@ def create_val_set(mat):
     # find the indices from mat which will choose the data points for mat_val
     val_idx = np.linspace(0, mat_width-1, num=num_val_points, dtype=int)
 
-    if mat.shape[0] == num_rows_no_ind:
-        mat_val = np.transpose([np.empty((num_rows_no_ind, ))])
-    elif mat.shape[0] == num_rows_w_ind:
-        mat_val = np.transpose([np.empty((num_rows_w_ind, ))])
-    elif mat.shape[0] == num_rows_3d_proj:
-        mat_val = np.transpose([np.empty((num_rows_3d_proj, ))])
+    if mat.shape[0] == Constants.NUM_ROWS_NO_IND:
+        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_NO_IND, ))])
+    elif mat.shape[0] == Constants.NUM_ROWS_W_IND:
+        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_W_IND, ))])
+    elif mat.shape[0] == Constants.NUM_ROWS_3D_PROJ:
+        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_3D_PROJ, ))])
     else:
         print("Data matrix does not have the expected number of rows.")
         sys.exit()
