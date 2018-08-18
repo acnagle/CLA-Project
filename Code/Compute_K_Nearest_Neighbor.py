@@ -304,7 +304,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     # where x_train is every column in mat_train_no_ind. A row in l2_mat corresponds to a column in mat_val_no_ind,
     # and a column in l2_mat corresponds to a column in mat_train_no_ind. For example,
     # l2_mat[2, 5] = || x_val_2 - x_train ||^2
-    l2_mat = np.empty((mat_val_no_ind.shape[1], mat_train_no_ind.shape[1]), dtype=float)
+    l2_mat = np.empty(shape=(mat_val_no_ind.shape[1], mat_train_no_ind.shape[1]), dtype=float)
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, mat_train_no_ind.shape[1]):
             l2_mat[i, j] = (np.linalg.norm(mat_val_no_ind[:, i] - mat_train_no_ind[:, j])) ** 2
@@ -312,7 +312,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     # 2. Determine k-nn for each row in l2_mat. For each nearest neighbor we will need the column index from
     # mat_train_no_ind and the label of the column from mat_train_no_ind.
     # a. Get column indices from mat_train
-    k_nn_idx = np.empty((mat_val_no_ind.shape[1], k), dtype=int)
+    k_nn_idx = np.empty(shape=(mat_val_no_ind.shape[1], k), dtype=int)
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, k):
             k_nn_idx[i, j] = np.argmin(l2_mat[i, :])
@@ -321,8 +321,8 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     # b. Create a matrix containing the k-nearest neighbor label for each vector in mat_val. The rows correspond to
     # the labels of each data point in mat_train_w_ind. The columns represent each of the k-nearest neighbors. Also,
     # determine the weights for a weighted k-nn approach.
-    k_nn_labels = np.empty((mat_val_no_ind.shape[1], k))
-    weights = np.empty((mat_val_no_ind.shape[1], k))
+    k_nn_labels = np.empty(shape=(mat_val_no_ind.shape[1], k))
+    weights = np.empty(shape=(mat_val_no_ind.shape[1], k))
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, k):
             k_nn_labels[i, j] = mat_train_w_ind[3, k_nn_idx[i, j]]
@@ -384,7 +384,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     # necessary to calculate the balanced error rate (BER), accuracy, and other relevant errors for evaluation of the
     # k-nn method. mat_conf is a 3x3 matrix because we only have three labels: no algae, blue-green algae, and green
     # algae. Each entry in mat_conf is the sum of occurrences of each predicted label for each true label.
-    mat_conf = np.zeros((3, 3), dtype=int)
+    mat_conf = np.zeros(shape=(3, 3), dtype=int)
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
     for i in range(0, mat_val_w_ind.shape[1]):
@@ -455,7 +455,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     # where x_train is every column in mat_train_no_ind. A row in l2_mat corresponds to a column in mat_val_no_ind,
     # and a column in l2_mat corresponds to a column in mat_train_no_ind. For example,
     # l2_mat[2, 5] = || x_val_2 - x_train ||^2
-    l2_mat = np.empty((mat_val_no_ind.shape[1], mat_train_no_ind.shape[1]), dtype=float)
+    l2_mat = np.empty(shape=(mat_val_no_ind.shape[1], mat_train_no_ind.shape[1]), dtype=float)
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, mat_train_no_ind.shape[1]):
             l2_mat[i, j] = (np.linalg.norm(mat_val_no_ind[:, i] - mat_train_no_ind[:, j])) ** 2
@@ -463,7 +463,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     # 2. Determine k-nn for each row in l2_mat. For each nearest neighbor we will need the column index from
     # mat_train_no_ind and the label of the column from mat_train_no_ind.
     # a. Get column indices from mat_train
-    k_nn_idx = np.empty((mat_val_no_ind.shape[1], k), dtype=int)
+    k_nn_idx = np.empty(shape=(mat_val_no_ind.shape[1], k), dtype=int)
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, k):
             k_nn_idx[i, j] = np.argmin(l2_mat[i, :])
@@ -471,7 +471,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
 
     # b. Create a matrix containing the k-nearest neighbor label for each vector in mat_val. The rows correspond to
     # the labels of each data point in mat_train_w_ind. The columns represent each of the k-nearest neighbors.
-    k_nn_labels = np.empty((mat_val_no_ind.shape[1], k))
+    k_nn_labels = np.empty(shape=(mat_val_no_ind.shape[1], k))
     for i in range(0, mat_val_no_ind.shape[1]):
         for j in range(0, k):
             k_nn_labels[i, j] = mat_train_w_ind[3, k_nn_idx[i, j]]
@@ -521,7 +521,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     # necessary to calculate the balanced error rate (BER), accuracy, and other relevant errors for evaluation of the
     # k-nn method. mat_conf is a 3x3 matrix because we only have three labels: no algae, blue-green algae, and green
     # algae. Each entry in mat_conf is the sum of occurrences of each predicted label for each true label.
-    mat_conf = np.zeros((2, 2), dtype=int)
+    mat_conf = np.zeros(shape=(2, 2), dtype=int)
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
     for i in range(0, mat_val_w_ind.shape[1]):

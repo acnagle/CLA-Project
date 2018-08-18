@@ -2,6 +2,7 @@ import numpy as np
 import glob
 import os
 import errno
+import Constants
 
 
 def main():
@@ -25,10 +26,10 @@ def main():
     dirnames_no_alg_ind_all_data = [x[0] for x in os.walk(path_all_data_eigen_no_alg_ind)]
     dirnames_w_alg_ind_all_data = [x[0] for x in os.walk(path_all_data_eigen_w_alg_ind)]
 
-    build_projection_vectors(dirnames_no_alg_ind_no_na, dest_path_matrices_no_na_proj)
-    build_projection_vectors(dirnames_no_alg_ind_all_data, dest_path_all_data_proj)
-    build_projection_vectors(dirnames_w_alg_ind_no_na, dest_path_matrices_no_na_proj)
-    build_projection_vectors(dirnames_w_alg_ind_all_data, dest_path_all_data_proj)
+    build_projection_vectors(dirnames=dirnames_no_alg_ind_no_na, dest_path=dest_path_matrices_no_na_proj)
+    build_projection_vectors(dirnames=dirnames_no_alg_ind_all_data, dest_path=dest_path_all_data_proj)
+    build_projection_vectors(dirnames=dirnames_w_alg_ind_no_na, dest_path=dest_path_matrices_no_na_proj)
+    build_projection_vectors(dirnames=dirnames_w_alg_ind_all_data, dest_path=dest_path_all_data_proj)
 
 
 # This method builds a [3, M] matrix where M is the number of types of measurements (turbidity, water
@@ -83,11 +84,11 @@ def build_projection_vectors(dirnames, dest_path):
         # Each column in proj_mat corresponds to the projection of a particular row in
         # mat on V. let V = [eigv1 eigv2 eigv3], and let A represent mat so that A_i is the ith column in mat.
         # (U^T)A_i = [(eigv1^T)A_i; (eigv2^T)A_i; (eigv3^T)A_i] = proj_mat_3d[i]
-        proj_mat_3d = np.zeros((3, mat.shape[1]), dtype=float)
-        proj_mat_2d = np.zeros((2, mat.shape[1]), dtype=float)
-        proj_mat_1d = np.zeros((1, mat.shape[1]), dtype=float)
+        proj_mat_3d = np.zeros(shape=(3, mat.shape[Constants.COLUMNS]), dtype=float)
+        proj_mat_2d = np.zeros(shape=(2, mat.shape[Constants.COLUMNS]), dtype=float)
+        proj_mat_1d = np.zeros(shape=(1, mat.shape[Constants.COLUMNS]), dtype=float)
 
-        for i in range(0, mat.shape[1]):
+        for i in range(0, mat.shape[Constants.COLUMNS]):
             proj_mat_3d[0, i] = eigv1.T.dot(mat[:, i])
             proj_mat_3d[1, i] = eigv2.T.dot(mat[:, i])
             proj_mat_3d[2, i] = eigv3.T.dot(mat[:, i])
@@ -105,10 +106,10 @@ def build_projection_vectors(dirnames, dest_path):
                 if e.errno != errno.EEXIST:
                     raise
 
-        matrix_to_file(mat, mat_name, final_directory)
-        matrix_to_file(proj_mat_3d, proj_name + "_3d.csv", final_directory)
-        matrix_to_file(proj_mat_2d, proj_name + "_2d.csv", final_directory)
-        matrix_to_file(proj_mat_1d, proj_name + "_1d.csv", final_directory)
+        matrix_to_file(mat, filename=mat_name, destination_folder=final_directory)
+        matrix_to_file(proj_mat_3d, filename=proj_name + "_3d.csv", destination_folder=final_directory)
+        matrix_to_file(proj_mat_2d, filename=proj_name + "_2d.csv", destination_folder=final_directory)
+        matrix_to_file(proj_mat_1d, filename=proj_name + "_1d.csv", destination_folder=final_directory)
 
 
 # Writes a matrix to a .csv file. mat is the matrix being written to a file. filename is the name
@@ -116,9 +117,9 @@ def build_projection_vectors(dirnames, dest_path):
 def matrix_to_file(mat, filename, destination_folder):
     file = open(destination_folder + filename, "w")
 
-    for i in range(0, mat.shape[0]):
-        for j in range(0, mat.shape[1]):
-            if j < mat.shape[1] - 1:
+    for i in range(0, mat.shape[Constants.ROWS]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
+            if j < mat.shape[Constants.COLUMNS] - 1:
                 file.write(str(mat[i, j]) + ",")
             else:
                 file.write(str(mat[i, j]) + "\n")

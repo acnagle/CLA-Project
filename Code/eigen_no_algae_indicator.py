@@ -2,6 +2,7 @@ import numpy as np
 import os
 import glob
 import errno
+import Constants
 
 
 def main():
@@ -23,7 +24,7 @@ def main():
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_matrices_no_na directory
     for filename_w_directory in files_matrices_no_na:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, first=0, last=mat.shape[0])
+        mat = matrix_str_to_float(mat, first=0, last=mat.shape[Constants.ROWS])
 
         # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
         mat = np.delete(mat, obj=2, axis=0)  # delete algae intensity (algalBloom)
@@ -62,7 +63,7 @@ def main():
     files_matrices_all_data = [filename for filename in glob.glob(os.path.join(path_all_data, "*.csv"))]
     for filename_w_directory in files_matrices_all_data:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, first=0, last=mat.shape[0])
+        mat = matrix_str_to_float(mat, first=0, last=mat.shape[Constants.ROWS])
 
         # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
         mat = np.delete(mat, obj=2, axis=0)  # delete algae intensity (algalBloom)
@@ -102,9 +103,9 @@ def main():
 # which is the trimmed version of mat with float elements. first is the first row index of numerical entires, and
 # last is the last row index
 def matrix_str_to_float(mat, first, last):
-    new_mat = np.zeros((last - first, mat.shape[1]), dtype=float)
+    new_mat = np.zeros(shape=(last - first, mat.shape[Constants.COLUMNS]), dtype=float)
     for i in range(first, last):
-        for j in range(0, mat.shape[1]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
             try:
                 new_mat[i-first, j] = float(mat[i, j])
             except ValueError:
@@ -156,9 +157,9 @@ def get_eigenvectors(mat):
 def matrix_to_file(mat, filename, destination_folder):
     file = open(destination_folder + filename, "w")
 
-    for i in range(0, mat.shape[0]):
-        for j in range(0, mat.shape[1]):
-            if j < mat.shape[1] - 1:
+    for i in range(0, mat.shape[Constants.ROWS]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
+            if j < mat.shape[Constants.COLUMNS] - 1:
                 file.write(str(mat[i, j]) + ",")
             else:
                 file.write(str(mat[i, j]) + "\n")
@@ -171,7 +172,7 @@ def matrix_to_file(mat, filename, destination_folder):
 def vector_to_file(vec, filename, destination_folder):
     file = open(destination_folder + filename, "w")
 
-    for i in range(0, vec.shape[0]):
+    for i in range(0, vec.shape[Constants.ROWS]):
             file.write(str(vec[i]) + "\n")
 
     file.close()

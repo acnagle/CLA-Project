@@ -2,6 +2,8 @@ import numpy as np
 import glob
 import os
 import errno
+import Constants
+
 
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
@@ -19,16 +21,15 @@ def main():
     dest_path_all_data_proj = "/Users/Alliot/documents/cla-project/data/all-data-no-na/gaussian-randn-projections/"
 
     # get all subdirectories within path_matrices_no_na_eigen_no_alg_ind
-    # get all subdirectories within path_matrices_no_na_eigen_no_alg_ind
     dirnames_no_alg_ind_no_na = [x[0] for x in os.walk(path_matrices_no_na_eigen_no_alg_ind)]
     dirnames_w_alg_ind_no_na = [x[0] for x in os.walk(path_matrices_no_na_eigen_w_alg_ind)]
     dirnames_no_alg_ind_all_data = [x[0] for x in os.walk(path_all_data_eigen_no_alg_ind)]
     dirnames_w_alg_ind_all_data = [x[0] for x in os.walk(path_all_data_eigen_w_alg_ind)]
 
-    build_randn_projection_vectors(dirnames_no_alg_ind_no_na, dest_path_matrices_no_na_proj)
-    build_randn_projection_vectors(dirnames_no_alg_ind_all_data, dest_path_all_data_proj)
-    build_randn_projection_vectors(dirnames_w_alg_ind_no_na, dest_path_matrices_no_na_proj)
-    build_randn_projection_vectors(dirnames_w_alg_ind_all_data, dest_path_all_data_proj)
+    build_randn_projection_vectors(dirnames=dirnames_no_alg_ind_no_na, dest_path=dest_path_matrices_no_na_proj)
+    build_randn_projection_vectors(dirnames=dirnames_no_alg_ind_all_data, dest_path=dest_path_all_data_proj)
+    build_randn_projection_vectors(dirnames=dirnames_w_alg_ind_no_na, dest_path=dest_path_matrices_no_na_proj)
+    build_randn_projection_vectors(dirnames=dirnames_w_alg_ind_all_data, dest_path=dest_path_all_data_proj)
 
 
 def build_randn_projection_vectors(dirnames, dest_path):
@@ -60,9 +61,9 @@ def build_randn_projection_vectors(dirnames, dest_path):
 
         final_directory = dest_path + mat_name[:-4] + "/"
 
-        mat = mat.astype(float)     # convert mat from str entries to float entries
+        mat = mat.astype(dtype=float)     # convert mat from str entries to float entries
 
-        randn_mat_3d = np.random.randn(3, mat.shape[0])
+        randn_mat_3d = np.random.randn(3, mat.shape[Constants.ROWS])
         proj_mat_3d = randn_mat_3d.dot(mat)
 
         # if final_directory does not exist, create it
@@ -73,8 +74,8 @@ def build_randn_projection_vectors(dirnames, dest_path):
                 if e.errno != errno.EEXIST:
                     raise
 
-        matrix_to_file(mat, mat_name, final_directory)
-        matrix_to_file(proj_mat_3d, proj_name + "_3d.csv", final_directory)
+        matrix_to_file(mat, filename=mat_name, destination_folder=final_directory)
+        matrix_to_file(proj_mat_3d, filename=proj_name + "_3d.csv", destination_folder=final_directory)
 
 
 # Writes a matrix to a .csv file. mat is the matrix being written to a file. filename is the name
@@ -82,9 +83,9 @@ def build_randn_projection_vectors(dirnames, dest_path):
 def matrix_to_file(mat, filename, destination_folder):
     file = open(destination_folder + filename, "w")
 
-    for i in range(0, mat.shape[0]):
-        for j in range(0, mat.shape[1]):
-            if j < mat.shape[1] - 1:
+    for i in range(0, mat.shape[Constants.ROWS]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
+            if j < mat.shape[Constants.COLUMNS] - 1:
                 file.write(str(mat[i, j]) + ",")
             else:
                 file.write(str(mat[i, j]) + "\n")

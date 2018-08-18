@@ -1,7 +1,7 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import os
 import errno
+import Constants
 
 
 def main():
@@ -33,19 +33,20 @@ def main():
     mat_monona = np.genfromtxt(open(src_path_monona, "rb"), delimiter=",", dtype=float)
 
     # Remove rows for location, date, and algae-bloom indicator (BloomSheen)
-    mat_all_data = np.delete(mat_all_data, [0, 1, 3], 0)
-    mat_mendota = np.delete(mat_mendota, [0, 1, 3], 0)
-    mat_monona = np.delete(mat_monona, [0, 1, 3], 0)
-
-    mat_all_data_pca = pca(mat_all_data)
-    mat_mendota_pca = pca(mat_mendota)
-    mat_monona_pca = pca(mat_monona)
+    mat_all_data = np.delete(mat_all_data, obj=[0, 1, 3], axis=Constants.ROWS)
+    mat_mendota = np.delete(mat_mendota, obj=[0, 1, 3], axis=Constants.ROWS)
+    mat_monona = np.delete(mat_monona, obj=[0, 1, 3], axis=Constants.ROWS)
 
     print("Processing file", src_path_all_data[65:], " ...")
+    mat_all_data_pca = pca(mat_all_data)
     matrix_to_file(mat_all_data_pca, src_path_all_data[65:-4] + "_pca.csv", dest_path)
+
     print("Processing file", src_path_mendota[65:], " ...")
+    mat_mendota_pca = pca(mat_mendota)
     matrix_to_file(mat_mendota_pca, src_path_mendota[65:-4] + "_pca.csv", dest_path)
+
     print("Processing file", src_path_monona[65:], " ...")
+    mat_monona_pca = pca(mat_monona)
     matrix_to_file(mat_monona_pca, src_path_monona[65:-4] + "_pca.csv", dest_path)
 
 
@@ -55,9 +56,9 @@ def main():
 def pca(mat):
     # 1. Subtract the mean along each dimension (row) and then normalize the data
     mat_adj = mat   # mat_adj is adjusted so that the mean is subtracted out of mat
-    mean = np.mean(mat, axis=1)     # get an array of means for each dimension
-    for i in range(0, mat.shape[0]):
-        for j in range(0, mat.shape[1]):
+    mean = np.mean(mat, axis=Constants.COLUMNS)     # get an array of means for each dimension
+    for i in range(0, mat.shape[Constants.ROWS]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
             mat_adj[i, j] = mat_adj[i, j] - mean[i]
 
     # 2. Calculate the covariance matrix
@@ -89,44 +90,14 @@ def pca(mat):
 def matrix_to_file(mat, filename, destination_folder):
     file = open(destination_folder + filename, "w")
 
-    for i in range(0, mat.shape[0]):
-        for j in range(0, mat.shape[1]):
-            if j < mat.shape[1] - 1:
+    for i in range(0, mat.shape[Constants.ROWS]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
+            if j < mat.shape[Constants.COLUMNS] - 1:
                 file.write(str(mat[i, j]) + ",")
             else:
                 file.write(str(mat[i, j]) + "\n")
 
     file.close()
-
-
-# This method normalizes the data in a matrix by finding the largest value in each row and dividing each element in
-# row by that value. This will cause each point in the data to be between the 0 and 1. mat is the matrix whose rows will
-# be normalized. first is the first row that contains data that needs to be normalized. last is the last row
-# (non-inclusive) that contains data that needs to be normalized
-def normalize_data(mat, first, last):
-    for i in range(first, last):
-        # norm_arr_str contains the string representation of an entire row that is going to be normalized
-        norm_arr_str = mat[i, :]
-
-        # convert all elements in norm_arr to float
-        # norm_arr is the float representation of norm_arr_str
-        norm_arr = np.zeros(len(norm_arr_str), dtype="float")
-        for j in range(0, len(norm_arr)):
-            try:
-                norm_arr[j] = float(norm_arr_str[j])
-            except ValueError:
-                print("The value at index " + str(j) + " could not be cast to a float.")
-
-        # determine the largest value in norm_arr
-        max_val = np.amax(norm_arr)
-
-        if max_val != 0:
-            # normalize all the elements by dividing each element by max_val
-            for k in range(0, len(norm_arr)):
-                norm_arr[k] = norm_arr[k] / max_val
-
-                # store the normalize array back into its respective row in mat
-                mat[i, k] = str(norm_arr[k])
 
 
 if __name__ == "__main__": main()

@@ -1,8 +1,8 @@
 import numpy as np
-import math
 import os
 import glob
 import errno
+import Constants
 
 
 def main():
@@ -24,7 +24,7 @@ def main():
     # compute eigenvectors, eigenvalues, and singular values of all the matrices in path_matrices_no_na directory
     for filename_w_directory in files_matrices_no_na:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, 0, mat.shape[0])
+        mat = mat.astype(dtype=float)
         filename = filename_w_directory[67:]
         print("Processing file " + filename + " ...")
         eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)
@@ -45,19 +45,19 @@ def main():
                 if e.errno != errno.EEXIST:
                     raise
 
-        matrix_to_file(mat, filename, final_directory)
-        vector_to_file(eigv1, eigv1_filename, final_directory)
-        vector_to_file(eigv2, eigv2_filename, final_directory)
-        vector_to_file(eigv3, eigv3_filename, final_directory)
-        vector_to_file(eigvals, eigvals_filename, final_directory)
-        matrix_to_file(svdvals, svdvals_filename, final_directory)
+        matrix_to_file(mat, filename=filename, destination_folder=final_directory)
+        vector_to_file(eigv1, filename=eigv1_filename, destination_folder=final_directory)
+        vector_to_file(eigv2, filename=eigv2_filename, destination_folder=final_directory)
+        vector_to_file(eigv3, filename=eigv3_filename, destination_folder=final_directory)
+        vector_to_file(eigvals, filename=eigvals_filename, destination_folder=final_directory)
+        matrix_to_file(svdvals, filename=svdvals_filename, destination_folder=final_directory)
 
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_all_data directory
     # get all file paths in all-data-no-na directory
     files_matrices_all_data = [filename for filename in glob.glob(os.path.join(path_all_data, "*.csv"))]
     for filename_w_directory in files_matrices_all_data:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, 0, mat.shape[0])
+        mat = mat.astype(dtype=float)
         filename = filename_w_directory[67:]
         print("Processing file " + filename + " ...")
         eigv1, eigv2, eigv3, eigvals, svdvals = get_eigenvectors(mat)
@@ -78,12 +78,12 @@ def main():
                 if e.errno != errno.EEXIST:
                     raise
 
-        matrix_to_file(mat, filename, final_directory)
-        vector_to_file(eigv1, eigv1_filename, final_directory)
-        vector_to_file(eigv2, eigv2_filename, final_directory)
-        vector_to_file(eigv3, eigv3_filename, final_directory)
-        vector_to_file(eigvals, eigvals_filename, final_directory)
-        vector_to_file(svdvals, svdvals_filename, final_directory)
+        matrix_to_file(mat, filename=filename, destination_folder=final_directory)
+        vector_to_file(eigv1, filename=eigv1_filename, destination_folder=final_directory)
+        vector_to_file(eigv2, filename=eigv2_filename, destination_folder=final_directory)
+        vector_to_file(eigv3, filename=eigv3_filename, destination_folder=final_directory)
+        vector_to_file(eigvals, filename=eigvals_filename, destination_folder=final_directory)
+        vector_to_file(svdvals, filename=svdvals_filename, destination_folder=final_directory)
 
 
 # This method takes a matrix mat, which is a matrix of string, and converts it into a matrix of float so the data
@@ -91,9 +91,9 @@ def main():
 # which is the trimmed version of mat with float elements. first is the first row index of numerical entires, and
 # last is the last row index
 def matrix_str_to_float(mat, first, last):
-    new_mat = np.zeros((last - first, mat.shape[1]), dtype=float)
+    new_mat = np.zeros(shape=(last - first, mat.shape[Constants.COLUMNS]), dtype=float)
     for i in range(first, last):
-        for j in range(0, mat.shape[1]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
             try:
                 new_mat[i-first, j] = float(mat[i, j])
             except ValueError:
@@ -131,7 +131,7 @@ def get_eigenvectors(mat):
 
     u, s, v = np.linalg.svd(mat, full_matrices=True)
 
-    eigv1 = u[:, 0]
+    eigv1 = u[:, 0]     # TODO VERIFY THAT THIS IS CORRECT
     eigv2 = u[:, 1]
     eigv3 = u[:, 2]
 
@@ -145,9 +145,9 @@ def get_eigenvectors(mat):
 def matrix_to_file(mat, filename, destination_folder):
     file = open(destination_folder + filename, "w")
 
-    for i in range(0, mat.shape[0]):
-        for j in range(0, mat.shape[1]):
-            if j < mat.shape[1] - 1:
+    for i in range(0, mat.shape[Constants.ROWS]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
+            if j < mat.shape[Constants.COLUMNS] - 1:
                 file.write(str(mat[i, j]) + ",")
             else:
                 file.write(str(mat[i, j]) + "\n")
@@ -160,7 +160,7 @@ def matrix_to_file(mat, filename, destination_folder):
 def vector_to_file(vec, filename, destination_folder):
     file = open(destination_folder + filename, "w")
 
-    for i in range(0, vec.shape[0]):
+    for i in range(0, vec.shape[Constants.ROWS]):
             file.write(str(vec[i]) + "\n")
 
     file.close()

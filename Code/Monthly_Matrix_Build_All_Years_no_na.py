@@ -1,6 +1,7 @@
 import csv
 import datetime
 import numpy as np
+import Constants
 
 # the height of the matrices. ie the number of measurements per sample. IMPORTANT NOTE: The .csv files being read in
 # by this code has 15 rows. The last row is a "poor water quality flag" (binary) that is 1 if the turbidity is below
@@ -42,14 +43,14 @@ def main():
     destination_folder = '/Users/Alliot/Documents/CLA-Project/Data/matrices-no-na/original/'
 
     # These matrices contain all the data from each month for all three years
-    all_month_03_matrix = np.empty([num_rows, 23], dtype=(str, 15))
-    all_month_04_matrix = np.empty([num_rows, 114], dtype=(str, 15))
-    all_month_05_matrix = np.empty([num_rows, 574], dtype=(str, 15))
-    all_month_06_matrix = np.empty([num_rows, 1292], dtype=(str, 15))
-    all_month_07_matrix = np.empty([num_rows, 1296], dtype=(str, 15))
-    all_month_08_matrix = np.empty([num_rows, 1046], dtype=(str, 15))
-    all_month_09_matrix = np.empty([num_rows, 306], dtype=(str, 15))
-    all_month_10_matrix = np.empty([num_rows, 45], dtype=(str, 15))
+    all_month_03_matrix = np.empty([num_rows, 23], dtype=(str, Constants.STR_LENGTH))
+    all_month_04_matrix = np.empty([num_rows, 114], dtype=(str, Constants.STR_LENGTH))
+    all_month_05_matrix = np.empty([num_rows, 574], dtype=(str, Constants.STR_LENGTH))
+    all_month_06_matrix = np.empty([num_rows, 1292], dtype=(str, Constants.STR_LENGTH))
+    all_month_07_matrix = np.empty([num_rows, 1296], dtype=(str, Constants.STR_LENGTH))
+    all_month_08_matrix = np.empty([num_rows, 1046], dtype=(str, Constants.STR_LENGTH))
+    all_month_09_matrix = np.empty([num_rows, 306], dtype=(str, Constants.STR_LENGTH))
+    all_month_10_matrix = np.empty([num_rows, 45], dtype=(str, Constants.STR_LENGTH))
 
     # Create 03 matrix
     print('Building month 03 matrix ...')

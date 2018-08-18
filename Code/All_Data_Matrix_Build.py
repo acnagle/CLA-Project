@@ -2,9 +2,8 @@ import numpy as np
 import csv
 import os
 import errno
-
-# the height of the matrices. ie the number of measurements per sample.
-num_rows = 15
+import glob
+import Constants
 
 
 def main():
@@ -14,7 +13,6 @@ def main():
 
     src_path = "/Users/Alliot/documents/cla-project/data/algal_bloom_locations_summaries.csv"
     orig_path = "/Users/Alliot/documents/cla-project/data/all-data-no-na/original/"     # path to original data folder
-    norm_path = "/Users/Alliot/documents/cla-project/data/all-data-no-na/normalized/"   # path to normalized data folder
 
     # if orig_path does not exist, create it
     if not os.path.exists(orig_path):
@@ -24,35 +22,29 @@ def main():
             if e.errno != errno.EEXIST:
                 raise
 
-    # if norm_path does not exist, create it
-    if not os.path.exists(norm_path):
-        try:
-            os.makedirs(norm_path)
-        except OSError as e:
-            if e.errno != errno.EEXIST:
-                raise
-
     # read in .csv file and store into mat (matrix)
-    file = open(src_path, newline="")
-    data_reader = csv.reader(file)
-    filename_all_data = "All_Data"
+    # file = open(src_path, newline="")
+    # data_reader = csv.reader(file)
 
     print("Building All Data matrix ...")
-    mat = build_matrix(data_reader)
+    mat_all_data = np.genfromtxt(open(src_path, "rb"), delimiter=",", dtype=(str, Constants.STR_LENGTH),
+                                 usecols=(1, 14, 15, 6, 7, 8, 10, 17, 18, 20, 19, 16), filling_values="NA")
+    filename_all_data = "All_Data"
+    # mat = build_matrix(data_reader)
     mat = remove_empty_entries(mat)
     matrix_to_file(mat, filename_all_data + "_matrix.csv", orig_path)
 
     # Build monthly matrices (March (03) through September (09))
     print("Building month matrices ...")
-    mat_03 = np.transpose([np.empty((num_rows, ))])
-    mat_04 = np.transpose([np.empty((num_rows, ))])
-    mat_05 = np.transpose([np.empty((num_rows, ))])
-    mat_06 = np.transpose([np.empty((num_rows, ))])
-    mat_07 = np.transpose([np.empty((num_rows, ))])
-    mat_08 = np.transpose([np.empty((num_rows, ))])
-    mat_09 = np.transpose([np.empty((num_rows, ))])
+    mat_03 = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
+    mat_04 = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
+    mat_05 = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
+    mat_06 = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
+    mat_07 = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
+    mat_08 = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
+    mat_09 = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
 
-    for i in range(0, mat.shape[1]-1):
+    for i in range(0, mat.shape[Constants.COLUMNS]-1):
         month = mat[1, i][:1]
         if month == "3":
             mat_03 = np.hstack([mat_03, np.transpose([mat[:, i]])])
@@ -86,6 +78,27 @@ def main():
     matrix_to_file(mat_08, "month_08_" + filename_all_data + "_matrix.csv", orig_path)
     matrix_to_file(mat_09, "month_09_" + filename_all_data + "_matrix.csv", orig_path)
 
+    summer_month_paths_all_data = []
+
+    # get filenames of all files for the summer months: June (06), July (07), and August (08)
+    for filename in glob.glob(os.path.join(orig_path, "*.csv")):
+        if "summer" in filename:
+            if "Wingra" in filename or "Mendota" in filename or "Monona" in filename or \
+                    "Kegonsa" in filename or "Waubesa" in filename:
+                summer_month_paths_all_data.append(filename)
+
+    # put the filenames in chronological order
+    summer_month_paths_all_data = np.sort(summer_month_paths_all_data)
+
+    # create matrices the summer months of each year
+    all_data_summer = np.empty(shape=(Constants.NUM_ROWS_W_IND_ALL_DATA, 0))
+
+    for path in summer_month_paths_all_data:
+        all_data_summer = np.hstack((all_data_summer, np.genfromtxt(open(path, "rb"), delimiter=",", dtype="str")))
+
+    # write summer matrix to .csv file
+    matrix_to_file(all_data_summer, "All_Data_summer_matrix.csv", orig_path)
+
 
 # Build a matrix from .csv file. data_reader allow direct access to the .csv file
 # for algal_bloom_locations_summaries.csv. This method returns a matrix called mat, which is the new matrix that stores
@@ -94,7 +107,7 @@ def build_matrix(data_reader):
     # remove unnecessary lines
     data_reader.__next__()
 
-    mat = np.empty([num_rows, 3857], dtype=(str, 22))
+    mat = np.empty([Constants.NUM_ROWS_W_IND_ALL_DATA, 3857], dtype=(str, Constants.STR_LENGTH))
 
     col_index = 0   # used to index columns in mat
 
@@ -113,9 +126,9 @@ def build_matrix(data_reader):
 
             # # adjust column entries for poor water quality flag
             # if float(row[23]) <= 50:
-            #     mat[num_rows, col_index] = 1
+            #     mat[Constants.NUM_ROWS_W_IND_ALL_DATA, col_index] = 1
             # else:
-            #     mat[num_rows, col_index] = 0
+            #     mat[Constants.NUM_ROWS_W_IND_ALL_DATA, col_index] = 0
 
             mat[0, col_index] = row[0]          # Locations (Specific locations for each lake)
             mat[1, col_index] = row[20]         # Date and Time (24-hour)
@@ -127,15 +140,15 @@ def build_matrix(data_reader):
             mat[7, col_index] = row[25]         # waterfowlPresence
             mat[8, col_index] = row[27]         # waveIntensity
             mat[9, col_index] = row[26]         # waterTemp
-            mat[10, col_index] = row[6]         # airTemp
-            mat[11, col_index] = row[23]        # turbidity
+            mat[10, col_index] = row[23]        # turbidity
+            mat[11, col_index] = row[6]         # airTemp
             mat[12, col_index] = row[4]         # prcp_24rs
             mat[13, col_index] = row[5]         # prcp_48hrs
             mat[14, col_index] = row[8]         # windspeed_avg_24hr
 
             # adjust data entries so that qualitative measurements (except algalBloomSheen) have values [1, 3]
-            for i in range(2, 9):
-                if i != 3:          # ignore algalBloomSheen measurement
+            for i in range(Constants.FIRST_ROW, 9):
+                if i != Constants.ALGAL_BLOOM_SHEEN:          # ignore algalBloomSheen measurement
                     if float(mat[i, col_index]) == 0:
                         mat[i, col_index] = "1"
 
@@ -149,9 +162,9 @@ def build_matrix(data_reader):
 def remove_empty_entries(mat):
     new_mat = mat
 
-    for col in range(0, mat.shape[1]):
-        if mat[0, col] == "":
-            new_mat = mat[:, 0:col]
+    for j in range(0, mat.shape[Constants.COLUMNS]):
+        if "" in mat[:, j]:
+            new_mat = mat[:, 0:j]
             break
 
     return new_mat
@@ -162,9 +175,9 @@ def remove_empty_entries(mat):
 def matrix_to_file(mat, filename, destination_folder):
     file = open(destination_folder + filename, "w")
 
-    for i in range(0, mat.shape[0]):
-        for j in range(0, mat.shape[1]):
-            if j < mat.shape[1] - 1:
+    for i in range(0, mat.shape[Constants.ROWS]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
+            if j < mat.shape[Constants.COLUMNS]-1:
                 file.write(mat[i, j] + ",")
             else:
                 file.write(mat[i, j] + "\n")

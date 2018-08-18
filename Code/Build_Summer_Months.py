@@ -7,6 +7,7 @@ import glob
 # if the turbidity is below 50 and 0 otherwise. By choosing num_rows = 14, I'm eliminating this row.
 num_rows = 14
 
+
 def main():
     np.set_printoptions(threshold=np.inf)   # prints a full matrix rather than an abbreviated matrix
 
