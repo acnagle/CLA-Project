@@ -8,7 +8,7 @@ import Constants
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print("\n\t##### EXECUTING DATA_NORM.PY #####")
+    print("\n\t##### EXECUTING DATA_NORM.PY #####\n")
 
     # source directories
     path_matrices_no_na = "/Users/Alliot/documents/cla-project/data/matrices-no-na/original/"
@@ -31,21 +31,24 @@ def main():
                 raise
 
     # define a location key matrix in order to quantize locations. For each location (row 0), define an integer to
-    # represent that location (row 1). Note: there are exactly 78 locations
-    num_locs = 78
+    # represent that location (row 1)
     mat = np.genfromtxt(open(path_all_data + "All_Data_matrix.csv", "rb"), delimiter=",",
                         dtype=(str, Constants.STR_LENGTH))
-    loc_key = np.empty(shape=(2, num_locs), dtype=(str, Constants.STR_LENGTH))
+    loc_key = np.transpose([np.empty(shape=(2, ), dtype=(str, Constants.STR_LENGTH))])
     int_rep = 0     # holds integer to represent next location added to loc_key
     for j in range(0, mat.shape[Constants.COLUMNS]):
         if mat[Constants.LOCATION, j] not in loc_key[0, :]:
-            loc_key[0, int_rep] = mat[Constants.LOCATION, j]
-            loc_key[1, int_rep] = str(int_rep)
+            loc_key = np.hstack((loc_key, np.transpose([np.array([mat[Constants.LOCATION, j], str(int_rep)])])))
             int_rep = int_rep + 1
 
-    # add more locations (All_data_matrix.csv was missing one location)
-    loc_key[0, 77] = "MendotaPier18"
-    loc_key[1, 77] = "77"
+    mat = np.genfromtxt(open(path_matrices_no_na + "All_year_matrix.csv", "rb"), delimiter=",",
+                        dtype=(str, Constants.STR_LENGTH))
+    for j in range(0, mat.shape[Constants.COLUMNS]):
+        if mat[Constants.LOCATION, j] not in loc_key[0, :]:
+            loc_key = np.hstack((loc_key, np.transpose([np.array([mat[Constants.LOCATION, j], str(int_rep)])])))
+            int_rep = int_rep + 1
+
+    loc_key = np.delete(loc_key, obj=0, axis=Constants.COLUMNS)
 
     print("Processing Location Key ...")
     matrix_to_file(loc_key, "Location Key.csv", "/Users/Alliot/Documents/CLA-Project/Data/")
@@ -56,16 +59,15 @@ def main():
         mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype=(str, Constants.STR_LENGTH))
         mat = remove_empty_entries(mat)
 
-        # reformat data
-        # mat = np.delete(mat, obj=0, axis=Constants.ROWS)
-        # mat = np.delete(mat, obj=1, axis=Constants.ROWS)
-        # for j in range(0, mat.shape[Constants.COLUMNS]):
-        #     mat[1, j] = str(mat[1, j]) + " " + str(mat[2, j][:-3])
-        # mat = np.delete(mat, obj=2, axis=Constants.ROWS)
-
         convert_datetime_to_measurement(mat)
         convert_locs_to_measurement(mat=mat, loc_key=loc_key)
-        normalize_data(mat=mat, first=0, last=Constants.NUM_ROWS_NO_NA, num_locs=num_locs)
+        # mat_w_mean = mat.astype(float)
+        # normalize_data(mat=mat_w_mean, first=0, last=Constants.NUM_ROWS_NO_NA)
+        # matrix_to_file(mat=mat_w_mean, filename=filename[65:-4] + "w_mean", destination_folder=dest_path_matrices_no_na_normalized)
+
+        # mat = subtract_mean(mat)
+        mat = mat.astype(float)
+        normalize_data(mat=mat, first=0, last=Constants.NUM_ROWS_NO_NA)
         matrix_to_file(mat=mat, filename=filename[65:], destination_folder=dest_path_matrices_no_na_normalized)
 
     # if dest_path_matrices_all_data_normalized does not exist, create it
@@ -81,10 +83,19 @@ def main():
         print("Processing file " + filename[65:] + " ...")
         mat = np.genfromtxt(open(filename, "rb"), delimiter=",", dtype=(str, Constants.STR_LENGTH))
         mat = remove_empty_entries(mat)
+
         convert_datetime_to_measurement(mat)
         convert_locs_to_measurement(mat=mat, loc_key=loc_key)
-        normalize_data(mat=mat, first=0, last=Constants.NUM_ROWS_W_IND_ALL_DATA, num_locs=num_locs)
+        # mat_w_mean = mat.astype(float)
+        # normalize_data(mat=mat_w_mean, first=0, last=Constants.NUM_ROWS_W_IND_ALL_DATA)
+        # matrix_to_file(mat=mat_w_mean, filename=filename[65:-4] + "w_mean", destination_folder=dest_path_matrices_all_data_normalized)
+
+        # mat = subtract_mean(mat)
+        mat = mat.astype(float)
+        normalize_data(mat=mat, first=0, last=Constants.NUM_ROWS_W_IND_ALL_DATA)
         matrix_to_file(mat=mat, filename=filename[65:], destination_folder=dest_path_matrices_all_data_normalized)
+
+    print("\n")
 
 
 # This method removes the empty entries (i.e. ",,,") located at the ends of the .csv files in the matrices_no_na
@@ -103,78 +114,80 @@ def remove_empty_entries(mat):
 # This method normalizes the data in a matrix by finding the largest value in each row and dividing each element in
 # row by that value. This will cause each point in the data to be between the 0 and 1. mat is the matrix whose rows will
 # be normalized. first is the first row that contains data that needs to be normalized. last is the last row
-# (non-inclusive) that contains data that needs to be normalized. num_locs is the the number of locations around the
-# lakes the data is for.
-def normalize_data(mat, first, last, num_locs):
+# (non-inclusive) that contains data that needs to be normalized.
+def normalize_data(mat, first, last):
     for i in range(first, last):
         # norm_arr_str contains the string representation of an entire row that is going to be normalized
-
-        norm_arr_str = mat[i, :]        # norm_arr is the float representation of norm_arr_str
-        max_val = 0     # max value holds the max value possible for a particular feature
+        # norm_arr_str = mat[i, :]
 
         # convert all elements in norm_arr to float
-        norm_arr = np.zeros(shape=len(norm_arr_str), dtype=float)
-        for j in range(0, len(norm_arr)):
+        # norm_arr = np.zeros(shape=len(norm_arr_str), dtype=float)
+        # try:
+        #     norm_arr = norm_arr.astype(float)
+        # except ValueError:
+        #     print("The data matrix contains values that cannot be cast to a float.")
+
+        # determine the largest value in norm_arr
+        max_val = np.amax(mat[i, :])
+
+        if max_val != 0:    # sometimes a data matrix had no algal blooms, so a row of zeros could appear
             try:
-                norm_arr[j] = float(norm_arr_str[j])
-            except ValueError:
-                print("The value at index " + str(j) + " could not be cast to a float.")
-
-        if i == Constants.LOCATION:
-            max_val = num_locs
-
-        elif i == Constants.DATE_TIME:
-            max_val = 24    # 24 is the max number of hours in a day
-
-        elif ((i == Constants.ALGAL_BLOOMS) or (i == Constants.BATHER_LOAD) or (i == Constants.PLANT_DEBRIS) or
-            (i == Constants.WATER_APPEARANCE) or (i == Constants.WATER_FOWL_PRESENCE) or (i == Constants.WAVE_INTENSITY)):
-                max_val = 3
-
-        elif i == Constants.ALGAL_BLOOM_SHEEN:
-            max_val = 2
-
-        elif i == Constants.WATER_TEMP:
-            max_val = 88.7
-
-        elif i == Constants.TURBIDITY:
-            max_val = 120
-
-        elif i == Constants.AIR_TEMP:
-            max_val = 98.4
-
-        elif i == Constants.PRCP_24_HRS:
-            max_val = 1.99
-
-        elif i == Constants.PRCP_48_HRS:
-            max_val = 3.12
-
-        elif i == Constants.WINDSPEED_AVG_24_HRS:
-            max_val = 15.78
-
-        else:
-            print("Error: Unrecognized feature!")
-
-        for k in range(0, len(norm_arr)):
-            norm_arr[k] = norm_arr[k] / max_val
-            mat[i, k] = str(norm_arr[k])       # store the normalize array back into its respective row in mat
+                mat[i, :] = np.divide(mat[i, :], max_val)
+            except RuntimeError:
+                print("Error: Max value in the data matrix cannot be 0!")
 
 
+        # normalize all the elements by dividing each element by max_val
+        # for k in range(0, len(norm_arr)):
+        #     norm_arr[k] = norm_arr[k] / max_val
         #
-        #     # determine the largest value in norm_arr
-        #     max_val = np.amax(norm_arr)
+        #     # store the normalize array back into its respective row in mat
+        #     mat[i, k] = str(norm_arr[k])
+
+        # if i == Constants.LOCATION:
+        #     max_val = Constants.NUM_LAKES
         #
-        #     if max_val != 0:
-        #         # normalize all the elements by dividing each element by max_val
-        #         for k in range(0, len(norm_arr)):
-        #             norm_arr[k] = norm_arr[k] / max_val
+        # elif i == Constants.DATE_TIME:
+        #     max_val = 24    # 24 is the max number of hours in a day
         #
-        #             # store the normalize array back into its respective row in mat
-        #             mat[i, k] = str(norm_arr[k])
+        # elif ((i == Constants.ALGAL_BLOOMS) or (i == Constants.BATHER_LOAD) or (i == Constants.PLANT_DEBRIS) or
+        #         (i == Constants.WATER_APPEARANCE) or (i == Constants.WATER_FOWL_PRESENCE) or
+        #         (i == Constants.WAVE_INTENSITY)):
+        #         max_val = 3
+        #
+        # elif i == Constants.ALGAL_BLOOM_SHEEN:
+        #     max_val = 2
+        #
+        # elif i == Constants.WATER_TEMP:
+        #     max_val = 88.7
+        #
+        # elif i == Constants.TURBIDITY:
+        #     max_val = 120
+        #
+        # elif i == Constants.AIR_TEMP:
+        #     max_val = 98.4
+        #
+        # elif i == Constants.PRCP_24_HRS:
+        #     max_val = 1.99
+        #
+        # elif i == Constants.PRCP_48_HRS:
+        #     max_val = 3.12
+        #
+        # elif i == Constants.WINDSPEED_AVG_24_HRS:
+        #     max_val = 15.78
+        #
+        # else:
+        #     print("Error: Unrecognized feature!")
+
+        # for k in range(0, len(norm_arr)):
+        #     norm_arr[k] = norm_arr[k] / max_val
+        #     mat[i, k] = str(norm_arr[k])       # store the normalize array back into its respective row in mat
 
 
 # Writes a matrix to a csv file. mat is the matrix being written to a file. filename is the name of the .csv file.
 # destination_folder is the path to the destination folder where the .csv file will be stored
 def matrix_to_file(mat, filename, destination_folder):
+    mat = mat.astype(str)
     file = open(destination_folder + filename, "w")
 
     for i in range(0, mat.shape[Constants.ROWS]):
@@ -197,32 +210,28 @@ def convert_datetime_to_measurement(mat):
 
         time_meas = int(time[0]) + (int(time[1]) / 60)
 
-        mat[Constants.DATE_TIME, j] = time_meas
-
-        # month = int(date_arr[0])
-        # day = int(date_arr[1])
-        # year = int("20" + date_arr[2].split()[0])
-        #
-        # time = date_arr[2].split()[1].split(":")
-        #
-        # hour = int(time[0])
-        # minute = int(time[1])
-        #
-        # # determine the number of seconds since 12:00 AM on the day of the measurement to the actual measurement time
-        # num_seconds = (datetime(year, month, day, hour, minute) - datetime(year, month, day, 0, 0)).total_seconds()
-        #
-        # new_mat[1, j] = num_seconds
+        mat[Constants.DATE_TIME, j] = str(time_meas)
 
 
-# This method converts the locations (there are 77 of them) where the measurements were gathered into an integer. In
-# this way, we can quantify location. mat, the matrix of data, and loc_key, the matrix of locations and their
-# corresponding integers, is passed into the method. new_mat is the matrix with the updated location values, and is
-# returned
+# This method converts the locations where the measurements were gathered into an integer. In this way,
+# we can quantify location. mat, the matrix of data, and loc_key, the matrix of locations and their
+# corresponding integers, is passed into the method.
 def convert_locs_to_measurement(mat, loc_key):
-    # new_mat = mat
     for j in range(0, mat.shape[Constants.COLUMNS]):
         idx = np.where(mat[Constants.LOCATION, j] == loc_key[0, :])
         mat[Constants.LOCATION, j] = loc_key[1, idx[0][0]]
+
+
+# This method subtracts out the mean for each feature over all data points in a matrix. mat is the matrix which will
+# have the mean subtracted from it. new_mat is mat after the mean is subtracted and is the returned matrix.
+def subtract_mean(mat):
+    new_mat = mat.astype(float)  # mat_adj is adjusted so that the mean is subtracted out of mat
+    mean = np.mean(new_mat, axis=Constants.COLUMNS)  # get an array of means for each dimension
+    for i in range(0, new_mat.shape[Constants.ROWS]):
+        for j in range(0, new_mat.shape[Constants.COLUMNS]):
+            new_mat[i, j] = new_mat[i, j] - mean[i]
+
+    return new_mat
 
 
 if __name__ == "__main__": main()

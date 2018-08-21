@@ -32,3 +32,5 @@ ROWS = 0
 COLUMNS = 1
 
 NUM_LOCATIONS = 5   # Number of locations (lakes) that the data is collected from
+
+NUM_LAKES = 75

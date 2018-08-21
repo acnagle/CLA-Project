@@ -8,7 +8,7 @@ import Constants
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print("\n\t##### EXECUTING EIGEN_NO_ALGAE_INDICATOR.PY #####")
+    print("\n\t##### EXECUTING EIGEN_NO_ALGAE_INDICATOR.PY #####\n")
 
     # source directories
     path_matrices_no_na = "/Users/Alliot/documents/cla-project/data/matrices-no-na/normalized"
@@ -96,6 +96,8 @@ def main():
         vector_to_file(eigv3, filename=eigv3_filename, destination_folder=final_directory)
         vector_to_file(eigvals, filename=eigvals_filename, destination_folder=final_directory)
         matrix_to_file(svdvals, filename=svdvals_filename, destination_folder=final_directory)
+
+    print("\n")
 
 
 # This method takes a matrix mat, which is a matrix of string, and converts it into a matrix of float so the data

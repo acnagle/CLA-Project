@@ -8,7 +8,7 @@ import Constants
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print("\n\t##### EXECUTING COMPUTE_EIGENVECTORS.PY #####")
+    print("\n\t##### EXECUTING COMPUTE_EIGENVECTORS.PY #####\n")
 
     # source directories
     path_matrices_no_na = "/Users/Alliot/documents/cla-project/data/matrices-no-na/normalized"
@@ -50,7 +50,7 @@ def main():
         vector_to_file(eigv2, filename=eigv2_filename, destination_folder=final_directory)
         vector_to_file(eigv3, filename=eigv3_filename, destination_folder=final_directory)
         vector_to_file(eigvals, filename=eigvals_filename, destination_folder=final_directory)
-        matrix_to_file(svdvals, filename=svdvals_filename, destination_folder=final_directory)
+        vector_to_file(svdvals, filename=svdvals_filename, destination_folder=final_directory)
 
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_all_data directory
     # get all file paths in all-data-no-na directory
@@ -84,6 +84,8 @@ def main():
         vector_to_file(eigv3, filename=eigv3_filename, destination_folder=final_directory)
         vector_to_file(eigvals, filename=eigvals_filename, destination_folder=final_directory)
         vector_to_file(svdvals, filename=svdvals_filename, destination_folder=final_directory)
+
+    print("\n")
 
 
 # This method takes a matrix mat, which is a matrix of string, and converts it into a matrix of float so the data
@@ -129,13 +131,16 @@ def get_eigenvectors(mat):
     #
     # svdvals = np.diag(np.sqrt(w))
 
-    u, s, v = np.linalg.svd(mat, full_matrices=True)
+    cov_mat = np.cov(mat)  # calculate covariance matrix
+    u, s, v = np.linalg.svd(cov_mat, full_matrices=True)
 
-    eigv1 = u[:, 0]     # TODO VERIFY THAT THIS IS CORRECT
+    eigv1 = u[:, 0]
     eigv2 = u[:, 1]
     eigv3 = u[:, 2]
 
-    eigvals = svdvals = np.diag(np.sqrt(s))
+    svdvals = s
+
+    eigvals = np.diag(np.sqrt(svdvals))
 
     return eigv1, eigv2, eigv3, eigvals, svdvals
 

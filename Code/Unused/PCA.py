@@ -49,17 +49,19 @@ def main():
     mat_monona_pca = pca(mat_monona)
     matrix_to_file(mat_monona_pca, src_path_monona[65:-4] + "_pca.csv", dest_path)
 
+    print("\n")
+
 
 # This method computes the steps required for the PCA. mat is the matrix for which PCA will be performed.
 # It returns pca_data, which is a [3, M] matrix, where M is the number of data points in mat. This matrix can be plotted
 # in 3D for data visualization
 def pca(mat):
     # 1. Subtract the mean along each dimension (row) and then normalize the data
-    mat_adj = mat   # mat_adj is adjusted so that the mean is subtracted out of mat
-    mean = np.mean(mat, axis=Constants.COLUMNS)     # get an array of means for each dimension
-    for i in range(0, mat.shape[Constants.ROWS]):
-        for j in range(0, mat.shape[Constants.COLUMNS]):
-            mat_adj[i, j] = mat_adj[i, j] - mean[i]
+    # mat_adj = mat   # mat_adj is adjusted so that the mean is subtracted out of mat
+    # mean = np.mean(mat, axis=Constants.COLUMNS)     # get an array of means for each dimension
+    # for i in range(0, mat.shape[Constants.ROWS]):
+    #     for j in range(0, mat.shape[Constants.COLUMNS]):
+    #         mat_adj[i, j] = mat_adj[i, j] - mean[i]
 
     # 2. Calculate the covariance matrix
     # mat_cov = np.cov(mat_adj)
@@ -73,14 +75,15 @@ def pca(mat):
     # v = v[:, idx]
 
     # Or, just calculate the SVD
-    u, s, v = np.linalg.svd(mat, full_matrices=True)
+    cov_mat = np.cov(mat)  # calculate covariance matrix
+    u, s, v = np.linalg.svd(cov_mat, full_matrices=True)
 
     # 4. Form a feature vector. Keep only the top three eigenvectors (singluar vectors) so PCA can be visualized in 3D.
     # The feature vector is a vector of the eigenvectors (singluar vectors)
     feat_vec = np.array([u[:, 0], u[:, 1], u[:, 2]])
 
     # 5. Put data in its final form.
-    pca_data = np.dot(feat_vec, mat_adj)
+    pca_data = np.dot(feat_vec, mat)
 
     return pca_data
 

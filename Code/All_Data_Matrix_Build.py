@@ -9,7 +9,7 @@ import Constants
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print("\n\t##### EXECUTING ALL_DATA_MATRIX_BUILD.PY #####")
+    print("\n\t##### EXECUTING ALL_DATA_MATRIX_BUILD.PY #####\n")
 
     src_path = "/Users/Alliot/documents/cla-project/data/algal_bloom_locations_summaries.csv"
     orig_path = "/Users/Alliot/documents/cla-project/data/all-data-no-na/original/"     # path to original data folder
@@ -28,11 +28,13 @@ def main():
 
     print("Building All Data matrix ...")
     mat_all_data = np.genfromtxt(open(src_path, "rb"), delimiter=",", dtype=(str, Constants.STR_LENGTH),
-                                 usecols=(1, 14, 15, 6, 7, 8, 10, 17, 18, 20, 19, 16), filling_values="NA")
+                                 usecols=(0, 20, 12, 13, 14, 16, 24, 25, 27, 26, 23, 6, 4, 5, 8), filling_values="NA",
+                                 invalid_raise=False, skip_header=1, missing_values=("NA", "", "FALSE", "#VALUE!"))
+
     filename_all_data = "All_Data"
-    # mat = build_matrix(data_reader)
-    mat = remove_empty_entries(mat)
-    matrix_to_file(mat, filename_all_data + "_matrix.csv", orig_path)
+    mat_all_data = build_matrix(mat_all_data)
+    mat_all_data = remove_empty_entries(mat_all_data)
+    matrix_to_file(mat_all_data, filename_all_data + "_matrix.csv", orig_path)
 
     # Build monthly matrices (March (03) through September (09))
     print("Building month matrices ...")
@@ -44,22 +46,22 @@ def main():
     mat_08 = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
     mat_09 = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
 
-    for i in range(0, mat.shape[Constants.COLUMNS]-1):
-        month = mat[1, i][:1]
+    for i in range(0, mat_all_data.shape[Constants.COLUMNS]-1):
+        month = mat_all_data[1, i][:1]
         if month == "3":
-            mat_03 = np.hstack([mat_03, np.transpose([mat[:, i]])])
+            mat_03 = np.hstack([mat_03, np.transpose([mat_all_data[:, i]])])
         if month == "4":
-            mat_04 = np.hstack([mat_04, np.transpose([mat[:, i]])])
+            mat_04 = np.hstack([mat_04, np.transpose([mat_all_data[:, i]])])
         if month == "5":
-            mat_05 = np.hstack([mat_05, np.transpose([mat[:, i]])])
+            mat_05 = np.hstack([mat_05, np.transpose([mat_all_data[:, i]])])
         if month == "6":
-            mat_06 = np.hstack([mat_06, np.transpose([mat[:, i]])])
+            mat_06 = np.hstack([mat_06, np.transpose([mat_all_data[:, i]])])
         if month == "7":
-            mat_07 = np.hstack([mat_07, np.transpose([mat[:, i]])])
+            mat_07 = np.hstack([mat_07, np.transpose([mat_all_data[:, i]])])
         if month == "8":
-            mat_08 = np.hstack([mat_08, np.transpose([mat[:, i]])])
+            mat_08 = np.hstack([mat_08, np.transpose([mat_all_data[:, i]])])
         if month == "9":
-            mat_09 = np.hstack([mat_09, np.transpose([mat[:, i]])])
+            mat_09 = np.hstack([mat_09, np.transpose([mat_all_data[:, i]])])
 
     # Remove zero column in beginning of each month matrix
     mat_03 = mat_03[:, 1:]
@@ -99,62 +101,45 @@ def main():
     # write summer matrix to .csv file
     matrix_to_file(all_data_summer, "All_Data_summer_matrix.csv", orig_path)
 
+    print("\n")
 
-# Build a matrix from .csv file. data_reader allow direct access to the .csv file
-# for algal_bloom_locations_summaries.csv. This method returns a matrix called mat, which is the new matrix that stores
-# relevant information for analysis
-def build_matrix(data_reader):
-    # remove unnecessary lines
-    data_reader.__next__()
 
-    mat = np.empty([Constants.NUM_ROWS_W_IND_ALL_DATA, 3857], dtype=(str, Constants.STR_LENGTH))
+# Construct a matrix in a useful form using algal_bloom_locations_summaries.csv. mat is the matrix generated from
+# algal_bloom_locations_summaries.csv. This method returns new_mat, which is the newly constructed matrix.
+def build_matrix(mat):
+    mat = np.transpose(mat)
+    new_mat = np.empty(shape=(Constants.NUM_ROWS_W_IND_ALL_DATA, mat.shape[Constants.COLUMNS]),
+                       dtype=(str, Constants.STR_LENGTH))
 
-    col_index = 0   # used to index columns in mat
+    idx = 0
+    for i in range(0, mat.shape[Constants.COLUMNS]):
+        if "" not in mat[:, i] and "NA" not in mat[:, i] and "FALSE" not in mat[:, i]:
 
-    for row in data_reader:
-        if row[0] != "":
-            # test_row is an array of the relevant data. I put this data in this array, so that "NA" and "FALSE" can
-            # be searched for in each row. If "NA" or "FALSE" are found, that row will not be used in the data
-            test_row = [row[0], row[20], row[12], row[13], row[14], row[16], row[24], row[25], row[27], row[26],
-                        row[6], row[23], row[4], row[5], row[8]]
-            if any("NA" in s for s in test_row):
-                continue
-            elif any("FALSE" in s for s in test_row):
-                continue
-            elif row[23] == "" or row[26] == "" or row[6] == "":     # turbidity is blank
-                continue
-
-            # # adjust column entries for poor water quality flag
-            # if float(row[23]) <= 50:
-            #     mat[Constants.NUM_ROWS_W_IND_ALL_DATA, col_index] = 1
-            # else:
-            #     mat[Constants.NUM_ROWS_W_IND_ALL_DATA, col_index] = 0
-
-            mat[0, col_index] = row[0]          # Locations (Specific locations for each lake)
-            mat[1, col_index] = row[20]         # Date and Time (24-hour)
-            mat[2, col_index] = row[12]         # algalBlooms
-            mat[3, col_index] = row[13]         # algalBloomSheen
-            mat[4, col_index] = row[14]         # batherLoad
-            mat[5, col_index] = row[16]         # plantDebris
-            mat[6, col_index] = row[24]         # waterAppearance
-            mat[7, col_index] = row[25]         # waterfowlPresence
-            mat[8, col_index] = row[27]         # waveIntensity
-            mat[9, col_index] = row[26]         # waterTemp
-            mat[10, col_index] = row[23]        # turbidity
-            mat[11, col_index] = row[6]         # airTemp
-            mat[12, col_index] = row[4]         # prcp_24rs
-            mat[13, col_index] = row[5]         # prcp_48hrs
-            mat[14, col_index] = row[8]         # windspeed_avg_24hr
+            new_mat[Constants.LOCATION, idx] = mat[0, i]                # Locations
+            new_mat[Constants.DATE_TIME, idx] = mat[1, i]               # Date and Time (24-hour)
+            new_mat[Constants.ALGAL_BLOOMS, idx] = mat[2, i]            # algalBlooms
+            new_mat[Constants.ALGAL_BLOOM_SHEEN, idx] = mat[3, i]       # algalBloomSheen
+            new_mat[Constants.BATHER_LOAD, idx] = mat[4, i]             # batherLoad
+            new_mat[Constants.PLANT_DEBRIS, idx] = mat[5, i]            # plantDebris
+            new_mat[Constants.WATER_APPEARANCE, idx] = mat[6, i]        # waterAppearance
+            new_mat[Constants.WATER_FOWL_PRESENCE, idx] = mat[7, i]     # waterfowlPresence
+            new_mat[Constants.WAVE_INTENSITY, idx] = mat[8, i]          # waveIntensity
+            new_mat[Constants.WATER_TEMP, idx] = mat[9, i]              # waterTemp
+            new_mat[Constants.TURBIDITY, idx] = mat[10, i]              # turbidity
+            new_mat[Constants.AIR_TEMP, idx] = mat[11, i]               # airTemp
+            new_mat[Constants.PRCP_24_HRS, idx] = mat[12, i]            # prcp_24rs
+            new_mat[Constants.PRCP_48_HRS, idx] = mat[13, i]            # prcp_48hrs
+            new_mat[Constants.WINDSPEED_AVG_24_HRS, idx] = mat[14, i]   # windspeed_avg_24hr
 
             # adjust data entries so that qualitative measurements (except algalBloomSheen) have values [1, 3]
-            for i in range(Constants.FIRST_ROW, 9):
-                if i != Constants.ALGAL_BLOOM_SHEEN:          # ignore algalBloomSheen measurement
-                    if float(mat[i, col_index]) == 0:
-                        mat[i, col_index] = "1"
+            for j in range(Constants.FIRST_ROW, Constants.WATER_TEMP):
+                if j != Constants.ALGAL_BLOOM_SHEEN:          # ignore algalBloomSheen measurement
+                    if float(new_mat[j, idx]) == 0:
+                        new_mat[j, idx] = "1"
 
-            col_index = col_index + 1
+            idx = idx + 1
 
-    return mat
+    return new_mat
 
 
 # This method removes the empty entries (i.e. ",,,") located at the ends of the .csv files. new_mat is the matrix
@@ -163,8 +148,8 @@ def remove_empty_entries(mat):
     new_mat = mat
 
     for j in range(0, mat.shape[Constants.COLUMNS]):
-        if "" in mat[:, j]:
-            new_mat = mat[:, 0:j]
+        if "" in new_mat[:, j]:
+            new_mat = new_mat[:, 0:j]
             break
 
     return new_mat

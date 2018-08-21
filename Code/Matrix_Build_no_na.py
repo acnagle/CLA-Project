@@ -9,7 +9,7 @@ import Constants
 def main():
     np.set_printoptions(threshold=np.inf)   # prints a full matrix rather than an abbreviated matrix
 
-    print("\n\t##### EXECUTING MATRIX_BUILD_NO_NA.PY #####")
+    print("\n\t##### EXECUTING MATRIX_BUILD_NO_NA.PY #####\n")
 
     # File locations of each csv
     file_paths = [
@@ -88,6 +88,7 @@ def main():
     write_to_csv(mat_all, month_list=None, filename="All_year_summer_matrix.csv",
                  destination_folder=destination_folder)
 
+    print("\n")
 
 # Create matrices for each year. mat is the matrix for a particular year.
 def matrix_year(mat):

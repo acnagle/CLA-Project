@@ -8,7 +8,7 @@ import Constants
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print("\n\t##### EXECUTING GUASSIAN_RAND_PROJECTION.PY #####")
+    print("\n\t##### EXECUTING GUASSIAN_RAND_PROJECTION.PY #####\n")
 
     # source directories
     path_matrices_no_na_eigen_no_alg_ind = "/Users/Alliot/documents/cla-project/data/matrices-no-na/eigen-no-alg-ind/"
@@ -30,6 +30,8 @@ def main():
     build_randn_projection_vectors(dirnames=dirnames_no_alg_ind_all_data, dest_path=dest_path_all_data_proj)
     build_randn_projection_vectors(dirnames=dirnames_w_alg_ind_no_na, dest_path=dest_path_matrices_no_na_proj)
     build_randn_projection_vectors(dirnames=dirnames_w_alg_ind_all_data, dest_path=dest_path_all_data_proj)
+
+    print("\n")
 
 
 def build_randn_projection_vectors(dirnames, dest_path):

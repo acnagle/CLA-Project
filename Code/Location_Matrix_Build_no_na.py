@@ -5,7 +5,7 @@ import Constants
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print("\n\t##### EXECUTING LOCATION_MATRIX_BUILD_NO_NA.PY #####")
+    print("\n\t##### EXECUTING LOCATION_MATRIX_BUILD_NO_NA.PY #####\n")
 
     # File locations of each csv
     file_paths = [
@@ -121,6 +121,8 @@ def main():
                    destination_folder=destination_folder_all_data)
     matrix_to_file(mat_wingra_summer, lake_name=lakes[4] + "_All_Data_summer",
                    destination_folder=destination_folder_all_data)
+
+    print("\n")
 
 
 # Writes a matrix to a csv file. mat is the matrix being written to a file. lake_name is a string of the name of the

@@ -119,12 +119,12 @@ legend('no algae', 'blue-green algae', 'green algae')
 
 PCA_3D_algae_plot(no_alg_3d_monona_summer_w_ind, bg_alg_3d_monona_summer_w_ind, ...
     gr_alg_3d_monona_summer_w_ind)
-title('monona Summer (June-August) 3D, With Indicator')
+title('Monona Summer (June-August) 3D, With Indicator')
 legend('no algae', 'blue-green algae', 'green algae')
 
 PCA_3D_algae_plot(no_alg_3d_monona_summer_no_ind, bg_alg_3d_monona_summer_no_ind, ...
     gr_alg_3d_monona_summer_no_ind)
-title('monona Summer (June-August) 3D, No Indicator')
+title('Monona Summer (June-August) 3D, No Indicator')
 legend('no algae', 'blue-green algae', 'green algae')
 
 % PCA_3D_algae_plot(no_alg_3d_monona_summer_randn_w_ind, bg_alg_3d_monona_summer_randn_w_ind, ...

@@ -8,7 +8,7 @@ import Constants
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print("\n\t##### EXECUTING DATA_PROJECTION.PY #####")
+    print("\n\t##### EXECUTING DATA_PROJECTION.PY #####\n")
 
     # source directories
     path_matrices_no_na_eigen_no_alg_ind = "/Users/Alliot/documents/cla-project/data/matrices-no-na/eigen-no-alg-ind/"
@@ -30,6 +30,8 @@ def main():
     build_projection_vectors(dirnames=dirnames_no_alg_ind_all_data, dest_path=dest_path_all_data_proj)
     build_projection_vectors(dirnames=dirnames_w_alg_ind_no_na, dest_path=dest_path_matrices_no_na_proj)
     build_projection_vectors(dirnames=dirnames_w_alg_ind_all_data, dest_path=dest_path_all_data_proj)
+
+    print("\n")
 
 
 # This method builds a [3, M] matrix where M is the number of types of measurements (turbidity, water
