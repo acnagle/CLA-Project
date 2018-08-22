@@ -5,6 +5,7 @@ import os
 import errno
 import Constants
 
+
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
@@ -83,36 +84,36 @@ def main():
     k_arr = np.linspace(1, 20, num=20, dtype=int)    # create a vector of k values to perform k-nn with
 
     # create vectors to store various balanced error rates (BER) for original data
-    all_data_orig_ber = np.empty((k_arr.shape[0]))
-    mendota_orig_ber = np.empty((k_arr.shape[0]))
-    monona_orig_ber = np.empty((k_arr.shape[0]))
-    all_data_orig_ber_bin = np.empty((k_arr.shape[0]))
-    mendota_orig_ber_bin = np.empty((k_arr.shape[0]))
-    monona_orig_ber_bin = np.empty((k_arr.shape[0]))
+    all_data_orig_ber = np.empty((k_arr.shape[Constants.ROWS]))
+    mendota_orig_ber = np.empty((k_arr.shape[Constants.ROWS]))
+    monona_orig_ber = np.empty((k_arr.shape[Constants.ROWS]))
+    all_data_orig_ber_bin = np.empty((k_arr.shape[Constants.ROWS]))
+    mendota_orig_ber_bin = np.empty((k_arr.shape[Constants.ROWS]))
+    monona_orig_ber_bin = np.empty((k_arr.shape[Constants.ROWS]))
 
     # create vectors to store various balanced error rates (BER) for 3D projections
-    all_data_proj_3d_ber = np.empty((k_arr.shape[0]))
-    mendota_proj_3d_ber = np.empty((k_arr.shape[0]))
-    monona_proj_3d_ber = np.empty((k_arr.shape[0]))
-    all_data_proj_3d_ber_bin = np.empty((k_arr.shape[0]))
-    mendota_proj_3d_ber_bin = np.empty((k_arr.shape[0]))
-    monona_proj_3d_ber_bin = np.empty((k_arr.shape[0]))
+    all_data_proj_3d_ber = np.empty((k_arr.shape[Constants.ROWS]))
+    mendota_proj_3d_ber = np.empty((k_arr.shape[Constants.ROWS]))
+    monona_proj_3d_ber = np.empty((k_arr.shape[Constants.ROWS]))
+    all_data_proj_3d_ber_bin = np.empty((k_arr.shape[Constants.ROWS]))
+    mendota_proj_3d_ber_bin = np.empty((k_arr.shape[Constants.ROWS]))
+    monona_proj_3d_ber_bin = np.empty((k_arr.shape[Constants.ROWS]))
 
     # create vectors to store accuracies for original data
-    all_data_orig_acc = np.empty((k_arr.shape[0]))
-    mendota_orig_acc = np.empty((k_arr.shape[0]))
-    monona_orig_acc = np.empty((k_arr.shape[0]))
-    all_data_orig_acc_bin = np.empty((k_arr.shape[0]))
-    mendota_orig_acc_bin = np.empty((k_arr.shape[0]))
-    monona_orig_acc_bin = np.empty((k_arr.shape[0]))
+    all_data_orig_acc = np.empty((k_arr.shape[Constants.ROWS]))
+    mendota_orig_acc = np.empty((k_arr.shape[Constants.ROWS]))
+    monona_orig_acc = np.empty((k_arr.shape[Constants.ROWS]))
+    all_data_orig_acc_bin = np.empty((k_arr.shape[Constants.ROWS]))
+    mendota_orig_acc_bin = np.empty((k_arr.shape[Constants.ROWS]))
+    monona_orig_acc_bin = np.empty((k_arr.shape[Constants.ROWS]))
 
     # create vectors to store accuracies for 3D projections
-    all_data_proj_3d_acc = np.empty((k_arr.shape[0]))
-    mendota_proj_3d_acc = np.empty((k_arr.shape[0]))
-    monona_proj_3d_acc = np.empty((k_arr.shape[0]))
-    all_data_proj_3d_acc_bin = np.empty((k_arr.shape[0]))
-    mendota_proj_3d_acc_bin = np.empty((k_arr.shape[0]))
-    monona_proj_3d_acc_bin = np.empty((k_arr.shape[0]))
+    all_data_proj_3d_acc = np.empty((k_arr.shape[Constants.ROWS]))
+    mendota_proj_3d_acc = np.empty((k_arr.shape[Constants.ROWS]))
+    monona_proj_3d_acc = np.empty((k_arr.shape[Constants.ROWS]))
+    all_data_proj_3d_acc_bin = np.empty((k_arr.shape[Constants.ROWS]))
+    mendota_proj_3d_acc_bin = np.empty((k_arr.shape[Constants.ROWS]))
+    monona_proj_3d_acc_bin = np.empty((k_arr.shape[Constants.ROWS]))
 
     for k in k_arr:
         print("\n\t%%%%% COMPUTING K-NN FOR K =", k, "%%%%%\n\n")
@@ -179,7 +180,7 @@ def main():
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Balanced Error Rate")
     plt.xlabel("k")
-    plt.xticks(np.arange(2, k_arr.shape[0]+1, 2))
+    plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS]+1, 2))
     plt.title("K-NN Balanced Error Rate (BER) vs. k, Original Data (Summer only)")
     plt.savefig(os.path.join(dest_path, "Original Data BER.png"))
 
@@ -188,7 +189,7 @@ def main():
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Balanced Error Rate")
     plt.xlabel("k")
-    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS] + 1, 2))
     plt.title("K-NN Balanced Error Rate (BER) vs. k, 3D Projection (Summer only)")
     plt.savefig(os.path.join(dest_path, "3D Projection BER.png"))
 
@@ -197,7 +198,7 @@ def main():
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Accuracy")
     plt.xlabel("k")
-    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS] + 1, 2))
     plt.title("K-NN Accuracy vs. k, Original Data (Summer only)")
     plt.savefig(os.path.join(dest_path, "Original Data Accuracy.png"))
 
@@ -206,7 +207,7 @@ def main():
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Accuracy")
     plt.xlabel("k")
-    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS] + 1, 2))
     plt.title("K-NN Accuracy vs. k, 3D Projection (Summer only)")
     plt.savefig(os.path.join(dest_path, "3D Projection Accuracy.png"))
 
@@ -215,7 +216,7 @@ def main():
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Balanced Error Rate")
     plt.xlabel("k")
-    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS] + 1, 2))
     plt.title("K-NN Balanced Error Rate (BER) vs. k, Original Data (Summer only) [Binary]")
     plt.savefig(os.path.join(dest_path, "Original Data BER (Binary).png"))
 
@@ -225,7 +226,7 @@ def main():
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Balanced Error Rate")
     plt.xlabel("k")
-    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS] + 1, 2))
     plt.title("K-NN Balanced Error Rate (BER) vs. k, 3D Projection (Summer only) [Binary]")
     plt.savefig(os.path.join(dest_path, "3D Projection BER (Binary).png"))
 
@@ -234,7 +235,7 @@ def main():
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Accuracy")
     plt.xlabel("k")
-    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS] + 1, 2))
     plt.title("K-NN Accuracy vs. k, Original Data (Summer only) [Binary]")
     plt.savefig(os.path.join(dest_path, "Original Data Accuracy (Binary).png"))
 
@@ -244,7 +245,7 @@ def main():
     plt.legend(("All Data", "Mendota", "Monona"))
     plt.ylabel("Accuracy")
     plt.xlabel("k")
-    plt.xticks(np.arange(2, k_arr.shape[0] + 1, 2))
+    plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS] + 1, 2))
     plt.title("K-NN Accuracy vs. k, 3D Projection (Summer only) [Binary]")
     plt.savefig(os.path.join(dest_path, "3D Projection Accuracy (Binary).png"))
 
@@ -256,18 +257,18 @@ def main():
 # matrix containing the validation set from mat and is returned. val_idx is the indices within mat that the points in
 # mat_val are chosen. val_idx is a returned value.
 def create_val_set(mat):
-    mat_width = mat.shape[1]    # width of mat
+    mat_width = mat.shape[Constants.COLUMNS]    # width of mat
     num_val_points = np.floor(mat_width * 0.2)   # aka the width of mat_val
 
     # find the indices from mat which will choose the data points for mat_val
     val_idx = np.linspace(0, mat_width-1, num=num_val_points, dtype=int)
 
-    if mat.shape[0] == Constants.NUM_ROWS_NO_IND:
-        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_NO_IND, ))])
-    elif mat.shape[0] == Constants.NUM_ROWS_W_IND:
-        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_W_IND, ))])
-    elif mat.shape[0] == Constants.NUM_ROWS_3D_PROJ:
-        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_3D_PROJ, ))])
+    if mat.shape[Constants.ROWS] == Constants.NUM_ROWS_NO_IND_ALL_DATA:
+        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_NO_IND_ALL_DATA, ))])
+    elif mat.shape[Constants.ROWS] == Constants.NUM_ROWS_W_IND_ALL_DATA:
+        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
+    elif mat.shape[Constants.ROWS] == Constants.NUM_ROWS_3D_PROJ_ALL_DATA:
+        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_3D_PROJ_ALL_DATA, ))])
     else:
         print("Data matrix does not have the expected number of rows.")
         sys.exit()
@@ -278,7 +279,7 @@ def create_val_set(mat):
     # SPECIAL NOTE: for some reason I can't explain, the above code in this method appends an extra column to the front
     # of mat_val with values that are extremely tiny and large (order of 10^-250 to 10^314 or so). This code deletes
     # that column
-    mat_val = np.delete(mat_val, obj=0, axis=1)
+    mat_val = np.delete(mat_val, obj=0, axis=Constants.COLUMNS)
 
     return mat_val, val_idx
 
@@ -288,8 +289,8 @@ def create_val_set(mat):
 # mat_train, which is the training set.
 def create_training_set(mat, val_idx):
     mat_train = mat
-    for i in np.flip(val_idx, 0):
-        mat_train = np.delete(mat_train, obj=i, axis=1)
+    for i in np.flip(val_idx, axis=0):
+        mat_train = np.delete(mat_train, obj=i, axis=Constants.COLUMNS)
 
     return mat_train
 
@@ -304,16 +305,17 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     # where x_train is every column in mat_train_no_ind. A row in l2_mat corresponds to a column in mat_val_no_ind,
     # and a column in l2_mat corresponds to a column in mat_train_no_ind. For example,
     # l2_mat[2, 5] = || x_val_2 - x_train ||^2
-    l2_mat = np.empty(shape=(mat_val_no_ind.shape[1], mat_train_no_ind.shape[1]), dtype=float)
-    for i in range(0, mat_val_no_ind.shape[1]):
-        for j in range(0, mat_train_no_ind.shape[1]):
+    l2_mat = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS],
+                             mat_train_no_ind.shape[Constants.COLUMNS]), dtype=float)
+    for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
+        for j in range(0, mat_train_no_ind.shape[Constants.COLUMNS]):
             l2_mat[i, j] = (np.linalg.norm(mat_val_no_ind[:, i] - mat_train_no_ind[:, j])) ** 2
 
     # 2. Determine k-nn for each row in l2_mat. For each nearest neighbor we will need the column index from
     # mat_train_no_ind and the label of the column from mat_train_no_ind.
     # a. Get column indices from mat_train
-    k_nn_idx = np.empty(shape=(mat_val_no_ind.shape[1], k), dtype=int)
-    for i in range(0, mat_val_no_ind.shape[1]):
+    k_nn_idx = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS], k), dtype=int)
+    for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
             k_nn_idx[i, j] = np.argmin(l2_mat[i, :])
             l2_mat[i, k_nn_idx[i, j]] = float("inf")
@@ -321,11 +323,11 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     # b. Create a matrix containing the k-nearest neighbor label for each vector in mat_val. The rows correspond to
     # the labels of each data point in mat_train_w_ind. The columns represent each of the k-nearest neighbors. Also,
     # determine the weights for a weighted k-nn approach.
-    k_nn_labels = np.empty(shape=(mat_val_no_ind.shape[1], k))
-    weights = np.empty(shape=(mat_val_no_ind.shape[1], k))
-    for i in range(0, mat_val_no_ind.shape[1]):
+    k_nn_labels = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS], k))
+    weights = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS], k))
+    for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
-            k_nn_labels[i, j] = mat_train_w_ind[3, k_nn_idx[i, j]]
+            k_nn_labels[i, j] = mat_train_w_ind[Constants.ALGAL_BLOOM_SHEEN, k_nn_idx[i, j]]
             weights[i, j] = 1 / l2_mat[i, k_nn_idx[i, j]]
 
     # 3. predict the label of each point in the validation set. In mat_train_w_ind, the algae bloom indicator is
@@ -338,8 +340,8 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     num_bg_alg = 0  # tally of number of data points in k-nn with blue-green algal bloom
     num_gr_alg = 0  # tally of number of data points in k-nn with green algal bloom
     label = 0       # label for data point
-    mat_val_label = np.insert(mat_val_no_ind, obj=3, values=0, axis=0)
-    for i in range(0, mat_val_no_ind.shape[1]):
+    mat_val_label = np.insert(mat_val_no_ind, obj=Constants.ALGAL_BLOOM_SHEEN, values=0, axis=Constants.ROWS)
+    for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
             if k_nn_labels[i, j] == 0:
                 num_no_alg = num_no_alg + 1
@@ -372,7 +374,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
                     label = k_nn_labels[i, l]
                     break
 
-        mat_val_label[3, i] = label
+        mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] = label
 
         # reset tallies
         num_no_alg = 0
@@ -387,27 +389,27 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     mat_conf = np.zeros(shape=(3, 3), dtype=int)
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
-    for i in range(0, mat_val_w_ind.shape[1]):
-        if mat_val_w_ind[3, i] == 0:
-            if mat_val_label[3, i] == 0:
+    for i in range(0, mat_val_w_ind.shape[Constants.COLUMNS]):
+        if mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
                 mat_conf[0, 0] = mat_conf[0, 0] + 1
-            elif mat_val_label[3, i] == 0.5:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0.5:
                 mat_conf[0, 1] = mat_conf[0, 1] + 1
-            elif mat_val_label[3, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
                 mat_conf[0, 2] = mat_conf[0, 2] + 1
-        elif mat_val_w_ind[3, i] == 0.5:
-            if mat_val_label[3, i] == 0:
+        elif mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 0.5:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
                 mat_conf[1, 0] = mat_conf[1, 0] + 1
-            elif mat_val_label[3, i] == 0.5:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0.5:
                 mat_conf[1, 1] = mat_conf[1, 1] + 1
-            elif mat_val_label[3, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
                 mat_conf[1, 2] = mat_conf[1, 2] + 1
-        elif mat_val_w_ind[3, i] == 1:
-            if mat_val_label[3, i] == 0:
+        elif mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
                 mat_conf[2, 0] = mat_conf[2, 0] + 1
-            elif mat_val_label[3, i] == 0.5:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0.5:
                 mat_conf[2, 1] = mat_conf[2, 1] + 1
-            elif mat_val_label[3, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
                 mat_conf[2, 2] = mat_conf[2, 2] + 1
 
     print("Confusion matrix:")
@@ -455,26 +457,27 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     # where x_train is every column in mat_train_no_ind. A row in l2_mat corresponds to a column in mat_val_no_ind,
     # and a column in l2_mat corresponds to a column in mat_train_no_ind. For example,
     # l2_mat[2, 5] = || x_val_2 - x_train ||^2
-    l2_mat = np.empty(shape=(mat_val_no_ind.shape[1], mat_train_no_ind.shape[1]), dtype=float)
-    for i in range(0, mat_val_no_ind.shape[1]):
-        for j in range(0, mat_train_no_ind.shape[1]):
+    l2_mat = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS],
+                             mat_train_no_ind.shape[Constants.COLUMNS]), dtype=float)
+    for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
+        for j in range(0, mat_train_no_ind.shape[Constants.COLUMNS]):
             l2_mat[i, j] = (np.linalg.norm(mat_val_no_ind[:, i] - mat_train_no_ind[:, j])) ** 2
 
     # 2. Determine k-nn for each row in l2_mat. For each nearest neighbor we will need the column index from
     # mat_train_no_ind and the label of the column from mat_train_no_ind.
     # a. Get column indices from mat_train
-    k_nn_idx = np.empty(shape=(mat_val_no_ind.shape[1], k), dtype=int)
-    for i in range(0, mat_val_no_ind.shape[1]):
+    k_nn_idx = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS], k), dtype=int)
+    for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
             k_nn_idx[i, j] = np.argmin(l2_mat[i, :])
             l2_mat[i, k_nn_idx[i, j]] = float("inf")
 
     # b. Create a matrix containing the k-nearest neighbor label for each vector in mat_val. The rows correspond to
     # the labels of each data point in mat_train_w_ind. The columns represent each of the k-nearest neighbors.
-    k_nn_labels = np.empty(shape=(mat_val_no_ind.shape[1], k))
-    for i in range(0, mat_val_no_ind.shape[1]):
+    k_nn_labels = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS], k))
+    for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
-            k_nn_labels[i, j] = mat_train_w_ind[3, k_nn_idx[i, j]]
+            k_nn_labels[i, j] = mat_train_w_ind[Constants.ALGAL_BLOOM_SHEEN, k_nn_idx[i, j]]
 
     # 3. predict the label of each point in the validation set. In mat_train_w_ind, the algae bloom indicator is
     # located in row index 1. The single most abundant label in the nearest neighbor of a data point will be stored in
@@ -485,8 +488,8 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     num_no_alg = 0  # tally of number of data points in k-nn with no indication of algal bloom
     num_w_alg = 0   # tally of number of data points in k-nn with algal bloom
     label = 0       # label for data point
-    mat_val_label = np.insert(mat_val_no_ind, obj=3, values=0, axis=0)
-    for i in range(0, mat_val_no_ind.shape[1]):
+    mat_val_label = np.insert(mat_val_no_ind, obj=Constants.ALGAL_BLOOM_SHEEN, values=0, axis=Constants.ROWS)
+    for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
             if k_nn_labels[i, j] == 0:
                 num_no_alg = num_no_alg + 1
@@ -510,7 +513,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
                     label = 1
                     break
 
-        mat_val_label[3, i] = label
+        mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] = label
 
         # reset tallies
         num_no_alg = 0
@@ -524,16 +527,16 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     mat_conf = np.zeros(shape=(2, 2), dtype=int)
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
-    for i in range(0, mat_val_w_ind.shape[1]):
-        if mat_val_w_ind[3, i] == 0:
-            if mat_val_label[3, i] == 0:
+    for i in range(0, mat_val_w_ind.shape[Constants.COLUMNS]):
+        if mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
                 mat_conf[0, 0] = mat_conf[0, 0] + 1
-            elif mat_val_label[3, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
                 mat_conf[0, 1] = mat_conf[0, 1] + 1
-        elif mat_val_w_ind[3, i] == 1:
-            if mat_val_label[3, i] == 0:
+        elif mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
                 mat_conf[1, 0] = mat_conf[1, 0] + 1
-            elif mat_val_label[3, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
                 mat_conf[1, 1] = mat_conf[1, 1] + 1
 
     print("Confusion matrix:")
@@ -568,9 +571,9 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
 def matrix_to_file(mat, filename, destination_folder):
     file = open(destination_folder + filename, "w")
 
-    for i in range(0, mat.shape[0]):
-        for j in range(0, mat.shape[1]):
-            if j < mat.shape[1] - 1:
+    for i in range(0, mat.shape[Constants.ROWS]):
+        for j in range(0, mat.shape[Constants.COLUMNS]):
+            if j < mat.shape[Constants.COLUMNS] - 1:
                 file.write(str(mat[i, j]) + ",")
             else:
                 file.write(str(mat[i, j]) + "\n")

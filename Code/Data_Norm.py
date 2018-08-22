@@ -131,10 +131,7 @@ def normalize_data(mat, first, last):
         max_val = np.amax(mat[i, :])
 
         if max_val != 0:    # sometimes a data matrix had no algal blooms, so a row of zeros could appear
-            try:
-                mat[i, :] = np.divide(mat[i, :], max_val)
-            except RuntimeError:
-                print("Error: Max value in the data matrix cannot be 0!")
+            mat[i, :] = np.divide(mat[i, :], max_val)
 
 
         # normalize all the elements by dividing each element by max_val

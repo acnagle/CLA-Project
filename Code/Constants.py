@@ -27,7 +27,7 @@ PRCP_24_HRS = 12
 PRCP_48_HRS = 13
 WINDSPEED_AVG_24_HRS = 14
 
-# constants used to represent the axis of a matrix
+# constants used to represent the axis of a data matrix
 ROWS = 0
 COLUMNS = 1
 
