@@ -32,26 +32,26 @@ def main():
 
     # define a location key matrix in order to quantize locations. For each location (row 0), define an integer to
     # represent that location (row 1)
-    mat = np.genfromtxt(open(path_all_data + "All_Data_matrix.csv", "rb"), delimiter=",",
-                        dtype=(str, Constants.STR_LENGTH))
-    loc_key = np.transpose([np.empty(shape=(2, ), dtype=(str, Constants.STR_LENGTH))])
-    int_rep = 0     # holds integer to represent next location added to loc_key
-    for j in range(0, mat.shape[Constants.COLUMNS]):
-        if mat[Constants.LOCATION, j] not in loc_key[0, :]:
-            loc_key = np.hstack((loc_key, np.transpose([np.array([mat[Constants.LOCATION, j], str(int_rep)])])))
-            int_rep = int_rep + 1
+    # mat = np.genfromtxt(open(path_all_data + "All_Data_matrix.csv", "rb"), delimiter=",",
+    #                     dtype=(str, Constants.STR_LENGTH))
+    # loc_key = np.transpose([np.empty(shape=(2, ), dtype=(str, Constants.STR_LENGTH))])
+    # int_rep = 0     # holds integer to represent next location added to loc_key
+    # for j in range(0, mat.shape[Constants.COLUMNS]):
+    #     if mat[Constants.LOCATION, j] not in loc_key[0, :]:
+    #         loc_key = np.hstack((loc_key, np.transpose([np.array([mat[Constants.LOCATION, j], str(int_rep)])])))
+    #         int_rep = int_rep + 1
+    #
+    # mat = np.genfromtxt(open(path_matrices_no_na + "All_year_matrix.csv", "rb"), delimiter=",",
+    #                     dtype=(str, Constants.STR_LENGTH))
+    # for j in range(0, mat.shape[Constants.COLUMNS]):
+    #     if mat[Constants.LOCATION, j] not in loc_key[0, :]:
+    #         loc_key = np.hstack((loc_key, np.transpose([np.array([mat[Constants.LOCATION, j], str(int_rep)])])))
+    #         int_rep = int_rep + 1
+    #
+    # loc_key = np.delete(loc_key, obj=0, axis=Constants.COLUMNS)
 
-    mat = np.genfromtxt(open(path_matrices_no_na + "All_year_matrix.csv", "rb"), delimiter=",",
-                        dtype=(str, Constants.STR_LENGTH))
-    for j in range(0, mat.shape[Constants.COLUMNS]):
-        if mat[Constants.LOCATION, j] not in loc_key[0, :]:
-            loc_key = np.hstack((loc_key, np.transpose([np.array([mat[Constants.LOCATION, j], str(int_rep)])])))
-            int_rep = int_rep + 1
-
-    loc_key = np.delete(loc_key, obj=0, axis=Constants.COLUMNS)
-
-    print("Processing Location Key ...")
-    matrix_to_file(loc_key, "Location Key.csv", "/Users/Alliot/Documents/CLA-Project/Data/")
+    # print("Processing Location Key ...")
+    # matrix_to_file(loc_key, "Location Key.csv", "/Users/Alliot/Documents/CLA-Project/Data/")
 
     # normalize and store all matrices in path_matrices_no_na
     for filename in files_matrices_no_na:
@@ -60,14 +60,10 @@ def main():
         mat = remove_empty_entries(mat)
 
         convert_datetime_to_measurement(mat)
-        convert_locs_to_measurement(mat=mat, loc_key=loc_key)
-        # mat_w_mean = mat.astype(float)
-        # normalize_data(mat=mat_w_mean, first=0, last=Constants.NUM_ROWS_NO_NA)
-        # matrix_to_file(mat=mat_w_mean, filename=filename[65:-4] + "w_mean", destination_folder=dest_path_matrices_no_na_normalized)
-
-        # mat = subtract_mean(mat)
+        # convert_locs_to_measurement(mat=mat, loc_key=loc_key)
+        mat = np.delete(mat, obj=Constants.LOCATION, axis=Constants.ROWS)   # Remove location
         mat = mat.astype(float)
-        normalize_data(mat=mat, first=0, last=Constants.NUM_ROWS_NO_NA)
+        normalize_data(mat=mat, first=0, last=Constants.NUM_ROWS_NO_LOC_NO_NA)
         matrix_to_file(mat=mat, filename=filename[65:], destination_folder=dest_path_matrices_no_na_normalized)
 
     # if dest_path_matrices_all_data_normalized does not exist, create it
@@ -85,14 +81,10 @@ def main():
         mat = remove_empty_entries(mat)
 
         convert_datetime_to_measurement(mat)
-        convert_locs_to_measurement(mat=mat, loc_key=loc_key)
-        # mat_w_mean = mat.astype(float)
-        # normalize_data(mat=mat_w_mean, first=0, last=Constants.NUM_ROWS_W_IND_ALL_DATA)
-        # matrix_to_file(mat=mat_w_mean, filename=filename[65:-4] + "w_mean", destination_folder=dest_path_matrices_all_data_normalized)
-
-        # mat = subtract_mean(mat)
+        # convert_locs_to_measurement(mat=mat, loc_key=loc_key)
+        mat = np.delete(mat, obj=Constants.LOCATION, axis=Constants.ROWS)   # Remove location
         mat = mat.astype(float)
-        normalize_data(mat=mat, first=0, last=Constants.NUM_ROWS_W_IND_ALL_DATA)
+        normalize_data(mat=mat, first=0, last=Constants.NUM_ROWS_W_IND_NO_LOC_ALL_DATA)
         matrix_to_file(mat=mat, filename=filename[65:], destination_folder=dest_path_matrices_all_data_normalized)
 
     print("\n")
@@ -117,68 +109,11 @@ def remove_empty_entries(mat):
 # (non-inclusive) that contains data that needs to be normalized.
 def normalize_data(mat, first, last):
     for i in range(first, last):
-        # norm_arr_str contains the string representation of an entire row that is going to be normalized
-        # norm_arr_str = mat[i, :]
-
-        # convert all elements in norm_arr to float
-        # norm_arr = np.zeros(shape=len(norm_arr_str), dtype=float)
-        # try:
-        #     norm_arr = norm_arr.astype(float)
-        # except ValueError:
-        #     print("The data matrix contains values that cannot be cast to a float.")
-
         # determine the largest value in norm_arr
         max_val = np.amax(mat[i, :])
 
         if max_val != 0:    # sometimes a data matrix had no algal blooms, so a row of zeros could appear
             mat[i, :] = np.divide(mat[i, :], max_val)
-
-
-        # normalize all the elements by dividing each element by max_val
-        # for k in range(0, len(norm_arr)):
-        #     norm_arr[k] = norm_arr[k] / max_val
-        #
-        #     # store the normalize array back into its respective row in mat
-        #     mat[i, k] = str(norm_arr[k])
-
-        # if i == Constants.LOCATION:
-        #     max_val = Constants.NUM_LAKES
-        #
-        # elif i == Constants.DATE_TIME:
-        #     max_val = 24    # 24 is the max number of hours in a day
-        #
-        # elif ((i == Constants.ALGAL_BLOOMS) or (i == Constants.BATHER_LOAD) or (i == Constants.PLANT_DEBRIS) or
-        #         (i == Constants.WATER_APPEARANCE) or (i == Constants.WATER_FOWL_PRESENCE) or
-        #         (i == Constants.WAVE_INTENSITY)):
-        #         max_val = 3
-        #
-        # elif i == Constants.ALGAL_BLOOM_SHEEN:
-        #     max_val = 2
-        #
-        # elif i == Constants.WATER_TEMP:
-        #     max_val = 88.7
-        #
-        # elif i == Constants.TURBIDITY:
-        #     max_val = 120
-        #
-        # elif i == Constants.AIR_TEMP:
-        #     max_val = 98.4
-        #
-        # elif i == Constants.PRCP_24_HRS:
-        #     max_val = 1.99
-        #
-        # elif i == Constants.PRCP_48_HRS:
-        #     max_val = 3.12
-        #
-        # elif i == Constants.WINDSPEED_AVG_24_HRS:
-        #     max_val = 15.78
-        #
-        # else:
-        #     print("Error: Unrecognized feature!")
-
-        # for k in range(0, len(norm_arr)):
-        #     norm_arr[k] = norm_arr[k] / max_val
-        #     mat[i, k] = str(norm_arr[k])       # store the normalize array back into its respective row in mat
 
 
 # Writes a matrix to a csv file. mat is the matrix being written to a file. filename is the name of the .csv file.

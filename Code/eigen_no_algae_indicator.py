@@ -24,7 +24,7 @@ def main():
     # compute eigenvectors, eigenvalues, and singular values of all the matricies in path_matrices_no_na directory
     for filename_w_directory in files_matrices_no_na:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, first=0, last=mat.shape[Constants.ROWS])
+        mat = mat.astype(dtype=float)
 
         # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
         mat = np.delete(mat, obj=2, axis=0)  # delete algae intensity (algalBloom)
@@ -63,7 +63,7 @@ def main():
     files_matrices_all_data = [filename for filename in glob.glob(os.path.join(path_all_data, "*.csv"))]
     for filename_w_directory in files_matrices_all_data:
         mat = np.genfromtxt(open(filename_w_directory, "rb"), delimiter=",", dtype="str")
-        mat = matrix_str_to_float(mat, first=0, last=mat.shape[Constants.ROWS])
+        mat = mat.astype(dtype=float)
 
         # Remove algae indicator (row 2 (index 1) for this set of matrices), and algal bloom intensity (row 1 (index 0))
         mat = np.delete(mat, obj=2, axis=0)  # delete algae intensity (algalBloom)

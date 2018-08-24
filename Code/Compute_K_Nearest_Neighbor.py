@@ -81,7 +81,7 @@ def main():
     mat_monona_proj_train_no_ind = create_training_set(mat_monona_proj_no_ind, monona_proj_val_idx)
 
     # calculate k-nearest neighbor for each dataset and compute errors
-    k_arr = np.linspace(1, 20, num=20, dtype=int)    # create a vector of k values to perform k-nn with
+    k_arr = np.linspace(1, 20, num=20, dtype=int)    # create a vector of 20 values to perform k-nn with
 
     # create vectors to store various balanced error rates (BER) for original data
     all_data_orig_ber = np.empty((k_arr.shape[Constants.ROWS]))
@@ -120,7 +120,7 @@ def main():
         print("k-nearest neighbors for summer, all data:")
         print("None vs. Blue-Green vs. Green\n")
         print("Original Data:\n")
-        all_data_orig_ber[k - 1], all_data_orig_acc[k-1] = \
+        all_data_orig_ber[k-1], all_data_orig_acc[k-1] = \
             calculate_k_nn(mat_all_data_orig_train_w_ind, mat_all_data_orig_train_no_ind,
                            mat_all_data_orig_val_w_ind, mat_all_data_orig_val_no_ind, k)
         print("Projected Data (3D):\n")
@@ -263,10 +263,10 @@ def create_val_set(mat):
     # find the indices from mat which will choose the data points for mat_val
     val_idx = np.linspace(0, mat_width-1, num=num_val_points, dtype=int)
 
-    if mat.shape[Constants.ROWS] == Constants.NUM_ROWS_NO_IND_ALL_DATA:
-        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_NO_IND_ALL_DATA, ))])
-    elif mat.shape[Constants.ROWS] == Constants.NUM_ROWS_W_IND_ALL_DATA:
-        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_ALL_DATA, ))])
+    if mat.shape[Constants.ROWS] == Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA:
+        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA, ))])
+    elif mat.shape[Constants.ROWS] == Constants.NUM_ROWS_W_IND_NO_LOC_ALL_DATA:
+        mat_val = np.transpose([np.empty((Constants.NUM_ROWS_W_IND_NO_LOC_ALL_DATA, ))])
     elif mat.shape[Constants.ROWS] == Constants.NUM_ROWS_3D_PROJ_ALL_DATA:
         mat_val = np.transpose([np.empty((Constants.NUM_ROWS_3D_PROJ_ALL_DATA, ))])
     else:
@@ -327,7 +327,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     weights = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS], k))
     for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
-            k_nn_labels[i, j] = mat_train_w_ind[Constants.ALGAL_BLOOM_SHEEN, k_nn_idx[i, j]]
+            k_nn_labels[i, j] = mat_train_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, k_nn_idx[i, j]]
             weights[i, j] = 1 / l2_mat[i, k_nn_idx[i, j]]
 
     # 3. predict the label of each point in the validation set. In mat_train_w_ind, the algae bloom indicator is
@@ -340,7 +340,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
     num_bg_alg = 0  # tally of number of data points in k-nn with blue-green algal bloom
     num_gr_alg = 0  # tally of number of data points in k-nn with green algal bloom
     label = 0       # label for data point
-    mat_val_label = np.insert(mat_val_no_ind, obj=Constants.ALGAL_BLOOM_SHEEN, values=0, axis=Constants.ROWS)
+    mat_val_label = np.insert(mat_val_no_ind, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, values=0, axis=Constants.ROWS)
     for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
             if k_nn_labels[i, j] == 0:
@@ -374,7 +374,7 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
                     label = k_nn_labels[i, l]
                     break
 
-        mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] = label
+        mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] = label
 
         # reset tallies
         num_no_alg = 0
@@ -390,26 +390,26 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
     for i in range(0, mat_val_w_ind.shape[Constants.COLUMNS]):
-        if mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
-            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
+        if mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0:
                 mat_conf[0, 0] = mat_conf[0, 0] + 1
-            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0.5:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0.5:
                 mat_conf[0, 1] = mat_conf[0, 1] + 1
-            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 1:
                 mat_conf[0, 2] = mat_conf[0, 2] + 1
-        elif mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 0.5:
-            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
+        elif mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0.5:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0:
                 mat_conf[1, 0] = mat_conf[1, 0] + 1
-            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0.5:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0.5:
                 mat_conf[1, 1] = mat_conf[1, 1] + 1
-            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 1:
                 mat_conf[1, 2] = mat_conf[1, 2] + 1
-        elif mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
-            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
+        elif mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 1:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0:
                 mat_conf[2, 0] = mat_conf[2, 0] + 1
-            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0.5:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0.5:
                 mat_conf[2, 1] = mat_conf[2, 1] + 1
-            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 1:
                 mat_conf[2, 2] = mat_conf[2, 2] + 1
 
     print("Confusion matrix:")
@@ -477,7 +477,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     k_nn_labels = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS], k))
     for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
-            k_nn_labels[i, j] = mat_train_w_ind[Constants.ALGAL_BLOOM_SHEEN, k_nn_idx[i, j]]
+            k_nn_labels[i, j] = mat_train_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, k_nn_idx[i, j]]
 
     # 3. predict the label of each point in the validation set. In mat_train_w_ind, the algae bloom indicator is
     # located in row index 1. The single most abundant label in the nearest neighbor of a data point will be stored in
@@ -488,7 +488,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
     num_no_alg = 0  # tally of number of data points in k-nn with no indication of algal bloom
     num_w_alg = 0   # tally of number of data points in k-nn with algal bloom
     label = 0       # label for data point
-    mat_val_label = np.insert(mat_val_no_ind, obj=Constants.ALGAL_BLOOM_SHEEN, values=0, axis=Constants.ROWS)
+    mat_val_label = np.insert(mat_val_no_ind, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, values=0, axis=Constants.ROWS)
     for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
             if k_nn_labels[i, j] == 0:
@@ -513,7 +513,7 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
                     label = 1
                     break
 
-        mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] = label
+        mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] = label
 
         # reset tallies
         num_no_alg = 0
@@ -528,15 +528,15 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
     for i in range(0, mat_val_w_ind.shape[Constants.COLUMNS]):
-        if mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
-            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
+        if mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0:
                 mat_conf[0, 0] = mat_conf[0, 0] + 1
-            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 1:
                 mat_conf[0, 1] = mat_conf[0, 1] + 1
-        elif mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
-            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 0:
+        elif mat_val_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 1:
+            if mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 0:
                 mat_conf[1, 0] = mat_conf[1, 0] + 1
-            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN, i] == 1:
+            elif mat_val_label[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, i] == 1:
                 mat_conf[1, 1] = mat_conf[1, 1] + 1
 
     print("Confusion matrix:")
