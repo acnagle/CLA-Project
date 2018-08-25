@@ -321,14 +321,11 @@ def calculate_k_nn(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_val_no_
             l2_mat[i, k_nn_idx[i, j]] = float("inf")
 
     # b. Create a matrix containing the k-nearest neighbor label for each vector in mat_val. The rows correspond to
-    # the labels of each data point in mat_train_w_ind. The columns represent each of the k-nearest neighbors. Also,
-    # determine the weights for a weighted k-nn approach.
+    # the labels of each data point in mat_train_w_ind. The columns represent each of the k-nearest neighbors.
     k_nn_labels = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS], k))
-    weights = np.empty(shape=(mat_val_no_ind.shape[Constants.COLUMNS], k))
     for i in range(0, mat_val_no_ind.shape[Constants.COLUMNS]):
         for j in range(0, k):
             k_nn_labels[i, j] = mat_train_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, k_nn_idx[i, j]]
-            weights[i, j] = 1 / l2_mat[i, k_nn_idx[i, j]]
 
     # 3. predict the label of each point in the validation set. In mat_train_w_ind, the algae bloom indicator is
     # located in row index 1. The single most abundant label in the nearest neighbor of a data point will be stored in
