@@ -85,6 +85,13 @@ pca_all_data = csvread(strcat(dir_pca, 'All_Data_summer_matrix_pca.csv'));
 pca_mendota = csvread(strcat(dir_pca, 'Mendota_All_Data_summer_matrix_pca.csv'));
 pca_monona = csvread(strcat(dir_pca, 'Monona_All_Data_summer_matrix_pca.csv'));
 
+%% Kernel Trick
+
+dir_eigen_no_algae = '/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/';
+mat_all_data_orig_no_ind = csvread(strcat(dir_eigen_no_algae, 'All_data_summer_matrix/All_Data_summer_matrix.csv'));
+mat_mendota_orig_no_ind = csvread(strcat(dir_eigen_no_algae, 'Mendota_All_Data_summer_matrix/Mendota_All_Data_summer_matrix.csv'));
+mat_monona_orig_no_ind = csvread(strcat(dir_eigen_no_algae, 'Monona_All_Data_summer_matrix/Monona_All_Data_summer_matrix.csv'));
+
 %% Save variables to .mat folder
 
-save matlab_matrices.mat
+save Matlab_Matrices.mat

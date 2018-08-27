@@ -1,4 +1,4 @@
-function [no_alg, bg_alg, gr_alg] = data_vectors(mat_norm, mat_proj)
+function [no_alg, bg_alg, gr_alg] = Data_Vectors(mat_norm, mat_proj)
 % This function accepts the normalized matrix containing all of the data
 % points and projection matrix. no_alg, bg_alg, and gr_alg
 % matrices are used to visualize the data points corresponding to no algae,
