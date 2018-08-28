@@ -1,8 +1,9 @@
 import numpy as np
-from scipy.special import comb
-import Constants
+from sklearn import linear_model
 import errno
 import os
+import Constants
+import sys
 
 
 def main():
@@ -10,20 +11,21 @@ def main():
 
     print("\n\t##### EXECUTING KERNEL_TRICK_W_LINEAR_CLASSIFICATION.PY #####\n")
 
-    # get source directories for normalized data matrices (summer months only!)
-    # Original Data
-    src_path_all_data_orig_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
+    # source directories for normalized data matrices with algae indicator (summer months only!)
+    src_path_all_data_norm_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
                                    "All_data_summer_matrix/All_Data_summer_matrix.csv"
-    src_path_all_data_orig_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/" \
-                                    "All_data_summer_matrix/All_Data_summer_matrix.csv"
-    src_path_mendota_orig_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
+    src_path_mendota_norm_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
                                   "Mendota_All_Data_summer_matrix/Mendota_All_Data_summer_matrix.csv"
-    src_path_mendota_orig_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/" \
-                                   "Mendota_All_Data_summer_matrix/Mendota_All_Data_summer_matrix.csv"
-    src_path_monona_orig_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
+    src_path_monona_norm_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
                                  "Monona_All_Data_summer_matrix/Monona_All_Data_summer_matrix.csv"
-    src_path_monona_orig_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/" \
-                                  "Monona_All_Data_summer_matrix/Monona_All_Data_summer_matrix.csv"
+
+    # source directories for matrices using the kernel trick
+    src_path_all_data_ker_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/kernels/" \
+                                   "All_Data_Kernel_no_ind.csv"
+    src_path_mendota_ker_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/kernels/" \
+                                  "Mendota_Kernel_no_ind.csv"
+    src_path_monona_ker_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/kernels/" \
+                                 "Monona_Kernel_no_ind.csv"
 
     dest_path = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/kernels/"
 
@@ -36,69 +38,143 @@ def main():
                 raise
 
     # read in files from source directories
-    mat_all_data_orig_w_ind = np.genfromtxt(open(src_path_all_data_orig_w_ind, "rb"), delimiter=",", dtype=float)
-    mat_all_data_orig_no_ind = np.genfromtxt(open(src_path_all_data_orig_no_ind, "rb"), delimiter=",", dtype=float)
-    mat_mendota_orig_w_ind = np.genfromtxt(open(src_path_mendota_orig_w_ind, "rb"), delimiter=",", dtype=float)
-    mat_mendota_orig_no_ind = np.genfromtxt(open(src_path_mendota_orig_no_ind, "rb"), delimiter=",", dtype=float)
-    mat_monona_orig_w_ind = np.genfromtxt(open(src_path_monona_orig_w_ind, "rb"), delimiter=",", dtype=float)
-    mat_monona_orig_no_ind = np.genfromtxt(open(src_path_monona_orig_no_ind, "rb"), delimiter=",", dtype=float)
+    mat_all_data_norm_w_ind = np.genfromtxt(open(src_path_all_data_norm_w_ind, "rb"), delimiter=",", dtype=float)
+    mat_all_data_ker_no_ind = np.genfromtxt(open(src_path_all_data_ker_no_ind, "rb"), delimiter=",", dtype=float)
+    mat_mendota_norm_w_ind = np.genfromtxt(open(src_path_mendota_norm_w_ind, "rb"), delimiter=",", dtype=float)
+    mat_mendota_ker_no_ind = np.genfromtxt(open(src_path_mendota_ker_no_ind, "rb"), delimiter=",", dtype=float)
+    mat_monona_norm_w_ind = np.genfromtxt(open(src_path_monona_norm_w_ind, "rb"), delimiter=",", dtype=float)
+    mat_monona_ker_no_ind = np.genfromtxt(open(src_path_monona_ker_no_ind, "rb"), delimiter=",", dtype=float)
 
-    mat_ker_all_data_no_ind = form_kernel(mat_all_data_orig_no_ind)
-    matrix_to_file(mat_ker_all_data_no_ind, filename="All_Data_Kernel_no_ind.csv", destination_folder=dest_path)
-    # np.savetext(fname=dest_path, X=mat_ker_all_data_no_ind + "All_Data_Kernel_no_ind.csv", delimiter=",")
+    # get the labels for each norm matrix. THE ONLY PURPOSE OF THE NORM MATRICES IS TO RETRIEVE THE LABELS!
+    mat_all_data_labels = mat_all_data_norm_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, :]
+    mat_mendota_labels = mat_mendota_norm_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, :]
+    mat_monona_labels = mat_monona_norm_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, :]
+
+    # modify the label vectors to be binary. Label 0 indicates no algal bloom, label 1 indicates an algal bloom
+    for i in range(0, len(mat_all_data_labels)):
+        if mat_all_data_labels[i] == 0.5:
+            mat_all_data_labels[i] = 1
+
+    for i in range(0, len(mat_mendota_labels)):
+        if mat_mendota_labels[i] == 0.5:
+            mat_mendota_labels[i] = 1
+
+    for i in range(0, len(mat_monona_labels)):
+        if mat_monona_labels[i] == 0.5:
+            mat_monona_labels[i] = 1
+
+    # create validation sets and validation label arrays
+    mat_all_data_ker_val, mat_all_data_ker_val_idx = create_val_set(mat=mat_all_data_ker_no_ind)
+    mat_mendota_ker_val, mat_mendota_ker_val_idx = create_val_set(mat=mat_mendota_ker_no_ind)
+    mat_monona_ker_val, mat_monona_ker_val_idx = create_val_set(mat=mat_monona_ker_no_ind)
+
+    mat_all_data_ker_labels_val = [mat_all_data_labels[i] for i in mat_all_data_ker_val_idx]
+    mat_mendota_ker_labels_val = [mat_mendota_labels[i] for i in mat_mendota_ker_val_idx]
+    mat_monona_ker_labels_val = [mat_monona_labels[i] for i in mat_monona_ker_val_idx]
+
+    # create training sets and training label arrays
+    mat_all_data_ker_train, mat_all_data_ker_labels_train = create_training_set(
+        mat=mat_all_data_ker_no_ind,
+        val_idx=mat_all_data_ker_val_idx,
+        labels=mat_all_data_labels
+    )
+
+    mat_mendota_ker_train, mat_mendota_ker_labels_train = create_training_set(
+        mat=mat_mendota_ker_no_ind,
+        val_idx=mat_mendota_ker_val_idx,
+        labels=mat_mendota_labels
+    )
+
+    mat_monona_ker_train, mat_monona_ker_labels_train = create_training_set(
+        mat=mat_monona_ker_no_ind,
+        val_idx=mat_monona_ker_val_idx,
+        labels=mat_monona_labels
+    )
+
+    # transpose validation and training sets so that they are in the correct format (n_samples, m_features)
+    mat_all_data_ker_val = mat_all_data_ker_val.T
+    mat_all_data_ker_train = mat_all_data_ker_train.T
+    mat_mendota_ker_val = mat_mendota_ker_val.T
+    mat_mendota_ker_train = mat_mendota_ker_train.T
+    mat_monona_ker_val = mat_monona_ker_val.T
+    mat_monona_ker_train = mat_monona_ker_train.T
+
+    # use linear classification to predict the labels for the validation data sets
+    mat_all_data_coef, mat_all_data_intercept, mat_all_data_pred_labels_val = linear_classification(
+        data_train=mat_all_data_ker_train,
+        data_val=mat_all_data_ker_val,
+        labels_train=mat_all_data_ker_labels_train
+    )
+
+    mat_mendota_coef, mat_mendota_intercept, mat_mendota_pred_labels_val = linear_classification(
+        data_train=mat_mendota_ker_train,
+        data_val=mat_mendota_ker_val,
+        labels_train=mat_mendota_ker_labels_train
+    )
+
+    mat_monona_coef, mat_monona_intercept, mat_monona_pred_labels_val = linear_classification(
+        data_train=mat_monona_ker_train,
+        data_val=mat_monona_ker_val,
+        labels_train=mat_monona_ker_labels_train
+    )
 
 
-# This method takes in a data matrix, mat, and uses the kernel trick on every vector in the matrix. In the newly formed
-# vector, every feature in any column in mat is multiplied by every other feature in the column. For example, given n
-# features in a vector, the transpose of one of the columns created by using the kernel trick will look as follows:
-# [x1, x2, x3, ... , xn, x1^2, x2^2, x3^2, ... , x1*x2, x1*x3, x1*x4, ...]
-# new_mat is the matrix where every column is adjusted by the kernel trick. new_mat is the returned matrix.
-def form_kernel(mat):
-    new_mat = np.zeros(shape=(Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA +
-                              int(comb(Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA, 2)),
-                              mat.shape[Constants.COLUMNS]), dtype=float)
-
-    for i in range(0, Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA):
-        # first NUM_ROWS_NO_IND_NO_LOC_ALL_DATA rows of new_mat are the same as mat
-        new_mat[i, :] = mat[i, :]
-
-    mat_row_idx = 0     # index the rows of mat
-    for j in range(0, new_mat.shape[Constants.COLUMNS]):
-        for k in range(Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA, new_mat.shape[Constants.ROWS]):
-            for l in range(mat_row_idx, Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA - mat_row_idx):
-                print(l)
-                new_mat[k, i] = mat[mat_row_idx, i] * mat[l, i]
-
-            mat_row_idx += 1
-
-            #     new_mat[j + Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA, i] = mat[j, i] ** 2
-            # else:
-            #     print("in else", j)
-            #     for k in range((Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA * 2), j+1):
-            #         for l in range(0, Constants.NUM_ROWS_NO_IND_NO_LOC_ALL_DATA - mat_row_idx - 1):
-            #             print("mat[mat_row_idx, i] = ", mat[mat_row_idx, i])
-            #             print("mat[l, i] = ", mat[l, i])
-            #             print()
-            #             new_mat[j, i] = mat[mat_row_idx, i] * mat[l, i]
-            #
-            #         mat_row_idx += 1
-
-    return new_mat
+# This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
+# methd accepts an array of predicted labels, pred_labels, and 
 
 
-# Writes a matrix to a csv file. mat is the matrix being written to a file. filename is the name of the .csv file.
-# destination_folder is the path to the destination folder where the .csv file will be stored
-def matrix_to_file(mat, filename, destination_folder):
-    file = open(destination_folder + filename, "w")
+# This method linearly classifies the data into two categories: no algae (label 0) and algae (label 1). data_train is
+# the matrix (n_samples, m_features) which contains the training data. data_val is the matrix (n_samples, m_features)
+# which contains the validation set. labels_train is the array containing the  algae bloom labels (0 or 1) for each
+# feature vector in data_train. coef, the array of coefficients for the linear regression problem, and intercept, the
+# independent term in the linear model, are returned. The predicated labels for the validation set, pred_labels_val, are
+# returned.
+def linear_classification(data_train, data_val, labels_train):
+    reg = linear_model.LinearRegression()
+    reg.fit(data_train, labels_train)
+    pred_labels_val = reg.predict(data_val)
 
-    for i in range(0, mat.shape[Constants.ROWS]):
-        for j in range(0, mat.shape[Constants.COLUMNS]):
-            if j < mat.shape[Constants.COLUMNS]-1:
-                file.write(str(mat[i, j]) + ",")
-            else:
-                file.write(str(mat[i, j]) + "\n")
+    return reg.coef_, reg.intercept_, pred_labels_val
 
-    file.close()
+
+# This method creates and returns the validation set for a matrix, mat. The validation set consists of 20% of the data
+# points in mat. In order to determine which data points are in the set, this method will calculate 20% of the width
+# of mat and choose data points that are linearly spaced throughout mat. Thus, the width of the returned validation set
+# matrix will be 20% the width of mat. mat is the matrix for which the validation set will be calculated. mat_val is the
+# matrix containing the validation set from mat and is returned. val_idx is the indices within mat that the points in
+# mat_val are chosen. val_idx is a returned value.
+def create_val_set(mat):
+    mat_width = mat.shape[Constants.COLUMNS]    # width of mat
+    num_val_points = np.floor(mat_width * 0.2)   # aka the width of mat_val
+
+    # find the indices from mat which will choose the data points for mat_val
+    val_idx = np.linspace(0, mat_width-1, num=num_val_points, dtype=int)
+
+    mat_val = np.transpose([np.empty((mat.shape[Constants.ROWS], ))])
+
+    for i in val_idx:
+        mat_val = np.hstack([mat_val, np.transpose([mat[:, i]])])
+
+    # SPECIAL NOTE: for some reason I can't explain, the above code in this method appends an extra column to the front
+    # of mat_val with values that are extremely tiny and large (order of 10^-250 to 10^314 or so). This code deletes
+    # that column
+    mat_val = np.delete(mat_val, obj=0, axis=Constants.COLUMNS)
+
+    return mat_val, val_idx
+
+
+# This method creates and returns the training set for a matrix, mat, and the labels associated with the training set.
+# The training set consists of 80% of the data points in mat, and are chosen so that they do not include any of the
+# points in the validation set. This method returns mat_train, which is the training set and labels_train, which is the
+# set of labels associated with mat_train
+def create_training_set(mat, val_idx, labels):
+    mat_train = mat
+    labels_train = labels
+    for i in np.flip(val_idx, axis=0):
+        mat_train = np.delete(mat_train, obj=i, axis=Constants.COLUMNS)
+        labels_train = np.delete(labels_train, obj=i)
+
+    return mat_train, labels_train
 
 
 if __name__ == "__main__": main()
