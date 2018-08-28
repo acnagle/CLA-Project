@@ -68,9 +68,9 @@ def main():
     mat_mendota_ker_val, mat_mendota_ker_val_idx = create_val_set(mat=mat_mendota_ker_no_ind)
     mat_monona_ker_val, mat_monona_ker_val_idx = create_val_set(mat=mat_monona_ker_no_ind)
 
-    mat_all_data_ker_labels_val = [mat_all_data_labels[i] for i in mat_all_data_ker_val_idx]
-    mat_mendota_ker_labels_val = [mat_mendota_labels[i] for i in mat_mendota_ker_val_idx]
-    mat_monona_ker_labels_val = [mat_monona_labels[i] for i in mat_monona_ker_val_idx]
+    mat_all_data_target_labels_val = [mat_all_data_labels[i] for i in mat_all_data_ker_val_idx]
+    mat_mendota_target_labels_val = [mat_mendota_labels[i] for i in mat_mendota_ker_val_idx]
+    mat_monona_target_labels_val = [mat_monona_labels[i] for i in mat_monona_ker_val_idx]
 
     # create training sets and training label arrays
     mat_all_data_ker_train, mat_all_data_ker_labels_train = create_training_set(
@@ -117,10 +117,62 @@ def main():
         data_val=mat_monona_ker_val,
         labels_train=mat_monona_ker_labels_train
     )
+    print(mat_all_data_pred_labels_val)
+    print(mat_all_data_target_labels_val)
+    # calculate errors
+    mat_all_data_ber, mat_all_data_no_alg_error, mat_all_data_alg_error, mat_all_data_conf =  calculate_error(
+        pred_labels=mat_all_data_pred_labels_val,
+        target_labels=mat_all_data_target_labels_val
+    )
+
+    print(mat_all_data_conf)
+    print("BER", mat_all_data_ber)
+    print("Algae Prediction Error", mat_all_data_alg_error)
+    print("No Algae Prediction Error", mat_all_data_no_alg_error)
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
-# methd accepts an array of predicted labels, pred_labels, and 
+# methd accepts an array of predicted labels, pred_labels, and an array of target labels, target_labels. This method
+# returns ber (the balanced error rate), no_alg_error (error rate for no algae prediction), and alg_error (error
+# rate for algae prediction). The confusion matrix, mat_conf, is returned as well (see first comment in method for a
+# description of a confusion matrix).
+def calculate_error(pred_labels, target_labels):
+    # Construct a confusion matrix, mat_conf. A confusion matrix consists of the true labels for the data points
+    # along its rows, and the predicted labels from k-nearest neighbors along its columns. The confusion matrix will
+    # be necessary to calculate BER and other relevant errors for evaluation of the kernel trick with linear
+    # classification. mat_conf is a 2x2 matrix because we only have two labels: no algae and algae. Each entry in
+    # mat_conf is the sum of occurrences of each predicted label for each true label.
+    mat_conf = np.zeros(shape=(2, 2), dtype=int)
+
+    if len(pred_labels) != len(target_labels):
+        print("Predicted and target label arrays are not the same length!")
+        sys.exit()
+
+    # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
+    for i in range(0, len(pred_labels)):
+        if (pred_labels[i] == 0) and (target_labels[i] == 0):
+            mat_conf[0, 0] += 1
+        elif (pred_labels[i] == 0) and (target_labels[i] == 1):
+            mat_conf[0, 1] += 1
+        elif (pred_labels[i] == 1) and (target_labels[i] == 0):
+            mat_conf[1, 0] += 1
+        elif (pred_labels[i] == 1) and (target_labels[i] == 1):
+            mat_conf[1, 1] += 1
+
+    # Calculate relevant errors and accuracies
+    # Given a confusion matrix as follows:
+    # [ a b ]
+    # [ c d ]
+    # We can define the following equations:
+    # Balanced Error Rate (BER) = (b / (a + b) + c / (c + d)) / 2
+    # error per label = each of the terms in the numerator of BER. ex: b / (a + b)
+
+    ber = (mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1]) + mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])) / 2
+
+    no_alg_error = mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1])
+    alg_error = mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])
+
+    return ber, no_alg_error, alg_error, mat_conf
 
 
 # This method linearly classifies the data into two categories: no algae (label 0) and algae (label 1). data_train is

@@ -517,10 +517,10 @@ def calculate_k_nn_binary(mat_train_w_ind, mat_train_no_ind, mat_val_w_ind, mat_
         num_w_alg = 0
 
     # 4. Construct a confusion matrix, mat_conf. A confusion matrix consists of the true labels for the data points
-    # along its rows, and the predicted labels from k-nearest neighbors along its columns. The confusion matrix will
+    # along its rows, and the predicted labels from k-nearest neighbors along its columns. The confusion matrix will be
     # necessary to calculate the balanced error rate (BER), accuracy, and other relevant errors for evaluation of the
-    # k-nn method. mat_conf is a 3x3 matrix because we only have three labels: no algae, blue-green algae, and green
-    # algae. Each entry in mat_conf is the sum of occurrences of each predicted label for each true label.
+    # k-nn method. mat_conf is a 2x2 matrix because we only have two labels: no algae and algae. Each entry in mat_conf
+    # is the sum of occurrences of each predicted label for each true label.
     mat_conf = np.zeros(shape=(2, 2), dtype=int)
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
