@@ -1,5 +1,7 @@
 import numpy as np
 from sklearn import linear_model
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
 import errno
 import os
 import Constants
@@ -64,71 +66,108 @@ def main():
             mat_monona_labels[i] = 1
 
     # create validation sets and validation label arrays
-    mat_all_data_ker_val, mat_all_data_ker_val_idx = create_val_set(mat=mat_all_data_ker_no_ind)
-    mat_mendota_ker_val, mat_mendota_ker_val_idx = create_val_set(mat=mat_mendota_ker_no_ind)
-    mat_monona_ker_val, mat_monona_ker_val_idx = create_val_set(mat=mat_monona_ker_no_ind)
-
-    mat_all_data_target_labels_val = [mat_all_data_labels[i] for i in mat_all_data_ker_val_idx]
-    mat_mendota_target_labels_val = [mat_mendota_labels[i] for i in mat_mendota_ker_val_idx]
-    mat_monona_target_labels_val = [mat_monona_labels[i] for i in mat_monona_ker_val_idx]
-
-    # create training sets and training label arrays
-    mat_all_data_ker_train, mat_all_data_ker_labels_train = create_training_set(
-        mat=mat_all_data_ker_no_ind,
-        val_idx=mat_all_data_ker_val_idx,
-        labels=mat_all_data_labels
-    )
-
-    mat_mendota_ker_train, mat_mendota_ker_labels_train = create_training_set(
-        mat=mat_mendota_ker_no_ind,
-        val_idx=mat_mendota_ker_val_idx,
-        labels=mat_mendota_labels
-    )
-
-    mat_monona_ker_train, mat_monona_ker_labels_train = create_training_set(
-        mat=mat_monona_ker_no_ind,
-        val_idx=mat_monona_ker_val_idx,
-        labels=mat_monona_labels
-    )
+    # mat_all_data_ker_val, mat_all_data_ker_val_idx = create_val_set(mat=mat_all_data_ker_no_ind)
+    # mat_mendota_ker_val, mat_mendota_ker_val_idx = create_val_set(mat=mat_mendota_ker_no_ind)
+    # mat_monona_ker_val, mat_monona_ker_val_idx = create_val_set(mat=mat_monona_ker_no_ind)
+    #
+    # mat_all_data_target_labels_val = [mat_all_data_labels[i] for i in mat_all_data_ker_val_idx]
+    # mat_mendota_target_labels_val = [mat_mendota_labels[i] for i in mat_mendota_ker_val_idx]
+    # mat_monona_target_labels_val = [mat_monona_labels[i] for i in mat_monona_ker_val_idx]
+    #
+    # # create training sets and training label arrays
+    # mat_all_data_ker_train, mat_all_data_target_labels_train = create_training_set(
+    #     mat=mat_all_data_ker_no_ind,
+    #     val_idx=mat_all_data_ker_val_idx,
+    #     labels=mat_all_data_labels
+    # )
+    #
+    # mat_mendota_ker_train, mat_mendota_target_labels_train = create_training_set(
+    #     mat=mat_mendota_ker_no_ind,
+    #     val_idx=mat_mendota_ker_val_idx,
+    #     labels=mat_mendota_labels
+    # )
+    #
+    # mat_monona_ker_train, mat_monona_target_labels_train = create_training_set(
+    #     mat=mat_monona_ker_no_ind,
+    #     val_idx=mat_monona_ker_val_idx,
+    #     labels=mat_monona_labels
+    # )
+    #
+    # # transpose validation and training sets so that they are in the correct format (n_samples, m_features)
+    # mat_all_data_ker_val = mat_all_data_ker_val.T
+    # mat_all_data_ker_train = mat_all_data_ker_train.T
+    # mat_mendota_ker_val = mat_mendota_ker_val.T
+    # mat_mendota_ker_train = mat_mendota_ker_train.T
+    # mat_monona_ker_val = mat_monona_ker_val.T
+    # mat_monona_ker_train = mat_monona_ker_train.T
 
     # transpose validation and training sets so that they are in the correct format (n_samples, m_features)
-    mat_all_data_ker_val = mat_all_data_ker_val.T
-    mat_all_data_ker_train = mat_all_data_ker_train.T
-    mat_mendota_ker_val = mat_mendota_ker_val.T
-    mat_mendota_ker_train = mat_mendota_ker_train.T
-    mat_monona_ker_val = mat_monona_ker_val.T
-    mat_monona_ker_train = mat_monona_ker_train.T
+    mat_all_data_ker_no_ind = mat_all_data_ker_no_ind.T
+    mat_mendota_ker_no_ind = mat_mendota_ker_no_ind.T
+    mat_monona_ker_no_ind = mat_monona_ker_no_ind.T
+
+    # create training and validation sets for the data matrices (x) and label arrays (y)
+    # mat_all_data_x_train, mat_all_data_x_val, mat_all_data_y_train, mat_all_data_y_val = train_test_split(
+    #     mat_all_data_ker_no_ind,
+    #     mat_all_data_labels,
+    #     test_size=0.2
+    # )
+    #
+    # mat_mendota_x_train, mat_mendota_x_val, mat_mendota_y_train, mat_mendota_y_val = train_test_split(
+    #     mat_mendota_ker_no_ind,
+    #     mat_mendota_labels,
+    #     test_size=0.2
+    # )
+    #
+    # mat_monona_x_train, mat_monona_x_val, mat_monona_y_train, mat_monona_y_val = train_test_split(
+    #     mat_monona_ker_no_ind,
+    #     mat_monona_labels,
+    #     test_size=0.2
+    # )
 
     # use linear classification to predict the labels for the validation data sets
-    mat_all_data_coef, mat_all_data_intercept, mat_all_data_pred_labels_val = linear_classification(
-        data_train=mat_all_data_ker_train,
-        data_val=mat_all_data_ker_val,
-        labels_train=mat_all_data_ker_labels_train
-    )
+    # mat_all_data_coef, mat_all_data_intercept, mat_all_data_pred_labels_val = linear_classification(
+    #     data_train=mat_all_data_ker_train,
+    #     data_val=mat_all_data_ker_val,
+    #     labels_train=mat_all_data_target_labels_train
+    # )
+    #
+    # mat_mendota_coef, mat_mendota_intercept, mat_mendota_pred_labels_val = linear_classification(
+    #     data_train=mat_mendota_ker_train,
+    #     data_val=mat_mendota_ker_val,
+    #     labels_train=mat_mendota_target_labels_train
+    # )
+    #
+    # mat_monona_coef, mat_monona_intercept, mat_monona_pred_labels_val = linear_classification(
+    #     data_train=mat_monona_ker_train,
+    #     data_val=mat_monona_ker_val,
+    #     labels_train=mat_monona_target_labels_train
+    # )
+    # # print(mat_all_data_pred_labels_val)
+    # print(mat_all_data_target_labels_val)
+    # # calculate errors
+    # mat_all_data_ber, mat_all_data_no_alg_error, mat_all_data_alg_error, mat_all_data_conf =  calculate_error(
+    #     pred_labels=mat_all_data_pred_labels_val,
+    #     target_labels=mat_all_data_target_labels_val
+    # )
 
-    mat_mendota_coef, mat_mendota_intercept, mat_mendota_pred_labels_val = linear_classification(
-        data_train=mat_mendota_ker_train,
-        data_val=mat_mendota_ker_val,
-        labels_train=mat_mendota_ker_labels_train
-    )
+    # use linear classification to predict the labels for the validation data sets
+    mat_all_data_coef, mat_all_data_intercept, mat_all_data_pred_labels_val, mat_all_data_target_labels_val = \
+        linear_classification(data_matrix=mat_all_data_ker_no_ind, labels=mat_all_data_labels)
 
-    mat_monona_coef, mat_monona_intercept, mat_monona_pred_labels_val = linear_classification(
-        data_train=mat_monona_ker_train,
-        data_val=mat_monona_ker_val,
-        labels_train=mat_monona_ker_labels_train
-    )
-    print(mat_all_data_pred_labels_val)
-    print(mat_all_data_target_labels_val)
+    print("MSE:", mean_squared_error(mat_all_data_target_labels_val, mat_all_data_pred_labels_val))
+    print("Variance score:", r2_score(mat_all_data_target_labels_val, mat_all_data_pred_labels_val))
+
     # calculate errors
-    mat_all_data_ber, mat_all_data_no_alg_error, mat_all_data_alg_error, mat_all_data_conf =  calculate_error(
+    mat_all_data_ber, mat_all_data_no_alg_error, mat_all_data_alg_error, mat_all_data_conf = calculate_error(
         pred_labels=mat_all_data_pred_labels_val,
         target_labels=mat_all_data_target_labels_val
     )
 
-    print(mat_all_data_conf)
-    print("BER", mat_all_data_ber)
-    print("Algae Prediction Error", mat_all_data_alg_error)
-    print("No Algae Prediction Error", mat_all_data_no_alg_error)
+    # print(mat_all_data_conf)
+    # print("BER:", mat_all_data_ber)
+    # print("Algae Prediction Error:", mat_all_data_alg_error)
+    # print("No Algae Prediction Error:", mat_all_data_no_alg_error)
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
@@ -180,13 +219,19 @@ def calculate_error(pred_labels, target_labels):
 # which contains the validation set. labels_train is the array containing the  algae bloom labels (0 or 1) for each
 # feature vector in data_train. coef, the array of coefficients for the linear regression problem, and intercept, the
 # independent term in the linear model, are returned. The predicated labels for the validation set, pred_labels_val, are
-# returned.
-def linear_classification(data_train, data_val, labels_train):
-    reg = linear_model.LinearRegression()
-    reg.fit(data_train, labels_train)
-    pred_labels_val = reg.predict(data_val)
+# returned. # TODO update this method header
+def linear_classification(data_matrix, labels):
+    x_train, x_val, y_train, y_val = train_test_split(
+        data_matrix,
+        labels,
+        test_size=0.2
+    )
 
-    return reg.coef_, reg.intercept_, pred_labels_val
+    reg = linear_model.LinearRegression()
+    reg.fit(x_train, y_train)
+    pred_labels_val = reg.predict(x_val)
+
+    return reg.coef_, reg.intercept_, pred_labels_val, y_val
 
 
 # This method creates and returns the validation set for a matrix, mat. The validation set consists of 20% of the data
