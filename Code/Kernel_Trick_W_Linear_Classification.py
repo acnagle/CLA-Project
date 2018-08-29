@@ -89,71 +89,120 @@ def main():
     mat_monona_ker_no_ind = mat_monona_ker_no_ind.T
     mat_all_data_ker_no_ind = mat_all_data_ker_no_ind.T
 
-    # use linear classification to predict the labels for the validation data sets
-    mat_all_data_summer_coef, mat_all_data_summer_intercept, mat_all_data_summer_pred_labels_val, mat_all_data_summer_target_labels_val = \
-        linear_classification(data_matrix=mat_all_data_summer_ker_no_ind, labels=mat_all_data_summer_labels)
+    # use linear classification to predict the labels for the validation data sets. Run the model several times to
+    # obtain average errors
+    mat_all_data_summer_cumulative_ber = 0
+    mat_all_data_summer_cumulative_no_alg_error = 0
+    mat_all_data_summer_cumulative_alg_error = 0
 
-    mat_mendota_coef, mat_mendota_intercept, mat_mendota_pred_labels_val, mat_mendota_target_labels_val = \
-        linear_classification(data_matrix=mat_mendota_ker_no_ind, labels=mat_mendota_labels)
+    mat_mendota_cumulative_ber = 0
+    mat_mendota_cumulative_no_alg_error = 0
+    mat_mendota_cumulative_alg_error = 0
 
-    mat_monona_coef, mat_monona_intercept, mat_monona_pred_labels_val, mat_monona_target_labels_val = \
-        linear_classification(data_matrix=mat_monona_ker_no_ind, labels=mat_monona_labels)
+    mat_monona_cumulative_ber = 0
+    mat_monona_cumulative_no_alg_error = 0
+    mat_monona_cumulative_alg_error = 0
 
-    mat_all_data_coef, mat_all_data_intercept, mat_all_data_pred_labels_val, mat_all_data_target_labels_val = \
-        linear_classification(data_matrix=mat_all_data_ker_no_ind, labels=mat_all_data_labels)
+    mat_all_data_cumulative_ber = 0
+    mat_all_data_cumulative_no_alg_error = 0
+    mat_all_data_cumulative_alg_error = 0
 
-    # calculate errors
-    mat_all_data_summer_ber, mat_all_data_summer_no_alg_error, mat_all_data_summer_alg_error, mat_all_data_summer_conf = calculate_error(
-        pred_labels=mat_all_data_pred_labels_val,
-        target_labels=mat_all_data_target_labels_val
+    num_iterations = 100
+    for i in range(0, num_iterations):
+        mat_all_data_summer_coef, mat_all_data_summer_intercept, mat_all_data_summer_pred_labels_val, mat_all_data_summer_target_labels_val = \
+            linear_classification(data_matrix=mat_all_data_summer_ker_no_ind, labels=mat_all_data_summer_labels)
+
+        mat_mendota_coef, mat_mendota_intercept, mat_mendota_pred_labels_val, mat_mendota_target_labels_val = \
+            linear_classification(data_matrix=mat_mendota_ker_no_ind, labels=mat_mendota_labels)
+
+        mat_monona_coef, mat_monona_intercept, mat_monona_pred_labels_val, mat_monona_target_labels_val = \
+            linear_classification(data_matrix=mat_monona_ker_no_ind, labels=mat_monona_labels)
+
+        mat_all_data_coef, mat_all_data_intercept, mat_all_data_pred_labels_val, mat_all_data_target_labels_val = \
+            linear_classification(data_matrix=mat_all_data_ker_no_ind, labels=mat_all_data_labels)
+
+        # calculate errors
+        mat_all_data_summer_ber, mat_all_data_summer_no_alg_error, mat_all_data_summer_alg_error, mat_all_data_summer_conf = calculate_error(
+            pred_labels=mat_all_data_summer_pred_labels_val,
+            target_labels=mat_all_data_summer_target_labels_val
+        )
+
+        mat_mendota_ber, mat_mendota_no_alg_error, mat_mendota_alg_error, mat_mendota_conf = calculate_error(
+            pred_labels=mat_mendota_pred_labels_val,
+            target_labels=mat_mendota_target_labels_val
+        )
+
+        mat_monona_ber, mat_monona_no_alg_error, mat_monona_alg_error, mat_monona_conf = calculate_error(
+            pred_labels=mat_monona_pred_labels_val,
+            target_labels=mat_monona_target_labels_val
+        )
+
+        mat_all_data_ber, mat_all_data_no_alg_error, mat_all_data_alg_error, mat_all_data_conf = calculate_error(
+            pred_labels=mat_all_data_pred_labels_val,
+            target_labels=mat_all_data_target_labels_val
+        )
+
+        # update error values
+        mat_all_data_summer_cumulative_ber += mat_all_data_summer_ber
+        mat_all_data_summer_cumulative_no_alg_error += mat_all_data_summer_no_alg_error
+        mat_all_data_summer_cumulative_alg_error += mat_all_data_summer_alg_error
+
+        mat_mendota_cumulative_ber += mat_mendota_ber
+        mat_mendota_cumulative_no_alg_error += mat_mendota_no_alg_error
+        mat_mendota_cumulative_alg_error += mat_mendota_alg_error
+
+        mat_monona_cumulative_ber += mat_monona_ber
+        mat_monona_cumulative_no_alg_error += mat_monona_no_alg_error
+        mat_monona_cumulative_alg_error += mat_monona_alg_error
+
+        mat_all_data_cumulative_ber += mat_all_data_ber
+        mat_all_data_cumulative_no_alg_error += mat_all_data_no_alg_error
+        mat_all_data_cumulative_alg_error += mat_all_data_alg_error
+
+    # compute averages
+    mat_all_data_summer_cumulative_ber = mat_all_data_summer_cumulative_ber / num_iterations
+    mat_all_data_summer_cumulative_no_alg_error = mat_all_data_summer_cumulative_no_alg_error / num_iterations
+    mat_all_data_summer_cumulative_alg_error = mat_all_data_summer_cumulative_alg_error / num_iterations
+
+    mat_mendota_cumulative_ber = mat_mendota_cumulative_ber / num_iterations
+    mat_mendota_cumulative_no_alg_error = mat_mendota_cumulative_no_alg_error / num_iterations
+    mat_mendota_cumulative_alg_error = mat_mendota_cumulative_alg_error / num_iterations
+
+    mat_monona_cumulative_ber = mat_monona_cumulative_ber / num_iterations
+    mat_monona_cumulative_no_alg_error = mat_monona_cumulative_no_alg_error / num_iterations
+    mat_monona_cumulative_alg_error = mat_monona_cumulative_alg_error / num_iterations
+
+    mat_all_data_cumulative_ber = mat_all_data_cumulative_ber / num_iterations
+    mat_all_data_cumulative_no_alg_error = mat_all_data_cumulative_no_alg_error / num_iterations
+    mat_all_data_cumulative_alg_error = mat_all_data_cumulative_alg_error / num_iterations
+
+    print_results(
+        title="Results for all lakes, all months",
+        ber=mat_all_data_cumulative_ber,
+        no_alg_error=mat_all_data_cumulative_no_alg_error,
+        alg_error=mat_all_data_cumulative_alg_error
     )
 
-    mat_mendota_ber, mat_mendota_no_alg_error, mat_mendota_alg_error, mat_mendota_conf = calculate_error(
-        pred_labels=mat_mendota_pred_labels_val,
-        target_labels=mat_mendota_target_labels_val
+    print_results(
+        title="Results for all lakes, summer months (June through August) only",
+        ber=mat_all_data_summer_cumulative_ber,
+        no_alg_error=mat_all_data_summer_cumulative_no_alg_error,
+        alg_error=mat_all_data_summer_cumulative_alg_error
     )
 
-    mat_monona_ber, mat_monona_no_alg_error, mat_monona_alg_error, mat_monona_conf = calculate_error(
-        pred_labels=mat_monona_pred_labels_val,
-        target_labels=mat_monona_target_labels_val
+    print_results(
+        title="Results for lake Mendota, summer months only",
+        ber=mat_mendota_cumulative_ber,
+        no_alg_error=mat_mendota_cumulative_no_alg_error,
+        alg_error=mat_mendota_cumulative_alg_error
     )
 
-    mat_all_data_ber, mat_all_data_no_alg_error, mat_all_data_alg_error, mat_all_data_conf = calculate_error(
-        pred_labels=mat_all_data_pred_labels_val,
-        target_labels=mat_all_data_target_labels_val
+    print_results(
+        title="Results for lake Monona, summer months only",
+        ber=mat_monona_cumulative_ber,
+        no_alg_error=mat_monona_cumulative_no_alg_error,
+        alg_error=mat_monona_cumulative_alg_error
     )
-
-    print("Results for all lakes, all months")
-    print("Confusion matrix:")
-    print(mat_all_data_conf)
-    print("\nBER:", mat_all_data_ber)
-    print("No Algae Prediction Error:", mat_all_data_no_alg_error)
-    print("Algae Prediction Error:", mat_all_data_alg_error)
-    print("---------------------------------------------------------------------------\n")
-
-    print("Results for all lakes, summer months (June through August) only")
-    print("Confusion matrix:")
-    print(mat_all_data_summer_conf)
-    print("\nBER:", mat_all_data_summer_ber)
-    print("No Algae Prediction Error:", mat_all_data_summer_no_alg_error)
-    print("Algae Prediction Error:", mat_all_data_summer_alg_error)
-    print("---------------------------------------------------------------------------\n")
-
-    print("Results for lake Mendota, summer months only")
-    print("Confusion matrix:")
-    print(mat_mendota_conf)
-    print("\nBER:", mat_mendota_ber)
-    print("No Algae Prediction Error:", mat_mendota_no_alg_error)
-    print("Algae Prediction Error:", mat_mendota_alg_error)
-    print("---------------------------------------------------------------------------\n")
-
-    print("Results for lake Monona, summer months only")
-    print("\nConfusion matrix:")
-    print(mat_monona_conf)
-    print("BER:", mat_monona_ber)
-    print("No Algae Prediction Error:", mat_monona_no_alg_error)
-    print("Algae Prediction Error:", mat_monona_alg_error)
-    print("---------------------------------------------------------------------------\n")
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
@@ -212,13 +261,13 @@ def linear_classification(data_matrix, labels):
         labels,
         test_size=0.1
     )
-    
+
     clf = linear_model.SGDClassifier(
         loss="perceptron",
         penalty="none",
         alpha=0.0001,
         fit_intercept=True,
-        max_iter=200,
+        max_iter=500,
         tol=None,
         shuffle=True,
         verbose=0,
@@ -226,7 +275,7 @@ def linear_classification(data_matrix, labels):
         random_state=None,
         learning_rate="optimal",
         class_weight=None,
-        warm_start=False,        # Explore this parameters too
+        warm_start=True,
         average=True,
     )
 
@@ -234,6 +283,15 @@ def linear_classification(data_matrix, labels):
     pred_labels_val = clf.predict(x_val)
 
     return clf.coef_, clf.intercept_, pred_labels_val, y_val
+
+
+# This method prints the results of the linear classification
+def print_results(title, ber, no_alg_error, alg_error):
+    print(title)
+    print("BER:", ber)
+    print("No Algae Prediction Error:", no_alg_error)
+    print("Algae Prediction Error:", alg_error)
+    print("---------------------------------------------------------------------------\n")
 
 
 if __name__ == "__main__": main()
