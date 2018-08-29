@@ -1,7 +1,6 @@
 import numpy as np
 from sklearn import linear_model
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
 import errno
 import os
 import Constants
@@ -103,27 +102,58 @@ def main():
     mat_all_data_coef, mat_all_data_intercept, mat_all_data_pred_labels_val, mat_all_data_target_labels_val = \
         linear_classification(data_matrix=mat_all_data_ker_no_ind, labels=mat_all_data_labels)
 
-    # TODO CALCULATE A MEAN MSE AND VARIANCE SCORE FOR EACH DATA SET
+    # calculate errors
+    mat_all_data_summer_ber, mat_all_data_summer_no_alg_error, mat_all_data_summer_alg_error, mat_all_data_summer_conf = calculate_error(
+        pred_labels=mat_all_data_pred_labels_val,
+        target_labels=mat_all_data_target_labels_val
+    )
 
-    print("Results for all lakes and all months")
-    print("MSE:", mean_squared_error(mat_all_data_target_labels_val, mat_all_data_pred_labels_val))
-    print("Variance score:", r2_score(mat_all_data_target_labels_val, mat_all_data_pred_labels_val))
-    print()
+    mat_mendota_ber, mat_mendota_no_alg_error, mat_mendota_alg_error, mat_mendota_conf = calculate_error(
+        pred_labels=mat_mendota_pred_labels_val,
+        target_labels=mat_mendota_target_labels_val
+    )
+
+    mat_monona_ber, mat_monona_no_alg_error, mat_monona_alg_error, mat_monona_conf = calculate_error(
+        pred_labels=mat_monona_pred_labels_val,
+        target_labels=mat_monona_target_labels_val
+    )
+
+    mat_all_data_ber, mat_all_data_no_alg_error, mat_all_data_alg_error, mat_all_data_conf = calculate_error(
+        pred_labels=mat_all_data_pred_labels_val,
+        target_labels=mat_all_data_target_labels_val
+    )
+
+    print("Results for all lakes, all months")
+    print("Confusion matrix:")
+    print(mat_all_data_conf)
+    print("\nBER:", mat_all_data_ber)
+    print("No Algae Prediction Error:", mat_all_data_no_alg_error)
+    print("Algae Prediction Error:", mat_all_data_alg_error)
+    print("---------------------------------------------------------------------------\n")
 
     print("Results for all lakes, summer months (June through August) only")
-    print("MSE:", mean_squared_error(mat_all_data_summer_target_labels_val, mat_all_data_summer_pred_labels_val))
-    print("Variance score:", r2_score(mat_all_data_summer_target_labels_val, mat_all_data_summer_pred_labels_val))
-    print()
+    print("Confusion matrix:")
+    print(mat_all_data_summer_conf)
+    print("\nBER:", mat_all_data_summer_ber)
+    print("No Algae Prediction Error:", mat_all_data_summer_no_alg_error)
+    print("Algae Prediction Error:", mat_all_data_summer_alg_error)
+    print("---------------------------------------------------------------------------\n")
 
-    print("Results for Mendota, summer months only")
-    print("MSE:", mean_squared_error(mat_mendota_target_labels_val, mat_mendota_pred_labels_val))
-    print("Variance score:", r2_score(mat_mendota_target_labels_val, mat_mendota_pred_labels_val))
-    print()
+    print("Results for lake Mendota, summer months only")
+    print("Confusion matrix:")
+    print(mat_mendota_conf)
+    print("\nBER:", mat_mendota_ber)
+    print("No Algae Prediction Error:", mat_mendota_no_alg_error)
+    print("Algae Prediction Error:", mat_mendota_alg_error)
+    print("---------------------------------------------------------------------------\n")
 
-    print("Results for Monona, summer months only")
-    print("MSE:", mean_squared_error(mat_monona_target_labels_val, mat_monona_pred_labels_val))
-    print("Variance score:", r2_score(mat_monona_target_labels_val, mat_monona_pred_labels_val))
-    print()
+    print("Results for lake Monona, summer months only")
+    print("\nConfusion matrix:")
+    print(mat_monona_conf)
+    print("BER:", mat_monona_ber)
+    print("No Algae Prediction Error:", mat_monona_no_alg_error)
+    print("Algae Prediction Error:", mat_monona_alg_error)
+    print("---------------------------------------------------------------------------\n")
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
@@ -182,12 +212,28 @@ def linear_classification(data_matrix, labels):
         labels,
         test_size=0.1
     )
+    
+    clf = linear_model.SGDClassifier(
+        loss="perceptron",
+        penalty="none",
+        alpha=0.0001,
+        fit_intercept=True,
+        max_iter=200,
+        tol=None,
+        shuffle=True,
+        verbose=0,
+        n_jobs=1,
+        random_state=None,
+        learning_rate="optimal",
+        class_weight=None,
+        warm_start=False,        # Explore this parameters too
+        average=True,
+    )
 
-    reg = linear_model.LinearRegression()
-    reg.fit(x_train, y_train)
-    pred_labels_val = reg.predict(x_val)
+    clf.fit(x_train, y_train)
+    pred_labels_val = clf.predict(x_val)
 
-    return reg.coef_, reg.intercept_, pred_labels_val, y_val
+    return clf.coef_, clf.intercept_, pred_labels_val, y_val
 
 
 if __name__ == "__main__": main()
