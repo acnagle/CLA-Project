@@ -1,27 +1,33 @@
 
 	##### EXECUTING KERNEL_TRICK_W_LINEAR_CLASSIFICATION.PY #####
 
+Using Kernel Trick:
+
 Results for all lakes, all months
-BER: 0.27817363668496403
-No Algae Prediction Error: 0.14635790717176722
-Algae Prediction Error: 0.4099893661981608
+BER: 0.2487536128195642
+No Algae Prediction Error: 0.15074345239679665
+Algae Prediction Error: 0.3467637732423328
 ---------------------------------------------------------------------------
 
 Results for all lakes, summer months (June through August) only
-BER: 0.27772281804147997
-No Algae Prediction Error: 0.14528781459742288
-Algae Prediction Error: 0.41015782148553703
+BER: 0.25452046307611964
+No Algae Prediction Error: 0.14957613997176272
+Algae Prediction Error: 0.3594647861804773
 ---------------------------------------------------------------------------
 
-Results for lake Mendota, summer months only
-BER: 0.28370607353082233
-No Algae Prediction Error: 0.10305103595053314
-Algae Prediction Error: 0.4643611111111109
+
+
+Without Kernel Trick (Original Data):
+
+Results for all lakes, all months
+BER: 0.259360191490396
+No Algae Prediction Error: 0.15290277611350175
+Algae Prediction Error: 0.3658176068672909
 ---------------------------------------------------------------------------
 
-Results for lake Monona, summer months only
-BER: 0.31369069972369745
-No Algae Prediction Error: 0.16257187563787098
-Algae Prediction Error: 0.4648095238095239
+Results for all lakes, summer months (June through August) only
+BER: 0.25903033560041017
+No Algae Prediction Error: 0.15236340354848465
+Algae Prediction Error: 0.36569726765233623
 ---------------------------------------------------------------------------
 
