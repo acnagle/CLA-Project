@@ -2,6 +2,7 @@ import numpy as np
 import os
 import errno
 import Constants
+from sklearn.decomposition import PCA
 
 
 def main():
@@ -75,15 +76,19 @@ def pca(mat):
     # v = v[:, idx]
 
     # Or, just calculate the SVD
-    cov_mat = np.cov(mat)  # calculate covariance matrix
-    u, s, v = np.linalg.svd(cov_mat, full_matrices=True)
+    # cov_mat = np.cov(mat)  # calculate covariance matrix
+    # u, s, v = np.linalg.svd(cov_mat, full_matrices=True)
+
+    compute_pca = PCA(n_components=3)
+    compute_pca.fit(mat)
 
     # 4. Form a feature vector. Keep only the top three eigenvectors (singluar vectors) so PCA can be visualized in 3D.
     # The feature vector is a vector of the eigenvectors (singluar vectors)
-    feat_vec = np.array([u[:, 0], u[:, 1], u[:, 2]])
+    # feat_vec = np.array([u[:, 0], u[:, 1], u[:, 2]])
+    pca_data = pca.components_
 
     # 5. Put data in its final form.
-    pca_data = np.dot(feat_vec, mat)
+    # pca_data = np.dot(feat_vec, mat)
 
     return pca_data
 

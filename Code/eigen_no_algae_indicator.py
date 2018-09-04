@@ -143,7 +143,8 @@ def get_eigenvectors(mat):
     #
     # svdvals = np.diag(np.sqrt(w))
 
-    u, s, v = np.linalg.svd(mat, full_matrices=True)
+    cov_mat = np.cov(mat)  # calculate covariance matrix
+    u, s, v = np.linalg.svd(cov_mat, full_matrices=True)
 
     eigv1 = u[:, 0]
     eigv2 = u[:, 1]
