@@ -32,7 +32,7 @@ def main():
     src_path_all_data_ker_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/kernels/" \
                                    "All_Data_Kernel_no_ind.csv"
 
-    # source directories for standard data set (No kernel trick)
+    # source directories for standard data set (No kernel trick, no algae indicator)
     src_path_all_data_summer_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/" \
                                       "All_Data_summer_matrix/All_Data_summer_matrix.csv"
     # src_path_mendota_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/" \
@@ -283,7 +283,6 @@ def main():
     mat_all_data_cumulative_ber = mat_all_data_cumulative_ber / num_iterations
     mat_all_data_cumulative_no_alg_error = mat_all_data_cumulative_no_alg_error / num_iterations
     mat_all_data_cumulative_alg_error = mat_all_data_cumulative_alg_error / num_iterations
-
 
     print("Using Kernel Trick:\n")
     print_results(
