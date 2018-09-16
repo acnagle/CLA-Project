@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn import svm
 import matplotlib.pyplot as plt
+from textwrap import wrap
 import errno
 import os
 import Constants
@@ -103,18 +104,19 @@ def main():
     labels_vec = np.array([mat_all_data_summer_labels, mat_all_data_labels])
 
     kernels = ["poly", "rbf", "sigmoid"]       # a matrix of kernel names to be used with sklearn
-                                               # TODO ADD "LINEAR" BACK INTO KERNELS VECTOR
 
-    num_iterations = 20
+    num_iterations = 1
 
-    c = np.linspace(start=100, stop=1000, num=10)
+    c = np.linspace(start=1000, stop=5000, num=17)
 
     for i in range(0, len(data_vec)):
         for kern in kernels:
-            for k in range(0, c.shape[0]):
-                # y is used for plotting every BER as a function of C
-                y = np.zeros(c.shape[0])
+            # create vectors for plotting error rates for each kernel
+            y_ber = np.zeros(c.shape[0])
+            y_no_alg = np.zeros(c.shape[0])
+            y_alg = np.zeros(c.shape[0])
 
+            for k in range(0, c.shape[0]):
                 svc = svm.SVC(
                     C=c[k],
                     kernel=kern,
@@ -137,7 +139,9 @@ def main():
                     x_train, x_test, y_train, y_test = train_test_split(
                         data_vec[i],
                         labels_vec[i],
-                        test_size=0.33
+                        test_size=0.33,
+                        # random_state=543,
+                        shuffle=True
                     )
 
                     svc.fit(x_train, y_train)
@@ -153,21 +157,25 @@ def main():
                 total_no_alg_error = cumulative_no_alg_error / num_iterations
                 total_alg_error = cumulative_alg_error / num_iterations
 
-                y[k] = total_ber
+                y_ber[k] = total_ber
+                y_no_alg[k] = total_no_alg_error
+                y_alg[k] = total_alg_error
 
                 print_results(
-                    title="Results for " + data_desc[i] + " (Kernel type: " + kern + ")",
+                    title="Results for " + data_desc[i] + " (Kernel type: " + kern + ", C = " + str(c[k]) + ")",
                     ber=total_ber,
                     no_alg_error=total_no_alg_error,
                     alg_error=total_alg_error
                 )
 
-                plt.figure()
-                plt.plot(c, y, "g")
-                plt.ylabel("Balanced Error Rate")
-                plt.xlabel("C")
-                plt.title("BER vs. C for " + data_desc[i] + " (Kernel type: " + kern + ")")
-                plt.show()
+            plt.figure()
+            plt.plot(c, y_ber, "b", c, y_no_alg, "g", c, y_alg, "r")
+            plt.ylabel("Error Rate")
+            plt.xlabel("C")
+            plt.legend(("BER", "No Algae", "Algae"))
+            plt.title("\n".join(wrap("Error Rates vs. C for " + data_desc[i] + " (Kernel type: " + kern + ")", 60)))
+            plt.savefig(os.path.join(dest_path, "BER vs. C for " + data_desc[i] + " (Kernel type " + kern + ").png"))
+
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
 # method accepts an array of predicted labels, pred_labels, and an array of target labels, target_labels. This method
