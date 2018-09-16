@@ -1,7 +1,7 @@
 import numpy as np
-from sklearn import linear_model
 from sklearn.model_selection import train_test_split
 from sklearn import svm
+import matplotlib.pyplot as plt
 import errno
 import os
 import Constants
@@ -102,59 +102,72 @@ def main():
     # array of label vectors
     labels_vec = np.array([mat_all_data_summer_labels, mat_all_data_labels])
 
-    kernels = ["linear", "poly", "rbf", "sigmoid"]       # a matrix of kernel names to be used with sklearn
+    kernels = ["poly", "rbf", "sigmoid"]       # a matrix of kernel names to be used with sklearn
+                                               # TODO ADD "LINEAR" BACK INTO KERNELS VECTOR
 
-    # use linear classification to predict the labels for the test data sets. Run the model several times to
-    # obtain average errors
-    cumulative_ber = 0
-    cumulative_no_alg_error = 0
-    cumulative_alg_error = 0
-    num_iterations = 1
+    num_iterations = 20
+
+    c = np.linspace(start=100, stop=1000, num=10)
 
     for i in range(0, len(data_vec)):
         for kern in kernels:
-            svc = svm.SVC(
-                kernel=kern,
-                degree=3,
-                gamma="auto",
-                coef0=0,
-                probability=False,
-                shrinking=True,
-                tol=0.0001,
-                verbose=True,
-                max_iter=-1,
-                decision_function_shape="ovr"
-            )
+            for k in range(0, c.shape[0]):
+                # y is used for plotting every BER as a function of C
+                y = np.zeros(c.shape[0])
 
-            for j in range(0, num_iterations):
-                x_train, x_test, y_train, y_test = train_test_split(
-                    data_vec[i],
-                    labels_vec[i],
-                    test_size=0.1
+                svc = svm.SVC(
+                    C=c[k],
+                    kernel=kern,
+                    degree=3,
+                    gamma="auto",
+                    coef0=0,
+                    probability=False,
+                    shrinking=True,
+                    tol=0.0001,
+                    verbose=False,
+                    max_iter=-1,
+                    decision_function_shape="ovo"
                 )
 
-                svc.fit(x_train, y_train)
-                pred_labels_test = svc.predict(x_test)
+                cumulative_ber = 0
+                cumulative_no_alg_error = 0
+                cumulative_alg_error = 0
 
-                # print(svc.support_vectors_)
+                for j in range(0, num_iterations):
+                    x_train, x_test, y_train, y_test = train_test_split(
+                        data_vec[i],
+                        labels_vec[i],
+                        test_size=0.33
+                    )
 
-                ber, no_alg_error, alg_error, _ = calculate_error(pred_labels_test, y_test)
+                    svc.fit(x_train, y_train)
+                    pred_labels_test = svc.predict(x_test)
 
-                cumulative_ber += cumulative_ber
-                cumulative_no_alg_error += cumulative_no_alg_error
-                cumulative_alg_error += cumulative_alg_error
+                    ber, no_alg_error, alg_error, _ = calculate_error(pred_labels_test, y_test)
 
-            total_ber = cumulative_ber / num_iterations
-            total_no_alg_error = cumulative_no_alg_error / num_iterations
-            total_alg_error = cumulative_alg_error / num_iterations
+                    cumulative_ber += ber
+                    cumulative_no_alg_error += no_alg_error
+                    cumulative_alg_error += alg_error
 
-            print_results(
-                title="Results for " + data_desc[i] + " (Kernel type: " + kern + ")",
-                ber=total_ber,
-                no_alg_error=total_no_alg_error,
-                alg_error=total_alg_error
-            )
+                total_ber = cumulative_ber / num_iterations
+                total_no_alg_error = cumulative_no_alg_error / num_iterations
+                total_alg_error = cumulative_alg_error / num_iterations
 
+                y[k] = total_ber
+
+                print_results(
+                    title="Results for " + data_desc[i] + " (Kernel type: " + kern + ")",
+                    ber=total_ber,
+                    no_alg_error=total_no_alg_error,
+                    alg_error=total_alg_error
+                )
+
+                plt.figure()
+                plt.plot(c, y, "g")
+                plt.ylabel("Balanced Error Rate")
+                plt.xlabel("C")
+                plt.title("BER vs. C for " + data_desc[i] + " (Kernel type: " + kern + ")")
+                plt.show()
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
 # method accepts an array of predicted labels, pred_labels, and an array of target labels, target_labels. This method
@@ -198,41 +211,6 @@ def calculate_error(pred_labels, target_labels):
     alg_error = mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])
 
     return ber, no_alg_error, alg_error, mat_conf
-
-
-# This method uses SGDClassifier from sklearn to find a hyperplane to classify the data in data_matrix into label 0 (no
-# algae) or label 1 (algae). data_matrix is the matrix which will be split into the training set and test set.
-# labels are the true labels corresponding to each point in data_matrix. This method returns the coefficient array and
-# intercept of the hyperplane, the predicted labels, and the labels to the test data set.
-def linear_classification(data_matrix, labels):
-    x_train, x_test, y_train, y_test = train_test_split(
-        data_matrix,
-        labels,
-        test_size=0.1
-    )
-
-    clf = linear_model.SGDClassifier(
-        loss="perceptron",
-        penalty="none",
-        alpha=0.0001,
-        fit_intercept=True,
-        max_iter=300,
-        tol=0.0001,
-        shuffle=True,
-        verbose=0,
-        n_jobs=1,
-        random_state=None,
-        learning_rate="constant",
-        eta0=1,
-        class_weight=None,
-        warm_start=True,
-        average=True,
-    )
-
-    clf.fit(x_train, y_train)
-    pred_labels_test = clf.predict(x_test)
-
-    return clf.coef_, clf.intercept_, pred_labels_test, y_test
 
 
 # This method prints the results of the linear classification
