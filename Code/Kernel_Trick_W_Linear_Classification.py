@@ -364,9 +364,9 @@ def calculate_error(pred_labels, target_labels):
     for i in range(0, len(pred_labels)):
         if (pred_labels[i] == 0) and (target_labels[i] == 0):
             mat_conf[0, 0] += 1
-        elif (pred_labels[i] == 0) and (target_labels[i] == 1):
-            mat_conf[0, 1] += 1
         elif (pred_labels[i] == 1) and (target_labels[i] == 0):
+            mat_conf[0, 1] += 1
+        elif (pred_labels[i] == 0) and (target_labels[i] == 1):
             mat_conf[1, 0] += 1
         elif (pred_labels[i] == 1) and (target_labels[i] == 1):
             mat_conf[1, 1] += 1
