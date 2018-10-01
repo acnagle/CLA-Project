@@ -110,7 +110,7 @@ def main():
 
     for i in range(0, len(data_vec)):
         # create vectors for plotting error rates for each kernel
-        # y_ber = np.zeros(c.shape[0])
+        y_ber = np.zeros(c.shape[0])
         y_no_alg = np.zeros(c.shape[0])
         y_alg = np.zeros(c.shape[0])
 
@@ -128,7 +128,7 @@ def main():
                 decision_function_shape="ovo"
             )
 
-            # cumulative_ber = 0
+            cumulative_ber = 0
             cumulative_no_alg_error = 0
             cumulative_alg_error = 0
 
@@ -144,17 +144,17 @@ def main():
                 svc.fit(x_train, y_train)
                 pred_labels_test = svc.predict(x_test)
 
-                no_alg_error, alg_error = calculate_error(pred_labels_test, y_test)
+                ber, no_alg_error, alg_error, _ = calculate_error(pred_labels_test, y_test)
 
-                # cumulative_ber += ber
+                cumulative_ber += ber
                 cumulative_no_alg_error += no_alg_error
                 cumulative_alg_error += alg_error
 
-            # total_ber = cumulative_ber / num_iterations
+            total_ber = cumulative_ber / num_iterations
             total_no_alg_error = cumulative_no_alg_error / num_iterations
             total_alg_error = cumulative_alg_error / num_iterations
 
-            # y_ber[k] = total_ber
+            y_ber[k] = total_ber
             y_no_alg[k] = total_no_alg_error
             y_alg[k] = total_alg_error
 
@@ -165,7 +165,7 @@ def main():
             )
 
         plt.figure()
-        plt.plot(c, y_no_alg, "g", c, y_alg, "r")
+        plt.plot(c, y_ber, "b", c, y_no_alg, "g", c, y_alg, "r")
         plt.ylabel("Error Rate")
         plt.xlabel("C")
         plt.legend(("BER", "No Algae", "Algae"))
@@ -184,60 +184,60 @@ def calculate_error(pred_labels, target_labels):
     # be necessary to calculate BER and other relevant errors for evaluation of the kernel trick with linear
     # classification. mat_conf is a 2x2 matrix because we only have two labels: no algae and algae. Each entry in
     # mat_conf is the sum of occurrences of each predicted label for each true label.
-    # mat_conf = np.zeros(shape=(2, 2), dtype=int)
+    mat_conf = np.zeros(shape=(2, 2), dtype=int)
 
     if len(pred_labels) != len(target_labels):
         print("Predicted and target label arrays are not the same length!")
         sys.exit()
 
-    no_alg = 0   # number of 0s (no algae) in target_labels
-    no_alg_error = 0 # number of incorrect predictions on no algae (expected 0 but pred_labels[i] gave 1)
-    alg = 0   # number of 1s (algae) in target_labels
-    alg_error = 0 # number of incorrect predictions on algae (expected 1 but pred_labels[i] gave 0)
-
-    for i in range(0, len(pred_labels)):
-        if target_labels[i] == 0:
-            no_alg += 1
-            if pred_labels[i] == 1:
-                no_alg_error += 1
-        elif target_labels[i] == 1:
-            alg += 1
-            if pred_labels[i] == 0:
-                alg_error += 1
-        else:
-            print("Unexpected target label: ", target_labels[i])
-            sys.exit()
-
-    no_alg_error = no_alg_error / no_alg
-    alg_error = alg_error / alg
-
-    return no_alg_error, alg_error
+    # no_alg = 0   # number of 0s (no algae) in target_labels
+    # no_alg_error = 0 # number of incorrect predictions on no algae (expected 0 but pred_labels[i] gave 1)
+    # alg = 0   # number of 1s (algae) in target_labels
+    # alg_error = 0 # number of incorrect predictions on algae (expected 1 but pred_labels[i] gave 0)
+    #
+    # for i in range(0, len(pred_labels)):
+    #     if target_labels[i] == 0:
+    #         no_alg += 1
+    #         if pred_labels[i] == 1:
+    #             no_alg_error += 1
+    #     elif target_labels[i] == 1:
+    #         alg += 1
+    #         if pred_labels[i] == 0:
+    #             alg_error += 1
+    #     else:
+    #         print("Unexpected target label: ", target_labels[i])
+    #         sys.exit()
+    #
+    # no_alg_error = no_alg_error / no_alg
+    # alg_error = alg_error / alg
+    #
+    # return no_alg_error, alg_error
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
-    # for i in range(0, len(pred_labels)):
-    #     if (pred_labels[i] == 0) and (target_labels[i] == 0):
-    #         mat_conf[0, 0] += 1
-    #     elif (pred_labels[i] == 1) and (target_labels[i] == 0):
-    #         mat_conf[0, 1] += 1
-    #     elif (pred_labels[i] == 0) and (target_labels[i] == 1):
-    #         mat_conf[1, 0] += 1
-    #     elif (pred_labels[i] == 1) and (target_labels[i] == 1):
-    #         mat_conf[1, 1] += 1
-    #
-    # # Calculate relevant errors and accuracies
-    # # Given a confusion matrix as follows:
-    # # [ a b ]
-    # # [ c d ]
-    # # We can define the following equations:
-    # # Balanced Error Rate (BER) = (b / (a + b) + c / (c + d)) / 2
-    # # error per label = each of the terms in the numerator of BER. ex: b / (a + b)
-    #
-    # ber = (mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1]) + mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])) / 2
-    #
-    # no_alg_error = mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1])
-    # alg_error = mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])
-    #
-    # return ber, no_alg_error, alg_error, mat_conf
+    for i in range(0, len(pred_labels)):
+        if (pred_labels[i] == 0) and (target_labels[i] == 0):
+            mat_conf[0, 0] += 1
+        elif (pred_labels[i] == 1) and (target_labels[i] == 0):
+            mat_conf[0, 1] += 1
+        elif (pred_labels[i] == 0) and (target_labels[i] == 1):
+            mat_conf[1, 0] += 1
+        elif (pred_labels[i] == 1) and (target_labels[i] == 1):
+            mat_conf[1, 1] += 1
+
+    # Calculate relevant errors and accuracies
+    # Given a confusion matrix as follows:
+    # [ a b ]
+    # [ c d ]
+    # We can define the following equations:
+    # Balanced Error Rate (BER) = (b / (a + b) + c / (c + d)) / 2
+    # error per label = each of the terms in the numerator of BER. ex: b / (a + b)
+
+    ber = (mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1]) + mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])) / 2
+
+    no_alg_error = mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1])
+    alg_error = mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])
+
+    return ber, no_alg_error, alg_error, mat_conf
 
 
 # This method prints the results of the linear classification
