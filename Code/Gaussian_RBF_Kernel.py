@@ -75,18 +75,26 @@ def main():
     for i in range(0, len(mat_all_data_summer_labels)):
         if mat_all_data_summer_labels[i] == 0.5:
             mat_all_data_summer_labels[i] = 1
+        elif mat_all_data_summer_labels[i] == 0:
+            mat_all_data_summer_labels[i] = -1
 
     for i in range(0, len(mat_mendota_labels)):
         if mat_mendota_labels[i] == 0.5:
             mat_mendota_labels[i] = 1
+        elif mat_mendota_labels[i] == 0:
+            mat_mendota_labels[i] = -1
 
     for i in range(0, len(mat_monona_labels)):
         if mat_monona_labels[i] == 0.5:
             mat_monona_labels[i] = 1
+        elif mat_monona_labels[i] == 0:
+            mat_monona_labels[i] = -1
 
     for i in range(0, len(mat_all_data_labels)):
         if mat_all_data_labels[i] == 0.5:
             mat_all_data_labels[i] = 1
+        if mat_all_data_labels[i] == 0:
+            mat_all_data_labels[i] = -1
 
     # transpose test and training sets so that they are in the correct format (n_samples, m_features)
     mat_all_data_summer_no_ind = mat_all_data_summer_no_ind.T
@@ -215,11 +223,11 @@ def calculate_error(pred_labels, target_labels):
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
     for i in range(0, len(pred_labels)):
-        if (pred_labels[i] == 0) and (target_labels[i] == 0):
+        if (pred_labels[i] == -1) and (target_labels[i] == -1):
             mat_conf[0, 0] += 1
-        elif (pred_labels[i] == 1) and (target_labels[i] == 0):
+        elif (pred_labels[i] == 1) and (target_labels[i] == -1):
             mat_conf[0, 1] += 1
-        elif (pred_labels[i] == 0) and (target_labels[i] == 1):
+        elif (pred_labels[i] == -1) and (target_labels[i] == 1):
             mat_conf[1, 0] += 1
         elif (pred_labels[i] == 1) and (target_labels[i] == 1):
             mat_conf[1, 1] += 1
