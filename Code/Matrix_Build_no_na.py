@@ -90,6 +90,7 @@ def main():
 
     print("\n")
 
+
 # Create matrices for each year. mat is the matrix for a particular year.
 def matrix_year(mat):
     mat = np.transpose(mat)     # reconfigure shape of the yearly matrix
