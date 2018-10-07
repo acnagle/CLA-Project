@@ -50,40 +50,124 @@ def main():
         else:
             idx += 1
 
-    x_train, x_test, y_train, y_test = model_selection.train_test_split(
-        x,
-        y,
-        test_size=0.33,
-        # random_state=123,
-        shuffle=True
-    )
+    cumulative_ber = 0
+    cumulative_no_alg_error = 0
+    cumulative_alg_error = 0
+    cumulative_w = np.zeros(shape=x.shape[Constants.COLUMNS])
 
-    print("Computing least squares ...")
-    # these first four steps are intermediary before computing the weight vector w for LS
-    a = np.transpose(x_train)
-    b = np.matmul(a, x_train)
-    c = np.linalg.inv(b)
-    d = np.matmul(c, a)
+    # save ber, no_alg_error, and alg_error (and weight vector [see below]) for lowest/highest BER and alg_error
+    best_ber = [1, 0, 0]
+    worst_ber = [0, 0, 0]
+    best_alg_error = [0, 0, 1]
+    worst_alg_error = [0, 0, 0]
 
-    # compute the weight vector
-    w = np.matmul(d, y_train)
+    num_iterations = 100000
 
-    print("Evaluating performance of least squares model ... ")
-    # predict labels
-    y_pred = np.matmul(x_test, w)
-    y_pred = np.sign(y_pred)
+    print("Computing LS averages ... ")
+    for i in range(0, num_iterations):
+        x_train, x_test, y_train, y_test = model_selection.train_test_split(
+            x,
+            y,
+            test_size=0.33,
+            # random_state=123,
+            shuffle=True
+        )
 
-    ber, no_alg_error, alg_error, mat_conf = calculate_error(y_pred, y_test)
+        # print("Computing least squares ...")
+        # these first four steps are intermediary before computing the weight vector w for LS
+        a = np.transpose(x_train)
+        b = np.matmul(a, x_train)
+        c = np.linalg.inv(b)
+        d = np.matmul(c, a)
+
+        # compute the weight vector
+        w = np.matmul(d, y_train)
+
+        # print("Evaluating performance of least squares model ... ")
+        # predict labels
+        y_pred = np.matmul(x_test, w)
+        y_pred = np.sign(y_pred)
+
+        ber, no_alg_error, alg_error, _ = calculate_error(y_pred, y_test)
+
+        cumulative_ber += ber
+        cumulative_no_alg_error += no_alg_error
+        cumulative_alg_error += alg_error
+        cumulative_w = np.add(cumulative_w, w)
+
+        if ber < best_ber[0]:
+            best_ber = [ber, no_alg_error, alg_error]
+            best_ber_w = w
+        if ber > worst_ber[0]:
+            worst_ber = [ber, no_alg_error, alg_error]
+            worst_ber_w = w
+        if alg_error < best_alg_error[2]:
+            best_alg_error = [ber, no_alg_error, alg_error]
+            best_alg_error_w = w
+        if alg_error > worst_alg_error[2]:
+            worst_alg_error = [ber, no_alg_error, alg_error]
+            worst_alg_error_w = w
 
     print("\n~~~~~~~~~~~~~~~~~~~~~~ Results ~~~~~~~~~~~~~~~~~~~~~~\n")
-    print("BER:", ber)
-    print("No Algae Error Rate:", no_alg_error)
-    print("Algae Error Rate:", alg_error)
-    print("Confusion Matrix:")
-    print(mat_conf)
-    print("Weight vector:")
-    print(w)
-    print()
+
+    print_results(
+        "Averages (of " + str(num_iterations) + ")",
+        cumulative_ber / num_iterations,
+        cumulative_no_alg_error / num_iterations,
+        cumulative_alg_error / num_iterations,
+        np.true_divide(cumulative_w, num_iterations)
+    )
+
+    print_results(
+        "Lowest BER",
+        best_ber[0],
+        best_ber[1],
+        best_ber[2],
+        best_ber_w
+    )
+
+    print_results(
+        "Highest BER",
+        worst_ber[0],
+        worst_ber[1],
+        worst_ber[2],
+        worst_ber_w
+    )
+
+    print_results(
+        "Lowest Algae Error",
+        best_alg_error[0],
+        best_alg_error[1],
+        best_alg_error[2],
+        best_alg_error_w
+    )
+
+    print_results(
+        "Highest Algae Error",
+        worst_alg_error[0],
+        worst_alg_error[1],
+        worst_alg_error[2],
+        worst_alg_error_w
+    )
+
+    print("Magnitude of the difference of weight vectors for highest and lowest BER:")
+    print(np.abs(np.add(best_ber_w, -1 * worst_ber_w)))
+    print("\n\n")
+
+    print("Magnitude of the difference of weight vectors for highest and lowest algae error:")
+    print(np.abs(np.add(best_alg_error_w, -1 * worst_alg_error_w)))
+
+    print("\n\n")
+
+    # print("\n~~~~~~~~~~~~~~~~~~~~~~ Results ~~~~~~~~~~~~~~~~~~~~~~\n")
+    # print("BER:", ber)
+    # print("No Algae Error Rate:", no_alg_error)
+    # print("Algae Error Rate:", alg_error)
+    # print("Confusion Matrix:")
+    # print(mat_conf)
+    # print("Weight vector:")
+    # print(w)
+    # print()
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
@@ -157,6 +241,16 @@ def calculate_error(pred_labels, target_labels):
     alg_error = float("%0.4f" % alg_error)
 
     return ber, no_alg_error, alg_error, mat_conf
+
+
+def print_results(message, ber, no_alg_error, alg_error, w):
+    print(message)
+    print("BER:", ber)
+    print("No Algae Error Rate:", no_alg_error)
+    print("Algae Error Rate:", alg_error)
+    print("Weight vector:")
+    print(w)
+    print("\n\n")
 
 
 if __name__ == "__main__": main()
