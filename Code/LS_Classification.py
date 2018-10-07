@@ -152,6 +152,10 @@ def calculate_error(pred_labels, target_labels):
     no_alg_error = mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1])
     alg_error = mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])
 
+    ber = float("%0.4f" % ber)
+    no_alg_error = float("%0.4f" % no_alg_error)
+    alg_error = float("%0.4f" % alg_error)
+
     return ber, no_alg_error, alg_error, mat_conf
 
 

@@ -14,27 +14,9 @@ def main():
 
     print("\n\t##### EXECUTING POLYNOMIAL_KERNEL.PY #####\n")
 
-    # source directories for normalized data matrices with algae indicator (summer months only!)
-    src_path_all_data_summer_norm_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
-                                          "All_data_summer_matrix/All_Data_summer_matrix.csv"
-    src_path_mendota_norm_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
-                                  "Mendota_All_Data_summer_matrix/Mendota_All_Data_summer_matrix.csv"
-    src_path_monona_norm_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
-                                 "Monona_All_Data_summer_matrix/Monona_All_Data_summer_matrix.csv"
-    src_path_all_data_norm_w_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigenvectors/" \
-                                   "All_Data_matrix/All_Data_matrix.csv"
-
-    # source directories for standard data set (No kernel trick, no algae indicator)
-    src_path_all_data_summer_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/" \
-                                      "All_Data_summer_matrix/All_Data_summer_matrix.csv"
-    src_path_mendota_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/" \
-                              "Mendota_All_Data_summer_matrix/Mendota_All_Data_summer_matrix.csv"
-    src_path_monona_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/" \
-                             "Monona_All_Data_summer_matrix/Monona_All_Data_summer_matrix.csv"
-    src_path_all_data_no_ind = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/eigen-no-alg-ind/" \
-                               "All_Data_matrix/All_Data_matrix.csv"
-
+    print("Reading in data set ...")
     dest_path = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/kernels/"
+    data_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
 
     # if dest_path does not exist, create it
     if not os.path.exists(dest_path):
@@ -44,135 +26,84 @@ def main():
             if e.errno != errno.EEXIST:
                 raise
 
-    # read in files from source directories
-    mat_all_data_summer_norm_w_ind = np.genfromtxt(
-        open(src_path_all_data_summer_norm_w_ind, "rb"),
-        delimiter=",",
-        dtype=float
+    x = np.load(data_path + "data_summary_summer.npy")
+    y = np.load(data_path + "data_summary_summer_labels.npy")
+
+    print("Creating training and testing sets ... ")
+    num_alg = 0  # count the number of algae instances
+    num_no_alg = 0  # count the number of no algae instances
+
+    # Convert labels to binary: -1 for no algae and 1 for algae
+    for i in range(0, len(y)):
+        if y[i] == 0:
+            y[i] = -1
+            num_no_alg += 1
+        if y[i] == 1 or y[i] == 2:
+            y[i] = 1
+            num_alg += 1
+
+    # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
+    # number of algae samples
+    idx = 0  # index for the data set
+    sample_bias = 10  # adjust the difference in the number of the two types of samples (no_alg and alg)
+    while num_no_alg != (num_alg - sample_bias):
+        # circle through the data sets until the difference of num_no_alg and num_alg equals
+        # the value specified by sample_bias
+        if idx == (len(y) - 1):
+            idx = 0
+
+        if y[idx] == -1:
+            if np.random.rand() >= 0.5:  # remove this sample with some probability
+                y = np.delete(y, obj=idx)
+                x = np.delete(x, obj=idx, axis=Constants.ROWS)
+                num_no_alg -= 1
+            else:
+                idx += 1
+        else:
+            idx += 1
+
+    x_train, x_test, y_train, y_test = train_test_split(
+        x,
+        y,
+        test_size=0.33,
+        # random_state=123,
+        shuffle=True
     )
-    mat_all_data_summer_no_ind = np.genfromtxt(
-        open(src_path_all_data_summer_no_ind, "rb"),
-        delimiter=",",
-        dtype=float
+
+    svc = svm.SVC(
+        C=1000,
+        kernel="poly",
+        degree=5,
+        gamma="auto",
+        coef0=5,
+        probability=False,
+        shrinking=True,
+        tol=0.0001,
+        verbose=False,
+        max_iter=-1,
+        decision_function_shape="ovo"
     )
 
-    mat_mendota_norm_w_ind = np.genfromtxt(open(src_path_mendota_norm_w_ind, "rb"), delimiter=",", dtype=float)
-    mat_mendota_no_ind = np.genfromtxt(open(src_path_mendota_no_ind, "rb"), delimiter=",", dtype=float)
+    svc.fit(x_train, y_train)
+    y_pred = svc.predict(x_test)
 
-    mat_monona_norm_w_ind = np.genfromtxt(open(src_path_monona_norm_w_ind, "rb"), delimiter=",", dtype=float)
-    mat_monona_no_ind = np.genfromtxt(open(src_path_monona_no_ind, "rb"), delimiter=",", dtype=float)
+    ber, no_alg_error, alg_error, mat_conf = calculate_error(y_pred, y_test)
 
-    mat_all_data_norm_w_ind = np.genfromtxt(open(src_path_all_data_norm_w_ind, "rb"), delimiter=",", dtype=float)
-    mat_all_data_no_ind = np.genfromtxt(open(src_path_all_data_no_ind, "rb"), delimiter=",", dtype=float)
+    print("\n~~~~~~~~~~~~~~~~~~~~~~ Results ~~~~~~~~~~~~~~~~~~~~~~\n")
+    print("BER:", ber)
+    print("No Algae Error Rate:", no_alg_error)
+    print("Algae Error Rate:", alg_error)
+    print("Confusion Matrix:")
+    print(mat_conf)
+    print()
 
-    # get the labels for each norm matrix. THE ONLY PURPOSE OF THE NORM MATRICES IS TO RETRIEVE THE LABELS!
-    mat_all_data_summer_labels = mat_all_data_summer_norm_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, :]
-    mat_mendota_labels = mat_mendota_norm_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, :]
-    mat_monona_labels = mat_monona_norm_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, :]
-    mat_all_data_labels = mat_all_data_norm_w_ind[Constants.ALGAL_BLOOM_SHEEN_NO_LOC, :]
-
-    # modify the label vectors to be binary. Label 0 indicates no algal bloom, label 1 indicates an algal bloom
-    for i in range(0, len(mat_all_data_summer_labels)):
-        if mat_all_data_summer_labels[i] == 0.5:
-            mat_all_data_summer_labels[i] = 1
-
-    for i in range(0, len(mat_mendota_labels)):
-        if mat_mendota_labels[i] == 0.5:
-            mat_mendota_labels[i] = 1
-
-    for i in range(0, len(mat_monona_labels)):
-        if mat_monona_labels[i] == 0.5:
-            mat_monona_labels[i] = 1
-
-    for i in range(0, len(mat_all_data_labels)):
-        if mat_all_data_labels[i] == 0.5:
-            mat_all_data_labels[i] = 1
-
-    # transpose test and training sets so that they are in the correct format (n_samples, m_features)
-    mat_all_data_summer_no_ind = mat_all_data_summer_no_ind.T
-    mat_mendota_no_ind = mat_mendota_no_ind.T
-    mat_monona_no_ind = mat_monona_no_ind.T
-    mat_all_data_no_ind = mat_all_data_no_ind.T
-
-    # vector of data matrices to try the kernel trick with
-    data_vec = np.array([mat_all_data_summer_no_ind, mat_mendota_no_ind, mat_monona_no_ind, mat_all_data_no_ind])
-
-    # description of each data matrix in data_vec
-    data_desc = ["all lakes, summer months only (June through August)", "Mendota, summer months only",
-                 "Monona, summer months only", "all lakes, all months"]
-
-    # array of label vectors
-    labels_vec = np.array([mat_all_data_summer_labels, mat_mendota_labels, mat_monona_labels, mat_all_data_labels])
-
-    num_iterations = 1
-
-    c = np.linspace(start=1000, stop=5000, num=17)
-
-    for i in range(0, len(data_vec)):
-        # create vectors for plotting error rates for each kernel
-        y_ber = np.zeros(c.shape[0])
-        y_no_alg = np.zeros(c.shape[0])
-        y_alg = np.zeros(c.shape[0])
-
-        for k in range(0, c.shape[0]):
-            svc = svm.SVC(
-                C=c[k],
-                kernel="poly",
-                degree=3,
-                gamma="auto",
-                coef0=0,
-                probability=False,
-                shrinking=True,
-                tol=0.0001,
-                verbose=False,
-                max_iter=-1,
-                decision_function_shape="ovo"
-            )
-
-            cumulative_ber = 0
-            cumulative_no_alg_error = 0
-            cumulative_alg_error = 0
-
-            for j in range(0, num_iterations):
-                x_train, x_test, y_train, y_test = train_test_split(
-                    data_vec[i],
-                    labels_vec[i],
-                    test_size=0.33,
-                    # random_state=543,
-                    shuffle=True
-                )
-
-                svc.fit(x_train, y_train)
-                pred_labels_test = svc.predict(x_test)
-
-                ber, no_alg_error, alg_error, _ = calculate_error(pred_labels_test, y_test)
-
-                cumulative_ber += ber
-                cumulative_no_alg_error += no_alg_error
-                cumulative_alg_error += alg_error
-
-            total_ber = cumulative_ber / num_iterations
-            total_no_alg_error = cumulative_no_alg_error / num_iterations
-            total_alg_error = cumulative_alg_error / num_iterations
-
-            y_ber[k] = total_ber
-            y_no_alg[k] = total_no_alg_error
-            y_alg[k] = total_alg_error
-
-            print_results(
-                title="Results for " + data_desc[i] + " (Kernel type: Polynomial, C = " + str(c[k]) + ")",
-                ber=total_ber,
-                no_alg_error=total_no_alg_error,
-                alg_error=total_alg_error
-            )
-
-        plt.figure()
-        plt.plot(c, y_ber, "b", c, y_no_alg, "g", c, y_alg, "r")
-        plt.ylabel("Error Rate")
-        plt.xlabel("C")
-        plt.legend(("BER", "No Algae", "Algae"))
-        plt.title("\n".join(wrap("Error Rates vs. C for " + data_desc[i] + " (Kernel type: Polynomial)", 60)))
-        plt.savefig(os.path.join(dest_path, "Error Rates vs. C for " + data_desc[i] + " (Polynomial Kernel).png"))
+    # plt.figure()
+    # plt.plot(c, y_ber, "b", c, y_no_alg, "g", c, y_alg, "r")
+    # plt.ylabel("Error Rate")
+    # plt.xlabel("C")
+    # plt.legend(("BER", "No Algae", "Algae"))
+    # plt.title("\n".join(wrap("Error Rates vs. C for " + data_desc[i] + " (Kernel type: Polynomial)", 60)))
+    # plt.savefig(os.path.join(dest_path, "Error Rates vs. C for " + data_desc[i] + " (Polynomial Kernel).png"))
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
@@ -194,11 +125,11 @@ def calculate_error(pred_labels, target_labels):
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
     for i in range(0, len(pred_labels)):
-        if (pred_labels[i] == 0) and (target_labels[i] == 0):
+        if (pred_labels[i] == -1) and (target_labels[i] == -1):
             mat_conf[0, 0] += 1
-        elif (pred_labels[i] == 1) and (target_labels[i] == 0):
+        elif (pred_labels[i] == 1) and (target_labels[i] == -1):
             mat_conf[0, 1] += 1
-        elif (pred_labels[i] == 0) and (target_labels[i] == 1):
+        elif (pred_labels[i] == -1) and (target_labels[i] == 1):
             mat_conf[1, 0] += 1
         elif (pred_labels[i] == 1) and (target_labels[i] == 1):
             mat_conf[1, 1] += 1
@@ -215,6 +146,10 @@ def calculate_error(pred_labels, target_labels):
 
     no_alg_error = mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1])
     alg_error = mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])
+
+    ber = float("%0.4f" % ber)
+    no_alg_error = float("%0.4f" % no_alg_error)
+    alg_error = float("%0.4f" % alg_error)
 
     return ber, no_alg_error, alg_error, mat_conf
 
