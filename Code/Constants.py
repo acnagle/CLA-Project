@@ -48,6 +48,24 @@ PRCP_24_HRS_NO_LOC = 11
 PRCP_48_HRS_NO_LOC = 12
 WINDSPEED_AVG_24_HRS_NO_LOC = 13
 
+# Weather Data Constants. The commented numbers are the columns in the CSV file that the measurements can be found
+WEATHER_DATE_TIME = 0                   # 5
+WEATHER_MAX_DRY_BULB_TEMP = 1           # 26
+WEATHER_MIN_DRY_BULB_TEMP = 2           # 27
+WEATHER_AVG_DRY_BULB_TEMP = 3           # 28
+WEATHER_DEPT_NORM_AVG_TEMP = 4          # 29
+# WEATHER_AVG_REL_HUMIDITY = 5          # 30    removed
+WEATHER_AVG_DEW_POINT_TEMP = 5          # 31    some 2018 entries missing this for 2018
+WEATHER_AVG_WET_BULB_TEMP = 6           # 32    some 2018 entries missing this for 2018
+WEATHER_PRECIP = 7                      # 38
+WEATHER_AVG_STATION_PRESSURE = 8        # 41
+WEATHER_AVG_SEA_LEVEL_PRESSURE = 9      # 42    some 2018 entries missing this for 2018
+WEATHER_AVG_WIND_SPEED = 10             # 43    some 2018 entries missing this for 2018
+WEATHER_PEAK_WIND_SPEED = 11            # 44    some 2018 entries missing this for 2018
+WEATHER_PEAK_WIND_DIRECTION = 12        # 45    some 2018 entries missing this for 2018
+WEATHER_SUSTAINED_WIND_SPEED = 13       # 46
+WEATHER_SUSTAINED_WIND_DIRECTION = 14   # 47
+
 # constants used to represent the axis of a data matrix
 ROWS = 0
 COLUMNS = 1

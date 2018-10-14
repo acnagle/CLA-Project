@@ -3,6 +3,7 @@ import Constants
 from sklearn import preprocessing
 import errno
 import os
+import sys
 
 
 def main():
@@ -241,15 +242,25 @@ def main():
     data_summary_summer = np.delete(data_summary_summer, obj=Constants.LOCATION, axis=Constants.COLUMNS)
     data_summary_summer = np.delete(data_summary_summer, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
     data_summary_summer = np.delete(data_summary_summer, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    data_summary_summer = np.delete(data_summary_summer, obj=1, axis=Constants.COLUMNS)   # TODO REMOVE THESE LINES
+    data_summary_summer = np.delete(data_summary_summer, obj=1, axis=Constants.COLUMNS)
+    data_summary_summer = np.delete(data_summary_summer, obj=2, axis=Constants.COLUMNS)
     data_summary_summer = data_summary_summer.astype(float)
 
     all_data = np.delete(all_data, obj=Constants.LOCATION, axis=Constants.COLUMNS)
     all_data = np.delete(all_data, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
     all_data = np.delete(all_data, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    all_data = np.delete(all_data, obj=1, axis=Constants.COLUMNS)   # TODO REMOVE THESE LINES
+    all_data = np.delete(all_data, obj=1, axis=Constants.COLUMNS)
+    all_data = np.delete(all_data, obj=1, axis=Constants.COLUMNS)
+    all_data = np.delete(all_data, obj=1, axis=Constants.COLUMNS)
     all_data = all_data.astype(float)
     all_data_summer = np.delete(all_data_summer, obj=Constants.LOCATION, axis=Constants.COLUMNS)
     all_data_summer = np.delete(all_data_summer, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
     all_data_summer = np.delete(all_data_summer, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    all_data_summer = np.delete(all_data_summer, obj=1, axis=Constants.COLUMNS)  # TODO REMOVE THESE LINES
+    all_data_summer = np.delete(all_data_summer, obj=1, axis=Constants.COLUMNS)
+    all_data_summer = np.delete(all_data_summer, obj=2, axis=Constants.COLUMNS)
     all_data_summer = all_data_summer.astype(float)
 
     data_mendota = np.delete(data_mendota, obj=Constants.LOCATION, axis=Constants.COLUMNS)
@@ -516,7 +527,7 @@ def clean_data(mat, summary):
                 new_mat[idx, Constants.TURBIDITY] = mat[i, 11]                    # turbidity
 
                 # if the qualitative measurement does not conform to the convention for quantization, delete the sample
-                for j in range(Constants.ALGAL_BLOOMS, Constants.WATER_TEMP):
+                for j in range(Constants.ALGAL_BLOOMS, Constants.TURBIDITY):
                     if j != Constants.ALGAL_BLOOM_SHEEN:  # ignore algalBloomSheen measurement
                         if float(new_mat[idx, j]) == 0:
                             # new_mat[idx, j] = "1"
@@ -548,7 +559,7 @@ def clean_data(mat, summary):
                 new_mat[idx, Constants.WINDSPEED_AVG_24_HRS] = mat[i, 14]   # windspeed_avg_24hr
 
                 # if the qualitative measurement does not conform to the convention for quantization, delete the sample
-                for j in range(Constants.ALGAL_BLOOMS, Constants.WATER_TEMP):
+                for j in range(Constants.ALGAL_BLOOMS, Constants.TURBIDITY):
                     if j != Constants.ALGAL_BLOOM_SHEEN:  # ignore algalBloomSheen measurement
                         if float(new_mat[idx, j]) == 0:
                             # new_mat[idx, j] = "1"

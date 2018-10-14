@@ -12,8 +12,8 @@ def main():
     print("Reading in data set ... ")
 
     data_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
-    x = np.load(data_path + "data_summary_summer.npy")
-    y = np.load(data_path + "data_summary_summer_labels.npy")
+    x = np.load(data_path + "all_data.npy")
+    y = np.load(data_path + "all_data_labels.npy")
 
     x = np.concatenate((x, np.ones(shape=(x.shape[0], 1))), axis=Constants.COLUMNS)
 
@@ -33,7 +33,7 @@ def main():
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
     idx = 0     # index for the data set
-    sample_bias = 100   # adjust the difference in the number of the two types of samples (no_alg and alg)
+    sample_bias = 0   # adjust the difference in the number of the two types of samples (no_alg and alg)
     while num_no_alg != (num_alg - sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
@@ -61,7 +61,7 @@ def main():
     best_alg_error = [0, 0, 1]
     worst_alg_error = [0, 0, 0]
 
-    num_iterations = 100000
+    num_iterations = 1
 
     print("Computing LS averages ... ")
     for i in range(0, num_iterations):
@@ -82,6 +82,9 @@ def main():
 
         # compute the weight vector
         w = np.matmul(d, y_train)
+
+        train_error = np.linalg.norm(y_train - np.matmul(x_train, w))
+        train_error = (train_error ** 2) / len(y_train)
 
         # print("Evaluating performance of least squares model ... ")
         # predict labels
@@ -110,8 +113,12 @@ def main():
 
     print("\n~~~~~~~~~~~~~~~~~~~~~~ Results ~~~~~~~~~~~~~~~~~~~~~~\n")
 
+    print("Averages (of " + str(num_iterations) + ")\n")
+
+    print("Train 2-norm:" + str(train_error) + "\n")
+
     print_results(
-        "Averages (of " + str(num_iterations) + ")",
+        "Overall Average",
         cumulative_ber / num_iterations,
         cumulative_no_alg_error / num_iterations,
         cumulative_alg_error / num_iterations,
@@ -208,7 +215,11 @@ def calculate_error(pred_labels, target_labels):
     # no_alg_error = no_alg_error / no_alg
     # alg_error = alg_error / alg
     #
-    # return no_alg_error, alg_error
+    # ber = float("%0.4f" % ((no_alg_error + alg_error) / 2))
+    # no_alg_error = float("%0.4f" % no_alg_error)
+    # alg_error = float("%0.4f" % alg_error)
+    #
+    # return ber, no_alg_error, alg_error
 
     # This for loop will populate mat_conf with the true labels and the predicted labels simultaneously.
     for i in range(0, len(pred_labels)):
