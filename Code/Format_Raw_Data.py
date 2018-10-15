@@ -18,12 +18,21 @@ def main():
         "/Users/Alliot/Documents/cla-Project/data/algal_bloom_locations_summaries.csv"
     ]
 
-    dest_path = "/Users/Alliot/Documents/CLA-Project/Data/raw-data/"
+    raw_data_path = "/Users/Alliot/Documents/CLA-Project/Data/raw-data/"
+    data_sets_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
 
-    # create dest_path if it does not exist
-    if not os.path.exists(dest_path):
+    # create raw_data_path if it does not exist
+    if not os.path.exists(raw_data_path):
         try:
-            os.makedirs(dest_path)
+            os.makedirs(raw_data_path)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+
+    # create data_sets_path if it does not exist
+    if not os.path.exists(data_sets_path):
+        try:
+            os.makedirs(data_sets_path)
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
@@ -296,84 +305,84 @@ def main():
     # data_wingra_summary_summer = data_wingra_summary_summer.astype(float)
 
     print("Saving data ... ")
-    np.save(dest_path + "data_2014", data_2014)
-    np.save(dest_path + "data_2015", data_2015)
-    np.save(dest_path + "data_2016", data_2016)
-    np.save(dest_path + "data_2017", data_2017)
-    # np.save(dest_path + "data_summary", data_summary)
+    np.save(raw_data_path + "data_2014", data_2014)
+    np.save(raw_data_path + "data_2015", data_2015)
+    np.save(raw_data_path + "data_2016", data_2016)
+    np.save(raw_data_path + "data_2017", data_2017)
+    # np.save(raw_data_path + "data_summary", data_summary)
 
-    np.save(dest_path + "data_2014_summer", data_2014_summer)
-    np.save(dest_path + "data_2015_summer", data_2015_summer)
-    np.save(dest_path + "data_2016_summer", data_2016_summer)
-    np.save(dest_path + "data_2017_summer", data_2017_summer)
-    # np.save(dest_path + "data_summary_summer", data_summary_summer)
+    np.save(raw_data_path + "data_2014_summer", data_2014_summer)
+    np.save(raw_data_path + "data_2015_summer", data_2015_summer)
+    np.save(raw_data_path + "data_2016_summer", data_2016_summer)
+    np.save(raw_data_path + "data_2017_summer", data_2017_summer)
+    # np.save(raw_data_path + "data_summary_summer", data_summary_summer)
 
-    np.save(dest_path + "all_data", all_data)
-    np.save(dest_path + "all_data_summer", all_data_summer)
+    np.save(raw_data_path + "all_data", all_data)
+    np.save(raw_data_path + "all_data_summer", all_data_summer)
 
-    np.save(dest_path + "data_mendota", data_mendota)
-    np.save(dest_path + "data_monona", data_monona)
-    np.save(dest_path + "data_kegonsa", data_kegonsa)
-    np.save(dest_path + "data_waubesa", data_waubesa)
-    np.save(dest_path + "data_wingra", data_wingra)
+    np.save(raw_data_path + "data_mendota", data_mendota)
+    np.save(raw_data_path + "data_monona", data_monona)
+    np.save(raw_data_path + "data_kegonsa", data_kegonsa)
+    np.save(raw_data_path + "data_waubesa", data_waubesa)
+    np.save(raw_data_path + "data_wingra", data_wingra)
 
-    # np.save(dest_path + "data_mendota_summary", data_mendota_summary)
-    # np.save(dest_path + "data_monona_summary", data_monona_summary)
-    # np.save(dest_path + "data_kegonsa_summary", data_kegonsa_summary)
-    # np.save(dest_path + "data_waubesa_summary", data_waubesa_summary)
-    # np.save(dest_path + "data_wingra_summary", data_wingra_summary)
+    # np.save(raw_data_path + "data_mendota_summary", data_mendota_summary)
+    # np.save(raw_data_path + "data_monona_summary", data_monona_summary)
+    # np.save(raw_data_path + "data_kegonsa_summary", data_kegonsa_summary)
+    # np.save(raw_data_path + "data_waubesa_summary", data_waubesa_summary)
+    # np.save(raw_data_path + "data_wingra_summary", data_wingra_summary)
 
-    np.save(dest_path + "data_mendota_summer", data_mendota_summer)
-    np.save(dest_path + "data_monona_summer", data_monona_summer)
-    np.save(dest_path + "data_kegonsa_summer", data_kegonsa_summer)
-    np.save(dest_path + "data_waubesa_summer", data_waubesa_summer)
-    np.save(dest_path + "data_wingra_summer", data_wingra_summer)
+    np.save(raw_data_path + "data_mendota_summer", data_mendota_summer)
+    np.save(raw_data_path + "data_monona_summer", data_monona_summer)
+    np.save(raw_data_path + "data_kegonsa_summer", data_kegonsa_summer)
+    np.save(raw_data_path + "data_waubesa_summer", data_waubesa_summer)
+    np.save(raw_data_path + "data_wingra_summer", data_wingra_summer)
 
-    # np.save(dest_path + "data_mendota_summary_summer", data_mendota_summary_summer)
-    # np.save(dest_path + "data_monona_summary_summer", data_monona_summary_summer)
-    # np.save(dest_path + "data_kegonsa_summary_summer", data_kegonsa_summary_summer)
-    # np.save(dest_path + "data_waubesa_summary_summer", data_waubesa_summary_summer)
-    # np.save(dest_path + "data_wingra_summary_summer", data_wingra_summary_summer)
+    # np.save(raw_data_path + "data_mendota_summary_summer", data_mendota_summary_summer)
+    # np.save(raw_data_path + "data_monona_summary_summer", data_monona_summary_summer)
+    # np.save(raw_data_path + "data_kegonsa_summary_summer", data_kegonsa_summary_summer)
+    # np.save(raw_data_path + "data_waubesa_summary_summer", data_waubesa_summary_summer)
+    # np.save(raw_data_path + "data_wingra_summary_summer", data_wingra_summary_summer)
 
     print("Saving labels ... ")
-    np.save(dest_path + "data_2014_labels", data_2014_labels)
-    np.save(dest_path + "data_2015_labels", data_2015_labels)
-    np.save(dest_path + "data_2016_labels", data_2016_labels)
-    np.save(dest_path + "data_2017_labels", data_2017_labels)
-    # np.save(dest_path + "data_summary_labels", data_summary_labels)
+    np.save(data_sets_path + "data_2014_labels", data_2014_labels)
+    np.save(data_sets_path + "data_2015_labels", data_2015_labels)
+    np.save(data_sets_path + "data_2016_labels", data_2016_labels)
+    np.save(data_sets_path + "data_2017_labels", data_2017_labels)
+    # np.save(data_sets_path + "data_summary_labels", data_summary_labels)
 
-    np.save(dest_path + "data_2014_summer_labels", data_2014_summer_labels)
-    np.save(dest_path + "data_2015_summer_labels", data_2015_summer_labels)
-    np.save(dest_path + "data_2016_summer_labels", data_2016_summer_labels)
-    np.save(dest_path + "data_2017_summer_labels", data_2017_summer_labels)
-    # np.save(dest_path + "data_summary_summer_labels", data_summary_summer_labels)
+    np.save(data_sets_path + "data_2014_summer_labels", data_2014_summer_labels)
+    np.save(data_sets_path + "data_2015_summer_labels", data_2015_summer_labels)
+    np.save(data_sets_path + "data_2016_summer_labels", data_2016_summer_labels)
+    np.save(data_sets_path + "data_2017_summer_labels", data_2017_summer_labels)
+    # np.save(data_sets_path + "data_summary_summer_labels", data_summary_summer_labels)
 
-    np.save(dest_path + "all_data_labels", all_data_labels)
-    np.save(dest_path + "all_data_summer_labels", all_data_summer_labels)
+    np.save(data_sets_path + "all_data_labels", all_data_labels)
+    np.save(data_sets_path + "all_data_summer_labels", all_data_summer_labels)
 
-    np.save(dest_path + "data_mendota_labels", data_mendota_labels)
-    np.save(dest_path + "data_monona_labels", data_monona_labels)
-    np.save(dest_path + "data_kegonsa_labels", data_kegonsa_labels)
-    np.save(dest_path + "data_waubesa_labels", data_waubesa_labels)
-    np.save(dest_path + "data_wingra_labels", data_wingra_labels)
+    np.save(data_sets_path + "data_mendota_labels", data_mendota_labels)
+    np.save(data_sets_path + "data_monona_labels", data_monona_labels)
+    np.save(data_sets_path + "data_kegonsa_labels", data_kegonsa_labels)
+    np.save(data_sets_path + "data_waubesa_labels", data_waubesa_labels)
+    np.save(data_sets_path + "data_wingra_labels", data_wingra_labels)
 
-    # np.save(dest_path + "data_mendota_summary_labels", data_mendota_summary_labels)
-    # np.save(dest_path + "data_monona_summary_labels", data_monona_summary_labels)
-    # np.save(dest_path + "data_kegonsa_summary_labels", data_kegonsa_summary_labels)
-    # np.save(dest_path + "data_waubesa_summary_labels", data_waubesa_summary_labels)
-    # np.save(dest_path + "data_wingra_summary_labels", data_wingra_summary_labels)
+    # np.save(data_sets_path + "data_mendota_summary_labels", data_mendota_summary_labels)
+    # np.save(data_sets_path + "data_monona_summary_labels", data_monona_summary_labels)
+    # np.save(data_sets_path + "data_kegonsa_summary_labels", data_kegonsa_summary_labels)
+    # np.save(data_sets_path + "data_waubesa_summary_labels", data_waubesa_summary_labels)
+    # np.save(data_sets_path + "data_wingra_summary_labels", data_wingra_summary_labels)
 
-    np.save(dest_path + "data_mendota_summer_labels", data_mendota_summer_labels)
-    np.save(dest_path + "data_monona_summer_labels", data_monona_summer_labels)
-    np.save(dest_path + "data_kegonsa_summer_labels", data_kegonsa_summer_labels)
-    np.save(dest_path + "data_waubesa_summer_labels", data_waubesa_summer_labels)
-    np.save(dest_path + "data_wingra_summer_labels", data_wingra_summer_labels)
+    np.save(data_sets_path + "data_mendota_summer_labels", data_mendota_summer_labels)
+    np.save(data_sets_path + "data_monona_summer_labels", data_monona_summer_labels)
+    np.save(data_sets_path + "data_kegonsa_summer_labels", data_kegonsa_summer_labels)
+    np.save(data_sets_path + "data_waubesa_summer_labels", data_waubesa_summer_labels)
+    np.save(data_sets_path + "data_wingra_summer_labels", data_wingra_summer_labels)
 
-    # np.save(dest_path + "data_mendota_summary_summer_labels", data_mendota_summary_summer_labels)
-    # np.save(dest_path + "data_monona_summary_summer_labels", data_monona_summary_summer_labels)
-    # np.save(dest_path + "data_kegonsa_summary_summer_labels", data_kegonsa_summary_summer_labels)
-    # np.save(dest_path + "data_waubesa_summary_summer_labels", data_waubesa_summary_summer_labels)
-    # np.save(dest_path + "data_wingra_summary_summer_labels", data_wingra_summary_summer_labels)
+    # np.save(data_sets_path + "data_mendota_summary_summer_labels", data_mendota_summary_summer_labels)
+    # np.save(data_sets_path + "data_monona_summary_summer_labels", data_monona_summary_summer_labels)
+    # np.save(data_sets_path + "data_kegonsa_summary_summer_labels", data_kegonsa_summary_summer_labels)
+    # np.save(data_sets_path + "data_waubesa_summary_summer_labels", data_waubesa_summary_summer_labels)
+    # np.save(data_sets_path + "data_wingra_summary_summer_labels", data_wingra_summary_summer_labels)
 
 
 # This matrix creates and returns the numpy label vector for a particular data set

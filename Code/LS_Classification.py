@@ -11,9 +11,9 @@ def main():
 
     print("Reading in data set ... ")
 
-    data_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
-    x = np.load(data_path + "all_data.npy")
-    y = np.load(data_path + "all_data_labels.npy")
+    data_sets_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
+    x = np.load(data_sets_path + "all_data_summer.npy")
+    y = np.load(data_sets_path + "all_data_summer_labels.npy")
 
     x = np.concatenate((x, np.ones(shape=(x.shape[0], 1))), axis=Constants.COLUMNS)
 
@@ -33,7 +33,7 @@ def main():
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
     idx = 0     # index for the data set
-    sample_bias = 0   # adjust the difference in the number of the two types of samples (no_alg and alg)
+    sample_bias = 100   # adjust the difference in the number of the two types of samples (no_alg and alg)
     while num_no_alg != (num_alg - sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
@@ -61,7 +61,7 @@ def main():
     best_alg_error = [0, 0, 1]
     worst_alg_error = [0, 0, 0]
 
-    num_iterations = 1
+    num_iterations = 1000
 
     print("Computing LS averages ... ")
     for i in range(0, num_iterations):
