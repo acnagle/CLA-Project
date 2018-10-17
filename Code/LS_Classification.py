@@ -1,7 +1,9 @@
 import numpy as np
 from sklearn import model_selection
+import matplotlib.pyplot as plt
 import sys
 import Constants
+import os
 
 
 def main():
@@ -33,7 +35,7 @@ def main():
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
     idx = 0     # index for the data set
-    sample_bias = 50   # adjust the difference in the number of the two types of samples (no_alg and alg)
+    sample_bias = 0   # adjust the difference in the number of the two types of samples (no_alg and alg)
     while num_no_alg != (num_alg - sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
@@ -50,7 +52,7 @@ def main():
         else:
             idx += 1
 
-    # print("Computing LS averages ... ")
+    print("Computing LS averages ... ")
     cumulative_ber = 0
     cumulative_no_alg_error = 0
     cumulative_alg_error = 0
@@ -64,105 +66,121 @@ def main():
     worst_alg_error = [0, 0, 0]
 
     num_splits = 100
+    lamb = np.linspace(start=0, stop=1, num=100, endpoint=True)     # regularization parameter
+    lamb_ber = np.zeros(len(lamb))
 
     sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=0.2)
 
-    for train_idx, test_idx in sss.split(X, y):
-        X_train, X_test = X[train_idx], X[test_idx]
-        y_train, y_test = y[train_idx], y[test_idx]
+    for i in range(0, len(lamb)):
+        for train_idx, test_idx in sss.split(X, y):
+            X_train, X_test = X[train_idx], X[test_idx]
+            y_train, y_test = y[train_idx], y[test_idx]
 
-        # these first four steps are intermediary before computing the weight vector w for LS
-        a = np.transpose(X_train)
-        b = np.matmul(a, X_train)
-        c = np.linalg.inv(b)
-        d = np.matmul(c, a)
+            # these first four steps are intermediary before computing the weight vector w for LS
+            a = np.transpose(X_train)
+            b = np.matmul(a, X_train)
+            f = np.multiply(lamb[i], np.identity(b.shape[Constants.ROWS]))
+            e = b + f
+            c = np.linalg.inv(e)
+            d = np.matmul(c, a)
 
-        # compute the weight vector
-        w = np.matmul(d, y_train)
+            # compute the weight vector
+            w = np.matmul(d, y_train)
 
-        train_error = np.linalg.norm(y_train - np.matmul(X_train, w))
-        train_error = (train_error ** 2) / len(y_train)
+            train_error = np.linalg.norm(y_train - np.matmul(X_train, w))
+            train_error = (train_error ** 2) / len(y_train)
 
-        cumulative_train_error += train_error
+            cumulative_train_error += train_error
 
-        # predict labels
-        y_pred = np.matmul(X_test, w)
-        y_pred = np.sign(y_pred)
+            # predict labels
+            y_pred = np.matmul(X_test, w)
+            y_pred = np.sign(y_pred)
 
-        ber, no_alg_error, alg_error, _ = calculate_error(y_pred, y_test)
+            ber, no_alg_error, alg_error, _ = calculate_error(y_pred, y_test)
 
-        cumulative_ber += ber
-        cumulative_no_alg_error += no_alg_error
-        cumulative_alg_error += alg_error
-        cumulative_w = np.add(cumulative_w, w)
+            cumulative_ber += ber
+            cumulative_no_alg_error += no_alg_error
+            cumulative_alg_error += alg_error
+            cumulative_w = np.add(cumulative_w, w)
 
-        if ber < best_ber[0]:
-            best_ber = [ber, no_alg_error, alg_error]
-            best_ber_w = w
-        if ber > worst_ber[0]:
-            worst_ber = [ber, no_alg_error, alg_error]
-            worst_ber_w = w
-        if alg_error < best_alg_error[2]:
-            best_alg_error = [ber, no_alg_error, alg_error]
-            best_alg_error_w = w
-        if alg_error > worst_alg_error[2]:
-            worst_alg_error = [ber, no_alg_error, alg_error]
-            worst_alg_error_w = w
+            if ber < best_ber[0]:
+                best_ber = [ber, no_alg_error, alg_error]
+                best_ber_w = w
+            if ber > worst_ber[0]:
+                worst_ber = [ber, no_alg_error, alg_error]
+                worst_ber_w = w
+            if alg_error < best_alg_error[2]:
+                best_alg_error = [ber, no_alg_error, alg_error]
+                best_alg_error_w = w
+            if alg_error > worst_alg_error[2]:
+                worst_alg_error = [ber, no_alg_error, alg_error]
+                worst_alg_error_w = w
 
-    print("\n~~~~~~~~~~~~~~~~~~~~~~ Results ~~~~~~~~~~~~~~~~~~~~~~\n")
+        print("\n~~~~~~~~~~~~~~~~~~~~~~ Results for lambda = " + str(lamb[i]) + " ~~~~~~~~~~~~~~~~~~~~~~\n")
 
-    print("Averages from " + str(num_splits) + " of stratified shuffle split\n")
+        print("Averages from " + str(num_splits) + " of stratified shuffle split\n")
 
-    print("Train 2-norm:" + str(cumulative_train_error / num_splits) + "\n")
+        print("Train 2-norm:" + str(float("%0.4f" % (cumulative_train_error / num_splits))) + "\n")
 
-    print_results(
-        "Overall Average",
-        cumulative_ber / num_splits,
-        cumulative_no_alg_error / num_splits,
-        cumulative_alg_error / num_splits,
-        np.true_divide(cumulative_w, num_splits)
-    )
+        print_results(
+            "Overall Average",
+            float("%0.4f" % (cumulative_ber / num_splits)),
+            float("%0.4f" % (cumulative_no_alg_error / num_splits)),
+            float("%0.4f" % (cumulative_alg_error / num_splits)),
+            np.true_divide(cumulative_w, num_splits)
+        )
 
-    print_results(
-        "Lowest BER",
-        best_ber[0],
-        best_ber[1],
-        best_ber[2],
-        best_ber_w
-    )
+        print_results(
+            "Lowest BER",
+            best_ber[0],
+            best_ber[1],
+            best_ber[2],
+            best_ber_w
+        )
 
-    print_results(
-        "Highest BER",
-        worst_ber[0],
-        worst_ber[1],
-        worst_ber[2],
-        worst_ber_w
-    )
+        print_results(
+            "Highest BER",
+            worst_ber[0],
+            worst_ber[1],
+            worst_ber[2],
+            worst_ber_w
+        )
 
-    print_results(
-        "Lowest Algae Error",
-        best_alg_error[0],
-        best_alg_error[1],
-        best_alg_error[2],
-        best_alg_error_w
-    )
+        print_results(
+            "Lowest Algae Error",
+            best_alg_error[0],
+            best_alg_error[1],
+            best_alg_error[2],
+            best_alg_error_w
+        )
 
-    print_results(
-        "Highest Algae Error",
-        worst_alg_error[0],
-        worst_alg_error[1],
-        worst_alg_error[2],
-        worst_alg_error_w
-    )
+        print_results(
+            "Highest Algae Error",
+            worst_alg_error[0],
+            worst_alg_error[1],
+            worst_alg_error[2],
+            worst_alg_error_w
+        )
 
-    print("Magnitude of the difference of weight vectors for highest and lowest BER:")
-    print(np.abs(np.add(best_ber_w, -1 * worst_ber_w)))
-    print("\n\n")
+        print("Magnitude of the difference of weight vectors for highest and lowest BER:")
+        print(np.abs(np.add(best_ber_w, -1 * worst_ber_w)))
+        print("\n\n")
 
-    print("Magnitude of the difference of weight vectors for highest and lowest algae error:")
-    print(np.abs(np.add(best_alg_error_w, -1 * worst_alg_error_w)))
+        print("Magnitude of the difference of weight vectors for highest and lowest algae error:")
+        print(np.abs(np.add(best_alg_error_w, -1 * worst_alg_error_w)))
 
-    print("\n\n")
+        print("\n\n")
+
+        lamb_ber[i] = cumulative_ber / num_splits
+
+    plt.figure(1)
+    plt.plot(lamb, lamb_ber, "b")
+    plt.ylabel("Balanced Error Rate")
+    plt.xlabel("Lambda")
+    # plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS] + 1, 2))
+    plt.title("Balanced Error Rate (BER) vs. Regularization Parameter Lambda, Summer Data 2014 - 2017")
+    # plt.savefig(os.path.join(data_sets_path, "BER vs Lambda.png"))
+    plt.savefig("BER vs Lambda.png")
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
