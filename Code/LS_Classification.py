@@ -12,10 +12,10 @@ def main():
     print("Reading in data set ... ")
 
     data_sets_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
-    x = np.load(data_sets_path + "all_data_summer.npy")
+    X = np.load(data_sets_path + "all_data_summer.npy")
     y = np.load(data_sets_path + "all_data_summer_labels.npy")
 
-    x = np.concatenate((x, np.ones(shape=(x.shape[0], 1))), axis=Constants.COLUMNS)
+    X = np.concatenate((X, np.ones(shape=(X.shape[0], 1))), axis=Constants.COLUMNS)
 
     print("Creating training and testing sets ... ")
     num_alg = 0     # count the number of algae instances
@@ -33,7 +33,7 @@ def main():
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
     idx = 0     # index for the data set
-    sample_bias = 100   # adjust the difference in the number of the two types of samples (no_alg and alg)
+    sample_bias = 50   # adjust the difference in the number of the two types of samples (no_alg and alg)
     while num_no_alg != (num_alg - sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
@@ -43,17 +43,19 @@ def main():
         if y[idx] == -1:
             if np.random.rand() >= 0.5:     # remove this sample with some probability
                 y = np.delete(y, obj=idx)
-                x = np.delete(x, obj=idx, axis=Constants.ROWS)
+                X = np.delete(X, obj=idx, axis=Constants.ROWS)
                 num_no_alg -= 1
             else:
                 idx += 1
         else:
             idx += 1
 
+    # print("Computing LS averages ... ")
     cumulative_ber = 0
     cumulative_no_alg_error = 0
     cumulative_alg_error = 0
-    cumulative_w = np.zeros(shape=x.shape[Constants.COLUMNS])
+    cumulative_train_error = 0
+    cumulative_w = np.zeros(shape=X.shape[Constants.COLUMNS])
 
     # save ber, no_alg_error, and alg_error (and weight vector [see below]) for lowest/highest BER and alg_error
     best_ber = [1, 0, 0]
@@ -61,34 +63,30 @@ def main():
     best_alg_error = [0, 0, 1]
     worst_alg_error = [0, 0, 0]
 
-    num_iterations = 1000
+    num_splits = 100
 
-    print("Computing LS averages ... ")
-    for i in range(0, num_iterations):
-        x_train, x_test, y_train, y_test = model_selection.train_test_split(
-            x,
-            y,
-            test_size=0.33,
-            # random_state=123,
-            shuffle=True
-        )
+    sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=0.2)
 
-        # print("Computing least squares ...")
+    for train_idx, test_idx in sss.split(X, y):
+        X_train, X_test = X[train_idx], X[test_idx]
+        y_train, y_test = y[train_idx], y[test_idx]
+
         # these first four steps are intermediary before computing the weight vector w for LS
-        a = np.transpose(x_train)
-        b = np.matmul(a, x_train)
+        a = np.transpose(X_train)
+        b = np.matmul(a, X_train)
         c = np.linalg.inv(b)
         d = np.matmul(c, a)
 
         # compute the weight vector
         w = np.matmul(d, y_train)
 
-        train_error = np.linalg.norm(y_train - np.matmul(x_train, w))
+        train_error = np.linalg.norm(y_train - np.matmul(X_train, w))
         train_error = (train_error ** 2) / len(y_train)
 
-        # print("Evaluating performance of least squares model ... ")
+        cumulative_train_error += train_error
+
         # predict labels
-        y_pred = np.matmul(x_test, w)
+        y_pred = np.matmul(X_test, w)
         y_pred = np.sign(y_pred)
 
         ber, no_alg_error, alg_error, _ = calculate_error(y_pred, y_test)
@@ -113,16 +111,16 @@ def main():
 
     print("\n~~~~~~~~~~~~~~~~~~~~~~ Results ~~~~~~~~~~~~~~~~~~~~~~\n")
 
-    print("Averages (of " + str(num_iterations) + ")\n")
+    print("Averages from " + str(num_splits) + " of stratified shuffle split\n")
 
-    print("Train 2-norm:" + str(train_error) + "\n")
+    print("Train 2-norm:" + str(cumulative_train_error / num_splits) + "\n")
 
     print_results(
         "Overall Average",
-        cumulative_ber / num_iterations,
-        cumulative_no_alg_error / num_iterations,
-        cumulative_alg_error / num_iterations,
-        np.true_divide(cumulative_w, num_iterations)
+        cumulative_ber / num_splits,
+        cumulative_no_alg_error / num_splits,
+        cumulative_alg_error / num_splits,
+        np.true_divide(cumulative_w, num_splits)
     )
 
     print_results(
@@ -165,16 +163,6 @@ def main():
     print(np.abs(np.add(best_alg_error_w, -1 * worst_alg_error_w)))
 
     print("\n\n")
-
-    # print("\n~~~~~~~~~~~~~~~~~~~~~~ Results ~~~~~~~~~~~~~~~~~~~~~~\n")
-    # print("BER:", ber)
-    # print("No Algae Error Rate:", no_alg_error)
-    # print("Algae Error Rate:", alg_error)
-    # print("Confusion Matrix:")
-    # print(mat_conf)
-    # print("Weight vector:")
-    # print(w)
-    # print()
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This

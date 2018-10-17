@@ -147,7 +147,6 @@ def main():
     data_2015_summer = preprocessing.normalize(data_2015_summer)
     data_2016_summer = preprocessing.normalize(data_2016_summer)
     data_2017_summer = preprocessing.normalize(data_2017_summer)
-
     all_data_summer = preprocessing.normalize(all_data_summer)
 
     data_mendota_summer = preprocessing.normalize(data_mendota_summer)

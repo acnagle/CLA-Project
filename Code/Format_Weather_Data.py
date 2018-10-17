@@ -17,7 +17,7 @@ def main():
         open(data_path),
         delimiter=",",
         dtype=(str, 100),
-        usecols=(5, 6, 26, 27, 28, 29, 31, 32, 38, 41, 42, 43, 44, 45, 46, 47),     # index 6 is the summary of day flag
+        usecols=(5, 6, 26, 27, 28, 29, 31, 32, 38, 41, 42, 43, 46, 47),     # index 6 is the summary of day flag
         skip_header=1
     )
 

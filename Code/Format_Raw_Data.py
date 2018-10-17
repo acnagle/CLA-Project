@@ -98,17 +98,17 @@ def main():
     data_2017_summer = build_summer_months(data_2017)
     # data_summary_summer = build_summer_months(data_summary)
 
-    all_data = np.concatenate((data_2014, data_2015, data_2016, data_2017), axis=Constants.ROWS)
+    # all_data = np.concatenate((data_2014, data_2015, data_2016, data_2017), axis=Constants.ROWS)
     all_data_summer = np.concatenate(
         (data_2014_summer, data_2015_summer, data_2016_summer, data_2017_summer),
         axis=Constants.ROWS
     )
 
-    data_mendota = build_location_matrix(all_data, "Mendota")
-    data_monona = build_location_matrix(all_data, "Monona")
-    data_kegonsa = build_location_matrix(all_data, "Kegonsa")
-    data_waubesa = build_location_matrix(all_data, "Waubesa")
-    data_wingra = build_location_matrix(all_data, "Wingra")
+    # data_mendota = build_location_matrix(all_data, "Mendota")
+    # data_monona = build_location_matrix(all_data, "Monona")
+    # data_kegonsa = build_location_matrix(all_data, "Kegonsa")
+    # data_waubesa = build_location_matrix(all_data, "Waubesa")
+    # data_wingra = build_location_matrix(all_data, "Wingra")
 
     # data_mendota_summary = build_location_matrix(data_summary, "Mendota")
     # data_monona_summary = build_location_matrix(data_summary, "Monona")
@@ -129,10 +129,10 @@ def main():
     # data_wingra_summary_summer = build_location_matrix(data_summary_summer, "Wingra")
 
     print("Creating labels for each data set ... ")
-    data_2014_labels = build_labels(data_2014)
-    data_2015_labels = build_labels(data_2015)
-    data_2016_labels = build_labels(data_2016)
-    data_2017_labels = build_labels(data_2017)
+    # data_2014_labels = build_labels(data_2014)
+    # data_2015_labels = build_labels(data_2015)
+    # data_2016_labels = build_labels(data_2016)
+    # data_2017_labels = build_labels(data_2017)
     # data_summary_labels = build_labels(data_summary)
 
     data_2014_summer_labels = build_labels(data_2014_summer)
@@ -141,14 +141,14 @@ def main():
     data_2017_summer_labels = build_labels(data_2017_summer)
     # data_summary_summer_labels = build_labels(data_summary_summer)
 
-    all_data_labels = build_labels(all_data)
+    # all_data_labels = build_labels(all_data)
     all_data_summer_labels = build_labels(all_data_summer)
 
-    data_mendota_labels = build_labels(data_mendota)
-    data_monona_labels = build_labels(data_monona)
-    data_kegonsa_labels = build_labels(data_kegonsa)
-    data_waubesa_labels = build_labels(data_waubesa)
-    data_wingra_labels = build_labels(data_wingra)
+    # data_mendota_labels = build_labels(data_mendota)
+    # data_monona_labels = build_labels(data_monona)
+    # data_kegonsa_labels = build_labels(data_kegonsa)
+    # data_waubesa_labels = build_labels(data_waubesa)
+    # data_wingra_labels = build_labels(data_wingra)
 
     # data_mendota_summary_labels = build_labels(data_mendota_summary)
     # data_monona_summary_labels = build_labels(data_monona_summary)
@@ -169,21 +169,21 @@ def main():
     # data_wingra_summary_summer_labels = build_labels(data_wingra_summary_summer)
 
     print("Removing unwanted features ... ")
-    data_2014 = np.delete(data_2014, obj=Constants.LOCATION, axis=Constants.COLUMNS)  # Remove location
-    data_2014 = np.delete(data_2014, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)  # Remove algal_bloom_sheen
-    data_2014 = np.delete(data_2014, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)  # Remove algal_blooms
+    # data_2014 = np.delete(data_2014, obj=Constants.LOCATION, axis=Constants.COLUMNS)  # Remove location
+    # data_2014 = np.delete(data_2014, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)  # Remove algal_bloom_sheen
+    # data_2014 = np.delete(data_2014, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)  # Remove algal_blooms
     # data_2014 = data_2014.astype(float)
-    data_2015 = np.delete(data_2015, obj=Constants.LOCATION, axis=Constants.COLUMNS)
-    data_2015 = np.delete(data_2015, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
-    data_2015 = np.delete(data_2015, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    # data_2015 = np.delete(data_2015, obj=Constants.LOCATION, axis=Constants.COLUMNS)
+    # data_2015 = np.delete(data_2015, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
+    # data_2015 = np.delete(data_2015, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # data_2015 = data_2015.astype(float)
-    data_2016 = np.delete(data_2016, obj=Constants.LOCATION, axis=Constants.COLUMNS)
-    data_2016 = np.delete(data_2016, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
-    data_2016 = np.delete(data_2016, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    # data_2016 = np.delete(data_2016, obj=Constants.LOCATION, axis=Constants.COLUMNS)
+    # data_2016 = np.delete(data_2016, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
+    # data_2016 = np.delete(data_2016, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # data_2016 = data_2016.astype(float)
-    data_2017 = np.delete(data_2017, obj=Constants.LOCATION, axis=Constants.COLUMNS)
-    data_2017 = np.delete(data_2017, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
-    data_2017 = np.delete(data_2017, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    # data_2017 = np.delete(data_2017, obj=Constants.LOCATION, axis=Constants.COLUMNS)
+    # data_2017 = np.delete(data_2017, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
+    # data_2017 = np.delete(data_2017, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # data_2017 = data_2017.astype(float)
     # data_summary = np.delete(data_summary, obj=Constants.LOCATION, axis=Constants.COLUMNS)
     # data_summary = np.delete(data_summary, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
@@ -211,34 +211,35 @@ def main():
     # data_summary_summer = np.delete(data_summary_summer, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # data_summary_summer = data_summary_summer.astype(float)
 
-    all_data = np.delete(all_data, obj=Constants.LOCATION, axis=Constants.COLUMNS)
-    all_data = np.delete(all_data, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
-    all_data = np.delete(all_data, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    # all_data = np.delete(all_data, obj=Constants.LOCATION, axis=Constants.COLUMNS)
+    # all_data = np.delete(all_data, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
+    # all_data = np.delete(all_data, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # all_data = all_data.astype(float)
+
     all_data_summer = np.delete(all_data_summer, obj=Constants.LOCATION, axis=Constants.COLUMNS)
     all_data_summer = np.delete(all_data_summer, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
     all_data_summer = np.delete(all_data_summer, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # all_data_summer = all_data_summer.astype(float)
 
-    data_mendota = np.delete(data_mendota, obj=Constants.LOCATION, axis=Constants.COLUMNS)
-    data_mendota = np.delete(data_mendota, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
-    data_mendota = np.delete(data_mendota, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    # data_mendota = np.delete(data_mendota, obj=Constants.LOCATION, axis=Constants.COLUMNS)
+    # data_mendota = np.delete(data_mendota, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
+    # data_mendota = np.delete(data_mendota, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # data_mendota = data_mendota.astype(float)
-    data_monona = np.delete(data_monona, obj=Constants.LOCATION, axis=Constants.COLUMNS)
-    data_monona = np.delete(data_monona, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
-    data_monona = np.delete(data_monona, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    # data_monona = np.delete(data_monona, obj=Constants.LOCATION, axis=Constants.COLUMNS)
+    # data_monona = np.delete(data_monona, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
+    # data_monona = np.delete(data_monona, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # data_monona = data_monona.astype(float)
-    data_kegonsa = np.delete(data_kegonsa, obj=Constants.LOCATION, axis=Constants.COLUMNS)
-    data_kegonsa = np.delete(data_kegonsa, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
-    data_kegonsa = np.delete(data_kegonsa, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    # data_kegonsa = np.delete(data_kegonsa, obj=Constants.LOCATION, axis=Constants.COLUMNS)
+    # data_kegonsa = np.delete(data_kegonsa, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
+    # data_kegonsa = np.delete(data_kegonsa, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # data_kegonsa = data_kegonsa.astype(float)
-    data_waubesa = np.delete(data_waubesa, obj=Constants.LOCATION, axis=Constants.COLUMNS)
-    data_waubesa = np.delete(data_waubesa, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
-    data_waubesa = np.delete(data_waubesa, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    # data_waubesa = np.delete(data_waubesa, obj=Constants.LOCATION, axis=Constants.COLUMNS)
+    # data_waubesa = np.delete(data_waubesa, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
+    # data_waubesa = np.delete(data_waubesa, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # data_waubesa = data_waubesa.astype(float)
-    data_wingra = np.delete(data_wingra, obj=Constants.LOCATION, axis=Constants.COLUMNS)
-    data_wingra = np.delete(data_wingra, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
-    data_wingra = np.delete(data_wingra, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
+    # data_wingra = np.delete(data_wingra, obj=Constants.LOCATION, axis=Constants.COLUMNS)
+    # data_wingra = np.delete(data_wingra, obj=Constants.ALGAL_BLOOM_SHEEN_NO_LOC, axis=Constants.COLUMNS)
+    # data_wingra = np.delete(data_wingra, obj=Constants.ALGAL_BLOOMS_NO_LOC, axis=Constants.COLUMNS)
     # data_wingra = data_wingra.astype(float)
 
     # data_mendota_summary = np.delete(data_mendota_summary, obj=Constants.LOCATION, axis=Constants.COLUMNS)
@@ -317,14 +318,14 @@ def main():
     np.save(raw_data_path + "data_2017_summer", data_2017_summer)
     # np.save(raw_data_path + "data_summary_summer", data_summary_summer)
 
-    np.save(raw_data_path + "all_data", all_data)
+    # np.save(raw_data_path + "all_data", all_data)
     np.save(raw_data_path + "all_data_summer", all_data_summer)
 
-    np.save(raw_data_path + "data_mendota", data_mendota)
-    np.save(raw_data_path + "data_monona", data_monona)
-    np.save(raw_data_path + "data_kegonsa", data_kegonsa)
-    np.save(raw_data_path + "data_waubesa", data_waubesa)
-    np.save(raw_data_path + "data_wingra", data_wingra)
+    # np.save(raw_data_path + "data_mendota", data_mendota)
+    # np.save(raw_data_path + "data_monona", data_monona)
+    # np.save(raw_data_path + "data_kegonsa", data_kegonsa)
+    # np.save(raw_data_path + "data_waubesa", data_waubesa)
+    # np.save(raw_data_path + "data_wingra", data_wingra)
 
     # np.save(raw_data_path + "data_mendota_summary", data_mendota_summary)
     # np.save(raw_data_path + "data_monona_summary", data_monona_summary)
@@ -345,10 +346,10 @@ def main():
     # np.save(raw_data_path + "data_wingra_summary_summer", data_wingra_summary_summer)
 
     print("Saving labels ... ")
-    np.save(data_sets_path + "data_2014_labels", data_2014_labels)
-    np.save(data_sets_path + "data_2015_labels", data_2015_labels)
-    np.save(data_sets_path + "data_2016_labels", data_2016_labels)
-    np.save(data_sets_path + "data_2017_labels", data_2017_labels)
+    # np.save(data_sets_path + "data_2014_labels", data_2014_labels)
+    # np.save(data_sets_path + "data_2015_labels", data_2015_labels)
+    # np.save(data_sets_path + "data_2016_labels", data_2016_labels)
+    # np.save(data_sets_path + "data_2017_labels", data_2017_labels)
     # np.save(data_sets_path + "data_summary_labels", data_summary_labels)
 
     np.save(data_sets_path + "data_2014_summer_labels", data_2014_summer_labels)
@@ -357,14 +358,14 @@ def main():
     np.save(data_sets_path + "data_2017_summer_labels", data_2017_summer_labels)
     # np.save(data_sets_path + "data_summary_summer_labels", data_summary_summer_labels)
 
-    np.save(data_sets_path + "all_data_labels", all_data_labels)
+    # np.save(data_sets_path + "all_data_labels", all_data_labels)
     np.save(data_sets_path + "all_data_summer_labels", all_data_summer_labels)
 
-    np.save(data_sets_path + "data_mendota_labels", data_mendota_labels)
-    np.save(data_sets_path + "data_monona_labels", data_monona_labels)
-    np.save(data_sets_path + "data_kegonsa_labels", data_kegonsa_labels)
-    np.save(data_sets_path + "data_waubesa_labels", data_waubesa_labels)
-    np.save(data_sets_path + "data_wingra_labels", data_wingra_labels)
+    # np.save(data_sets_path + "data_mendota_labels", data_mendota_labels)
+    # np.save(data_sets_path + "data_monona_labels", data_monona_labels)
+    # np.save(data_sets_path + "data_kegonsa_labels", data_kegonsa_labels)
+    # np.save(data_sets_path + "data_waubesa_labels", data_waubesa_labels)
+    # np.save(data_sets_path + "data_wingra_labels", data_wingra_labels)
 
     # np.save(data_sets_path + "data_mendota_summary_labels", data_mendota_summary_labels)
     # np.save(data_sets_path + "data_monona_summary_labels", data_monona_summary_labels)
@@ -385,7 +386,8 @@ def main():
     # np.save(data_sets_path + "data_wingra_summary_summer_labels", data_wingra_summary_summer_labels)
 
 
-# This matrix creates and returns the numpy label vector for a particular data set
+# This matrix creates and returns the numpy label vector for a particular data set. The labels are reformatted to be
+# binary: -1 for no algae and 1 for algae
 def build_labels(mat):
     labels = mat[:, Constants.ALGAL_BLOOM_SHEEN]
 
