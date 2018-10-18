@@ -66,7 +66,7 @@ def main():
     worst_alg_error = [0, 0, 0]
 
     num_splits = 100
-    lamb = np.linspace(start=0, stop=1, num=100, endpoint=True)     # regularization parameter
+    lamb = np.linspace(start=0, stop=1, num=250, endpoint=True)     # regularization parameter
     lamb_ber = np.zeros(len(lamb))
 
     sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=0.2)
@@ -87,7 +87,7 @@ def main():
             # compute the weight vector
             w = np.matmul(d, y_train)
 
-            train_error = np.linalg.norm(y_train - np.matmul(X_train, w))
+            train_error = np.linalg.norm(y_train - np.sign(np.matmul(X_train, w)))
             train_error = (train_error ** 2) / len(y_train)
 
             cumulative_train_error += train_error
@@ -116,7 +116,7 @@ def main():
                 worst_alg_error = [ber, no_alg_error, alg_error]
                 worst_alg_error_w = w
 
-        print("\n~~~~~~~~~~~~~~~~~~~~~~ Results for lambda = " + str(lamb[i]) + " ~~~~~~~~~~~~~~~~~~~~~~\n")
+        print("\n~~~~~~~~~~~~~~~~~~~~~~ Results for lambda = " + str(float("%0.4f" % lamb[i])) + " ~~~~~~~~~~~~~~~~~~~~~~\n")
 
         print("Averages from " + str(num_splits) + " of stratified shuffle split\n")
 
@@ -172,6 +172,16 @@ def main():
         print("\n\n")
 
         lamb_ber[i] = cumulative_ber / num_splits
+
+        cumulative_ber = 0
+        cumulative_no_alg_error = 0
+        cumulative_alg_error = 0
+        cumulative_train_error = 0
+
+        best_ber = [1, 0, 0]
+        worst_ber = [0, 0, 0]
+        best_alg_error = [0, 0, 1]
+        worst_alg_error = [0, 0, 0]
 
     plt.figure(1)
     plt.plot(lamb, lamb_ber, "b")
