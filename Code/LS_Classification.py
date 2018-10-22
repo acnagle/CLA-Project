@@ -187,9 +187,7 @@ def main():
     plt.plot(lamb, lamb_ber, "b")
     plt.ylabel("Balanced Error Rate")
     plt.xlabel("Lambda")
-    # plt.xticks(np.arange(2, k_arr.shape[Constants.ROWS] + 1, 2))
     plt.title("Balanced Error Rate (BER) vs. Regularization Parameter Lambda, Summer Data 2014 - 2017")
-    # plt.savefig(os.path.join(data_sets_path, "BER vs Lambda.png"))
     plt.savefig("BER vs Lambda.png")
 
 

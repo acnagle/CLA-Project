@@ -1,8 +1,9 @@
 import numpy as np
-from sklearn.model_selection import train_test_split
+from sklearn import model_selection
 from sklearn import svm
 import matplotlib.pyplot as plt
 from textwrap import wrap
+from mpl_toolkits.mplot3d import Axes3D
 import errno
 import os
 import Constants
@@ -26,8 +27,8 @@ def main():
             if e.errno != errno.EEXIST:
                 raise
 
-    x = np.load(data_path + "data_summary_summer.npy")
-    y = np.load(data_path + "data_summary_summer_labels.npy")
+    X = np.load(data_path + "all_data_summer.npy")
+    y = np.load(data_path + "all_data_summer_labels.npy")
 
     print("Creating training and testing sets ... ")
     num_alg = 0  # count the number of algae instances
@@ -62,48 +63,88 @@ def main():
         else:
             idx += 1
 
-    x_train, x_test, y_train, y_test = train_test_split(
-        x,
-        y,
-        test_size=0.33,
-        # random_state=123,
-        shuffle=True
-    )
+    print("Performing classification with polynomial kernel ... ")
+    cumulative_ber = 0
+    cumulative_no_alg_error = 0
+    cumulative_alg_error = 0
+    cumulative_train_error = 0
 
-    svc = svm.SVC(
-        C=1000,
-        kernel="poly",
-        degree=5,
-        gamma="auto",
-        coef0=5,
-        probability=False,
-        shrinking=True,
-        tol=0.0001,
-        verbose=False,
-        max_iter=-1,
-        decision_function_shape="ovo"
-    )
+    num_points = 250
 
-    svc.fit(x_train, y_train)
-    y_pred = svc.predict(x_test)
+    results = np.zeros(shape=(3, num_points))  # column holds a point to plot (c, coef, BER)
+    idx = 0     # indexes the results matrix
 
-    ber, no_alg_error, alg_error, mat_conf = calculate_error(y_pred, y_test)
+    # construct parameter arrays
+    c = np.linspace(start=1, stop=1000, num=num_points, endpoint=True)
+    coef = np.linspace(start=1, stop=1000, num=num_points, endpoint=True)
 
-    print("\n~~~~~~~~~~~~~~~~~~~~~~ Results ~~~~~~~~~~~~~~~~~~~~~~\n")
-    print("BER:", ber)
-    print("No Algae Error Rate:", no_alg_error)
-    print("Algae Error Rate:", alg_error)
-    print("Confusion Matrix:")
-    print(mat_conf)
-    print()
+    degree = 3
+    num_splits = 100
 
-    # plt.figure()
-    # plt.plot(c, y_ber, "b", c, y_no_alg, "g", c, y_alg, "r")
-    # plt.ylabel("Error Rate")
-    # plt.xlabel("C")
-    # plt.legend(("BER", "No Algae", "Algae"))
-    # plt.title("\n".join(wrap("Error Rates vs. C for " + data_desc[i] + " (Kernel type: Polynomial)", 60)))
-    # plt.savefig(os.path.join(dest_path, "Error Rates vs. C for " + data_desc[i] + " (Polynomial Kernel).png"))
+    sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=0.2)
+
+    for i in c:
+        for j in coef:
+            for train_idx, test_idx in sss.split(X, y):
+                X_train, X_test = X[train_idx], X[test_idx]
+                y_train, y_test = y[train_idx], y[test_idx]
+
+                svc = svm.SVC(
+                    C=c[i],
+                    kernel="poly",
+                    degree=degree,
+                    gamma="auto",
+                    coef0=coef[j],
+                    probability=False,
+                    shrinking=True,
+                    tol=0.0001,
+                    verbose=False,
+                    max_iter=-1,
+                    decision_function_shape="ovo"
+                )
+
+                svc.fit(X_train, y_train)
+                y_pred = svc.predict(X_test)
+
+                ber, no_alg_error, alg_error, _ = calculate_error(y_pred, y_test)
+
+                cumulative_ber += ber
+                cumulative_no_alg_error += no_alg_error
+                cumulative_alg_error += alg_error
+                cumulative_train_error += cumulative_train_error
+
+            print("\n~~~ Results for polynomial of degree = " + str(degree) + ", C = " + str(float("%0.4f" % c[i])) + ", coef0 = " + str(float("%0.4f" % coef[i])) + " ~~~\n")
+
+            print("Averages from " + str(num_splits) + " of stratified shuffle split\n")
+
+            print("Train 2-norm:" + str(float("%0.4f" % (cumulative_train_error / num_splits))) + "\n")
+
+            print_results(
+                ber=cumulative_ber / num_splits,
+                no_alg_error=cumulative_no_alg_error / num_splits,
+                alg_error=cumulative_alg_error / num_splits
+            )
+
+            results[0, idx] = c[i]
+            results[1, idx] = coef[j]
+            results[2, idx] = cumulative_ber / num_splits
+
+            idx += 1
+
+            cumulative_ber = 0
+            cumulative_no_alg_error = 0
+            cumulative_alg_error = 0
+            cumulative_train_error = 0
+
+    plt.figure()
+    ax = plt.axes(projection='3d')
+    ax.plot_s
+    ax.contour3D(results[0, :], results[1, :], results[2, :])
+    plt.ylabel("Error Rate")
+    plt.xlabel("C")
+    plt.legend(("BER", "No Algae", "Algae"))
+    plt.title("\n".join(wrap("Error Rates vs. C for " + data_desc[i] + " (Kernel type: Polynomial)", 60)))
+    plt.savefig(os.path.join(dest_path, "Error Rates vs. C for " + data_desc[i] + " (Polynomial Kernel).png"))
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
@@ -142,6 +183,8 @@ def calculate_error(pred_labels, target_labels):
     # Balanced Error Rate (BER) = (b / (a + b) + c / (c + d)) / 2
     # error per label = each of the terms in the numerator of BER. ex: b / (a + b)
 
+    # NOTE: I have define the rows to be the true labels and the columns to be the predicted labels
+
     ber = (mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1]) + mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])) / 2
 
     no_alg_error = mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1])
@@ -155,12 +198,11 @@ def calculate_error(pred_labels, target_labels):
 
 
 # This method prints the results of the linear classification
-def print_results(title, ber, no_alg_error, alg_error):
-    print(title)
+def print_results(ber, no_alg_error, alg_error):
     print("BER:", ber)
     print("No Algae Prediction Error:", no_alg_error)
     print("Algae Prediction Error:", alg_error)
-    print("---------------------------------------------------------------------------\n")
+    print()
 
 
 if __name__ == "__main__": main()
