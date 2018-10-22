@@ -4,6 +4,7 @@ from sklearn import svm
 import matplotlib.pyplot as plt
 from textwrap import wrap
 from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
 import errno
 import os
 import Constants
@@ -39,7 +40,7 @@ def main():
         if y[i] == 0:
             y[i] = -1
             num_no_alg += 1
-        if y[i] == 1 or y[i] == 2:
+        elif y[i] == 1 or y[i] == 2:
             y[i] = 1
             num_alg += 1
 
@@ -56,7 +57,7 @@ def main():
         if y[idx] == -1:
             if np.random.rand() >= 0.5:  # remove this sample with some probability
                 y = np.delete(y, obj=idx)
-                x = np.delete(x, obj=idx, axis=Constants.ROWS)
+                X = np.delete(X, obj=idx, axis=Constants.ROWS)
                 num_no_alg -= 1
             else:
                 idx += 1
@@ -67,24 +68,28 @@ def main():
     cumulative_ber = 0
     cumulative_no_alg_error = 0
     cumulative_alg_error = 0
-    cumulative_train_error = 0
 
-    num_points = 250
+    num_points = 4      # size of c and coef parameter arrays
+    starting_point = 1
 
-    results = np.zeros(shape=(3, num_points))  # column holds a point to plot (c, coef, BER)
+    avg_ber = np.zeros(shape=(num_points, num_points))      # avg BER evaluated for each C and coef
     idx = 0     # indexes the results matrix
 
     # construct parameter arrays
-    c = np.linspace(start=1, stop=1000, num=num_points, endpoint=True)
-    coef = np.linspace(start=1, stop=1000, num=num_points, endpoint=True)
+    c = np.linspace(start=starting_point, stop=1000, num=num_points, endpoint=True)
+    coef = np.linspace(start=starting_point, stop=1000, num=num_points, endpoint=True)
 
     degree = 3
     num_splits = 100
 
+    # define constants for plotting
+    vmin = 1    # min BER
+    vmax = 0    # max BER
+
     sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=0.2)
 
-    for i in c:
-        for j in coef:
+    for i in range(0, len(c)):
+        for j in range(0, len(coef)):
             for train_idx, test_idx in sss.split(X, y):
                 X_train, X_test = X[train_idx], X[test_idx]
                 y_train, y_test = y[train_idx], y[test_idx]
@@ -111,40 +116,45 @@ def main():
                 cumulative_ber += ber
                 cumulative_no_alg_error += no_alg_error
                 cumulative_alg_error += alg_error
-                cumulative_train_error += cumulative_train_error
 
-            print("\n~~~ Results for polynomial of degree = " + str(degree) + ", C = " + str(float("%0.4f" % c[i])) + ", coef0 = " + str(float("%0.4f" % coef[i])) + " ~~~\n")
+            print("\n~~~ Results for polynomial of degree = " + str(degree) + ", C = " + str(float("%0.4f" % c[i])) +
+                  ", coef0 = " + str(float("%0.4f" % coef[j])) + " ~~~\n")
 
-            print("Averages from " + str(num_splits) + " of stratified shuffle split\n")
-
-            print("Train 2-norm:" + str(float("%0.4f" % (cumulative_train_error / num_splits))) + "\n")
+            print("Averages from " + str(num_splits) + " iterations of stratified shuffle split\n")
 
             print_results(
-                ber=cumulative_ber / num_splits,
-                no_alg_error=cumulative_no_alg_error / num_splits,
-                alg_error=cumulative_alg_error / num_splits
+                ber=float("%0.4f" % (cumulative_ber / num_splits)),
+                no_alg_error=float("%0.4f" % (cumulative_no_alg_error / num_splits)),
+                alg_error=float("%0.4f" % (cumulative_alg_error / num_splits))
             )
 
-            results[0, idx] = c[i]
-            results[1, idx] = coef[j]
-            results[2, idx] = cumulative_ber / num_splits
+            avg_ber[i, j] = float("%0.4f" % (cumulative_ber / num_splits))
 
             idx += 1
 
             cumulative_ber = 0
             cumulative_no_alg_error = 0
             cumulative_alg_error = 0
-            cumulative_train_error = 0
 
-    plt.figure()
-    ax = plt.axes(projection='3d')
-    ax.plot_s
-    ax.contour3D(results[0, :], results[1, :], results[2, :])
-    plt.ylabel("Error Rate")
+            if (cumulative_ber / num_splits) < vmin:
+                vmin = float("%0.4f" % (cumulative_ber / num_splits))
+            if (cumulative_ber / num_splits) > vmax:
+                vmax = float("%0.4f" % (cumulative_ber / num_splits))
+
+    fig = plt.figure()
+    ax = fig.gca(projection='3d')
+    surf = ax.plot_surface(c, coef, avg_ber, cmap=cm.coolwarm, vmin=vmin, vmax=vmax)
+    # ax.scatter(results[0, :], results[1, :], results[2, :])
     plt.xlabel("C")
-    plt.legend(("BER", "No Algae", "Algae"))
-    plt.title("\n".join(wrap("Error Rates vs. C for " + data_desc[i] + " (Kernel type: Polynomial)", 60)))
-    plt.savefig(os.path.join(dest_path, "Error Rates vs. C for " + data_desc[i] + " (Polynomial Kernel).png"))
+    plt.ylabel("coef")
+    plt.title("\n".join(wrap("BER as a Function of C and coef for Polynomial Kernel", 60)))
+    fig.colorbar(surf, shrink=0.5, aspect=5)
+    plt.savefig(os.path.join(dest_path, "BER as a Function of C and coef for Polynomial Kernel.png"))
+
+    avg_ber = np.asarray(avg_ber)
+    np.savetxt(os.path.join(dest_path, "poly-kernel-c.csv"), c, delimiter=",")
+    np.savetxt(os.path.join(dest_path, "poly-kernel-coef.csv"), coef, delimiter=",")
+    np.savetxt(os.path.join(dest_path, "poly-kernel-avg-ber.csv"), avg_ber, delimiter=",")
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
