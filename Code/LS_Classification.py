@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn import model_selection
+from sklearn import preprocessing
 import matplotlib.pyplot as plt
 import sys
 import Constants
-import os
 
 
 def main():
@@ -14,8 +14,8 @@ def main():
     print("Reading in data set ... ")
 
     data_sets_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
-    X = np.load(data_sets_path + "all_data_summer.npy")
-    y = np.load(data_sets_path + "all_data_summer_labels.npy")
+    X = np.load(data_sets_path + "data_2017_summer.npy")
+    y = np.load(data_sets_path + "data_2017_summer_labels.npy")
 
     X = np.concatenate((X, np.ones(shape=(X.shape[0], 1))), axis=Constants.COLUMNS)
 
@@ -53,6 +53,8 @@ def main():
             idx += 1
 
     print("Computing LS averages ... ")
+    X = preprocessing.scale(X, axis=1)  # standardize data
+
     cumulative_ber = 0
     cumulative_no_alg_error = 0
     cumulative_alg_error = 0
@@ -66,7 +68,7 @@ def main():
     worst_alg_error = [0, 0, 0]
 
     num_splits = 100
-    lamb = np.linspace(start=0, stop=1, num=250, endpoint=True)     # regularization parameter
+    lamb = np.linspace(start=0, stop=100, num=1000, endpoint=True)     # regularization parameter
     lamb_ber = np.zeros(len(lamb))
 
     sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=0.2)

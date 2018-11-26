@@ -1,6 +1,5 @@
 import numpy as np
 import Constants
-from sklearn import preprocessing
 import errno
 import os
 
@@ -142,32 +141,19 @@ def main():
     convert_time_to_measurement(data_wingra_summer)
     data_wingra_summer = np.delete(data_wingra_summer, obj=Constants.DATE_NO_LOC, axis=Constants.COLUMNS)
 
-    print("Normalizing data sets ... ")
-    data_2014_summer = preprocessing.normalize(data_2014_summer)
-    data_2015_summer = preprocessing.normalize(data_2015_summer)
-    data_2016_summer = preprocessing.normalize(data_2016_summer)
-    data_2017_summer = preprocessing.normalize(data_2017_summer)
-    all_data_summer = preprocessing.normalize(all_data_summer)
+    print("Saving data sets ... ")
+    np.save(dest_path + "data_2014_summer", data_2014_summer.astype(float))
+    np.save(dest_path + "data_2015_summer", data_2015_summer.astype(float))
+    np.save(dest_path + "data_2016_summer", data_2016_summer.astype(float))
+    np.save(dest_path + "data_2017_summer", data_2017_summer.astype(float))
 
-    data_mendota_summer = preprocessing.normalize(data_mendota_summer)
-    data_monona_summer = preprocessing.normalize(data_monona_summer)
-    data_kegonsa_summer = preprocessing.normalize(data_kegonsa_summer)
-    data_waubesa_summer = preprocessing.normalize(data_waubesa_summer)
-    data_wingra_summer = preprocessing.normalize(data_wingra_summer)
+    np.save(dest_path + "all_data_summer", all_data_summer.astype(float))
 
-    print("Saving data set ... ")
-    np.save(dest_path + "data_2014_summer", data_2014_summer)
-    np.save(dest_path + "data_2015_summer", data_2015_summer)
-    np.save(dest_path + "data_2016_summer", data_2016_summer)
-    np.save(dest_path + "data_2017_summer", data_2017_summer)
-
-    np.save(dest_path + "all_data_summer", all_data_summer)
-
-    np.save(dest_path + "data_mendota_summer", data_mendota_summer)
-    np.save(dest_path + "data_monona_summer", data_monona_summer)
-    np.save(dest_path + "data_kegonsa_summer", data_kegonsa_summer)
-    np.save(dest_path + "data_waubesa_summer", data_waubesa_summer)
-    np.save(dest_path + "data_wingra_summer", data_wingra_summer)
+    np.save(dest_path + "data_mendota_summer", data_mendota_summer.astype(float))
+    np.save(dest_path + "data_monona_summer", data_monona_summer.astype(float))
+    np.save(dest_path + "data_kegonsa_summer", data_kegonsa_summer.astype(float))
+    np.save(dest_path + "data_waubesa_summer", data_waubesa_summer.astype(float))
+    np.save(dest_path + "data_wingra_summer", data_wingra_summer.astype(float))
 
 
 # This method takes in CLA data and appends weather data to each day. cla_data is the data from CLA and weather_data
