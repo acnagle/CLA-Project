@@ -51,11 +51,12 @@ def main():
         else:
             idx += 1
 
-    X = preprocessing.scale(X, axis=1)
+    X = preprocessing.scale(X, with_std=False, axis=1)
 
     S = (1/(X.shape[0])) * np.matmul(np.transpose(X), X)
-    W, V = np.linalg.eig(S)
-    Y = np.matmul(X, V[:, 0:3])
+    # W, V = np.linalg.eig(S)
+    U, S, VH = np.linalg.svd(X)
+    Y = np.matmul(X, VH[:, 0:3])
 
     # U, S, VH = np.linalg.svd(X)
     # Pu = np.matmul(U, np.transpose(U))
