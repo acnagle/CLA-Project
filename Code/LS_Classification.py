@@ -2,8 +2,10 @@ import numpy as np
 from sklearn import model_selection
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
+from textwrap import wrap
 import sys
 import Constants
+import os
 
 
 def main():
@@ -13,9 +15,12 @@ def main():
 
     print("Reading in data set ... ")
 
-    data_sets_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
-    X = np.load(data_sets_path + "data_2017_summer.npy")
-    y = np.load(data_sets_path + "data_2017_summer_labels.npy")
+    dest_path = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/least-squares/"
+    data_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
+    data_set = "data_2017_summer"
+
+    X = np.load(data_path + data_set + ".npy")
+    y = np.load(data_path + data_set + "_labels.npy")
 
     X = np.concatenate((X, np.ones(shape=(X.shape[0], 1))), axis=Constants.COLUMNS)
 
@@ -35,7 +40,7 @@ def main():
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
     idx = 0     # index for the data set
-    sample_bias = 0   # adjust the difference in the number of the two types of samples (no_alg and alg)
+    sample_bias = 10   # adjust the difference in the number of the two types of samples (no_alg and alg)
     while num_no_alg != (num_alg - sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
@@ -68,10 +73,15 @@ def main():
     worst_alg_error = [0, 0, 0]
 
     num_splits = 100
-    lamb = np.linspace(start=0, stop=100, num=1000, endpoint=True)     # regularization parameter
-    lamb_ber = np.zeros(len(lamb))
+    test_size = 0.2
+    lamb_start = 0
+    lamb_stop = 10
+    lamb = np.linspace(start=lamb_start, stop=lamb_stop, num=1000, endpoint=True)     # regularization parameter
+    ber_vec = np.zeros(shape=(len(lamb), 1))
+    no_alg_vec = np.zeros(shape=(len(lamb), 1))
+    alg_vec = np.zeros(shape=(len(lamb), 1))
 
-    sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=0.2)
+    sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=test_size)
 
     for i in range(0, len(lamb)):
         for train_idx, test_idx in sss.split(X, y):
@@ -173,7 +183,9 @@ def main():
 
         print("\n\n")
 
-        lamb_ber[i] = cumulative_ber / num_splits
+        ber_vec[i] = cumulative_ber / num_splits
+        no_alg_vec[i] = cumulative_no_alg_error / num_splits
+        alg_vec[i] = cumulative_alg_error / num_splits
 
         cumulative_ber = 0
         cumulative_no_alg_error = 0
@@ -186,11 +198,17 @@ def main():
         worst_alg_error = [0, 0, 0]
 
     plt.figure(1)
-    plt.plot(lamb, lamb_ber, "b")
+    plt.plot(lamb, no_alg_vec, "g", lamb, alg_vec, "r", lamb, ber_vec, "b", linewidth=1)
     plt.ylabel("Balanced Error Rate")
     plt.xlabel("Lambda")
-    plt.title("Balanced Error Rate (BER) vs. Regularization Parameter Lambda, Summer Data 2014 - 2017")
-    plt.savefig("BER vs Lambda.png")
+    plt.legend(("No Algae", "Algae", "BER"))
+    plt.grid(b=True, which="both", axis="both")
+    plt.title("\n".join(wrap("BER vs Lambda (LS), data_set=" + data_set + ", sample_bias=" + str(sample_bias) +
+                             ", lambda=" + str(lamb_start) + ":" + str(lamb_stop) + ", num_splits=" + str(num_splits) +
+                             ", test_size=" + str(test_size), 50)))
+    plt.savefig(os.path.join(dest_path, "BER vs Lambda (LS), data_set=" + data_set + ", sample_bias=" + str(sample_bias)
+                             + ", lambda=" + str(lamb_start) + ":" + str(lamb_stop) + ", num_splits=" + str(num_splits)
+                             + ", test_size=" + str(test_size) + ".png"), bbox_inches="tight")
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This

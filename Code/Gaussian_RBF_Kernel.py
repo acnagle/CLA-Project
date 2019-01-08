@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.model_selection import train_test_split
+from sklearn import model_selection
 from sklearn import svm
 import matplotlib.pyplot as plt
 from textwrap import wrap
@@ -26,8 +26,8 @@ def main():
             if e.errno != errno.EEXIST:
                 raise
 
-    x = np.load(data_path + "data_summary_summer.npy")
-    y = np.load(data_path + "data_summary_summer_labels.npy")
+    x = np.load(data_path + "all_data_summer.npy")
+    y = np.load(data_path + "all_data_summer_labels.npy")
 
     print("Creating training and testing sets ... ")
     num_alg = 0  # count the number of algae instances
@@ -45,7 +45,7 @@ def main():
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
     idx = 0  # index for the data set
-    sample_bias = 0  # adjust the difference in the number of the two types of samples (no_alg and alg)
+    sample_bias = 7  # adjust the difference in the number of the two types of samples (no_alg and alg)
     while num_no_alg != (num_alg - sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
@@ -62,31 +62,39 @@ def main():
         else:
             idx += 1
 
-    x_train, x_test, y_train, y_test = train_test_split(
-        x,
-        y,
-        test_size=0.33,
-        # random_state=123,
-        shuffle=True
-    )
+    # x_train, x_test, y_train, y_test = model_selection.train_test_split(
+    #     x,
+    #     y,
+    #     test_size=0.33,
+    #     # random_state=123,
+    #     shuffle=True
+    # )
+
+    num_splits = 2
+    test_size = 0.2
+    sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=test_size)
+
+    split1, split2 = sss.split(x, y)
+    train_idx = split1[0]
+    test_idx = split1[1]
+    x_train, x_test = x[train_idx], x[test_idx]
+    y_train, y_test = y[train_idx], y[test_idx]
 
     svc = svm.SVC(
-        C=1000,
+        C=100,
         kernel="rbf",
-        gamma="auto",
-        coef0=0,
+        gamma=1,
         probability=False,
         shrinking=True,
         tol=0.0001,
         verbose=False,
         max_iter=-1,
-        decision_function_shape="ovo"
     )
 
     svc.fit(x_train, y_train)
-    y_pred = svc.predict(x_test)
+    y_pred = svc.predict(x_test)   # change arg back to x_test
 
-    ber, no_alg_error, alg_error, mat_conf = calculate_error(y_pred, y_test)
+    ber, no_alg_error, alg_error, mat_conf = calculate_error(y_pred, y_test)    # change 2nd arg to y_test
 
     print("\n~~~~~~~~~~~~~~~~~~~~~~ Results ~~~~~~~~~~~~~~~~~~~~~~\n")
     print("BER:", ber)
@@ -120,6 +128,8 @@ def calculate_error(pred_labels, target_labels):
 
     if len(pred_labels) != len(target_labels):
         print("Predicted and target label arrays are not the same length!")
+        print("Predicted label array length:", str(pred_labels.shape))
+        print("Target label array length:", str(target_labels.shape))
         sys.exit()
 
     # no_alg = 0   # number of 0s (no algae) in target_labels

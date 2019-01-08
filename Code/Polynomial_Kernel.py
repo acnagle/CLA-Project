@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn import model_selection
 from sklearn import svm
+from sklearn import preprocessing
 import matplotlib.pyplot as plt
 from textwrap import wrap
 from mpl_toolkits.mplot3d import Axes3D
@@ -63,6 +64,8 @@ def main():
                 idx += 1
         else:
             idx += 1
+
+    X = preprocessing.scale(X, axis=1)
 
     print("Performing classification with polynomial kernel ... ")
     cumulative_ber = 0

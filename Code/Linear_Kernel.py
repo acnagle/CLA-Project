@@ -1,5 +1,4 @@
 import numpy as np
-from sklearn.model_selection import train_test_split
 from sklearn import svm
 from sklearn import model_selection
 from sklearn import preprocessing
@@ -28,8 +27,9 @@ def main():
             if e.errno != errno.EEXIST:
                 raise
 
-    x = np.load(data_path + "data_2017_summer.npy")
-    y = np.load(data_path + "data_2017_summer_labels.npy")
+    data_set = "data_2017_summer"
+    x = np.load(data_path + data_set + ".npy")
+    y = np.load(data_path + data_set + "_labels.npy")
 
     print("Creating training and testing sets ... ")
     num_alg = 0  # count the number of algae instances
@@ -47,7 +47,7 @@ def main():
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
     idx = 0  # index for the data set
-    sample_bias = 10  # adjust the difference in the number of the two types of samples (no_alg and alg)
+    sample_bias = 14  # adjust the difference in the number of the two types of samples (no_alg and alg)
     while num_no_alg != (num_alg - sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
@@ -64,20 +64,16 @@ def main():
         else:
             idx += 1
 
-    # x_train, x_test, y_train, y_test = train_test_split(
-    #     x,
-    #     y,
-    #     test_size=0.33,
-    #     # random_state=123,
-    #     shuffle=True
-    # )
+    x = preprocessing.scale(x, axis=1)
 
-    x = preprocessing.scale(x, with_std=False, axis=1)
+    num_splits = 20
+    test_size = 0.2
+    sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=test_size)
 
-    num_splits = 10
-    sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=0.2)
-
-    c = np.linspace(start=1, stop=2000, num=2000, endpoint=True)
+    c_start = 1
+    c_stop = 2000
+    num_samples = 2000
+    c = np.linspace(start=c_start, stop=c_stop, num=num_samples, endpoint=True)
     ber_vec = np.zeros(shape=(len(c), 1))
     no_alg_vec = np.zeros(shape=(len(c), 1))
     alg_vec = np.zeros(shape=(len(c), 1))
@@ -88,15 +84,15 @@ def main():
             y_train, y_test = y[train_idx], y[test_idx]
 
             svc = svm.LinearSVC(
-                # penalty="l2",           # Experiment
-                # loss="hinge",           # Experiment
+                # penalty="l2",
+                # loss="hinge",
                 dual=False,
                 tol=0.0001,
                 C=c[i],
-                fit_intercept=True,     # Experiment
+                fit_intercept=True,
                 intercept_scaling=1,
                 verbose=False,
-                max_iter=100           # Experiment
+                max_iter=100
             )
 
             svc.fit(x_train, y_train)
@@ -116,7 +112,7 @@ def main():
         print("BER:", ber_vec[i])
         print("No Algae Error Rate:", no_alg_vec[i])
         print("Algae Error Rate:", alg_vec[i])
-        print("Confusion Matrix:")
+        # print("Confusion Matrix:")
         # print(mat_conf)
         print()
 
@@ -125,8 +121,13 @@ def main():
     plt.ylabel("Error Rate")
     plt.xlabel("C")
     plt.legend(("No Algae", "Algae", "BER"))
-    plt.title("\n".join(wrap("Error Rates vs. C (Linear SVM)", 60)))
-    plt.savefig(os.path.join(dest_path, "Error Rates vs. C (Linear SVM).png"))
+    plt.grid(b=True, which="both", axis="both")
+    plt.title("\n".join(wrap("Error Rates vs. C (Linear SVM), data_set=" + data_set + ", sample_bias=" +
+                             str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) + ", num_splits=" +
+                             str(num_splits) + ", test_size=" + str(test_size), 50)))
+    plt.savefig(os.path.join(dest_path, "Error Rates vs. C (Linear SVM), data_set=" + data_set + ", sample_bias=" +
+                             str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) + ", num_splits=" +
+                             str(num_splits) + ", test_size=" + str(test_size) + ".png"), bbox_inches="tight")
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
