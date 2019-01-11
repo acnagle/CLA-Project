@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn import svm
+from sklearn.linear_model import LogisticRegression
 from sklearn import model_selection
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
@@ -13,10 +13,10 @@ import sys
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
-    print("\n\t##### EXECUTING LINEAR_KERNEL.PY #####\n")
+    print("\n\t##### EXECUTING LOGISTIC_REGRESSION.PY #####\n")
 
     print("Reading in data set ...")
-    dest_path = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/kernels/"
+    dest_path = "/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/logistic-regression/"
     data_path = "/Users/Alliot/Documents/CLA-Project/Data/data-sets/"
 
     # if dest_path does not exist, create it
@@ -64,15 +64,15 @@ def main():
         else:
             idx += 1
 
-    x = preprocessing.scale(x, axis=1)
+    x = preprocessing.scale(x, axis=1)  # standardize data
 
     num_splits = 20
     test_size = 0.2
     sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=test_size)
 
     c_start = 1
-    c_stop = 2000
-    num_samples = 2000
+    c_stop = 5000
+    num_samples = 500
     c = np.linspace(start=c_start, stop=c_stop, num=num_samples, endpoint=True)
     ber_vec = np.zeros(shape=(len(c), 1))
     no_alg_vec = np.zeros(shape=(len(c), 1))
@@ -83,22 +83,24 @@ def main():
             x_train, x_test = x[train_idx], x[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
 
-            svc = svm.LinearSVC(
-                # penalty="l2",
-                # loss="hinge",
+            log_regress = LogisticRegression(
+                penalty="l2",
                 dual=False,
                 tol=0.0001,
                 C=c[i],
                 fit_intercept=True,
                 intercept_scaling=1,
-                verbose=False,
-                max_iter=100
+                random_state=None,
+                solver="liblinear",
+                max_iter=100,
+                verbose=0,
+                warm_start=False
             )
 
-            svc.fit(x_train, y_train)
-            y_pred = svc.predict(x_test)
+            log_regress.fit(x_train, y_train)
+            y_pred = log_regress.predict(x_test)    #x_test
 
-            ber, no_alg_error, alg_error, mat_conf = calculate_error(y_pred, y_test)
+            ber, no_alg_error, alg_error, mat_conf = calculate_error(y_pred, y_test)    #y_test
 
             ber_vec[i] += ber
             no_alg_vec[i] += no_alg_error
@@ -114,7 +116,6 @@ def main():
         print("Algae Error Rate:", alg_vec[i])
         # print("Confusion Matrix:")
         # print(mat_conf)
-        print(svc.coef_)
 
     plt.figure()
     plt.plot(c, no_alg_vec, "g", c, alg_vec, "r", c, ber_vec, "b", linewidth=1)
@@ -122,12 +123,12 @@ def main():
     plt.xlabel("C")
     plt.legend(("No Algae", "Algae", "BER"))
     plt.grid(b=True, which="both", axis="both")
-    plt.title("\n".join(wrap("Error Rates vs. C (Linear SVM), data_set=" + data_set + ", sample_bias=" +
+    plt.title("\n".join(wrap("Error Rates vs. C (Logistic Regression), data_set=" + data_set + ", sample_bias=" +
                              str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) + ", num_splits=" +
                              str(num_splits) + ", test_size=" + str(test_size), 50)))
-    plt.savefig(os.path.join(dest_path, "Error Rates vs. C (Linear SVM), data_set=" + data_set + ", sample_bias=" +
+    plt.savefig(os.path.join(dest_path, "Error Rates vs. C (Logistic Regression), data_set=" + data_set + ", sample_bias=" +
                              str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) + ", num_splits=" +
-                             str(num_splits) + ", test_size=" + str(test_size) + ", training.png"), bbox_inches="tight")
+                             str(num_splits) + ", test_size=" + str(test_size) + ".png"), bbox_inches="tight")
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This

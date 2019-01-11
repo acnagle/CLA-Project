@@ -1,5 +1,5 @@
 % directory = '/Users/Alliot/documents/cla-project/data/all-data-no-na/kernels/poly/submit/';
-directory = '/Users/Alliot/documents/cla-project/data/all-data-no-na/kernels/rbf/submit/';
+directory = '/Users/Alliot/documents/cla-project/data/all-data-no-na/kernels/rbf/previous5/';
 % directory = '/Users/Alliot/documents/cla-project/data/all-data-no-na/kernels/sig/submit/';
 
 coef_name = 'rbf-kernel-coef.csv';
