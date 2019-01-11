@@ -71,7 +71,7 @@ def main():
     sss = model_selection.StratifiedShuffleSplit(n_splits=num_splits, test_size=test_size)
 
     c_start = 1
-    c_stop = 5000
+    c_stop = 2000
     num_samples = 500
     c = np.linspace(start=c_start, stop=c_stop, num=num_samples, endpoint=True)
     ber_vec = np.zeros(shape=(len(c), 1))
@@ -123,12 +123,12 @@ def main():
     plt.xlabel("C")
     plt.legend(("No Algae", "Algae", "BER"))
     plt.grid(b=True, which="both", axis="both")
-    plt.title("\n".join(wrap("Error Rates vs. C (Logistic Regression), data_set=" + data_set + ", sample_bias=" +
-                             str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) + ", num_splits=" +
-                             str(num_splits) + ", test_size=" + str(test_size), 50)))
-    plt.savefig(os.path.join(dest_path, "Error Rates vs. C (Logistic Regression), data_set=" + data_set + ", sample_bias=" +
-                             str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) + ", num_splits=" +
-                             str(num_splits) + ", test_size=" + str(test_size) + ".png"), bbox_inches="tight")
+    plt.title("\n".join(wrap("Error Rates vs. C (Logistic Regression), penalty=l2, data_set=" + data_set +
+                             ", sample_bias=" + str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) +
+                             ", num_splits=" + str(num_splits) + ", test_size=" + str(test_size), 50)))
+    plt.savefig(os.path.join(dest_path, "Error Rates vs. C (Logistic Regression), penalty=l2, data_set=" + data_set +
+                             ", sample_bias=" + str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) +
+                             ", num_splits=" + str(num_splits) + ", test_size=" + str(test_size) + ".png"))
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This
