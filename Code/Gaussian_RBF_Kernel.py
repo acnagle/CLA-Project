@@ -174,7 +174,8 @@ def calculate_error(pred_labels, target_labels):
     # Balanced Error Rate (BER) = (b / (a + b) + c / (c + d)) / 2
     # error per label = each of the terms in the numerator of BER. ex: b / (a + b)
 
-    ber = (mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1]) + mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])) / 2
+    ber = (mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1]) +
+           mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])) / 2
 
     no_alg_error = mat_conf[0, 1] / (mat_conf[0, 0] + mat_conf[0, 1])
     alg_error = mat_conf[1, 0] / (mat_conf[1, 1] + mat_conf[1, 0])

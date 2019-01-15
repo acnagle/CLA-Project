@@ -40,12 +40,16 @@ def main():
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
     idx = 0     # index for the data set
+    test = 0
     sample_bias = 10   # adjust the difference in the number of the two types of samples (no_alg and alg)
     while num_no_alg != (num_alg - sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
         if idx == (len(y) - 1):
             idx = 0
+
+        print(test)
+        test += 1
 
         if y[idx] == -1:
             if np.random.rand() >= 0.5:     # remove this sample with some probability
