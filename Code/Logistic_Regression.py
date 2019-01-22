@@ -98,9 +98,9 @@ def main():
             )
 
             log_regress.fit(x_train, y_train)
-            y_pred = log_regress.predict(x_test)    #x_test
+            y_pred = log_regress.predict(x_train)    #x_test
 
-            ber, no_alg_error, alg_error, mat_conf = calculate_error(y_pred, y_test)    #y_test
+            ber, no_alg_error, alg_error, mat_conf = calculate_error(y_pred, y_train)    #y_test
 
             ber_vec[i] += ber
             no_alg_vec[i] += no_alg_error
@@ -125,10 +125,10 @@ def main():
     plt.grid(b=True, which="both", axis="both")
     plt.title("\n".join(wrap("Error Rates vs. C (Logistic Regression), penalty=l2, data_set=" + data_set +
                              ", sample_bias=" + str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) +
-                             ", num_splits=" + str(num_splits) + ", test_size=" + str(test_size), 50)))
+                             ", num_splits=" + str(num_splits) + ", test_size=" + str(test_size) + ", train", 50)))
     plt.savefig(os.path.join(dest_path, "Error Rates vs. C (Logistic Regression), penalty=l2, data_set=" + data_set +
                              ", sample_bias=" + str(sample_bias) + ", C=" + str(c_start) + ":" + str(c_stop) +
-                             ", num_splits=" + str(num_splits) + ", test_size=" + str(test_size) + ".png"))
+                             ", num_splits=" + str(num_splits) + ", test_size=" + str(test_size) + ", train" + ".png"))
 
 
 # This method calculates the Balanced Error Rate (BER), and the error rates for no algae and algae prediction. This

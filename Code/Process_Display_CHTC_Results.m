@@ -1,10 +1,12 @@
 %% RBF Kernel
 
-directory = '/Users/Alliot/documents/cla-project/data/all-data-no-na/kernels/rbf/testing,c=1.4.250,gamma=1.4.251/';
+% directory = '/Users/Alliot/documents/cla-project/data/all-data-no-na/kernels/rbf/testing,c=1.4.250,gamma=1.4.251/';
+directory = '/Users/Alliot/Documents/CLA-Project/Data/all-data-no-na/kernels/rbf/testing,c=1.1.250,gamma=1.1.251/';
+
 c_name = 'rbf-kernel-c.csv';
 
-spacing = 4;
-stopping_point = 1000;
+spacing = 1;
+stopping_point = 250;
 
 ber_files = dir(strcat(directory, '*.0.csv'));
 c = csvread(strcat(directory, c_name));
@@ -18,7 +20,7 @@ for i=1:length(ber_files)
 end
 
 figure
-s = surf(X);
+s = surf(X(1:249, :));
 title('BER as a function of gamma and C')
 xlabel('gamma')
 ylabel('C')

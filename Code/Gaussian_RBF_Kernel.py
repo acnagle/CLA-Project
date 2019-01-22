@@ -81,9 +81,9 @@ def main():
     y_train, y_test = y[train_idx], y[test_idx]
 
     svc = svm.SVC(
-        C=100,
+        C=1,
         kernel="rbf",
-        gamma=1,
+        gamma="auto",
         probability=False,
         shrinking=True,
         tol=0.0001,
