@@ -22,8 +22,6 @@ def main():
     X = np.load(data_path + data_set + ".npy")
     y = np.load(data_path + data_set + "_labels.npy")
 
-    X = np.concatenate((X, np.ones(shape=(X.shape[0], 1))), axis=Constants.COLUMNS)
-
     print("Creating training and testing sets ... ")
     num_alg = 0     # count the number of algae instances
     num_no_alg = 0  # count the number of no algae instances
@@ -39,31 +37,51 @@ def main():
 
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
-    idx = 0     # index for the data set
-    test = 0
-    sample_bias = 10   # adjust the difference in the number of the two types of samples (no_alg and alg)
-    while num_no_alg != (num_alg - sample_bias):
+    # idx = 0     # index for the data set
+    # test = 0
+    # sample_bias = 10   # adjust the difference in the number of the two types of samples (no_alg and alg)
+    # while num_no_alg != (num_alg - sample_bias):
+    #     # circle through the data sets until the difference of num_no_alg and num_alg equals
+    #     # the value specified by sample_bias
+    #     if idx == (len(y) - 1):
+    #         idx = 0
+    #
+    #     print(test)
+    #     test += 1
+    #
+    #     if y[idx] == -1:
+    #         if np.random.rand() >= 0.5:     # remove this sample with some probability
+    #             y = np.delete(y, obj=idx)
+    #             X = np.delete(X, obj=idx, axis=Constants.ROWS)
+    #             num_no_alg -= 1
+    #         else:
+    #             idx += 1
+    #     else:
+    #         idx += 1
+
+    # oversample the data set by randomly adding occurences of algae until the difference between the number of algae
+    # samples and no algae samples equals sample_bias (defined below)
+    idx = 0
+    sample_bias = 0
+    while num_alg != (num_no_alg + sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
         if idx == (len(y) - 1):
             idx = 0
 
-        print(test)
-        test += 1
-
-        if y[idx] == -1:
-            if np.random.rand() >= 0.5:     # remove this sample with some probability
-                y = np.delete(y, obj=idx)
-                X = np.delete(X, obj=idx, axis=Constants.ROWS)
-                num_no_alg -= 1
+        if y[idx] == 1:
+            if np.random.rand() >= 0.5:  # remove this sample with some probability
+                y = np.append(y, y[idx])
+                X = np.append(X, np.reshape(X[idx, :], newshape=(1, Constants.NUM_FEATURES)), axis=Constants.ROWS)
+                num_alg += 1
             else:
                 idx += 1
         else:
             idx += 1
 
-    print("Computing LS averages ... ")
-    X = preprocessing.scale(X, axis=1)  # standardize data
+    X = np.concatenate((X, np.ones(shape=(X.shape[0], 1))), axis=Constants.COLUMNS)     # append ones
 
+    print("Computing LS averages ... ")
     cumulative_ber = 0
     cumulative_no_alg_error = 0
     cumulative_alg_error = 0
@@ -80,7 +98,8 @@ def main():
     test_size = 0.2
     lamb_start = 0
     lamb_stop = 10
-    lamb = np.linspace(start=lamb_start, stop=lamb_stop, num=1000, endpoint=True)     # regularization parameter
+    num_samples = 100
+    lamb = np.linspace(start=lamb_start, stop=lamb_stop, num=num_samples, endpoint=True)     # regularization parameter
     ber_vec = np.zeros(shape=(len(lamb), 1))
     no_alg_vec = np.zeros(shape=(len(lamb), 1))
     alg_vec = np.zeros(shape=(len(lamb), 1))
@@ -91,6 +110,9 @@ def main():
         for train_idx, test_idx in sss.split(X, y):
             X_train, X_test = X[train_idx], X[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
+
+            X_train = preprocessing.scale(X_train, axis=1)
+            X_test = preprocessing.scale(X_test, axis=1)
 
             # these first four steps are intermediary before computing the weight vector w for LS
             a = np.transpose(X_train)

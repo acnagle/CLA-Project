@@ -15,6 +15,8 @@ FIRST_ROW = 1   # row number in which the data in the matrices becomes quantitat
 
 STR_LENGTH = 22     # STR_LENGTH represents the maximum number of characters in a string for the arrays I use
 
+NUM_FEATURES = 17
+
 # Indices for each measurement in the matrices
 ### THESE ARE OLD
 # LOCATION = 0

@@ -46,25 +46,43 @@ def main():
 
     # shrink the data set by randomly removing occurences of no algae until the number of no algae samples equals the
     # number of algae samples
-    idx = 0  # index for the data set
-    sample_bias = 14  # adjust the difference in the number of the two types of samples (no_alg and alg)
-    while num_no_alg != (num_alg - sample_bias):
+    # idx = 0  # index for the data set
+    # sample_bias = 14  # adjust the difference in the number of the two types of samples (no_alg and alg)
+    # while num_no_alg != (num_alg - sample_bias):
+    #     # circle through the data sets until the difference of num_no_alg and num_alg equals
+    #     # the value specified by sample_bias
+    #     if idx == (len(y) - 1):
+    #         idx = 0
+    #
+    #     if y[idx] == -1:
+    #         if np.random.rand() >= 0.5:  # remove this sample with some probability
+    #             y = np.delete(y, obj=idx)
+    #             x = np.delete(x, obj=idx, axis=Constants.ROWS)
+    #             num_no_alg -= 1
+    #         else:
+    #             idx += 1
+    #     else:
+    #         idx += 1
+
+    # oversample the data set by randomly adding occurences of algae until the difference between the number of algae
+    # samples and no algae samples equals sample_bias (defined below)
+    idx = 0
+    sample_bias = 0
+    while num_alg != (num_no_alg + sample_bias):
         # circle through the data sets until the difference of num_no_alg and num_alg equals
         # the value specified by sample_bias
         if idx == (len(y) - 1):
             idx = 0
 
-        if y[idx] == -1:
+        if y[idx] == 1:
             if np.random.rand() >= 0.5:  # remove this sample with some probability
-                y = np.delete(y, obj=idx)
-                x = np.delete(x, obj=idx, axis=Constants.ROWS)
-                num_no_alg -= 1
+                y = np.append(y, y[idx])
+                x = np.append(x, np.reshape(x[idx, :], newshape=(1, Constants.NUM_FEATURES)), axis=Constants.ROWS)
+                num_alg += 1
             else:
                 idx += 1
         else:
             idx += 1
-
-    x = preprocessing.scale(x, axis=1)
 
     num_splits = 20
     test_size = 0.2
@@ -72,7 +90,7 @@ def main():
 
     c_start = 1
     c_stop = 2000
-    num_samples = 2000
+    num_samples = 100
     c = np.linspace(start=c_start, stop=c_stop, num=num_samples, endpoint=True)
     ber_vec = np.zeros(shape=(len(c), 1))
     no_alg_vec = np.zeros(shape=(len(c), 1))
@@ -82,6 +100,9 @@ def main():
         for train_idx, test_idx in sss.split(x, y):
             x_train, x_test = x[train_idx], x[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
+
+            x_train = preprocessing.scale(x_train, axis=1)
+            x_test = preprocessing.scale(x_test, axis=1)
 
             svc = svm.LinearSVC(
                 # penalty="l2",
