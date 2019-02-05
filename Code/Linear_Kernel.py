@@ -75,7 +75,7 @@ def main():
             idx = 0
 
         if y[idx] == 1:
-            if np.random.rand() >= 0.5:  # remove this sample with some probability
+            if np.random.rand() >= 0.5:  # add this sample with some probability
                 y = np.append(y, y[idx])
                 x = np.append(x, np.reshape(x[idx, :], newshape=(1, Constants.NUM_FEATURES)), axis=Constants.ROWS)
                 num_alg += 1
