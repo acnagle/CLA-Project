@@ -5,6 +5,7 @@ import numpy as np
 # import os
 import sys
 
+
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
 
@@ -43,7 +44,7 @@ def main():
             format_data = np.vstack((format_data, line))
 
     format_data = np.delete(format_data, obj=0, axis=0)
-    np.save('hourly_weather_data.npy', format_data)
+    np.save('../Data/hourly-data-sets/hourly_weather_data.npy', format_data)
 
 
-if __name__ == "__main__":main()
+if __name__ == "__main__": main()

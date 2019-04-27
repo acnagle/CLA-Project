@@ -25,7 +25,7 @@ def main():
         sys.exit(0)
 
     # get initial index of weather data for this data set
-    year = cla_data[0, 1].split('/')[2]
+    year = cla_data[0, 0].split('/')[2]
 
     for i in range(weather_data.shape[0]):
         if weather_data[i, 0].split(' ')[0].split('/')[2] == year:
@@ -38,7 +38,7 @@ def main():
     summer_labels = np.array([])
 
     for i in range(cla_data.shape[0]-1, 0, -1):
-        cla_month = int(cla_data[i, 1].split('/')[0])
+        cla_month = int(cla_data[i, 0].split('/')[0])
 
         if (cla_month == 6) or (cla_month == 7) or (cla_month == 8):
             if summer_cla_data.shape[0] == 0:
@@ -53,7 +53,7 @@ def main():
     date_to_num_arr = np.zeros(shape=(summer_cla_data.shape[0]))
 
     for i in range(summer_cla_data.shape[0]):
-        date = summer_cla_data[i, 1].split('/')
+        date = summer_cla_data[i, 0].split('/')
         num = float(date[0]) + (float(date[1]) / 100)
         date_to_num_arr[i] = num
 
@@ -65,71 +65,55 @@ def main():
 
     print('Appending weather data ... ')
     # append weather data to cla data
-    data = np.empty(shape=(summer_cla_data.shape[0], summer_cla_data.shape[1] + weather_data.shape[1]-6), dtype=(str, 100))
-    data[:, 0] = summer_cla_data[:, 2]
-    data[:, 1:5] = summer_cla_data[:, 5:]
+    data = np.empty(shape=(summer_cla_data.shape[0], summer_cla_data.shape[1] + weather_data.shape[1]-3), dtype=(str, 100))
+    data[:, :5] = summer_cla_data[:, 1:]
+    # data[:, 1:5] = summer_cla_data[:, 5:]
 
-    num_hourly_samples_per_day = 24
     cla_idx = 0
 
     while cla_idx != (summer_cla_data.shape[0]-1):
         weather_date = weather_data[weather_idx, 0].split(' ')[0].split('/')
         weather_date_to_num = float(weather_date[0]) + (float(weather_date[1]) / 100)
 
-        if year != weather_date[2]:
-            weather_idx += num_hourly_samples_per_day
+        if year < weather_date[2]:
+            weather_idx += 1
+        elif year > weather_date[2]:
+            break
         else:
             if date_to_num_arr[cla_idx] != weather_date_to_num:
-                weather_idx += num_hourly_samples_per_day
+                weather_idx += 1
             else:
-                cla_time = summer_cla_data[cla_idx, 2].split(':')
-                cla_time_to_num = float(cla_time[0]) + (float(cla_time[1]) / 100)
+                cla_time_to_num = summer_cla_data[cla_idx, 1]
 
                 weather_idx_day = weather_idx
 
                 weather_time = weather_data[weather_idx_day, 0].split(' ')[1].split(':')
-                weather_time_to_num = float(weather_time[0]) + (float(weather_time[1]) / 100)
-
-                # print(date_to_num_arr[cla_idx], cla_time_to_num, weather_time_to_num)
+                weather_time_to_num = float(weather_time[0]) + (float(weather_time[1]) / 60)
 
                 while cla_time_to_num > weather_time_to_num:
                     weather_idx_day += 1
 
                     weather_time = weather_data[weather_idx_day, 0].split(' ')[1].split(':')
-                    weather_time_to_num = float(weather_time[0]) + (float(weather_time[1]) / 100)
-
-                # weather_time = weather_data[weather_idx_day-1, 0].split(' ')[1].split(':')
-                # weather_time_to_num = float(weather_time[0]) + (float(weather_time[1]) / 100)
-
-                # print(date_to_num_arr[cla_idx], weather_date_to_num, cla_time_to_num, weather_time_to_num)
+                    weather_time_to_num = float(weather_time[0]) + (float(weather_time[1]) / 60)
 
                 weather_idx_day -= 1
-                print(str(weather_data[weather_idx_day, -2]))
-                if 's' in str(weather_data[weather_idx_day, -1]):
-                    print('found s!!!!!')
 
                 data[cla_idx, 5:] = weather_data[weather_idx_day, 2:]
 
                 if cla_idx < (cla_data.shape[0]-1):
-                    next_cla_date = summer_cla_data[cla_idx+1, 1].split('/')
+                    next_cla_date = summer_cla_data[cla_idx+1, 0].split('/')
                     next_cla_date_to_num = float(next_cla_date[0]) + (float(next_cla_date[1]) / 100)
 
                     if next_cla_date_to_num != weather_date_to_num:
-                        weather_idx += num_hourly_samples_per_day
+                        weather_idx += 1
 
                 cla_idx += 1
 
+        # print('cla date and time: %0.4f, %0.4g' % (date_to_num_arr[cla_idx], cla_time_to_num))
+        # print('weather date and time: %0.4f, %0.4g' % (weather_date_to_num, weather_time_to_num))
+
     data = np.delete(data, obj=-1, axis=0)
     summer_labels = np.delete(summer_labels, obj=-1)
-
-    print('Converting time to float values ... ')
-    # convert time to float value
-    for i in range(0, data.shape[0]):
-        date_str = data[i, 0]
-        time = date_str.split(":")
-        time_meas = float(time[0]) + (float(time[1]) / 60)
-
-        data[i, 0] = str(time_meas)
 
     print('Saving new data set ... ')
     try:
@@ -142,8 +126,8 @@ def main():
     filename_data = 'hourly_' + cla_path.split('/')[-1]
     filename_labels = 'hourly_' + label_path.split('/')[-1]
 
-    # np.save('../Data/hourly-data-sets/' + filename_data, data)
-    # np.save('../Data/hourly-data-sets/' + filename_labels, summer_labels)
+    np.save('../Data/hourly-data-sets/' + filename_data, data)
+    np.save('../Data/hourly-data-sets/' + filename_labels, summer_labels)
 
 
 if __name__ == "__main__": main()
