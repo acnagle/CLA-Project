@@ -13,15 +13,17 @@ def main():
     try:
         cla_path = str(sys.argv[1])
         label_path = str(sys.argv[2])
-        weather_path = str(sys.argv[3])
+        loc_path = str(sys.argv[3])
+        weather_path = str(sys.argv[4])
 
         cla_data = np.load(cla_path)
         labels = np.load(label_path)
+        loc = np.load(loc_path)
         weather_data = np.load(weather_path)
     except (ValueError, IndexError, FileNotFoundError):
         print('Arguments must be specified as follows:')
         print('python3 format_hourly_data.py <path-to-cla-data (.npy)> <path-to-cla-data-labels (.npy)> '
-              '<path-to-weather-data (.npy)>')
+              '<path-to-locations (.npy)> <path-to-weather-data (.npy)>')
         sys.exit(0)
 
     # get initial index of weather data for this data set
@@ -36,6 +38,7 @@ def main():
     # remove non-summer months. all data points must be in June, July, August
     summer_cla_data = np.array([])
     summer_labels = np.array([])
+    summer_loc = np.array([])
 
     for i in range(cla_data.shape[0]-1, 0, -1):
         cla_month = int(cla_data[i, 0].split('/')[0])
@@ -47,6 +50,7 @@ def main():
                 summer_cla_data = np.vstack((summer_cla_data, cla_data[i, :]))
 
             summer_labels = np.append(summer_labels, labels[i])
+            summer_loc = np.append(summer_loc, loc[i])
 
     print('Sorting CLA data ... ')
     # sort cla_data by dates
@@ -62,12 +66,12 @@ def main():
     date_to_num_arr = date_to_num_arr[sorted_idx]
     summer_cla_data = summer_cla_data[sorted_idx, :]
     summer_labels = summer_labels[sorted_idx]
+    summer_loc = summer_loc[sorted_idx]
 
     print('Appending weather data ... ')
     # append weather data to cla data
     data = np.empty(shape=(summer_cla_data.shape[0], summer_cla_data.shape[1] + weather_data.shape[1]-3), dtype=(str, 100))
     data[:, :5] = summer_cla_data[:, 1:]
-    # data[:, 1:5] = summer_cla_data[:, 5:]
 
     cla_idx = 0
 
@@ -109,11 +113,9 @@ def main():
 
                 cla_idx += 1
 
-        # print('cla date and time: %0.4f, %0.4g' % (date_to_num_arr[cla_idx], cla_time_to_num))
-        # print('weather date and time: %0.4f, %0.4g' % (weather_date_to_num, weather_time_to_num))
-
     data = np.delete(data, obj=-1, axis=0)
     summer_labels = np.delete(summer_labels, obj=-1)
+    summer_loc = np.delete(summer_loc, obj=-1)
 
     print('Saving new data set ... ')
     try:
@@ -125,9 +127,11 @@ def main():
 
     filename_data = 'hourly_' + cla_path.split('/')[-1]
     filename_labels = 'hourly_' + label_path.split('/')[-1]
+    filename_loc = 'hourly_' + loc_path.split('/')[-1]
 
     np.save('../Data/hourly-data-sets/' + filename_data, data)
     np.save('../Data/hourly-data-sets/' + filename_labels, summer_labels)
+    np.save('../Data/hourly-data-sets/' + filename_loc, summer_loc)
 
 
 if __name__ == "__main__": main()
