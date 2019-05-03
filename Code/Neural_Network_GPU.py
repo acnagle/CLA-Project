@@ -219,7 +219,8 @@ def main():
         #     predictions = torch.flatten(predictions)
         labels = labels.type(torch.long)
 
-        predictions = torch.argmax(predictions, dim=1)  # convert output of network to labels for accuracy calculation
+        conf, predictions = torch.max(predictions, dim=1)
+        #predictions = torch.argmax(predictions, dim=1)  # convert output of network to labels for accuracy calculation
 
         error = 1 - (torch.sum(predictions == labels).item() / labels.size()[0])
 
@@ -233,7 +234,6 @@ def main():
     sort_idx = np.argsort(-conf, kind='mergesort')
     conf = conf[sort_idx]
     labels = labels[sort_idx]
-
     # model_path = dest_path + "torch_model_4_4_19_lr=" + str(learning_rate) + "_hourly_dict.pt"
 
     # plot roc curve
