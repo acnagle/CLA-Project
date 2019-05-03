@@ -17,6 +17,7 @@ import copy
 class CLANet(nn.Module):
     def __init__(self, input_size, hidden_size, output_size):
         super(CLANet, self).__init__()
+        #print(input_size)
         self.fc1 = nn.Linear(input_size, hidden_size)
         self.relu1 = nn.ReLU()
         self.fc2 = nn.Linear(hidden_size, hidden_size)
@@ -43,6 +44,9 @@ class CLANet(nn.Module):
         self.sig1 = nn.Softmax(dim=1)
 
     def forward(self, x):
+        #print(x.size())
+        #x = x.view(-1, x.size(1))
+        #print(x.size())
         out = self.fc1(x)
         out = self.relu1(out)
         out = self.fc2(out)
@@ -72,6 +76,7 @@ class CLANet(nn.Module):
 
 def main():
     np.set_printoptions(threshold=np.inf)  # prints a full matrix rather than an abbreviated matrix
+    print(torch.cuda.get_device_name(0))
 
     # define data and destination paths
     data_path_hourly = 'data/'
@@ -108,9 +113,9 @@ def main():
     sample_bias = 0  # adjust the difference in the number of the two types of samples (no algae vs algae)
     test_size = 0.2
     batch_size = 16  # batch size for the DataLoaders
-    num_features = X.shape[0]
+    num_features = X.shape[1]
     input_size = num_features  # size of input layer
-    multiplier = 100  # multiplied by num_features to determine the size of each hidden layer
+    multiplier = 3  # multiplied by num_features to determine the size of each hidden layer
     hidden_size = multiplier * input_size
     output_size = 2
     learning_rate = 0.001  # learning rate of optimizer
@@ -148,7 +153,7 @@ def main():
     weight_pos = 10
     num_neg = y.tolist().count(1)
     weight_neg = 1
-    weight = torch.tensor([weight_neg, weight_pos]).type(torch.DoubleTensor)
+    weight = torch.tensor([weight_neg, weight_pos]).type(torch.DoubleTensor).cuda()
 
     # define model
     model = CLANet(input_size, hidden_size, output_size)
@@ -157,9 +162,9 @@ def main():
     # optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, nesterov=True, momentum=1, dampening=0)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, betas=(0.9, 0.999), eps=1e-8)
     model.double();  # cast model parameters to double
+    model.cuda()
 
     model.train()  # training mode
-    model.cuda()
     avg_error = 0
     best_avg_error = 1
 
@@ -169,8 +174,8 @@ def main():
         print("Epoch: %d/%d" % (epoch + 1, num_epochs))
 
         for i, (samples, labels) in enumerate(train_loader):
-            samples = Variable(samples)
-            labels = Variable(labels)
+            #samples = Variable(samples)
+            #labels = Variable(labels)
             output = model(samples.cuda())  # forward pass
             #         output = torch.flatten(output)         # resize predicted labels
             labels = labels.type(torch.long)
@@ -208,8 +213,8 @@ def main():
     target = torch.tensor([]).cuda()
 
     for i, (samples, labels) in enumerate(test_loader):
-        samples = Variable(samples)
-        labels = Variable(labels)
+        #samples = Variable(samples)
+        #labels = Variable(labels)
         predictions = best_model(samples.cuda())
         #     predictions = torch.flatten(predictions)
         labels = labels.type(torch.long)
@@ -221,8 +226,8 @@ def main():
         print("Testing set Error: %0.4f" % error)
 
     # convert to numpy arrays
-    conf = conf.detach().numpy()
-    labels = labels.numpy()
+    conf = conf.cpu().detach().numpy()
+    labels = labels.cpu().numpy()
 
     # sort arrays according to the predicted confidence (high confidence to low confidence)
     sort_idx = np.argsort(-conf, kind='mergesort')
