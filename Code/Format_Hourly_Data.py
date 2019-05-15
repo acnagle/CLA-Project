@@ -198,6 +198,8 @@ def main():
     filename_labels = 'hourly_' + label_path.split('/')[-1]
     filename_loc = 'hourly_' + loc_path.split('/')[-1]
 
+    print(data[:, 3].astype(int))
+
     np.save('../Data/hourly-data-sets/' + filename_data, data)
     np.save('../Data/hourly-data-sets/' + filename_labels, summer_labels.astype(int))
     np.save('../Data/hourly-data-sets/' + filename_loc, summer_loc)

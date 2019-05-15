@@ -86,7 +86,7 @@ def main():
     data_set = data_set.astype(float)   # convert data type of data set
     labels = labels.astype(float)       # so that np.isnan(labels[i]) in the code below does not throw an error
 
-    # remove any nans
+    # remove any nans and convert water appearance and wave intensity to binary features
     delete_idx = []
     for i in range(data_set.shape[0]):
         row = data_set[i, :]
