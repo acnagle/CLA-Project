@@ -61,7 +61,7 @@ def main():
         num = float(date[0]) + (float(date[1]) / 100)
         date_to_num_arr[i] = num
 
-    sorted_idx = np.argsort(date_to_num_arr, kind='merge')
+    sorted_idx = np.argsort(date_to_num_arr, kind='mergesort')
 
     date_to_num_arr = date_to_num_arr[sorted_idx]
     summer_cla_data = summer_cla_data[sorted_idx, :]
@@ -117,9 +117,78 @@ def main():
     summer_labels = np.delete(summer_labels, obj=-1)
     summer_loc = np.delete(summer_loc, obj=-1)
 
+    print('Appending additional features ... ')
+    # compute sine and cosine transformation for time
+    float_time = data[:, 0].astype(float)
+    cos_time = np.cos((2 * np.pi * (float_time / 24)))
+    sin_time = np.sin((2 * np.pi * (float_time / 24)))
+    time = np.transpose(np.vstack((cos_time, sin_time)))
+
+    # remove float encoding of time
+    data = np.delete(data, obj=0, axis=1)
+    date_int_encode = np.zeros(shape=(data.shape[0], 1))
+
+    # compute integer encoding of date
+    for i in range(data.shape[0]):
+        # integer encoding of dates as a feature
+        if date[0] == '6':
+            date_int_encode[i] = int(date[1])
+        elif date[0] == '7':
+            date_int_encode[i] = 30 + int(date[1])      # 30 is number of days in June
+        elif date[0] == '8':
+            date_int_encode[i] = 61 + int(date[1])      # 61 is sum of number of days in June and July
+
+    # add sine and cosine transformed time and integer encoding of day to data set
+    data = np.hstack((time, date_int_encode, data))
+
+    # create indicator features for whether there was rain or a bloom one day ago, or within three days or a week ago
+    precip = (data[:, -1].astype(float) > 0).astype(int)   # convert precipitation to boolean values
+    precip_one_day = np.roll(precip, 1)
+    precip_one_day[0] = 0
+    precip_three_day = np.zeros(shape=precip.shape, dtype=int)
+    precip_one_week = np.zeros(shape=precip.shape, dtype=int)
+
+    bloom = (summer_labels.astype(int) > 0).astype(int)
+    bloom_one_day = np.roll(bloom, 1)
+    bloom_one_day[0] = 0
+    bloom_three_day = np.zeros(shape=bloom.shape, dtype=int)
+    bloom_one_week = np.zeros(shape=bloom.shape, dtype=int)
+
+    for i in range(len(precip)):
+        if i == 0:
+            continue
+
+        if i < 3:
+            precip_three_day[i] = np.sum(precip[0:i])
+            precip_one_week[i] = np.sum(precip[0:i])
+
+            bloom_three_day[i] = np.sum(bloom[0:i])
+            bloom_one_week[i] = np.sum(bloom[0:i])
+        else:
+            precip_three_day[i] = np.sum(precip[i-3:i])
+            bloom_three_day[i] = np.sum(bloom[i-3:i])
+
+        if (i >= 3) and (i < 7):
+            precip_one_week[i] = np.sum(precip[0:i])
+            bloom_one_week[i] = np.sum(bloom[0:i])
+        else:
+            precip_one_week[i] = np.sum(precip[i-7:i])
+            bloom_one_week[i] = np.sum(bloom[i-7:i])
+
+    # add new features
+    data = np.hstack((
+        data,
+        np.reshape(precip_one_day, newshape=(precip_one_day.shape[0], 1)),
+        np.reshape(precip_three_day, newshape=(precip_three_day.shape[0], 1)),
+        np.reshape(precip_one_week, newshape=(precip_one_week.shape[0], 1)),
+        np.reshape(bloom_one_day, newshape=(bloom_one_day.shape[0], 1)),
+        np.reshape(bloom_three_day, newshape=(bloom_three_day.shape[0], 1)),
+        np.reshape(bloom_one_week, newshape=(bloom_one_week.shape[0], 1))
+    ))
+
     print('Saving new data set ... ')
     try:
-        data.astype(float)      # convert data type to float
+        data = data.astype(float)      # convert data type to float
     except ValueError:
         for i in range(0, data.shape[0], -1):
             if '' in data[i, :]:
@@ -130,7 +199,7 @@ def main():
     filename_loc = 'hourly_' + loc_path.split('/')[-1]
 
     np.save('../Data/hourly-data-sets/' + filename_data, data)
-    np.save('../Data/hourly-data-sets/' + filename_labels, summer_labels)
+    np.save('../Data/hourly-data-sets/' + filename_labels, summer_labels.astype(int))
     np.save('../Data/hourly-data-sets/' + filename_loc, summer_loc)
 
 
