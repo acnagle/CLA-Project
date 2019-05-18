@@ -116,6 +116,7 @@ def main():
     data = np.delete(data, obj=-1, axis=0)
     summer_labels = np.delete(summer_labels, obj=-1)
     summer_loc = np.delete(summer_loc, obj=-1)
+    dates = np.delete(summer_cla_data[:, 0], obj=-1, axis=0)
 
     print('Appending additional features ... ')
     # compute sine and cosine transformation for time
@@ -130,6 +131,7 @@ def main():
 
     # compute integer encoding of date
     for i in range(data.shape[0]):
+        date = dates[i].split('/')
         # integer encoding of dates as a feature
         if date[0] == '6':
             date_int_encode[i] = int(date[1])
@@ -197,8 +199,6 @@ def main():
     filename_data = 'hourly_' + cla_path.split('/')[-1]
     filename_labels = 'hourly_' + label_path.split('/')[-1]
     filename_loc = 'hourly_' + loc_path.split('/')[-1]
-
-    print(data[:, 3].astype(int))
 
     np.save('../Data/hourly-data-sets/' + filename_data, data)
     np.save('../Data/hourly-data-sets/' + filename_labels, summer_labels.astype(int))
