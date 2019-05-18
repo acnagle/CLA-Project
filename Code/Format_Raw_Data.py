@@ -33,40 +33,53 @@ def main():
         data_set_idx = [8, 9, 10, 11]
         year = '2014'
     elif '2015' in data_set_path:
-        features = [4, 5, 6, 7, 8, 10, 14, 15, 17, 20, 19, 16]
-        data_set_idx = [8, 9, 10, 11]
+        features = [1, 4, 5, 6, 7, 8, 10, 14, 15, 17, 20, 19, 16]
+        data_set_idx = [9, 10, 11, 12]
         year = '2015'
     elif '2016' in data_set_path:
-        features = [4, 5, 6, 7, 8, 10, 14, 15, 17, 20, 19, 16]
-        data_set_idx = [8, 9, 10, 11]
+        features = [1, 4, 5, 6, 7, 8, 10, 14, 15, 17, 20, 19, 16]
+        data_set_idx = [9, 10, 11, 12]
         year = '2016'
     elif '2017' in data_set_path:
-        features = [4, 5, 6, 7, 8, 10, 14, 15, 17, 20, 19, 16]
-        data_set_idx = [8, 9, 10, 11]
+        features = [1, 4, 5, 6, 7, 8, 10, 14, 15, 17, 20, 19, 16]
+        data_set_idx = [9, 10, 11, 12]
         year = '2017'
     elif '2018' in data_set_path:
-        features = [1, 2, 3, 4, 5, 6, 7, 9, 12, 11, 8]
-        data_set_idx = [7, 8, 9, 10]
+        features = [0, 1, 2, 3, 4, 5, 6, 7, 9, 12, 11, 8]
+        data_set_idx = [8, 9, 10, 11]
         year = '2018'
     else:
         print('Provided incorrect year. Must be years 2014-2018')
         sys.exit()
 
     data_set = df.to_numpy()[:, features]    # keep relevant features
-    locations = data_set[:, 0]
-    labels = data_set[:, 3]
+
+    if year == '2014':
+        sites = data_set[:, 0]
+        lakes = data_set[:, 0]
+        date_idx = 6
+        time_idx = 7
+        label_idx = 3
+    else:
+        sites = data_set[:, 0]
+        lakes = data_set[:, 1]
+        date_idx = 7
+        time_idx = 8
+        label_idx = 4
+
+    labels = data_set[:, label_idx]
 
     # get dates and times
     if year == '2018':  # special case for 2018
         times = np.empty(shape=(data_set.shape[0], ), dtype=object)
         dates = np.empty(shape=(data_set.shape[0],), dtype=object)
         for i in range(data_set.shape[0]):
-            date_time = data_set[i, 6].split(' ')
+            date_time = data_set[i, date_idx].split(' ')
             dates[i] = str(date_time[0])
             times[i] = str(date_time[1])
     else:
-        dates = data_set[:, 6]
-        times = data_set[:, 7]
+        dates = data_set[:, date_idx]
+        times = data_set[:, time_idx]
 
     data_set = data_set[:, data_set_idx]  # remove locations, dates, plantDebris, algalBloomsheen, airTemp, batherLoad, algalBloom
 
@@ -79,7 +92,8 @@ def main():
             delete_idx.append(i)
 
     data_set = np.delete(data_set, obj=delete_idx, axis=0)
-    locations = np.delete(locations, obj=delete_idx)
+    sites = np.delete(sites, obj=delete_idx)
+    lakes = np.delete(lakes, obj=delete_idx)
     times = np.delete(times, obj=delete_idx)
     dates = np.delete(dates, obj=delete_idx)
     labels = np.delete(labels, obj=delete_idx)
@@ -103,7 +117,8 @@ def main():
                 data_set[i, 1] = 0
 
     data_set = np.delete(data_set, obj=delete_idx, axis=0)
-    locations = np.delete(locations, obj=delete_idx)
+    sites = np.delete(sites, obj=delete_idx)
+    lakes = np.delete(lakes, obj=delete_idx)
     times = np.delete(times, obj=delete_idx)
     dates = np.delete(dates, obj=delete_idx)
     labels = np.delete(labels, obj=delete_idx)
@@ -117,12 +132,15 @@ def main():
     data_set = np.hstack((dates, data_set))
 
     print('Data set size =', data_set.shape)
-    print('labels size =', labels.shape)
+    print('Labels size =', labels.shape)
+    print('Sites size =', sites.shape)
+    print('Lakes size =', lakes.shape)
 
     print('Saving data ...')
     np.save(dest_path + 'X_' + year, data_set)
-    np.save(dest_path + 'locations_' + year, locations)
     np.save(dest_path + 'y_' + year, labels)
+    np.save(dest_path + 'lakes_' + year, lakes)
+    np.save(dest_path + 'sites_' + year, sites)
 
 
 def convert_time_to_measurement(times):

@@ -13,17 +13,19 @@ def main():
     try:
         cla_path = str(sys.argv[1])
         label_path = str(sys.argv[2])
-        loc_path = str(sys.argv[3])
-        weather_path = str(sys.argv[4])
+        lake_path = str(sys.argv[3])
+        site_path = str(sys.argv[4])
+        weather_path = str(sys.argv[5])
 
         cla_data = np.load(cla_path)
         labels = np.load(label_path)
-        loc = np.load(loc_path)
+        lakes = np.load(lake_path)
+        sites = np.load(site_path)
         weather_data = np.load(weather_path)
     except (ValueError, IndexError, FileNotFoundError):
         print('Arguments must be specified as follows:')
         print('python3 format_hourly_data.py <path-to-cla-data (.npy)> <path-to-cla-data-labels (.npy)> '
-              '<path-to-locations (.npy)> <path-to-weather-data (.npy)>')
+              '<path-to-lakes (.npy)> <path-to-sites (.npy)> <path-to-weather-data (.npy)>')
         sys.exit(0)
 
     # get initial index of weather data for this data set
@@ -38,7 +40,8 @@ def main():
     # remove non-summer months. all data points must be in June, July, August
     summer_cla_data = np.array([])
     summer_labels = np.array([])
-    summer_loc = np.array([])
+    summer_lakes = np.array([])
+    summer_sites = np.array([])
 
     for i in range(cla_data.shape[0]-1, 0, -1):
         cla_month = int(cla_data[i, 0].split('/')[0])
@@ -50,7 +53,8 @@ def main():
                 summer_cla_data = np.vstack((summer_cla_data, cla_data[i, :]))
 
             summer_labels = np.append(summer_labels, labels[i])
-            summer_loc = np.append(summer_loc, loc[i])
+            summer_lakes = np.append(summer_lakes, lakes[i])
+            summer_sites = np.append(summer_sites, sites[i])
 
     print('Sorting CLA data ... ')
     # sort cla_data by dates
@@ -66,7 +70,8 @@ def main():
     date_to_num_arr = date_to_num_arr[sorted_idx]
     summer_cla_data = summer_cla_data[sorted_idx, :]
     summer_labels = summer_labels[sorted_idx]
-    summer_loc = summer_loc[sorted_idx]
+    summer_lakes = summer_lakes[sorted_idx]
+    summer_sites = summer_sites[sorted_idx]
 
     print('Appending weather data ... ')
     # append weather data to cla data
@@ -115,7 +120,8 @@ def main():
 
     data = np.delete(data, obj=-1, axis=0)
     summer_labels = np.delete(summer_labels, obj=-1)
-    summer_loc = np.delete(summer_loc, obj=-1)
+    summer_lakes = np.delete(summer_lakes, obj=-1)
+    summer_sites = np.delete(summer_sites, obj=-1)
     dates = np.delete(summer_cla_data[:, 0], obj=-1, axis=0)
 
     print('Appending additional features ... ')
@@ -198,11 +204,15 @@ def main():
 
     filename_data = 'hourly_' + cla_path.split('/')[-1]
     filename_labels = 'hourly_' + label_path.split('/')[-1]
-    filename_loc = 'hourly_' + loc_path.split('/')[-1]
+    filename_lake = 'hourly_' + lake_path.split('/')[-1]
+    filename_sites = 'hourly_' + site_path.split('/')[-1]
 
     np.save('../Data/hourly-data-sets/' + filename_data, data)
     np.save('../Data/hourly-data-sets/' + filename_labels, summer_labels.astype(int))
-    np.save('../Data/hourly-data-sets/' + filename_loc, summer_loc)
+    np.save('../Data/hourly-data-sets/' + filename_lake, summer_lakes)
+    np.save('../Data/hourly-data-sets/' + filename_sites, summer_sites)
+
+    # print(data.shape, summer_labels.shape, summer_lakes.shape, summer_sites.shape)
 
 
 if __name__ == "__main__": main()
