@@ -1,9 +1,11 @@
 # Directories to ignore
+.idea/
 Data/
 Presentations/
 Papers/
-.idea/
+Resources/
 Code/.idea/
 Code/unused/
 Code/.ipynb_checkpoints/
 Code/__pycache__/
+Mendota/.ipynb_checkpoints/
