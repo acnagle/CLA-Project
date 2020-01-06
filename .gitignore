@@ -2,5 +2,8 @@
 Data/
 Presentations/
 Papers/
-.idea/   # by IntelliJ
+.idea/
+Code/.idea/
 Code/unused/
+Code/.ipynb_checkpoints/
+Code/__pycache__/
