@@ -11,7 +11,6 @@ import random
 import sys
 from PIL import Image
 
-sys.path.append('../Mendota/')
 import resnet
 
 import numpy as np
@@ -28,9 +27,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import confusion_matrix, f1_score
 
-from matplotlib import rcParams
-rcParams['font.family'] = 'sans-serif'
-rcParams['font.sans-serif'] = ['Tahoma']
 import matplotlib.pyplot as plt
 
 from pandas.plotting import register_matplotlib_converters
@@ -38,13 +34,16 @@ register_matplotlib_converters()
 
 import seaborn as sns
 
+import warnings
+warnings.filterwarnings('ignore')
+
 pd.options.mode.chained_assignment = None
 # np.random.seed(0)
 
 
 # ## Read in Data
 
-data = pd.read_json('../Data/data.json')
+data = pd.read_json('data.json')
 
 #with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
 #    display(data[['label', 'algalBloomSheen_one_day', 'algalBloomSheen_three_day', 'algalBloomSheen_one_week']])
@@ -150,12 +149,12 @@ if data_aug:
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
-        transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+        transforms.Normalize([0.485], [0.229]),
     ])
 else:
     trnsfrm = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+        transforms.Normalize([0.485], [0.229]),
     ])
 
 train_set = AlgalBloomDataset(X_train, labels.values[train_idx], trnsfrm)
@@ -163,7 +162,7 @@ train_set = AlgalBloomDataset(X_train, labels.values[train_idx], trnsfrm)
 test_set = AlgalBloomDataset(X_test, labels.values[test_idx], 
     transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+        transforms.Normalize([0.485], [0.229]),
     ])
 )
 
@@ -176,7 +175,8 @@ test_loader = data_utils.DataLoader(test_set, batch_size=len(test_set), shuffle=
 learning_rate = 0.1
 num_epochs = 250
 
-model = resnet.ResNet9()
+model = resnet.ResNet18()
+model.cuda()
 criterion = nn.CrossEntropyLoss()
 opt = optim.SGD(model.parameters(), lr=learning_rate, nesterov=False, momentum=0.9, weight_decay=5e-4)
 scheduler = optim.lr_scheduler.MultiStepLR(opt, milestones=[50, 100, 150, 200], gamma=0.1)
@@ -199,6 +199,7 @@ for epoch in range(num_epochs):
     epoch_f1_arr = []
     
     for samples, target in train_loader:
+        samples, target = samples.cuda(), target.cuda()
         opt.zero_grad()
         output = model(samples)
         loss = criterion(output, target.squeeze(1).long())
@@ -210,7 +211,7 @@ for epoch in range(num_epochs):
         
         epoch_loss_arr.append(loss.item())
         epoch_acc_arr.append(torch.sum(pred == target.squeeze(1).long()).float() / len(target))
-        epoch_f1_arr.append(f1_score(target, pred))
+        epoch_f1_arr.append(f1_score(target.cpu(), pred.cpu()))
     
     epoch_loss = sum(epoch_loss_arr)
     epoch_acc = sum(epoch_acc_arr) / len(epoch_acc_arr)
@@ -262,6 +263,7 @@ plt.savefig('train_f1.png')
 model.eval()    # test model
 
 for samples, target in test_loader:
+    samples, target = samples.cuda(), target.cuda()
     opt.zero_grad()
     output = model(samples)
     loss = criterion(output, target.squeeze(1).long())
@@ -269,8 +271,8 @@ for samples, target in test_loader:
     _, pred = torch.max(output, 1)
     
 acc = torch.sum(pred == target.squeeze(1).long()).float() / len(target)
-f1 = f1_score(target, pred)
-conf_matrix = confusion_matrix(target.numpy(), pred.numpy(), labels=[0, 1])
+f1 = f1_score(target.cpu(), pred.cpu())
+conf_matrix = confusion_matrix(target.cpu().numpy(), pred.cpu().numpy(), labels=[0, 1])
 
 print('\nTest Accuracy: {:0.4f}'.format(acc))
 print('\nF1 Score: {:0.4f}'.format(f1))
