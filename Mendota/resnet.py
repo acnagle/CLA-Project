@@ -69,7 +69,7 @@ class ResNet(nn.Module):
         super(ResNet, self).__init__()
         self.in_planes = 64
 
-        self.conv1 = nn.Conv2d(1, 64, kernel_size=3, stride=1, padding=1, bias=False)
+        self.conv1 = nn.Conv2d(4, 64, kernel_size=3, stride=1, padding=1, bias=False)
         # TODO could make the input image start out with 4 channels, where each channel is the same as the first channel, but rotated by 90, 180, and 270 degrees.
         # TODO Also may want to adjust kernel size to 2.
         
