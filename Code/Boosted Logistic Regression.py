@@ -5,6 +5,7 @@
 
 import copy
 import sys
+import os
 
 import numpy as np
 import pandas as pd
@@ -22,6 +23,8 @@ pd.options.mode.chained_assignment = None
 # np.random.seed(0)
 
 run = sys.argv[1]
+if not os.path.isdir('log-reg-boost/'+run+'/'):
+    os.mkdir('log-reg-boost/'+run+'/')
 
 # ## Read in Data
 

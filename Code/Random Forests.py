@@ -5,6 +5,7 @@
 
 import copy
 import sys
+import os
 
 import numpy as np
 import pandas as pd
@@ -20,6 +21,8 @@ import matplotlib.pyplot as plt
 # np.random.seed(0)
 
 run = sys.argv[1]
+if not os.path.isdir('rfc/'+run+'/'):
+    os.mkdir('rfc/'+run+'/')
 
 # ## Read in Data
 

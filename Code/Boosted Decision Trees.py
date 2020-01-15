@@ -5,6 +5,7 @@
 
 import copy
 import sys
+import os
 
 import numpy as np
 import pandas as pd
@@ -22,10 +23,12 @@ pd.options.mode.chained_assignment = None
 # np.random.seed(0)
 
 run = sys.argv[1]
+if not os.path.isdir('boosted-trees/'+run+'/'):
+    os.mkdir('boosted-trees/'+run+'/')
 
 # ## Read in Data
 
-data = pd.read_json('../Data/data.json')
+data = pd.read_json('./data.json')
 
 labels = data[['label']]
 data = data.drop('label', axis='columns')
@@ -250,7 +253,7 @@ print('Accuracy: %0.4f' % acc)
 print('Balanced Accuracy: %0.4f' % balanced_acc)
 print('F1 Score: %0.4f' % f1)
 print('\nConfusion Matrix:')
-display(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
+print(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
 
 plt.figure(figsize=(12, 8))
 plt.plot(fpr, tpr, c='C0')
@@ -274,8 +277,8 @@ plt.savefig('boosted-trees/'+run+'/gboost-pr-curve-'+run+'.png')
 
 gb_params = {
     'n_estimators': [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
-    'learning_rate': [0.001, 0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-    'subsample': [0.9, 0.95, 1]
+    'learning_rate': [0.001, 0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+    'subsample': [0.9, 0.95, 1],
     'max_depth': [1, 2, 3, 4, 5, 6, 7]
 }
 
@@ -309,7 +312,7 @@ print('Accuracy: %0.4f' % acc)
 print('Balanced Accuracy: %0.4f' % balanced_acc)
 print('F1 Score: %0.4f' % f1)
 print('\nConfusion Matrix:')
-display(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
+print(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
 
 plt.figure(figsize=(12, 8))
 plt.plot(fpr, tpr, c='C0')
