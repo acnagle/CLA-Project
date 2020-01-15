@@ -26,7 +26,7 @@ if not os.path.isdir('rfc/'+run+'/'):
 
 # ## Read in Data
 
-data = pd.read_json('../Data/data.json')
+data = pd.read_json('./data.json')
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
@@ -149,7 +149,6 @@ rfc_grid = GridSearchCV(
     estimator=rfc,
     param_grid=rfc_params,
     scoring='balanced_accuracy',    # or f1
-    iid=False,
     n_jobs=3,
     cv=5
 )
