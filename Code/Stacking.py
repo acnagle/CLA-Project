@@ -554,6 +554,14 @@ meta = LogisticRegression(
     solver='liblinear'
 )
 
+meta = RandomForestClassifier(
+    n_estimators=1000,
+    max_depth=4,
+    criterion='gini',
+    bootstrap=True,
+    class_weight='balanced'
+)
+
 # ### Evaluate
 
 log_y_hold_pred = log.predict(X_hold)
@@ -598,7 +606,7 @@ plt.ylabel('TPR')
 plt.axis([0, 1, 0, 1])
 plt.grid(True)
 plt.title('ROC Curve')
-plt.savefig('meta-roc-'+run+'.png')
+plt.savefig('stack/'+run+'/meta-roc-'+run+'.png')
 
 plt.figure(figsize=(12, 8))
 plt.plot(recall, precision, c='C1')
@@ -607,6 +615,6 @@ plt.ylabel('Precision')
 plt.axis([0, 1, 0, 1])
 plt.grid(True)
 plt.title('Precision Recall Curve')
-plt.savefig('meta-pr-'+run+'.png')
+plt.savefig('stack/'+run+'/meta-pr-'+run+'.png')
 
 
