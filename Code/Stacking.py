@@ -74,7 +74,7 @@ train_test_size = 0.8
 train_size = 0.625
 data_aug = False
 batch_size = 16
-rand_state=1337
+rand_state = None  #1337
 
 df = data[keep]
 # df = df[df.index > '2016']   # only keep data after 2015
@@ -520,6 +520,8 @@ missed_df.insert(loc=0, column='labels', value=y_test[overlap_idx])
 
 X_train_meta = np.hstack((
     log_y_prob.reshape(len(log_y_prob), 1),
+    rfc_y_prob.reshape(len(rfc_y_prob), 1),
+    knn_y_prob.reshape(len(knn_y_prob), 1),
     res_y_prob.reshape(len(res_y_prob), 1)
 ))
 y_train_meta = y_test
@@ -554,18 +556,22 @@ meta = LogisticRegression(
     solver='liblinear'
 )
 
-meta = RandomForestClassifier(
-    n_estimators=1000,
-    max_depth=4,
-    criterion='gini',
-    bootstrap=True,
-    class_weight='balanced'
-)
+#meta = RandomForestClassifier(
+#    n_estimators=1000,
+#    max_depth=4,
+#    criterion='gini',
+#    bootstrap=True,
+#    class_weight='balanced'
+#)
 
 # ### Evaluate
 
 log_y_hold_pred = log.predict(X_hold)
 log_y_hold_prob = log.predict_proba(X_hold)[:, 1]
+rfc_y_hold_pred = log.predict(X_hold)
+rfc_y_hold_prob = log.predict_proba(X_hold)[:, 1]
+knn_y_hold_pred = log.predict(X_hold)
+knn_y_hold_prob = log.predict_proba(X_hold)[:, 1]
 
 for samples, target in hold_loader:
     samples, target = samples.cuda(), target.cuda()
@@ -578,6 +584,8 @@ res_y_hold_prob = res_y_hold_prob.cpu().data.numpy()
 
 X_hold_meta = np.hstack((
     log_y_hold_prob.reshape(len(log_y_hold_prob), 1),
+    rfc_y_hold_prob.reshape(len(rfc_y_hold_prob), 1),
+    knn_y_hold_prob.reshape(len(knn_y_hold_prob), 1),
     res_y_hold_prob.reshape(len(res_y_hold_prob), 1)
 ))
 y_hold_meta = y_hold
