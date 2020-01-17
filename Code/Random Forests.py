@@ -197,7 +197,7 @@ plt.savefig('rfc/'+run+'/best-pr-curve'+run+'.png')
 
 coef_sort_idx = np.argsort(-np.abs(model.feature_importances_), kind='mergesort')
 
-print('Feature weighting for Decision Trees with AdaBoost\n')
+print('Feature weighting for Decision Trees with Gradient Boost\n')
 for idx in coef_sort_idx:
     coef = model.feature_importances_[idx]
     
