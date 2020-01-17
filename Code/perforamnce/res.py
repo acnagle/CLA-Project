@@ -24,26 +24,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import confusion_matrix, f1_score
 
-import matplotlib.pyplot as plt
-
-from pandas.plotting import register_matplotlib_converters
-register_matplotlib_converters()
-
-import seaborn as sns
-
-import warnings
-warnings.filterwarnings('ignore')
-
-pd.options.mode.chained_assignment = None
 # np.random.seed(0)
+
+run = sys.argv[1]
+num_iter = int(sys.argv[2])
 
 # ## Read in Data
 
-data = pd.read_json('data.json')
-
-#with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
-#    display(data[['label', 'algalBloomSheen_one_day', 'algalBloomSheen_three_day', 'algalBloomSheen_one_week']])
-
+data = pd.read_json('./data.json')
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
@@ -51,9 +39,11 @@ data = data.drop('label', axis='columns')
 
 data['log_turbidity'] = np.log(data['turbidity'] + 1)
 
-# ## Correlation
+# ## Feature Correlation
 
 corr = data.corr()
+
+# ### Choose Correlated Features to Remove
 
 corr_thresh = 0.80  # threshold for correlation. for any two variables with correlation > thresh, one is removed
 
@@ -61,7 +51,7 @@ thresh = corr.abs() > corr_thresh
 
 keep = copy.deepcopy(data.columns).to_list()
 
-print('\nRemoved features: ')
+print('Removed features: ')
 # keep features whose correlation with other features is <= corr_thresh
 for i in range(0, len(thresh.index)):
     for j in range(i+1, len(thresh.columns)):
@@ -69,21 +59,12 @@ for i in range(0, len(thresh.index)):
             if thresh.columns[j] in keep:
                 print('\t', thresh.columns[j])
                 keep.remove(thresh.columns[j])
-print()
 
-# handpicked keep based on results above
-# keep = ['turbidity', 'rel_hum', 'wind_speed', 'chlor',
-#        'phycocyanin', 'do_sat', 'do_wtemp', 'pco2_ppm', 'par',
-#        'par_below', 'DAILYMaximumDryBulbTemp', 'DAILYMinimumDryBulbTemp',
-#        'DAILYPrecip',
-#        'DAILYAverageStationPressure',
-#        'cos_month', 'sin_month', 'cos_wind_dir', 'sin_wind_dir',
-#        'DAILYPrecip_one_day', 'DAILYPrecip_three_day', 'DAILYPrecip_one_week',
-#        'algalBloomSheen_one_week']
+# ### Split Data
 
 df = data[keep]
-
-# ## Prepare Data/Create Dataloaders
+# df = df[df.index > '2016']   # only keep data after 2015
+# labels = labels.loc[df.index]
 
 class AlgalBloomDataset(data_utils.Dataset):
 
@@ -95,7 +76,7 @@ class AlgalBloomDataset(data_utils.Dataset):
             transform (callable, optional): Optional transform to be applied
                 on a sample.
         """
-        
+
         self.data = data
         self.labels = labels
         self.transform = transform
@@ -106,333 +87,186 @@ class AlgalBloomDataset(data_utils.Dataset):
     def __getitem__(self, idx):
         img = Image.fromarray(self.data[idx])
         target = self.labels[idx]
-        
+
         if self.transform:
             img = self.transform(img)
 
         return img, target
 
-train_test_size = 0.80
-train_size = 0.75
+train_size = 0.70
 batch_size = 16
-data_aug = True    # data augmentation
-
-# zero pad data set. The input format for the resnet must be 5x5, or 6x6, or 7x7, etc.
-pad_df = copy.deepcopy(df)
-for i in range(36-df.shape[1]):
-    pad_df[i] = [1 for _ in range(df.shape[0])]
-
-vals = pad_df.values
-data_reshape = []
-for i in range(pad_df.shape[0]):
-    data_reshape.append(vals[i].reshape(6, 6))
-
-# Stratified split into training and holdout set
-X_train_test, X_hold, y_train_test, y_hold = train_test_split(
-    data_reshape,
-    labels.values.ravel(),
-    train_size=train_test_size,    # 80% of the data set
-    shuffle=True,
-    stratify=labels.values.ravel()
-)
-
-# Stratified split into training and test set
-X_train, X_test, y_train, y_test = train_test_split(
-    X_train_test,
-    y_train_test,
-    train_size=train_size,    # final size of training set: 75%*80%=60%
-    shuffle=True,
-    stratify=y_train_test
-)
-
-X_train = np.asarray(X_train)
-X_test = np.asarray(X_test)
-X_hold = np.asarray(X_hold)
-
-print('Training set size:', X_train.shape)
-print('Testing set size:', X_test.shape)
-print('Holdout set size:', X_hold.shape)
-
-if data_aug:
-    trnsfrm = transforms.Compose([
-        transforms.RandomHorizontalFlip(),
-        #transforms.RandomVerticalFlip(),
-        #transforms.RandomAffine(degrees=(0, 360), translate=(1/6, 1/6), scale=(0.99, 1.01)),
-        transforms.ToTensor(),
-        transforms.Normalize([0.485], [0.229]),
-    ])
-else:
-    trnsfrm = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize([0.485], [0.229]),
-    ])
-
-train_set = AlgalBloomDataset(X_train, y_train, trnsfrm)
-train_test_set = AlgalBloomDataset(X_train_test, y_train_test, trnsfrm)
-
-test_set = AlgalBloomDataset(X_test, y_test, 
-    transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize([0.485], [0.229]),
-    ])
-)
-
-hold_set = AlgalBloomDataset(X_hold, y_hold, 
-    transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize([0.485], [0.229]),
-    ])
-)
-
-train_loader = data_utils.DataLoader(train_set, batch_size=batch_size, shuffle=True)
-test_loader = data_utils.DataLoader(test_set, batch_size=len(test_set), shuffle=True)
-train_test_loader = data_utils.DataLoader(train_test_set, batch_size=batch_size, shuffle=True)
-hold_loader = data_utils.DataLoader(hold_set, batch_size=len(hold_set), shuffle=True)
-
-# ## Define ResNet Model
-
+data_aug = False    # data augmentation
 learning_rate = 0.1
 num_epochs = 450
 weighted = False
 
 if weighted:
-    class_weights = torch.Tensor([np.bincount(y_train.astype(int))[0] / len(y_train), 
+    class_weights = torch.Tensor([np.bincount(y_train.astype(int))[0] / len(y_train),
                             np.bincount(y_train.astype(int))[1] / len(y_train)])
 else:
     class_weights=None
 
-model = resnet.ResNet9().cuda()
-criterion = nn.CrossEntropyLoss(weight=class_weights)
-opt = optim.SGD(model.parameters(), lr=learning_rate, nesterov=False, momentum=0.9, weight_decay=5e-4)
-scheduler = optim.lr_scheduler.MultiStepLR(opt, milestones=[75, 150, 225, 300, 375], gamma=0.1)
 
-# ## Train ResNet
+acc_arr = []
+f1_arr = []
+tpr_arr = []
+fpr_arr = []
+conf_matrix_arr = []
 
-loss_arr = []
-train_acc_arr = []
-train_f1_arr = []
-test_acc_arr = []
-test_f1_arr = []
+for i in range(num_iter):
+    print('Iteration', i)
 
-for epoch in range(num_epochs):
-    model.train()   # train model
-    
-    print('\nEpoch {}/{}'.format(epoch+1, num_epochs))
-    print('-' * 10)
-    
-    epoch_loss_arr = []
-    epoch_acc_arr = []
-    epoch_f1_arr = []
-    
-    for samples, target in train_loader:
-        opt.zero_grad()
-        samples, target = samples.cuda(), target.cuda()
-        output = model(samples)
-        loss = criterion(output, target)
-        
-        _, pred = torch.max(output, 1)
-                
-        loss.backward()
-        opt.step()
-        
-        epoch_loss_arr.append(loss.item())
-        epoch_acc_arr.append(torch.sum(pred == target).float() / len(target))
-        epoch_f1_arr.append(f1_score(target.cpu(), pred.cpu()))
-    
-    epoch_loss = sum(epoch_loss_arr)
-    epoch_acc = sum(epoch_acc_arr) / len(epoch_acc_arr)
-    epoch_f1 = sum(epoch_f1_arr) / len(epoch_f1_arr)
-    
-    loss_arr.append(epoch_loss)
-    train_acc_arr.append(epoch_acc)
-    train_f1_arr.append(epoch_f1)
-    
-    print('Training: Loss: {:0.4f} Acc: {:0.4f} F1: {:0.4f}\n'.format(epoch_loss, epoch_acc, epoch_f1))
-    
-    # Evaluate on test set
+    # zero pad data set. The input format for the resnet must be 5x5, or 6x6, or 7x7, etc.
+    pad_df = copy.deepcopy(df)
+    for i in range(36-df.shape[1]):
+        pad_df[i] = [1 for _ in range(df.shape[0])]
+
+    vals = pad_df.values
+    data_reshape = []
+    for i in range(pad_df.shape[0]):
+        data_reshape.append(vals[i].reshape(6, 6))
+
+    # Stratified split into training and test set
+    X_train, X_test, y_train, y_test = train_test_split(
+        X_train_test,
+        y_train_test,
+        train_size=train_size,
+        shuffle=True,
+        stratify=y_train_test
+    )
+
+    X_train = np.asarray(X_train)
+    X_test = np.asarray(X_test)
+
+    if data_aug:
+        trnsfrm = transforms.Compose([
+            transforms.RandomHorizontalFlip(),
+            #transforms.RandomVerticalFlip(),
+            #transforms.RandomAffine(degrees=(0, 360), translate=(1/6, 1/6), scale=(0.99, 1.01)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485], [0.229]),
+        ])
+    else:
+        trnsfrm = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize([0.485], [0.229]),
+        ])
+
+    train_set = AlgalBloomDataset(X_train, y_train, trnsfrm)
+
+    test_set = AlgalBloomDataset(X_test, y_test,
+        transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize([0.485], [0.229]),
+        ])
+    )
+
+    train_loader = data_utils.DataLoader(train_set, batch_size=batch_size, shuffle=True)
+    test_loader = data_utils.DataLoader(test_set, batch_size=len(test_set), shuffle=True)
+
+    # ## Define Model
+
+    model = resnet.ResNet9().cuda()
+    criterion = nn.CrossEntropyLoss(weight=class_weights)
+    opt = optim.SGD(model.parameters(), lr=learning_rate, nesterov=False, momentum=0.9, weight_decay=5e-4)
+    scheduler = optim.lr_scheduler.MultiStepLR(opt, milestones=[75, 150, 225, 300, 375], gamma=0.1)
+
+    # ## Train Model
+
+    for epoch in range(num_epochs):
+        model.train()   # train model
+
+        print('\nEpoch {}/{}'.format(epoch+1, num_epochs))
+        print('-' * 15)
+
+        for samples, target in train_loader:
+            opt.zero_grad()
+            samples, target = samples.cuda(), target.cuda()
+            output = model(samples)
+            loss = criterion(output, target)
+
+            _, pred = torch.max(output, 1)
+
+            loss.backward()
+            opt.step()
+
+    # ## Evaluate
+
     model.eval()
-    
+
     for samples, target in test_loader:
         samples, target = samples.cuda(), target.cuda()
         output = model(samples).cuda()
-        _, pred = torch.max(output, 1)
-        
-    test_acc_arr.append(torch.sum(pred == target).float() / len(target))
-    test_f1_arr.append(f1_score(target.cpu(), pred.cpu()))
-    
-    print('Testing:               ' + 
-          'Acc: {:0.4f} F1: {:0.4f}\n'.format(test_acc_arr[epoch-1], test_f1_arr[epoch-1]))
-    
-    scheduler.step()
+        _, y_pred = torch.max(output, 1)
 
-# ## Plot Training Performance
+    acc = accuracy_score(y_test, y_pred.cpu())
+    f1 = f1_score(y_test, y_pred.cpu())
+    conf_matrix = pd.DataFrame(confusion_matrix(y_test, y_pred.cpu()))
+    tpr = conf_matrix.iloc[1, 1] / (conf_matrix.iloc[1, 1] + conf_matrix.iloc[1, 0])
+    fpr = conf_matrix.iloc[0, 1] / (conf_matrix.iloc[0, 1] + conf_matrix.iloc[0, 0])
 
-x = [i for i in range(1, num_epochs+1)]
+    acc_arrr.append(acc)
+    f1_arr.append(f1)
+    tpr_arr.append(tpr)
+    fpr_arr.append(fpr)
+    conf_matrix_arr.append(conf_matrix)
 
-plt.figure(figsize=(12, 8))
-plt.plot(x, loss_arr)
-plt.xlabel('Number of Epochs')
-plt.ylabel('Training Loss')
-plt.title('ResNet Training Loss')
-plt.xlim([1, num_epochs])
-plt.grid(True)
-plt.savefig('train_loss.png')
+    print('Accuracy: %0.4f' % acc)
+    print('F1 Score: %0.4f' % f1)
+    print('TPR: %0.4f' % tpr)
+    print('FPR: %0.4f' % fpr)
+    print('\nConfusion Matrix:')
+    print(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
+    print()
 
-plt.figure(figsize=(12, 8))
-plt.plot(x, train_acc_arr)
-plt.xlabel('Number of Epochs')
-plt.ylabel('Training Accuracy')
-plt.title('ResNet Training Accuracy')
-plt.xlim([1, num_epochs])
-plt.grid(True)
-plt.savefig('train_acc.png')
+# Get average, median, and standard deviation for confusion matrix
+tn = []
+tp = []
+fn = []
+fp = []
 
-plt.figure(figsize=(12, 8))
-plt.plot(x, train_f1_arr)
-plt.xlabel('Number of Epochs')
-plt.ylabel('Training F1 Score')
-plt.title('ResNet Training F1 Score')
-plt.xlim([1, num_epochs])
-plt.grid(True)
-plt.savefig('train_f1.png')
+for df in conf_matrix_arr:
+    tn.append(conf_matrix.iloc[0, 0])
+    tp.append(conf_matrix.iloc[1, 1])
+    fn.append(conf_matrix.iloc[1, 0])
+    fp.append(conf_matrix.iloc[0, 1])
 
-plt.figure(figsize=(12, 8))
-plt.plot(x, test_acc_arr)
-plt.xlabel('Number of Epochs')
-plt.ylabel('Testing Accuracy')
-plt.title('ResNet Testing Accuracy')
-plt.xlim([1, num_epochs])
-plt.grid(True)
-plt.savefig('test_acc.png')
+conf_matrix_avg = pd.DataFrame([[np.mean(tn), np.mean(fp)],[np.mean(fn), np.mean(tp)]])
+conf_matrix_med = pd.DataFrame([[np.median(tn), np.median(fp)],[np.median(fn), np.median(tp)]])
+conf_matrix_std = pd.DataFrame([[np.std(tn), np.std(fp)],[np.std(fn), np.std(tp)]])
 
-plt.figure(figsize=(12, 8))
-plt.plot(x, test_f1_arr)
-plt.xlabel('Number of Epochs')
-plt.ylabel('Testing F1 Score')
-plt.title('ResNet Testing F1 Score')
-plt.xlim([1, num_epochs])
-plt.grid(True)
-plt.savefig('test_f1.png')
+print('average accuracy: %0.4f' % np.mean(acc_arr))
+print('average F1: %0.4f' % np.mean(f1_arr))
+print('average TPR: %0.4f' % np.mean(tpr_arr))
+print('average FPR: %0.4f' % np.mean(fpr_arr))
+print('average accuracy: %0.4f' % np.mean(acc_arr))
+print('average confusion matrix')
+print(conf_matrix_avg)
+print()
 
-# ## Test Model on Holdout Set
+print('median accuracy: %0.4f' % np.median(acc_arr))
+print('median F1: %0.4f' % np.median(f1_arr))
+print('median TPR: %0.4f' % np.median(tpr_arr))
+print('median FPR: %0.4f' % np.median(fpr_arr))
+print('median accuracy: %0.4f' % np.median(acc_arr))
+print('median confusion matrix')
+print(conf_matrix_med)
+print()
 
-model.eval()    # test model
+print('std accuracy: %0.4f' % np.std(acc_arr))
+print('std F1: %0.4f' % np.std(f1_arr))
+print('std TPR: %0.4f' % np.std(tpr_arr))
+print('std FPR: %0.4f' % np.std(fpr_arr))
+print('std accuracy: %0.4f' % np.std(acc_arr))
+print('std confusion matrix')
+print(conf_matrix_std)
+print()
 
-for samples, target in hold_loader:
-    samples, target = samples.cuda(), target.cuda()
-    output = model(samples).cuda()
-    loss = criterion(output, target)
-
-    _, pred = torch.max(output, 1)
-    
-acc = torch.sum(pred == target).float() / len(target)
-f1 = f1_score(target.cpu(), pred.cpu())
-conf_matrix = confusion_matrix(target.cpu().numpy(), pred.cpu().numpy(), labels=[0, 1])
-
-print('\nHoldout Accuracy: {:0.4f}'.format(acc))
-print('\nF1 Score: {:0.4f}'.format(f1))
-print('Confusion Matrix:')
-print(pd.DataFrame(conf_matrix))
-print('\n\n')
-
-# ## Train ResNet on train_test_set
-
-criterion = nn.CrossEntropyLoss(weight=class_weights)
-opt = optim.SGD(model.parameters(), lr=learning_rate, nesterov=False, momentum=0.9, weight_decay=5e-4)
-scheduler = optim.lr_scheduler.MultiStepLR(opt, milestones=[75, 150, 225, 300, 375], gamma=0.1)
-
-loss_arr = []
-train_test_acc_arr = []
-train_test_f1_arr = []
-
-for epoch in range(num_epochs):
-    model.train()   # train model
-    
-    print('\nEpoch {}/{}'.format(epoch+1, num_epochs))
-    print('-' * 10)
-    
-    epoch_loss_arr = []
-    epoch_acc_arr = []
-    epoch_f1_arr = []
-    
-    for samples, target in train_loader:
-        opt.zero_grad()
-        samples, target = samples.cuda(), target.cuda()
-        output = model(samples)
-        loss = criterion(output, target)
-        
-        _, pred = torch.max(output, 1)
-                
-        loss.backward()
-        opt.step()
-        
-        epoch_loss_arr.append(loss.item())
-        epoch_acc_arr.append(torch.sum(pred == target).float() / len(target))
-        epoch_f1_arr.append(f1_score(target.cpu(), pred.cpu()))
-    
-    epoch_loss = sum(epoch_loss_arr)
-    epoch_acc = sum(epoch_acc_arr) / len(epoch_acc_arr)
-    epoch_f1 = sum(epoch_f1_arr) / len(epoch_f1_arr)
-    
-    loss_arr.append(epoch_loss)
-    train_test_acc_arr.append(epoch_acc)
-    train_test_f1_arr.append(epoch_f1)
-    
-    print('Training: Loss: {:0.4f} Acc: {:0.4f} F1: {:0.4f}\n'.format(epoch_loss, epoch_acc, epoch_f1))
-    
-    scheduler.step()
-
-# ## Plot Train Test Performance
-
-x = [i for i in range(1, num_epochs+1)]
-
-plt.figure(figsize=(12, 8))
-plt.plot(x, loss_arr)
-plt.xlabel('Number of Epochs')
-plt.ylabel('Train_Test Loss')
-plt.title('ResNet Train_Test Loss')
-plt.xlim([1, num_epochs])
-plt.grid(True)
-plt.savefig('train_test_loss.png')
-
-plt.figure(figsize=(12, 8))
-plt.plot(x, train_test_acc_arr)
-plt.xlabel('Number of Epochs')
-plt.ylabel('Train_Test Accuracy')
-plt.title('ResNet Train_Test Accuracy')
-plt.xlim([1, num_epochs])
-plt.grid(True)
-plt.savefig('train_test_acc.png')
-
-plt.figure(figsize=(12, 8))
-plt.plot(x, train_test_f1_arr)
-plt.xlabel('Number of Epochs')
-plt.ylabel('Train_Test F1 Score')
-plt.title('ResNet Train_Test F1 Score')
-plt.xlim([1, num_epochs])
-plt.grid(True)
-plt.savefig('train_test_f1.png')
-
-# ## Test Model on Holdout Set
-
-model.eval()    # test model
-
-for samples, target in hold_loader:
-    samples, target = samples.cuda(), target.cuda()
-    output = model(samples).cuda()
-    loss = criterion(output, target)
-
-    _, pred = torch.max(output, 1)
-    
-acc = torch.sum(pred == target).float() / len(target)
-f1 = f1_score(target.cpu(), pred.cpu())
-conf_matrix = confusion_matrix(target.cpu().numpy(), pred.cpu().numpy(), labels=[0, 1])
-
-print('\nHoldout Accuracy: {:0.4f}'.format(acc))
-print('\nF1 Score: {:0.4f}'.format(f1))
-print('Confusion Matrix:')
-print(pd.DataFrame(conf_matrix))
-print('\n\n')
-
-
-
+# Save data
+np.savez_compressed('results/'run+'/res.npz',
+    acc=acc_arr,
+    f1=f1_arr,
+    tpr=tpr_arr,
+    fpr=fpr_arr,
+    conf_matrix=conf_matrix_arr
+)
