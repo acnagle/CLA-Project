@@ -17,12 +17,14 @@ from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
 # np.random.seed(0)
 
+print('\n############### K-Nearest Neighbors ###############')
+
 run = sys.argv[1]
 num_iter = int(sys.argv[2])
 
 # ## Read in Data
 
-data = pd.read_json('./data.json')
+data = pd.read_json('../data.json')
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
@@ -66,7 +68,7 @@ fpr_arr = []
 conf_matrix_arr = []
 
 for i in range(num_iter):
-    print('Iteration', i)
+    print('Iteration', i+1)
     X_train, X_test, y_train, y_test = train_test_split(
         df.values,
         labels.values.ravel(),
@@ -98,7 +100,7 @@ for i in range(num_iter):
     tpr = conf_matrix.iloc[1, 1] / (conf_matrix.iloc[1, 1] + conf_matrix.iloc[1, 0])
     fpr = conf_matrix.iloc[0, 1] / (conf_matrix.iloc[0, 1] + conf_matrix.iloc[0, 0])
 
-    acc_arrr.append(acc)
+    acc_arr.append(acc)
     f1_arr.append(f1)
     tpr_arr.append(tpr)
     fpr_arr.append(fpr)
@@ -111,17 +113,6 @@ for i in range(num_iter):
     print('\nConfusion Matrix:')
     print(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
     print()
-
-    coef_sort_idx = np.argsort(-np.abs(knn.feature_importances_), kind='mergesort')
-
-    print('Feature weighting for k-nearest neighbors\n')
-    for idx in coef_sort_idx:
-        coef = knn.feature_importances_[idx]
-        
-        if coef < 0:
-            print('\t%0.4f' % knn.feature_importances_[idx], df.columns[idx])
-        else:
-            print('\t %0.4f' % knn.feature_importances_[idx], df.columns[idx])
 
     print('-'*15)
     print()
@@ -171,7 +162,7 @@ print(conf_matrix_std)
 print()
 
 # Save data
-np.savez_compressed('results/'run+'/knn.npz',
+np.savez_compressed('results/'+run+'/knn.npz',
     acc=acc_arr,
     f1=f1_arr,
     tpr=tpr_arr,

@@ -22,16 +22,18 @@ from torchvision import transforms
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import confusion_matrix, f1_score
+from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
 
 # np.random.seed(0)
+
+print('\n############### ResNet ###############')
 
 run = sys.argv[1]
 num_iter = int(sys.argv[2])
 
 # ## Read in Data
 
-data = pd.read_json('./data.json')
+data = pd.read_json('../data.json')
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
@@ -114,7 +116,7 @@ fpr_arr = []
 conf_matrix_arr = []
 
 for i in range(num_iter):
-    print('Iteration', i)
+    print('Iteration', i+1)
 
     # zero pad data set. The input format for the resnet must be 5x5, or 6x6, or 7x7, etc.
     pad_df = copy.deepcopy(df)
@@ -128,11 +130,11 @@ for i in range(num_iter):
 
     # Stratified split into training and test set
     X_train, X_test, y_train, y_test = train_test_split(
-        X_train_test,
-        y_train_test,
+        data_reshape,
+        labels.values.ravel(),
         train_size=train_size,
         shuffle=True,
-        stratify=y_train_test
+        stratify=labels.values.ravel()
     )
 
     X_train = np.asarray(X_train)
@@ -176,9 +178,6 @@ for i in range(num_iter):
     for epoch in range(num_epochs):
         model.train()   # train model
 
-        print('\nEpoch {}/{}'.format(epoch+1, num_epochs))
-        print('-' * 15)
-
         for samples, target in train_loader:
             opt.zero_grad()
             samples, target = samples.cuda(), target.cuda()
@@ -205,7 +204,7 @@ for i in range(num_iter):
     tpr = conf_matrix.iloc[1, 1] / (conf_matrix.iloc[1, 1] + conf_matrix.iloc[1, 0])
     fpr = conf_matrix.iloc[0, 1] / (conf_matrix.iloc[0, 1] + conf_matrix.iloc[0, 0])
 
-    acc_arrr.append(acc)
+    acc_arr.append(acc)
     f1_arr.append(f1)
     tpr_arr.append(tpr)
     fpr_arr.append(fpr)
@@ -263,7 +262,7 @@ print(conf_matrix_std)
 print()
 
 # Save data
-np.savez_compressed('results/'run+'/res.npz',
+np.savez_compressed('results/'+run+'/res.npz',
     acc=acc_arr,
     f1=f1_arr,
     tpr=tpr_arr,

@@ -10,19 +10,22 @@ import os
 import numpy as np
 import pandas as pd
 
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import AdaBoostClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
 # np.random.seed(0)
 
+print('\n############### Boosted Decision Trees ###############')
+
 run = sys.argv[1]
 num_iter = int(sys.argv[2])
 
 # ## Read in Data
 
-data = pd.read_json('./data.json')
+data = pd.read_json('../data.json')
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
@@ -65,124 +68,49 @@ tpr_arr = []
 fpr_arr = []
 conf_matrix_arr = []
 
-train_test_size = 0.8
-train_size = 0.625
-data_aug = False
-batch_size = 16
-rand_state = None  #1337
-
 for i in range(num_iter):
-    print('Iteration', i)
-
-    train_test_idx, hold_idx, y_train_test, y_hold = train_test_split(
-        np.arange(len(df)),
+    print('Iteration', i+1)
+    X_train, X_test, y_train, y_test = train_test_split(
+        df.values,
         labels.values.ravel(),
-        train_size=train_test_size,
-        shuffle=True,
-        stratify=labels.values.ravel(),
-        random_state=rand_state
-    )
-
-    X_train_test = df.iloc[train_test_idx].values
-    X_hold = df.iloc[hold_idx].values
-
-    train_idx, test_idx, y_train, y_test = train_test_split(
-        train_test_idx,
-        y_train_test,
         train_size=train_size,
         shuffle=True,
-        stratify=y_train_test,
-        random_state=rand_state
+        stratify=labels.values.ravel()
     )
-
-    X_train = df.iloc[train_idx].values
-    X_test = df.iloc[test_idx].values
 
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
-    X_hold = scaler.transform(X_hold)
 
-    # ## Define Base Learners
+    # ## Define Model
 
-    log = LogisticRegression(
-        penalty='l1',
-        tol=0.0001,
-        C=1,
-        fit_intercept=True,
-        class_weight='balanced',
-        solver='liblinear'
-    )
-
-    rfc = RandomForestClassifier(
-        n_estimators=10,
-        max_depth=4,
+    dtc = DecisionTreeClassifier(
         criterion='gini',
-        bootstrap=True,
-        class_weight='balanced_subsample'
+        splitter='best',
+        max_depth=3,
+        max_features=None,         # or int, sqrt, log2
+        class_weight='balanced'    # or none
     )
 
-    knn = KNeighborsClassifier(
-        n_neighbors=5,
-        weights='uniform',    # or distance
-        p=2
+    ab = AdaBoostClassifier(
+        base_estimator=dtc,
+        n_estimators=50,
+        learning_rate=0.1,
+        algorithm='SAMME.R'
     )
 
     # ## Evaluate
 
-    log.fit(X_train, y_train)
-    log_y_prob = log.predict_proba(X_test)[:, 1]
-    
-    rfc.fit(X_train, y_train)
-    rfc_y_prob = rfc.predict_proba(X_test)[:, 1]
+    ab.fit(X_train, y_train)
+    y_pred = ab.predict(X_test)
 
-    knn.fit(X_train, y_train)
-    knn_y_prob = rfc.predict_proba(X_test)[:, 1]
-
-    # ## Create Training Set for Meta-Learner
-    X_train_meta = np.hstack((
-        log_y_prob.reshape(len(log_y_prob), 1),
-        rfc_y_prob.reshape(len(rfc_y_prob), 1),
-        knn_y_prob.reshape(len(knn_y_prob), 1),
-        res_y_prob.reshape(len(res_y_prob), 1)
-    ))
-    y_train_meta = y_test
-
-    # ## Define Meta-Learner
-    meta = RandomForestClassifier(
-        n_estimators=10,
-        max_depth=4,
-        criterion='gini',
-        bootstrap=True,
-        class_weight='balanced_subsample'
-    )
-
-    # ## Evaluate
-    log_y_hold_pred = log.predict(X_hold)
-    log_y_hold_prob = log.predict_proba(X_hold)[:, 1]
-    rfc_y_hold_pred = log.predict(X_hold)
-    rfc_y_hold_prob = log.predict_proba(X_hold)[:, 1]
-    knn_y_hold_pred = log.predict(X_hold)
-    knn_y_hold_prob = log.predict_proba(X_hold)[:, 1]
-
-    X_hold_meta = np.hstack((
-        log_y_hold_prob.reshape(len(log_y_hold_prob), 1),
-        rfc_y_hold_prob.reshape(len(rfc_y_hold_prob), 1),
-        knn_y_hold_prob.reshape(len(knn_y_hold_prob), 1),
-        res_y_hold_prob.reshape(len(res_y_hold_prob), 1)
-    ))
-    y_hold_meta = y_hold
-
-    meta.fit(X_train_meta, y_train_meta)
-    y_pred = meta.predict(X_hold_meta)
-
-    acc = accuracy_score(y_hold, y_pred)
-    f1 = f1_score(y_hold, y_pred)
-    conf_matrix = pd.DataFrame(confusion_matrix(y_hold, y_pred))
+    acc = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    conf_matrix = pd.DataFrame(confusion_matrix(y_test, y_pred))
     tpr = conf_matrix.iloc[1, 1] / (conf_matrix.iloc[1, 1] + conf_matrix.iloc[1, 0])
     fpr = conf_matrix.iloc[0, 1] / (conf_matrix.iloc[0, 1] + conf_matrix.iloc[0, 0])
 
-    acc_arrr.append(acc)
+    acc_arr.append(acc)
     f1_arr.append(f1)
     tpr_arr.append(tpr)
     fpr_arr.append(fpr)
@@ -196,16 +124,16 @@ for i in range(num_iter):
     print(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
     print()
 
-    coef_sort_idx = np.argsort(-np.abs(meta.feature_importances_), kind='mergesort')
+    coef_sort_idx = np.argsort(-np.abs(ab.feature_importances_), kind='mergesort')
 
-    print('Feature weighting for random forests\n')
+    print('Feature weighting for decision tree with AdaBoost\n')
     for idx in coef_sort_idx:
-        coef = meta.feature_importances_[idx]
+        coef = ab.feature_importances_[idx]
         
         if coef < 0:
-            print('\t%0.4f' % meta.feature_importances_[idx], df.columns[idx])
+            print('\t%0.4f' % ab.feature_importances_[idx], df.columns[idx])
         else:
-            print('\t %0.4f' % meta.feature_importances_[idx], df.columns[idx])
+            print('\t %0.4f' % ab.feature_importances_[idx], df.columns[idx])
 
     print('-'*15)
     print()
@@ -255,7 +183,7 @@ print(conf_matrix_std)
 print()
 
 # Save data
-np.savez_compressed('results/'run+'/stack.npz',
+np.savez_compressed('results/'+run+'/dt-boost.npz',
     acc=acc_arr,
     f1=f1_arr,
     tpr=tpr_arr,

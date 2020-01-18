@@ -10,19 +10,21 @@ import os
 import numpy as np
 import pandas as pd
 
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
 # np.random.seed(0)
 
+print('\n############### Logistic Regression ###############')
+
 run = sys.argv[1]
 num_iter = int(sys.argv[2])
 
 # ## Read in Data
 
-data = pd.read_json('./data.json')
+data = pd.read_json('../data.json')
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
@@ -66,7 +68,7 @@ fpr_arr = []
 conf_matrix_arr = []
 
 for i in range(num_iter):
-    print('Iteration', i)
+    print('Iteration', i+1)
     X_train, X_test, y_train, y_test = train_test_split(
         df.values,
         labels.values.ravel(),
@@ -81,25 +83,19 @@ for i in range(num_iter):
 
     # ## Define Model
 
-    dtc = DecisionTreeClassifier(
-        criterion='gini',
-        splitter='best',
-        max_depth=3,
-        max_features=None,         # or int, sqrt, log2
-        class_weight='balanced'    # or none
-    )
-
-    ab = AdaBoostClassifier(
-        base_estimator=dtc,
-        n_estimators=50,
-        learning_rate=0.1,
-        algorithm='SAMME.R'
+    log = LogisticRegression(
+        penalty='l1',
+        tol=0.0001,
+        C=1,
+        fit_intercept=True,
+        class_weight='balanced',
+        solver='liblinear'
     )
 
     # ## Evaluate
 
-    ab.fit(X_train, y_train)
-    y_pred = ab.predict(X_test)
+    log.fit(X_train, y_train)
+    y_pred = log.predict(X_test)
 
     acc = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
@@ -107,7 +103,7 @@ for i in range(num_iter):
     tpr = conf_matrix.iloc[1, 1] / (conf_matrix.iloc[1, 1] + conf_matrix.iloc[1, 0])
     fpr = conf_matrix.iloc[0, 1] / (conf_matrix.iloc[0, 1] + conf_matrix.iloc[0, 0])
 
-    acc_arrr.append(acc)
+    acc_arr.append(acc)
     f1_arr.append(f1)
     tpr_arr.append(tpr)
     fpr_arr.append(fpr)
@@ -121,16 +117,16 @@ for i in range(num_iter):
     print(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
     print()
 
-    coef_sort_idx = np.argsort(-np.abs(ab.feature_importances_), kind='mergesort')
+    coef_sort_idx = np.argsort(-np.abs(log.coef_[0]), kind='mergesort')
 
-    print('Feature weighting for decision tree with AdaBoost\n')
+    print('Feature weighting for logistic regression\n')
     for idx in coef_sort_idx:
-        coef = ab.feature_importances_[idx]
+        coef = log.coef_[0][idx]
         
         if coef < 0:
-            print('\t%0.4f' % ab.feature_importances_[idx], df.columns[idx])
+            print('\t%0.4f' % log.coef_[0][idx], df.columns[idx])
         else:
-            print('\t %0.4f' % ab.feature_importances_[idx], df.columns[idx])
+            print('\t %0.4f' % log.coef_[0][idx], df.columns[idx])
 
     print('-'*15)
     print()
@@ -180,7 +176,7 @@ print(conf_matrix_std)
 print()
 
 # Save data
-np.savez_compressed('results/'run+'/dt-boost.npz',
+np.savez_compressed('results/'+run+'/log.npz',
     acc=acc_arr,
     f1=f1_arr,
     tpr=tpr_arr,
