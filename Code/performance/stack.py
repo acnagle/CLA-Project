@@ -14,6 +14,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import SimpleImputer, IterativeImputer, KNNImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
@@ -23,45 +25,53 @@ print('\n############### Stack ML Models ###############')
 
 run = sys.argv[1]
 num_iter = int(sys.argv[2])
+num_aug = int(sys.argv[3])    # number of augmented data points to create for each data point in the data set
+data_impute = bool(sys.argv[4])    # boolean flag to indicate whether data imputation should be used
 
 # ## Read in Data
 
-data = pd.read_json('../data.json')
+if data_impute:
+    data = pd.read_json('../data_impute.json')
+else:
+    data = pd.read_json('../data.json')
+
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
 # ## Add Features
 
-data['log_turbidity'] = np.log(data['turbidity'] + 1)
+#data['log_turbidity'] = np.log(data['turbidity'] + 1)
 
-# ## Feature Correlation
+if not data_impute:
+    # ## Feature Correlation
 
-corr = data.corr()
+    corr = data.corr()
 
-# ### Choose Correlated Features to Remove
+    # ### Choose Correlated Features to Remove
 
-corr_thresh = 0.80  # threshold for correlation. for any two variables with correlation > thresh, one is removed
+    corr_thresh = 0.80  # threshold for correlation. for any two variables with correlation > thresh, one is removed
 
-thresh = corr.abs() > corr_thresh
+    thresh = corr.abs() > corr_thresh
 
-keep = copy.deepcopy(data.columns).to_list()
+    keep = copy.deepcopy(data.columns).to_list()
 
-print('Removed features: ')
-# keep features whose correlation with other features is <= corr_thresh
-for i in range(0, len(thresh.index)):
-    for j in range(i+1, len(thresh.columns)):
-        if thresh.iloc[i, j]:
-            if thresh.columns[j] in keep:
-                print('\t', thresh.columns[j])
-                keep.remove(thresh.columns[j])
+    print('Removed features: ')
+    # keep features whose correlation with other features is <= corr_thresh
+    for i in range(0, len(thresh.index)):
+        for j in range(i+1, len(thresh.columns)):
+            if thresh.iloc[i, j]:
+                if thresh.columns[j] in keep:
+                    print('\t', thresh.columns[j])
+                    keep.remove(thresh.columns[j])
 
-# ### Split Data
+    df = data[keep]
+else:
+    df = data
 
-train_size = 0.7
+#df = df[df.index > '2016']   # only keep data after 2015
+#labels = labels.loc[df.index]
 
-df = data[keep]
-# df = df[df.index > '2016']   # only keep data after 2015
-# labels = labels.loc[df.index]
+std = 0.1     # standard deviation of data augmentation
 
 acc_arr = []
 f1_arr = []
@@ -77,6 +87,8 @@ rand_state = None  #1337
 
 for i in range(num_iter):
     print('Iteration', i+1)
+
+    # ### Split Data
 
     train_test_idx, hold_idx, y_train_test, y_hold = train_test_split(
         np.arange(len(df)),
@@ -102,6 +114,19 @@ for i in range(num_iter):
     X_train = df.iloc[train_idx].values
     X_test = df.iloc[test_idx].values
 
+    # ### Impute Data
+    imp = IterativeImputer(max_iter=25, random_state=1337)
+
+    X_train = imp.fit_transform(X_train)
+    X_test = imp.transform(X_test)
+
+    # ### Augment Data
+    if num_aug > 0:
+        for i in range(len(X_train)):
+            item_aug = X_train[i] + np.random.normal(loc=0, scale=std, size=(num_aug, len(df.columns)))
+            X_train = np.vstack((X_train, item_aug))
+            y_train = np.append(y_train, [y_train[i]]*num_aug)
+
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
@@ -123,13 +148,15 @@ for i in range(num_iter):
         max_depth=4,
         criterion='gini',
         bootstrap=True,
-        class_weight='balanced_subsample'
+        class_weight='balanced_subsample',
+        n_jobs=8
     )
 
     knn = KNeighborsClassifier(
         n_neighbors=5,
         weights='uniform',    # or distance
-        p=2
+        p=2,
+        n_jobs=8
     )
 
     # ## Evaluate
@@ -148,8 +175,14 @@ for i in range(num_iter):
         log_y_prob.reshape(len(log_y_prob), 1),
         rfc_y_prob.reshape(len(rfc_y_prob), 1),
         knn_y_prob.reshape(len(knn_y_prob), 1),
+        log_y_prob.reshape(len(log_y_prob), 1)*rfc_y_prob.reshape(len(rfc_y_prob), 1),
+        log_y_prob.reshape(len(log_y_prob), 1)*knn_y_prob.reshape(len(knn_y_prob), 1),
+        rfc_y_prob.reshape(len(rfc_y_prob), 1)*knn_y_prob.reshape(len(knn_y_prob), 1),
     ))
     y_train_meta = y_test
+
+    meta_scaler = StandardScaler()
+    X_train_meta = scaler.fit_transform(X_train_meta)
 
     # ## Define Meta-Learner
     meta = RandomForestClassifier(
@@ -172,15 +205,20 @@ for i in range(num_iter):
         log_y_hold_prob.reshape(len(log_y_hold_prob), 1),
         rfc_y_hold_prob.reshape(len(rfc_y_hold_prob), 1),
         knn_y_hold_prob.reshape(len(knn_y_hold_prob), 1),
+        log_y_hold_prob.reshape(len(log_y_hold_prob), 1)*rfc_y_hold_prob.reshape(len(rfc_y_hold_prob), 1),
+        log_y_hold_prob.reshape(len(log_y_hold_prob), 1)*knn_y_hold_prob.reshape(len(knn_y_hold_prob), 1),
+        rfc_y_hold_prob.reshape(len(rfc_y_hold_prob), 1)*knn_y_hold_prob.reshape(len(knn_y_hold_prob), 1),
     ))
     y_hold_meta = y_hold
+
+    X_hold_meta = scaler.transform(X_hold_meta)
 
     meta.fit(X_train_meta, y_train_meta)
     y_pred = meta.predict(X_hold_meta)
 
-    acc = accuracy_score(y_hold, y_pred)
-    f1 = f1_score(y_hold, y_pred)
-    conf_matrix = pd.DataFrame(confusion_matrix(y_hold, y_pred))
+    acc = accuracy_score(y_hold_meta, y_pred)
+    f1 = f1_score(y_hold_meta, y_pred)
+    conf_matrix = pd.DataFrame(confusion_matrix(y_hold_meta, y_pred))
     tpr = conf_matrix.iloc[1, 1] / (conf_matrix.iloc[1, 1] + conf_matrix.iloc[1, 0])
     fpr = conf_matrix.iloc[0, 1] / (conf_matrix.iloc[0, 1] + conf_matrix.iloc[0, 0])
 
@@ -200,18 +238,8 @@ for i in range(num_iter):
 
     coef_sort_idx = np.argsort(-np.abs(meta.feature_importances_), kind='mergesort')
 
-    print('Feature weighting for random forests\n')
-    for idx in coef_sort_idx:
-        coef = meta.feature_importances_[idx]
-        
-        if coef < 0:
-            print('\t%0.4f' % meta.feature_importances_[idx], df.columns[idx])
-        else:
-            print('\t %0.4f' % meta.feature_importances_[idx], df.columns[idx])
-
     print('-'*15)
     print()
-
 
 # Get average, median, and standard deviation for confusion matrix
 tn = []

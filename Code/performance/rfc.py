@@ -12,6 +12,8 @@ import pandas as pd
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import SimpleImputer, IterativeImputer, KNNImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
@@ -19,47 +21,56 @@ from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
 print('\n############### Random Forest Classifier ###############')
 
-run = sys.argv[1]
-num_iter = int(sys.argv[2])
+run = sys.argv[1]    # run index
+num_iter = int(sys.argv[2])    # number of iterations for splitting data
+num_aug = int(sys.argv[3])    # number of augmented data points to create for each data point in the data set
+data_impute = bool(sys.argv[4])    # boolean flag to indicate whether data imputation should be used
 
 # ## Read in Data
 
-data = pd.read_json('../data.json')
+if data_impute:
+    data = pd.read_json('../data_impute.json')
+else:
+    data = pd.read_json('../data.json')
+
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
 # ## Add Features
 
-data['log_turbidity'] = np.log(data['turbidity'] + 1)
+# data['log_turbidity'] = np.log(data['turbidity'] + 1)
 
-# ## Feature Correlation
+if not data_impute:
+    # ## Feature Correlation
 
-corr = data.corr()
+    corr = data.corr()
 
-# ### Choose Correlated Features to Remove
+    # ### Choose Correlated Features to Remove
 
-corr_thresh = 0.80  # threshold for correlation. for any two variables with correlation > thresh, one is removed
+    corr_thresh = 0.80  # threshold for correlation. for any two variables with correlation > thresh, one is removed
 
-thresh = corr.abs() > corr_thresh
+    thresh = corr.abs() > corr_thresh
 
-keep = copy.deepcopy(data.columns).to_list()
+    keep = copy.deepcopy(data.columns).to_list()
 
-print('Removed features: ')
-# keep features whose correlation with other features is <= corr_thresh
-for i in range(0, len(thresh.index)):
-    for j in range(i+1, len(thresh.columns)):
-        if thresh.iloc[i, j]:
-            if thresh.columns[j] in keep:
-                print('\t', thresh.columns[j])
-                keep.remove(thresh.columns[j])
+    print('Removed features: ')
+    # keep features whose correlation with other features is <= corr_thresh
+    for i in range(0, len(thresh.index)):
+        for j in range(i+1, len(thresh.columns)):
+            if thresh.iloc[i, j]:
+                if thresh.columns[j] in keep:
+                    print('\t', thresh.columns[j])
+                    keep.remove(thresh.columns[j])
 
-# ### Split Data
+    df = data[keep]
+else:
+    df = data
 
+#df = df[df.index > '2016']   # only keep data after 2015
+#labels = labels.loc[df.index]
+
+std = 0.1      # standard deviation of data augmentation
 train_size = 0.7
-
-df = data[keep]
-# df = df[df.index > '2016']   # only keep data after 2015
-# labels = labels.loc[df.index]
 
 acc_arr = []
 f1_arr = []
@@ -69,6 +80,9 @@ conf_matrix_arr = []
 
 for i in range(num_iter):
     print('Iteration', i+1)
+
+    # ### Split Data
+
     X_train, X_test, y_train, y_test = train_test_split(
         df.values,
         labels.values.ravel(),
@@ -76,6 +90,19 @@ for i in range(num_iter):
         shuffle=True,
         stratify=labels.values.ravel()
     )
+ 
+    # ### Impute Data
+    imp = IterativeImputer(max_iter=25, random_state=1337)
+
+    X_train = imp.fit_transform(X_train)
+    X_test = imp.transform(X_test)
+
+    # ### Augment Data
+    if num_aug > 0:
+        for i in range(len(X_train)):
+            item_aug = X_train[i] + np.random.normal(loc=0, scale=std, size=(num_aug, len(df.columns)))
+            X_train = np.vstack((X_train, item_aug))
+            y_train = np.append(y_train, [y_train[i]]*num_aug)
 
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
@@ -85,10 +112,11 @@ for i in range(num_iter):
 
     rfc = RandomForestClassifier(
         n_estimators=10,
-        max_depth=4,
+        max_depth=2,
         criterion='gini',
         bootstrap=True,
-        class_weight='balanced_subsample'
+        class_weight='balanced_subsample',
+        n_jobs=8
     )
 
     # ## Evaluate
@@ -116,16 +144,17 @@ for i in range(num_iter):
     print(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
     print()
 
-    coef_sort_idx = np.argsort(-np.abs(rfc.feature_importances_), kind='mergesort')
-
-    print('Feature weighting for random forests\n')
-    for idx in coef_sort_idx:
-        coef = rfc.feature_importances_[idx]
-        
-        if coef < 0:
-            print('\t%0.4f' % rfc.feature_importances_[idx], df.columns[idx])
-        else:
-            print('\t %0.4f' % rfc.feature_importances_[idx], df.columns[idx])
+    # Print feature importances
+    #coef_sort_idx = np.argsort(-np.abs(rfc.feature_importances_), kind='mergesort')
+    #
+    #print('Feature weighting for random forests\n')
+    #for idx in coef_sort_idx:
+    #    coef = rfc.feature_importances_[idx]
+    #    
+    #    if coef < 0:
+    #        print('\t%0.4f' % rfc.feature_importances_[idx], df.columns[idx])
+    #    else:
+    #        print('\t %0.4f' % rfc.feature_importances_[idx], df.columns[idx])
 
     print('-'*15)
     print()
