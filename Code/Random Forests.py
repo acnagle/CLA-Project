@@ -12,6 +12,8 @@ import pandas as pd
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV, train_test_split
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import SimpleImputer, IterativeImputer, KNNImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import (f1_score, roc_auc_score, confusion_matrix, roc_curve, precision_recall_curve, 
                              accuracy_score, balanced_accuracy_score)
@@ -26,14 +28,18 @@ if not os.path.isdir('rfc/'+run+'/'):
 
 # ## Read in Data
 
-data = pd.read_json('./data.json')
+data = pd.read_json('./data_impute.json')
+
+# drop last row. only for use with data imputation!
+data.drop(data.tail(1).index, inplace=True)
+
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
 
 # ## Add Features
 
-data['log_turbidity'] = np.log(data['turbidity'] + 1)
+#data['log_turbidity'] = np.log(data['turbidity'] + 1)
 
 
 # ## Feature Correlation
@@ -42,26 +48,27 @@ corr = data.corr()
 
 # ### Choose Correlated Features to Remove
 
-corr_thresh = 0.80  # threshold for correlation. for any two variables with correlation > thresh, one is removed
-
-thresh = corr.abs() > corr_thresh
-
-keep = copy.deepcopy(data.columns).to_list()
-
-print('Removed features: ')
-# keep features whose correlation with other features is <= corr_thresh
-for i in range(0, len(thresh.index)):
-    for j in range(i+1, len(thresh.columns)):
-        if thresh.iloc[i, j]:
-            if thresh.columns[j] in keep:
-                print('\t', thresh.columns[j])
-                keep.remove(thresh.columns[j])
+#corr_thresh = 0.80  # threshold for correlation. for any two variables with correlation > thresh, one is removed
+#
+#thresh = corr.abs() > corr_thresh
+#
+#keep = copy.deepcopy(data.columns).to_list()
+#
+#print('Removed features: ')
+## keep features whose correlation with other features is <= corr_thresh
+#for i in range(0, len(thresh.index)):
+#    for j in range(i+1, len(thresh.columns)):
+#        if thresh.iloc[i, j]:
+#            if thresh.columns[j] in keep:
+#                print('\t', thresh.columns[j])
+#                keep.remove(thresh.columns[j])
 
 # ### Split Data
 
 train_size = 0.7
 
-df = data[keep]
+#df = data[keep]
+df = data
 # df = df[df.index > '2016']   # only keep data after 2015
 # labels = labels.loc[df.index]
 
@@ -73,6 +80,11 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=labels.values.ravel()
 )
 
+imp = IterativeImputer(max_iter=25, random_state=1337)
+
+X_train = imp.fit_transform(X_train)
+X_test = imp.transform(X_test)
+
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
@@ -81,7 +93,7 @@ X_test = scaler.transform(X_test)
 
 rfc = RandomForestClassifier(
     n_estimators=1000,
-    max_depth=4,
+    max_depth=2,
     criterion='gini',
     bootstrap=True,
     class_weight='balanced'
@@ -149,7 +161,7 @@ rfc_grid = GridSearchCV(
     estimator=rfc,
     param_grid=rfc_params,
     scoring='balanced_accuracy',    # or f1
-    n_jobs=3,
+    n_jobs=8,
     cv=5
 )
 
@@ -197,7 +209,7 @@ plt.savefig('rfc/'+run+'/best-pr-curve'+run+'.png')
 
 coef_sort_idx = np.argsort(-np.abs(model.feature_importances_), kind='mergesort')
 
-print('Feature weighting for Decision Trees with Gradient Boost\n')
+print('Feature weighting for Decision Trees with AdaBoost\n')
 for idx in coef_sort_idx:
     coef = model.feature_importances_[idx]
     
