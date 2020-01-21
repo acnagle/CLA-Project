@@ -11,18 +11,22 @@ import numpy as np
 import pandas as pd
 
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
 # np.random.seed(0)
 
+print('\n############### Stack ML Models ###############')
+
 run = sys.argv[1]
 num_iter = int(sys.argv[2])
 
 # ## Read in Data
 
-data = pd.read_json('./data.json')
+data = pd.read_json('../data.json')
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
@@ -72,7 +76,7 @@ batch_size = 16
 rand_state = None  #1337
 
 for i in range(num_iter):
-    print('Iteration', i)
+    print('Iteration', i+1)
 
     train_test_idx, hold_idx, y_train_test, y_hold = train_test_split(
         np.arange(len(df)),
@@ -144,7 +148,6 @@ for i in range(num_iter):
         log_y_prob.reshape(len(log_y_prob), 1),
         rfc_y_prob.reshape(len(rfc_y_prob), 1),
         knn_y_prob.reshape(len(knn_y_prob), 1),
-        res_y_prob.reshape(len(res_y_prob), 1)
     ))
     y_train_meta = y_test
 
@@ -169,7 +172,6 @@ for i in range(num_iter):
         log_y_hold_prob.reshape(len(log_y_hold_prob), 1),
         rfc_y_hold_prob.reshape(len(rfc_y_hold_prob), 1),
         knn_y_hold_prob.reshape(len(knn_y_hold_prob), 1),
-        res_y_hold_prob.reshape(len(res_y_hold_prob), 1)
     ))
     y_hold_meta = y_hold
 
@@ -182,7 +184,7 @@ for i in range(num_iter):
     tpr = conf_matrix.iloc[1, 1] / (conf_matrix.iloc[1, 1] + conf_matrix.iloc[1, 0])
     fpr = conf_matrix.iloc[0, 1] / (conf_matrix.iloc[0, 1] + conf_matrix.iloc[0, 0])
 
-    acc_arrr.append(acc)
+    acc_arr.append(acc)
     f1_arr.append(f1)
     tpr_arr.append(tpr)
     fpr_arr.append(fpr)
@@ -231,7 +233,6 @@ print('average accuracy: %0.4f' % np.mean(acc_arr))
 print('average F1: %0.4f' % np.mean(f1_arr))
 print('average TPR: %0.4f' % np.mean(tpr_arr))
 print('average FPR: %0.4f' % np.mean(fpr_arr))
-print('average accuracy: %0.4f' % np.mean(acc_arr))
 print('average confusion matrix')
 print(conf_matrix_avg)
 print()
@@ -240,7 +241,6 @@ print('median accuracy: %0.4f' % np.median(acc_arr))
 print('median F1: %0.4f' % np.median(f1_arr))
 print('median TPR: %0.4f' % np.median(tpr_arr))
 print('median FPR: %0.4f' % np.median(fpr_arr))
-print('median accuracy: %0.4f' % np.median(acc_arr))
 print('median confusion matrix')
 print(conf_matrix_med)
 print()
@@ -249,13 +249,12 @@ print('std accuracy: %0.4f' % np.std(acc_arr))
 print('std F1: %0.4f' % np.std(f1_arr))
 print('std TPR: %0.4f' % np.std(tpr_arr))
 print('std FPR: %0.4f' % np.std(fpr_arr))
-print('std accuracy: %0.4f' % np.std(acc_arr))
 print('std confusion matrix')
 print(conf_matrix_std)
 print()
 
 # Save data
-np.savez_compressed('results/'run+'/stack.npz',
+np.savez_compressed('results/'+run+'/stack.npz',
     acc=acc_arr,
     f1=f1_arr,
     tpr=tpr_arr,

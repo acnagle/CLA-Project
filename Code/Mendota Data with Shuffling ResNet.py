@@ -115,7 +115,7 @@ class AlgalBloomDataset(data_utils.Dataset):
 train_test_size = 0.80
 train_size = 0.75
 batch_size = 16
-data_aug = True    # data augmentation
+data_aug = False    # data augmentation
 
 # zero pad data set. The input format for the resnet must be 5x5, or 6x6, or 7x7, etc.
 pad_df = copy.deepcopy(df)
@@ -263,8 +263,6 @@ for epoch in range(num_epochs):
     print('Testing:               ' + 
           'Acc: {:0.4f} F1: {:0.4f}\n'.format(test_acc_arr[epoch-1], test_f1_arr[epoch-1]))
     
-    scheduler.step()
-
 # ## Plot Training Performance
 
 x = [i for i in range(1, num_epochs+1)]

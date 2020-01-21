@@ -10,19 +10,21 @@ import os
 import numpy as np
 import pandas as pd
 
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
 # np.random.seed(0)
 
+print('\n############### Random Forest Classifier ###############')
+
 run = sys.argv[1]
 num_iter = int(sys.argv[2])
 
 # ## Read in Data
 
-data = pd.read_json('./data.json')
+data = pd.read_json('../data.json')
 labels = data[['label']]
 data = data.drop('label', axis='columns')
 
@@ -51,7 +53,7 @@ for i in range(0, len(thresh.index)):
                 print('\t', thresh.columns[j])
                 keep.remove(thresh.columns[j])
 
-### Split Data
+# ### Split Data
 
 train_size = 0.7
 
@@ -66,7 +68,7 @@ fpr_arr = []
 conf_matrix_arr = []
 
 for i in range(num_iter):
-    print('Iteration', i)
+    print('Iteration', i+1)
     X_train, X_test, y_train, y_test = train_test_split(
         df.values,
         labels.values.ravel(),
@@ -81,16 +83,18 @@ for i in range(num_iter):
 
     # ## Define Model
 
-    knn = KNeighborsClassifier(
-        n_neighbors=5,
-        weights='uniform',    # or distance
-        p=2
-    ) 
+    rfc = RandomForestClassifier(
+        n_estimators=10,
+        max_depth=4,
+        criterion='gini',
+        bootstrap=True,
+        class_weight='balanced_subsample'
+    )
 
     # ## Evaluate
 
-    knn.fit(X_train, y_train)
-    y_pred = knn.predict(X_test)
+    rfc.fit(X_train, y_train)
+    y_pred = rfc.predict(X_test)
 
     acc = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
@@ -98,7 +102,7 @@ for i in range(num_iter):
     tpr = conf_matrix.iloc[1, 1] / (conf_matrix.iloc[1, 1] + conf_matrix.iloc[1, 0])
     fpr = conf_matrix.iloc[0, 1] / (conf_matrix.iloc[0, 1] + conf_matrix.iloc[0, 0])
 
-    acc_arrr.append(acc)
+    acc_arr.append(acc)
     f1_arr.append(f1)
     tpr_arr.append(tpr)
     fpr_arr.append(fpr)
@@ -112,16 +116,16 @@ for i in range(num_iter):
     print(conf_matrix)  # rows are the true label, columns are the predicted label ([0,1] is FP, [1,0] is FN)
     print()
 
-    coef_sort_idx = np.argsort(-np.abs(knn.feature_importances_), kind='mergesort')
+    coef_sort_idx = np.argsort(-np.abs(rfc.feature_importances_), kind='mergesort')
 
-    print('Feature weighting for k-nearest neighbors\n')
+    print('Feature weighting for random forests\n')
     for idx in coef_sort_idx:
-        coef = knn.feature_importances_[idx]
+        coef = rfc.feature_importances_[idx]
         
         if coef < 0:
-            print('\t%0.4f' % knn.feature_importances_[idx], df.columns[idx])
+            print('\t%0.4f' % rfc.feature_importances_[idx], df.columns[idx])
         else:
-            print('\t %0.4f' % knn.feature_importances_[idx], df.columns[idx])
+            print('\t %0.4f' % rfc.feature_importances_[idx], df.columns[idx])
 
     print('-'*15)
     print()
@@ -147,7 +151,6 @@ print('average accuracy: %0.4f' % np.mean(acc_arr))
 print('average F1: %0.4f' % np.mean(f1_arr))
 print('average TPR: %0.4f' % np.mean(tpr_arr))
 print('average FPR: %0.4f' % np.mean(fpr_arr))
-print('average accuracy: %0.4f' % np.mean(acc_arr))
 print('average confusion matrix')
 print(conf_matrix_avg)
 print()
@@ -156,7 +159,6 @@ print('median accuracy: %0.4f' % np.median(acc_arr))
 print('median F1: %0.4f' % np.median(f1_arr))
 print('median TPR: %0.4f' % np.median(tpr_arr))
 print('median FPR: %0.4f' % np.median(fpr_arr))
-print('median accuracy: %0.4f' % np.median(acc_arr))
 print('median confusion matrix')
 print(conf_matrix_med)
 print()
@@ -165,13 +167,12 @@ print('std accuracy: %0.4f' % np.std(acc_arr))
 print('std F1: %0.4f' % np.std(f1_arr))
 print('std TPR: %0.4f' % np.std(tpr_arr))
 print('std FPR: %0.4f' % np.std(fpr_arr))
-print('std accuracy: %0.4f' % np.std(acc_arr))
 print('std confusion matrix')
 print(conf_matrix_std)
 print()
 
 # Save data
-np.savez_compressed('results/'run+'/knn.npz',
+np.savez_compressed('results/'+run+'/rfc.npz',
     acc=acc_arr,
     f1=f1_arr,
     tpr=tpr_arr,
