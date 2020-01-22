@@ -18,14 +18,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
+from imblearn.over_sampling import SMOTE
+
 # np.random.seed(0)
 
 print('\n############### Boosted Decision Trees ###############')
 
-run = sys.argv[1]
-num_iter = int(sys.argv[2])
-num_aug = int(sys.argv[3])    # number of augmented data points to create for each data point in the data set
-data_impute = bool(sys.argv[4])    # boolean flag to indicate whether data imputation should be used
+run = sys.argv[1]                   # run index
+num_iter = int(sys.argv[2])         # number of iterations for splitting data
+#num_aug = int(sys.argv[3])         # number of augmented data points to create for each data point in the data set
+smote_ratio = float(sys.argv[3])    # ratio of # minority class examples divided by # majority class examples. used for SMOTE algorithm. pass 0 for no smote
+data_impute = bool(sys.argv[4])     # boolean flag to indicate whether data imputation should be used
 
 # ## Read in Data
 
@@ -93,18 +96,23 @@ for i in range(num_iter):
     )   
 
     # ### Impute Data
-    imp = IterativeImputer(max_iter=25, random_state=1337)
+    if data_impute:
+        imp = IterativeImputer(max_iter=25, random_state=1337)
 
-    X_train = imp.fit_transform(X_train)
-    X_test = imp.transform(X_test)
+        X_train = imp.fit_transform(X_train)
+        X_test = imp.transform(X_test)
 
     # ### Augment Data
-    if num_aug > 0:
-        for i in range(len(X_train)):
-            item_aug = X_train[i] + np.random.normal(loc=0, scale=std, size=(num_aug, len(df.columns)))
-            X_train = np.vstack((X_train, item_aug))
-            y_train = np.append(y_train, [y_train[i]]*num_aug)
+    if smote_ratio > 0:
+        smote = SMOTE(
+                    sampling_strategy='all',
+                    random_state=1337,
+                    k_neighbors=5,
+                    n_jobs=1
+                )
 
+        X_train, y_train = smote.fit_resample(X_train, y_train)
+    
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
@@ -174,10 +182,10 @@ fn = []
 fp = []
 
 for df in conf_matrix_arr:
-    tn.append(conf_matrix.iloc[0, 0])
-    tp.append(conf_matrix.iloc[1, 1])
-    fn.append(conf_matrix.iloc[1, 0])
-    fp.append(conf_matrix.iloc[0, 1])
+    tn.append(df.iloc[0, 0])
+    tp.append(df.iloc[1, 1])
+    fn.append(df.iloc[1, 0])
+    fp.append(df.iloc[0, 1])
 
 conf_matrix_avg = pd.DataFrame([[np.mean(tn), np.mean(fp)],[np.mean(fn), np.mean(tp)]])
 conf_matrix_med = pd.DataFrame([[np.median(tn), np.median(fp)],[np.median(fn), np.median(tp)]])
