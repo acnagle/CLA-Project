@@ -177,7 +177,7 @@ for i in range(num_iter):
     rfc_y_prob = rfc.predict_proba(X_test)[:, 1]
 
     knn.fit(X_train, y_train)
-    knn_y_prob = rfc.predict_proba(X_test)[:, 1]
+    knn_y_prob = knn.predict_proba(X_test)[:, 1]
 
     # ## Create Training Set for Meta-Learner
     X_train_meta = np.hstack((
