@@ -25,7 +25,7 @@ from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
 
 from imblearn.over_sampling import SMOTE
 
-r = 1337
+r = 1337    # random seed
 np.random.seed(r)
 random.seed(r)
 
@@ -33,7 +33,7 @@ print('\n############### Grid Search ###############')
 
 # ## Read in Data
 
-train_test = pd.read_json('../data/train-test.json')
+train_test = pd.read_json('data/train-test.json')
 labels = train_test[['label']]
 train_test = train_test.drop('label', axis='columns')
 
@@ -73,7 +73,7 @@ X_test = scaler.transform(X_test)
 # ## Define models
 rfc = RandomForestClassifier(
     max_features='auto',
-    bootstap=True,
+    bootstrap=True,
     random_state=r
 )
 
@@ -89,7 +89,7 @@ meta = LogisticRegression(   # logistic regression for stacked ensemble
     random_state=r
 )
 
-knn = KNeighborsClassifier()
+knn = KNeighborsClassifier()   # knn has no random_state
 
 mlp = MLPClassifier(
     solver='sgd',
@@ -119,13 +119,13 @@ rfc_params = {
     'n_estimators': [5, 10, 20, 50, 70, 100],
     'criterion': ('gini', 'entropy'),
     'max_depth': [2, 3, 4, 5],
-    'class_weight': ('balanced', 'balanced_subsample', 'None')
+    'class_weight': ('balanced', 'balanced_subsample', None)
 }
 
 log_params = {
     'penalty': ('l1', 'l2'),
     'C': [1, 1.5, 2, 3, 4, 5, 10, 20, 50, 100],
-    'class_weight': ('balanced', 'None')
+    'class_weight': ('balanced', None)
 }
 
 knn_params = {
@@ -136,7 +136,7 @@ knn_params = {
 
 mlp_params = {
     'hidden_layer_sizes': [(100), (50, 100, 50), (100, 100, 100), (100, 200, 100), (200, 200, 200), (300, 300, 300)],
-    'max_iter': [100, 200, 300],
+    'max_iter': [200, 250, 300],
     'nesterovs_momentum': [True, False],
 }
 
@@ -147,13 +147,15 @@ ab_params = {
 
 # ## Define Searches
 
+refit = 'recall'   # or 'accuracy'
+
 rfc_grid = GridSearchCV(
     rfc,
     rfc_params,
     scoring=['accuracy', 'recall'],
     n_jobs=8,
     cv=5,
-    refit='accuracy'
+    refit=refit
 )
 
 log_grid = GridSearchCV(
@@ -162,17 +164,17 @@ log_grid = GridSearchCV(
     scoring=['accuracy', 'recall'],
     n_jobs=8,
     cv=5,
-    refit='accuracy'
+    refit=refit
 )
 
 
 meta_grid = GridSearchCV(
-    stack_log,
+    meta,
     log_params,
     scoring=['accuracy', 'recall'],
     n_jobs=8,
     cv=5,
-    refit='accuracy'
+    refit=refit
 )
 
 knn_grid = GridSearchCV(
@@ -181,7 +183,7 @@ knn_grid = GridSearchCV(
     scoring=['accuracy', 'recall'],
     n_jobs=8,
     cv=5,
-    refit='accuracy'
+    refit=refit
 )
 
 mlp_grid = GridSearchCV(
@@ -190,7 +192,7 @@ mlp_grid = GridSearchCV(
     scoring=['accuracy', 'recall'],
     n_jobs=8,
     cv=5,
-    refit='accuracy'
+    refit=refit
 )
 
 ab_grid = GridSearchCV(
@@ -199,8 +201,26 @@ ab_grid = GridSearchCV(
     scoring=['accuracy', 'recall'],
     n_jobs=8,
     cv=5,
-    refit='accuracy'
+    refit=refit
 )
+
+# ## Report Best Parameters for each Model
+
+grids = {'RFC': rfc_grid, 'LOG': log_grid, 'KNN': knn_grid, 'MLP': mlp_grid, 'DT-BOOST': ab_grid}
+
+for key in list(grids.keys()):
+    grids[key].fit(X_train, y_train)
+
+    print('---------------- ' + key + ' ----------------')
+    print('Grid Search CV Results:')
+#    with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+#        print(pd.DataFrame.from_dict(grids[key].cv_results_))
+
+    print('\nBest Parameters:')
+    print(grids[key].best_params_)
+
+    print('\nBest Score', grids[key].best_score_)
+    print('\n\n\n')
 
 # ## Create Stacked Ensemble Training Set
 # Use best rfc, knn, log models determined above as base classifiers
@@ -226,25 +246,16 @@ y_train_meta = y_test
 meta_scaler = StandardScaler()
 X_train_meta = scaler.fit_transform(X_train_meta)
 
-# ## Report Best Parameters for each Model
+meta_grid.fit(X_train_meta, y_train_meta)
 
-grids = {'RFC': rfc_grid, 'LOG': log_grid, 'KNN': knn_grid, 'MLP': mlp_grid, 'DT-BOOST': ab_grid, 'STACK': meta_grid}
+print('---------------- STACK  ----------------')
+print('Grid Search CV Results:')
+with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+    print(pd.DataFrame.from_dict(meta_grid.cv_results_))
 
-for key in list(grids.keys()):
-    if key == 'STACK':
-        grids[key].fit(X_train_meta, y_train_meta)
-    else:
-        grids[key].fit(X_train, y_train)
+print('\nBest Parameters:')
+print(meta_grid.best_params_)
 
-    print('---------------- ' + key + ' ----------------')
-    print('Grid Search CV Results:')
-    with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-        print(pd.DataFrame.from_dict(grids[key].cv_results_))
-
-    print('\nBest Parameters:')
-    print(grids[key].best_params_)
-
-    print('\nBest Score', grids[key].best_score_)
-    print()
-
+print('\nBest Score', meta_grid.best_score_)
+print()
 
