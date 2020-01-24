@@ -113,67 +113,138 @@ for i in range(num_iter):
 
     # ## Define Models
 
-    rfc = RandomForestClassifier(
-        n_estimators=50,
-        max_depth=4,
-        criterion='entropy',
-        class_weight=None,
-        max_features='auto',
-        bootstrap=True,
-        random_state=r
-    )
+#    rfc = RandomForestClassifier(
+#        n_estimators=50,
+#        max_depth=4,
+#        criterion='entropy',
+#        class_weight=None,
+#        max_features='auto',
+#        bootstrap=True,
+#        random_state=r
+#    )
 
-    log = LogisticRegression(
-        penalty='l1',
-        class_weight=None,
-        C=1,
-        fit_intercept=True,
-        solver='liblinear',
-        random_state=r
-    )
-
-    knn = KNeighborsClassifier(   # knn has no random_state
-        n_neighbors=10,
-        weights='distance',
-        p=2
-    )
-
-    rfc_base = RandomForestClassifier(
-        n_estimators=50,
-        max_depth=4,
-        criterion='entropy',
-        class_weight=None,
-        max_features='auto',
-        bootstrap=True,
-        random_state=r
-    )
-
-    log_base = LogisticRegression(
-        penalty='l1',
-        class_weight=None,
-        C=1,
-        fit_intercept=True,
-        solver='liblinear',
-        random_state=r
-    )
-
-    knn_base = KNeighborsClassifier(   # knn has no random_state
-        n_neighbors=10,
-        weights='distance',
-        p=2
-    )
-
-    meta = LogisticRegression(   # logistic regression for stacked ensemble
-        penalty='l1',
+    rfc = RandomForestClassifier(    # best for tpr
+        n_estimators=5,
+        max_depth=2,
+        criterion='gini',
         class_weight='balanced',
-        C=50,
+        max_features='auto',
+        bootstrap=True,
+        random_state=r
+    )
+
+#    log = LogisticRegression(
+#        penalty='l1',
+#        class_weight=None,
+#        C=1,
+#        fit_intercept=True,
+#        solver='liblinear',
+#        random_state=r
+#    )
+
+    log = LogisticRegression(    # best for tpr
+        penalty='l2',
+        class_weight='balanced',
+        C=1,
         fit_intercept=True,
         solver='liblinear',
         random_state=r
     )
 
-    mlp = MLPClassifier(
-        hidden_layer_sizes=(50, 100, 50),
+#    knn = KNeighborsClassifier(   # knn has no random_state
+#        n_neighbors=10,
+#        weights='distance',
+#        p=2
+#    )
+
+    knn = KNeighborsClassifier(   # knn has no random_state, best for tpr
+        n_neighbors=1,
+        weights='uniform',
+        p=2
+    )
+
+#    rfc_base = RandomForestClassifier(
+#        n_estimators=50,
+#        max_depth=4,
+#        criterion='entropy',
+#        class_weight=None,
+#        max_features='auto',
+#        bootstrap=True,
+#        random_state=r
+#    )
+
+    rfc_base = RandomForestClassifier(    # best for tpr
+        n_estimators=5,
+        max_depth=2,
+        criterion='gini',
+        class_weight='balanced',
+        max_features='auto',
+        bootstrap=True,
+        random_state=r
+    )
+
+#    log_base = LogisticRegression(
+#        penalty='l1',
+#        class_weight=None,
+#        C=1,
+#        fit_intercept=True,
+#        solver='liblinear',
+#        random_state=r
+#    )
+
+    log_base = LogisticRegression(    # best for tpr
+        penalty='l2',
+        class_weight='balanced',
+        C=1,
+        fit_intercept=True,
+        solver='liblinear',
+        random_state=r
+    )
+
+#    knn_base = KNeighborsClassifier(   # knn has no random_state
+#        n_neighbors=10,
+#        weights='distance',
+#        p=2
+#    )
+
+    knn_base = KNeighborsClassifier(   # knn has no random_state, best for tpr
+        n_neighbors=1,
+        weights='uniform',
+        p=2
+    )
+
+#    meta = LogisticRegression(   # logistic regression for stacked ensemble
+#        penalty='l1',
+#        class_weight='balanced',
+#        C=50,
+#        fit_intercept=True,
+#        solver='liblinear',
+#        random_state=r
+#    )
+
+    meta = LogisticRegression(   # logistic regression for stacked ensemble, best for tpr
+        penalty='l2',
+        class_weight='balanced',
+        C=3,
+        fit_intercept=True,
+        solver='liblinear',
+        random_state=r
+    )
+
+#    mlp = MLPClassifier(
+#        hidden_layer_sizes=(50, 100, 50),
+#        solver='sgd',
+#        max_iter=200,
+#        batch_size=16,
+#        learning_rate='adaptive',
+#        learning_rate_init=0.1,
+#        random_state=r,
+#        momentum=0.9,
+#        nesterovs_momentum=False
+#    )
+
+    mlp = MLPClassifier(        # best for tpr
+        hidden_layer_sizes=(200, 200, 200),
         solver='sgd',
         max_iter=200,
         batch_size=16,
@@ -193,10 +264,17 @@ for i in range(num_iter):
         random_state=r
     )
 
-    ab = AdaBoostClassifier(
+#    ab = AdaBoostClassifier(
+#        base_estimator=dtc,
+#        n_estimators=100,
+#        learning_rate=0.7,
+#        random_state=r
+#    )
+
+    ab = AdaBoostClassifier(    # best for tpr
         base_estimator=dtc,
-        n_estimators=100,
-        learning_rate=0.7,
+        n_estimators=5,
+        learning_rate=0.1,
         random_state=r
     )
 

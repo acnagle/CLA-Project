@@ -250,8 +250,8 @@ meta_grid.fit(X_train_meta, y_train_meta)
 
 print('---------------- STACK  ----------------')
 print('Grid Search CV Results:')
-with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-    print(pd.DataFrame.from_dict(meta_grid.cv_results_))
+#with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+#    print(pd.DataFrame.from_dict(meta_grid.cv_results_))
 
 print('\nBest Parameters:')
 print(meta_grid.best_params_)
