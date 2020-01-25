@@ -91,7 +91,7 @@ for i in range(num_iter):
     )
  
     # ### Impute Data
-    imp = IterativeImputer(max_iter=100, random_state=1337)
+    imp = IterativeImputer(max_iter=100, random_state=r)
 
     X_train = imp.fit_transform(X_train)
     X_test = imp.transform(X_test)
