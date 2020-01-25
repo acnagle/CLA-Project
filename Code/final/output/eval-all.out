@@ -1,0 +1,178 @@
+/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/impute/_iterative.py:638: ConvergenceWarning: [IterativeImputer] Early stopping criterion not reached.
+  " reached.", ConvergenceWarning)
+/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/impute/_iterative.py:638: ConvergenceWarning: [IterativeImputer] Early stopping criterion not reached.
+  " reached.", ConvergenceWarning)
+/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/impute/_iterative.py:638: ConvergenceWarning: [IterativeImputer] Early stopping criterion not reached.
+  " reached.", ConvergenceWarning)
+/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/impute/_iterative.py:638: ConvergenceWarning: [IterativeImputer] Early stopping criterion not reached.
+  " reached.", ConvergenceWarning)
+
+############### Evaluate All Models ###############
+---------------- RFC -----------------
+average accuracy: 0.7610
+average F1: 0.6815
+average TPR: 0.7445
+average FPR: 0.2304
+average confusion matrix
+        0       1
+0  64.647  19.353
+1  11.241  32.759
+
+median accuracy: 0.7656
+median F1: 0.6818
+median TPR: 0.7500
+median FPR: 0.2262
+median confusion matrix
+      0     1
+0  65.0  19.0
+1  11.0  33.0
+
+std accuracy: 0.0359
+std F1: 0.0450
+std TPR: 0.0697
+std FPR: 0.0529
+std confusion matrix
+          0         1
+0  4.439413  4.439413
+1  3.066418  3.066418
+
+---------------- LOG -----------------
+average accuracy: 0.7565
+average F1: 0.6715
+average TPR: 0.7250
+average FPR: 0.2269
+average confusion matrix
+        0       1
+0  64.940  19.060
+1  12.102  31.898
+
+median accuracy: 0.7578
+median F1: 0.6735
+median TPR: 0.7273
+median FPR: 0.2262
+median confusion matrix
+      0     1
+0  65.0  19.0
+1  12.0  32.0
+
+std accuracy: 0.0348
+std F1: 0.0457
+std TPR: 0.0677
+std FPR: 0.0467
+std confusion matrix
+          0         1
+0  3.922040  3.922040
+1  2.978522  2.978522
+
+---------------- KNN -----------------
+average accuracy: 0.7091
+average F1: 0.5722
+average TPR: 0.5677
+average FPR: 0.2169
+average confusion matrix
+        0       1
+0  65.783  18.217
+1  19.021  24.979
+
+median accuracy: 0.7109
+median F1: 0.5714
+median TPR: 0.5682
+median FPR: 0.2143
+median confusion matrix
+      0     1
+0  66.0  18.0
+1  19.0  25.0
+
+std accuracy: 0.0343
+std F1: 0.0507
+std TPR: 0.0658
+std FPR: 0.0435
+std confusion matrix
+          0         1
+0  3.655668  3.655668
+1  2.895956  2.895956
+
+---------------- MLP -----------------
+average accuracy: 0.7012
+average F1: 0.5582
+average TPR: 0.5524
+average FPR: 0.2209
+average confusion matrix
+        0       1
+0  65.443  18.557
+1  19.693  24.307
+
+median accuracy: 0.7031
+median F1: 0.5581
+median TPR: 0.5455
+median FPR: 0.2262
+median confusion matrix
+      0     1
+0  65.0  19.0
+1  20.0  24.0
+
+std accuracy: 0.0353
+std F1: 0.0558
+std TPR: 0.0774
+std FPR: 0.0479
+std confusion matrix
+          0         1
+0  4.019546  4.019546
+1  3.405107  3.405107
+
+---------------- DT-BOOST -----------------
+average accuracy: 0.7408
+average F1: 0.6539
+average TPR: 0.7140
+average FPR: 0.2452
+average confusion matrix
+        0       1
+0  63.407  20.593
+1  12.583  31.417
+
+median accuracy: 0.7422
+median F1: 0.6538
+median TPR: 0.7273
+median FPR: 0.2381
+median confusion matrix
+      0     1
+0  64.0  20.0
+1  12.0  32.0
+
+std accuracy: 0.0357
+std F1: 0.0474
+std TPR: 0.0737
+std FPR: 0.0505
+std confusion matrix
+          0         1
+0  4.245627  4.245627
+1  3.242393  3.242393
+
+---------------- META -----------------
+average accuracy: 0.7616
+average F1: 0.6755
+average TPR: 0.7234
+average FPR: 0.2184
+average confusion matrix
+        0       1
+0  63.407  20.593
+1  12.583  31.417
+
+median accuracy: 0.7656
+median F1: 0.6800
+median TPR: 0.7273
+median FPR: 0.2143
+median confusion matrix
+      0     1
+0  64.0  20.0
+1  12.0  32.0
+
+std accuracy: 0.0342
+std F1: 0.0463
+std TPR: 0.0703
+std FPR: 0.0466
+std confusion matrix
+          0         1
+0  4.245627  4.245627
+1  3.242393  3.242393
+

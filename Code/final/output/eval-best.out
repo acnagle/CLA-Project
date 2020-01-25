@@ -1,0 +1,42 @@
+
+############### Evaluate Best Model ###############
+Holdout Accuracy: 0.7578
+Holdout F1: 0.7048
+Holdout TPR: 0.8409
+Holdout FPR: 0.2857
+Holdout confusion matrix
+    0   1
+0  60  24
+1   7  37
+
+Feature weighting for best model (random forests)
+
+	 0.4005 algalBloomSheen_one_week
+	 0.2565 cos_month
+	 0.1314 phycocyanin
+	 0.0633 pco2_ppm
+	 0.0592 do_sat
+	 0.0474 air_temp
+	 0.0261 rel_hum
+	 0.0095 sin_wind_dir
+	 0.0062 turbidity
+	 0.0000 wind_speed
+	 0.0000 chlor
+	 0.0000 do_raw
+	 0.0000 do_wtemp
+	 0.0000 par
+	 0.0000 par_below
+	 0.0000 DAILYMaximumDryBulbTemp
+	 0.0000 DAILYMinimumDryBulbTemp
+	 0.0000 DAILYDeptFromNormalAverageTemp
+	 0.0000 DAILYAverageStationPressure
+	 0.0000 sin_month
+	 0.0000 cos_wind_dir
+	 0.0000 DAILYPrecip_one_day
+	 0.0000 DAILYPrecip_three_day
+	 0.0000 DAILYPrecip_one_week
+	 0.0000 COUNTPrecip_one_day
+	 0.0000 COUNTPrecip_three_day
+	 0.0000 COUNTPrecip_one_week
+	 0.0000 algalBloomSheen_one_day
+	 0.0000 algalBloomSheen_three_day

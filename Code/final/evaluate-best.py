@@ -37,7 +37,7 @@ train_test = pd.read_json('data/train-test.json')
 train_test_labels = train_test[['label']]
 train_test = train_test.drop('label', axis='columns')
 
-hold = pd.read_json('data/hold.json')
+hold = pd.read_json('data/holdout.json')
 hold_labels = hold[['label']]
 hold = hold.drop('label', axis='columns')
 
@@ -68,10 +68,10 @@ X_hold = scaler.transform(X_hold)
 # ## Define Models
 
 best = RandomForestClassifier(
-    n_estimators=50,
-    max_depth=4,
-    criterion='entropy',
-    class_weight=None,
+    n_estimators=5,
+    max_depth=2,
+    criterion='gini',
+    class_weight='balanced',
     max_features='auto',
     bootstrap=True,
     random_state=r
@@ -80,7 +80,7 @@ best = RandomForestClassifier(
 # ## Evaluate
 
 best.fit(X_train_test, y_train_test)
-y_pred = rfc.predict(X_train_test)
+y_pred = best.predict(X_hold)
 
 acc = accuracy_score(y_hold, y_pred)
 f1 = f1_score(y_hold, y_pred)
@@ -88,11 +88,22 @@ conf_matrix = pd.DataFrame(confusion_matrix(y_hold, y_pred))
 tpr = conf_matrix.iloc[1, 1] / (conf_matrix.iloc[1, 1] + conf_matrix.iloc[1, 0])
 fpr = conf_matrix.iloc[0, 1] / (conf_matrix.iloc[0, 1] + conf_matrix.iloc[0, 0])
 
-print('Holdout Accuracy: %0.4f' % np.mean(acc_arr[i]))
-print('Holdout F1: %0.4f' % np.mean(f1_arr[i]))
-print('Holdout TPR: %0.4f' % np.mean(tpr_arr[i]))
-print('Holdout FPR: %0.4f' % np.mean(fpr_arr[i]))
+print('Holdout Accuracy: %0.4f' % acc)
+print('Holdout F1: %0.4f' % f1)
+print('Holdout TPR: %0.4f' % tpr)
+print('Holdout FPR: %0.4f' % fpr)
 print('Holdout confusion matrix')
 print(conf_matrix)
 print()
+
+coef_sort_idx = np.argsort(-np.abs(best.feature_importances_), kind='mergesort')
+   
+print('Feature weighting for best model (random forests)\n')
+for idx in coef_sort_idx:
+    coef = best.feature_importances_[idx]
+    
+    if coef < 0:
+        print('\t%0.4f' % best.feature_importances_[idx], train_test.columns[idx])
+    else:
+        print('\t %0.4f' % best.feature_importances_[idx], train_test.columns[idx])
 
