@@ -17,6 +17,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
+from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
@@ -77,6 +78,12 @@ ab_f1_arr = []
 ab_tpr_arr = []
 ab_fpr_arr = []
 ab_conf_matrix_arr = []
+
+gnb_acc_arr = []
+gnb_f1_arr = []
+gnb_tpr_arr = []
+gnb_fpr_arr = []
+gnb_conf_matrix_arr = []
 
 for i in range(num_iter):
     # ### Split Data
@@ -278,6 +285,11 @@ for i in range(num_iter):
         random_state=r
     )
 
+    gnb = GaussianNB(
+        priors=[0.5, 0.5],
+        var_smoothing=1e-11
+    )
+
     # ## Evaluate
 
     # ### rfc
@@ -365,6 +377,24 @@ for i in range(num_iter):
     ab_fpr_arr.append(ab_fpr)
     ab_conf_matrix_arr.append(ab_conf_matrix)
 
+    # ### gnb
+
+    gnb.fit(X_train, y_train)
+    gnb_y_pred = gnb.predict(X_test)
+
+    gnb_acc = accuracy_score(y_test, gnb_y_pred)
+    gnb_f1 = f1_score(y_test, gnb_y_pred)
+    gnb_conf_matrix = pd.DataFrame(confusion_matrix(y_test, gnb_y_pred))
+    gnb_tpr = gnb_conf_matrix.iloc[1, 1] / (gnb_conf_matrix.iloc[1, 1] + gnb_conf_matrix.iloc[1, 0])
+    gnb_fpr = gnb_conf_matrix.iloc[0, 1] / (gnb_conf_matrix.iloc[0, 1] + gnb_conf_matrix.iloc[0, 0])
+
+    gnb_acc_arr.append(gnb_acc)
+    gnb_f1_arr.append(gnb_f1)
+    gnb_tpr_arr.append(gnb_tpr)
+    gnb_fpr_arr.append(gnb_fpr)
+    gnb_conf_matrix_arr.append(gnb_conf_matrix)
+
+
     # ### meta
 
     # #### Train Meta-Classifier
@@ -428,12 +458,12 @@ for i in range(num_iter):
     meta_conf_matrix_arr.append(meta_conf_matrix)
 
 # Get average, median, standard deviation, and confusion matrix for every model
-model_names = ['RFC', 'LOG', 'KNN', 'MLP', 'DT-BOOST', 'META']
-acc_arr = [rfc_acc_arr, log_acc_arr, knn_acc_arr, mlp_acc_arr, ab_acc_arr, meta_acc_arr]
-f1_arr = [rfc_f1_arr, log_f1_arr, knn_f1_arr, mlp_f1_arr, ab_f1_arr, meta_f1_arr]
-conf_matrix_arr = [rfc_conf_matrix_arr, log_conf_matrix_arr, knn_conf_matrix_arr, mlp_conf_matrix_arr, ab_conf_matrix_arr, ab_conf_matrix_arr]
-tpr_arr = [rfc_tpr_arr, log_tpr_arr, knn_tpr_arr, mlp_tpr_arr, ab_tpr_arr, meta_tpr_arr]
-fpr_arr = [rfc_fpr_arr, log_fpr_arr, knn_fpr_arr, mlp_fpr_arr, ab_fpr_arr, meta_fpr_arr]
+model_names = ['RFC', 'LOG', 'KNN', 'MLP', 'DT-BOOST', 'META', 'GNB']
+acc_arr = [rfc_acc_arr, log_acc_arr, knn_acc_arr, mlp_acc_arr, ab_acc_arr, meta_acc_arr, gnb_acc_arr]
+f1_arr = [rfc_f1_arr, log_f1_arr, knn_f1_arr, mlp_f1_arr, ab_f1_arr, meta_f1_arr, gnb_f1_arr]
+conf_matrix_arr = [rfc_conf_matrix_arr, log_conf_matrix_arr, knn_conf_matrix_arr, mlp_conf_matrix_arr, ab_conf_matrix_arr, ab_conf_matrix_arr, gnb_conf_matrix_arr]
+tpr_arr = [rfc_tpr_arr, log_tpr_arr, knn_tpr_arr, mlp_tpr_arr, ab_tpr_arr, meta_tpr_arr, gnb_tpr_arr]
+fpr_arr = [rfc_fpr_arr, log_fpr_arr, knn_fpr_arr, mlp_fpr_arr, ab_fpr_arr, meta_fpr_arr, gnb_fpr_arr]
 
 for i in range(len(model_names)): 
     print('---------------- ' + model_names[i] + ' -----------------')

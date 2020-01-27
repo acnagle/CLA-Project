@@ -17,6 +17,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
+from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
@@ -114,6 +115,8 @@ ab = AdaBoostClassifier(
     random_state=r
 )
 
+gnb = GaussianNB()
+
 # ## Define parameter grids
 rfc_params = {
     'n_estimators': [5, 10, 20, 50, 70, 100],
@@ -143,6 +146,12 @@ mlp_params = {
 ab_params = {
     'n_estimators': [5, 10, 20, 50, 70, 100],
     'learning_rate': [0.001, 0.01, 0.05, 0.1, 0.2, 0.5, 0.7, 1],
+}
+
+
+gnb_params = {
+    'priors': [[0.5, 0.5], None],
+    'var_smoothing': [1e-11, 1e-10, 1e-9, 1e-8, 1e-7, 1e-6]
 }
 
 # ## Define Searches
@@ -204,9 +213,18 @@ ab_grid = GridSearchCV(
     refit=refit
 )
 
+gnb_grid = GridSearchCV(
+    gnb,
+    gnb_params,
+    scoring=['accuracy', 'recall'],
+    n_jobs=8,
+    cv=5,
+    refit=refit
+)
+
 # ## Report Best Parameters for each Model
 
-grids = {'RFC': rfc_grid, 'LOG': log_grid, 'KNN': knn_grid, 'MLP': mlp_grid, 'DT-BOOST': ab_grid}
+grids = {'RFC': rfc_grid, 'LOG': log_grid, 'KNN': knn_grid, 'MLP': mlp_grid, 'DT-BOOST': ab_grid, 'GNB': gnb_grid}
 
 for key in list(grids.keys()):
     grids[key].fit(X_train, y_train)

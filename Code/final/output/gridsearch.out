@@ -55,349 +55,31 @@ Best Score 0.7230769230769231
 
 
 
+---------------- GNB ----------------
+Grid Search CV Results:
+
+Best Parameters:
+{'priors': [0.5, 0.5], 'var_smoothing': 1e-11}
+
+Best Score 0.7230769230769232
+
+
+
+
 ---------------- STACK  ----------------
 Grid Search CV Results:
-    mean_fit_time  std_fit_time  mean_score_time  std_score_time param_C  \
-0        0.000702      0.000076         0.000626        0.000020       1   
-1        0.000654      0.000031         0.000752        0.000143       1   
-2        0.000831      0.000101         0.000863        0.000208       1   
-3        0.000581      0.000092         0.000653        0.000042       1   
-4        0.000737      0.000167         0.000655        0.000060     1.5   
-5        0.000550      0.000052         0.000601        0.000019     1.5   
-6        0.000622      0.000089         0.000765        0.000205     1.5   
-7        0.000449      0.000043         0.000582        0.000015     1.5   
-8        0.000637      0.000072         0.000610        0.000024       2   
-9        0.000528      0.000017         0.000594        0.000022       2   
-10       0.000669      0.000128         0.000789        0.000169       2   
-11       0.000497      0.000095         0.000661        0.000154       2   
-12       0.000643      0.000091         0.000569        0.000006       3   
-13       0.000625      0.000096         0.000706        0.000175       3   
-14       0.000542      0.000056         0.000570        0.000015       3   
-15       0.000430      0.000020         0.000631        0.000066       3   
-16       0.000743      0.000099         0.000642        0.000082       4   
-17       0.000661      0.000181         0.000706        0.000167       4   
-18       0.000685      0.000187         0.000745        0.000207       4   
-19       0.000449      0.000029         0.000596        0.000048       4   
-20       0.000745      0.000137         0.000580        0.000017       5   
-21       0.000531      0.000018         0.000582        0.000012       5   
-22       0.000631      0.000051         0.000609        0.000050       5   
-23       0.000427      0.000004         0.000603        0.000031       5   
-24       0.000868      0.000155         0.000578        0.000011      10   
-25       0.000519      0.000021         0.000600        0.000048      10   
-26       0.000766      0.000101         0.000574        0.000003      10   
-27       0.000438      0.000011         0.000610        0.000037      10   
-28       0.001127      0.000173         0.000837        0.000143      20   
-29       0.000605      0.000144         0.000673        0.000147      20   
-30       0.000904      0.000216         0.000729        0.000183      20   
-31       0.000424      0.000008         0.000559        0.000005      20   
-32       0.000876      0.000092         0.000599        0.000018      50   
-33       0.000602      0.000055         0.000646        0.000027      50   
-34       0.000847      0.000111         0.000584        0.000007      50   
-35       0.000549      0.000076         0.000635        0.000017      50   
-36       0.001083      0.000263         0.000711        0.000139     100   
-37       0.000701      0.000145         0.000717        0.000162     100   
-38       0.000931      0.000204         0.000670        0.000088     100   
-39       0.000498      0.000048         0.000618        0.000030     100   
-
-   param_class_weight param_penalty  \
-0            balanced            l1   
-1            balanced            l2   
-2                None            l1   
-3                None            l2   
-4            balanced            l1   
-5            balanced            l2   
-6                None            l1   
-7                None            l2   
-8            balanced            l1   
-9            balanced            l2   
-10               None            l1   
-11               None            l2   
-12           balanced            l1   
-13           balanced            l2   
-14               None            l1   
-15               None            l2   
-16           balanced            l1   
-17           balanced            l2   
-18               None            l1   
-19               None            l2   
-20           balanced            l1   
-21           balanced            l2   
-22               None            l1   
-23               None            l2   
-24           balanced            l1   
-25           balanced            l2   
-26               None            l1   
-27               None            l2   
-28           balanced            l1   
-29           balanced            l2   
-30               None            l1   
-31               None            l2   
-32           balanced            l1   
-33           balanced            l2   
-34               None            l1   
-35               None            l2   
-36           balanced            l1   
-37           balanced            l2   
-38               None            l1   
-39               None            l2   
-
-                                               params  split0_test_accuracy  \
-0   {'C': 1, 'class_weight': 'balanced', 'penalty'...              0.807692   
-1   {'C': 1, 'class_weight': 'balanced', 'penalty'...              0.807692   
-2     {'C': 1, 'class_weight': None, 'penalty': 'l1'}              0.807692   
-3     {'C': 1, 'class_weight': None, 'penalty': 'l2'}              0.769231   
-4   {'C': 1.5, 'class_weight': 'balanced', 'penalt...              0.807692   
-5   {'C': 1.5, 'class_weight': 'balanced', 'penalt...              0.807692   
-6   {'C': 1.5, 'class_weight': None, 'penalty': 'l1'}              0.769231   
-7   {'C': 1.5, 'class_weight': None, 'penalty': 'l2'}              0.730769   
-8   {'C': 2, 'class_weight': 'balanced', 'penalty'...              0.807692   
-9   {'C': 2, 'class_weight': 'balanced', 'penalty'...              0.807692   
-10    {'C': 2, 'class_weight': None, 'penalty': 'l1'}              0.769231   
-11    {'C': 2, 'class_weight': None, 'penalty': 'l2'}              0.730769   
-12  {'C': 3, 'class_weight': 'balanced', 'penalty'...              0.807692   
-13  {'C': 3, 'class_weight': 'balanced', 'penalty'...              0.807692   
-14    {'C': 3, 'class_weight': None, 'penalty': 'l1'}              0.730769   
-15    {'C': 3, 'class_weight': None, 'penalty': 'l2'}              0.730769   
-16  {'C': 4, 'class_weight': 'balanced', 'penalty'...              0.807692   
-17  {'C': 4, 'class_weight': 'balanced', 'penalty'...              0.807692   
-18    {'C': 4, 'class_weight': None, 'penalty': 'l1'}              0.730769   
-19    {'C': 4, 'class_weight': None, 'penalty': 'l2'}              0.730769   
-20  {'C': 5, 'class_weight': 'balanced', 'penalty'...              0.807692   
-21  {'C': 5, 'class_weight': 'balanced', 'penalty'...              0.807692   
-22    {'C': 5, 'class_weight': None, 'penalty': 'l1'}              0.730769   
-23    {'C': 5, 'class_weight': None, 'penalty': 'l2'}              0.730769   
-24  {'C': 10, 'class_weight': 'balanced', 'penalty...              0.807692   
-25  {'C': 10, 'class_weight': 'balanced', 'penalty...              0.807692   
-26   {'C': 10, 'class_weight': None, 'penalty': 'l1'}              0.730769   
-27   {'C': 10, 'class_weight': None, 'penalty': 'l2'}              0.730769   
-28  {'C': 20, 'class_weight': 'balanced', 'penalty...              0.807692   
-29  {'C': 20, 'class_weight': 'balanced', 'penalty...              0.807692   
-30   {'C': 20, 'class_weight': None, 'penalty': 'l1'}              0.730769   
-31   {'C': 20, 'class_weight': None, 'penalty': 'l2'}              0.730769   
-32  {'C': 50, 'class_weight': 'balanced', 'penalty...              0.807692   
-33  {'C': 50, 'class_weight': 'balanced', 'penalty...              0.807692   
-34   {'C': 50, 'class_weight': None, 'penalty': 'l1'}              0.730769   
-35   {'C': 50, 'class_weight': None, 'penalty': 'l2'}              0.730769   
-36  {'C': 100, 'class_weight': 'balanced', 'penalt...              0.807692   
-37  {'C': 100, 'class_weight': 'balanced', 'penalt...              0.807692   
-38  {'C': 100, 'class_weight': None, 'penalty': 'l1'}              0.730769   
-39  {'C': 100, 'class_weight': None, 'penalty': 'l2'}              0.730769   
-
-    split1_test_accuracy  split2_test_accuracy  split3_test_accuracy  \
-0               0.730769              0.846154                  0.60   
-1               0.730769              0.846154                  0.60   
-2               0.730769              0.846154                  0.56   
-3               0.730769              0.846154                  0.48   
-4               0.730769              0.846154                  0.60   
-5               0.730769              0.846154                  0.60   
-6               0.730769              0.769231                  0.56   
-7               0.730769              0.846154                  0.52   
-8               0.730769              0.846154                  0.60   
-9               0.730769              0.846154                  0.60   
-10              0.730769              0.769231                  0.56   
-11              0.730769              0.807692                  0.52   
-12              0.730769              0.846154                  0.60   
-13              0.730769              0.884615                  0.60   
-14              0.730769              0.846154                  0.52   
-15              0.730769              0.807692                  0.56   
-16              0.730769              0.846154                  0.60   
-17              0.730769              0.846154                  0.60   
-18              0.730769              0.846154                  0.52   
-19              0.730769              0.807692                  0.56   
-20              0.730769              0.846154                  0.60   
-21              0.730769              0.846154                  0.60   
-22              0.730769              0.846154                  0.52   
-23              0.730769              0.807692                  0.56   
-24              0.730769              0.846154                  0.60   
-25              0.730769              0.846154                  0.60   
-26              0.730769              0.807692                  0.56   
-27              0.730769              0.807692                  0.56   
-28              0.730769              0.846154                  0.60   
-29              0.730769              0.846154                  0.60   
-30              0.730769              0.807692                  0.56   
-31              0.730769              0.807692                  0.56   
-32              0.730769              0.846154                  0.60   
-33              0.730769              0.846154                  0.60   
-34              0.730769              0.807692                  0.56   
-35              0.730769              0.807692                  0.56   
-36              0.730769              0.846154                  0.60   
-37              0.730769              0.846154                  0.60   
-38              0.730769              0.807692                  0.56   
-39              0.730769              0.807692                  0.56   
-
-    split4_test_accuracy  mean_test_accuracy  std_test_accuracy  \
-0                   0.84            0.764923           0.092120   
-1                   0.84            0.764923           0.092120   
-2                   0.76            0.740923           0.098724   
-3                   0.76            0.717231           0.124592   
-4                   0.84            0.764923           0.092120   
-5                   0.84            0.764923           0.092120   
-6                   0.76            0.717846           0.080175   
-7                   0.76            0.717538           0.107440   
-8                   0.84            0.764923           0.092120   
-9                   0.80            0.756923           0.086838   
-10                  0.76            0.717846           0.080175   
-11                  0.76            0.709846           0.099001   
-12                  0.84            0.764923           0.092120   
-13                  0.80            0.764615           0.095657   
-14                  0.76            0.717538           0.107440   
-15                  0.76            0.717846           0.083784   
-16                  0.80            0.756923           0.086838   
-17                  0.80            0.756923           0.086838   
-18                  0.76            0.717538           0.107440   
-19                  0.76            0.717846           0.083784   
-20                  0.80            0.756923           0.086838   
-21                  0.80            0.756923           0.086838   
-22                  0.76            0.717538           0.107440   
-23                  0.76            0.717846           0.083784   
-24                  0.80            0.756923           0.086838   
-25                  0.80            0.756923           0.086838   
-26                  0.76            0.717846           0.083784   
-27                  0.76            0.717846           0.083784   
-28                  0.80            0.756923           0.086838   
-29                  0.80            0.756923           0.086838   
-30                  0.76            0.717846           0.083784   
-31                  0.76            0.717846           0.083784   
-32                  0.76            0.748923           0.084307   
-33                  0.76            0.748923           0.084307   
-34                  0.76            0.717846           0.083784   
-35                  0.76            0.717846           0.083784   
-36                  0.76            0.748923           0.084307   
-37                  0.76            0.748923           0.084307   
-38                  0.76            0.717846           0.083784   
-39                  0.76            0.717846           0.083784   
-
-    rank_test_accuracy  split0_test_recall  split1_test_recall  \
-0                    1            0.666667            0.777778   
-1                    1            0.666667            0.777778   
-2                   21            0.555556            0.777778   
-3                   39            0.444444            0.777778   
-4                    1            0.666667            0.777778   
-5                    1            0.666667            0.777778   
-6                   22            0.444444            0.777778   
-7                   35            0.444444            0.777778   
-8                    1            0.666667            0.777778   
-9                    8            0.666667            0.777778   
-10                  22            0.444444            0.777778   
-11                  40            0.444444            0.777778   
-12                   1            0.666667            0.777778   
-13                   7            0.666667            0.777778   
-14                  35            0.444444            0.777778   
-15                  22            0.444444            0.777778   
-16                   8            0.666667            0.777778   
-17                   8            0.666667            0.777778   
-18                  35            0.444444            0.777778   
-19                  22            0.444444            0.777778   
-20                   8            0.666667            0.777778   
-21                   8            0.666667            0.777778   
-22                  35            0.444444            0.777778   
-23                  22            0.444444            0.777778   
-24                   8            0.666667            0.777778   
-25                   8            0.666667            0.777778   
-26                  22            0.444444            0.777778   
-27                  22            0.444444            0.777778   
-28                   8            0.666667            0.777778   
-29                   8            0.666667            0.777778   
-30                  22            0.444444            0.777778   
-31                  22            0.444444            0.777778   
-32                  17            0.666667            0.777778   
-33                  17            0.666667            0.777778   
-34                  22            0.444444            0.777778   
-35                  22            0.444444            0.777778   
-36                  17            0.666667            0.777778   
-37                  17            0.666667            0.777778   
-38                  22            0.444444            0.777778   
-39                  22            0.444444            0.777778   
-
-    split2_test_recall  split3_test_recall  split4_test_recall  \
-0             0.888889               0.750            0.777778   
-1             0.888889               0.750            0.777778   
-2             0.666667               0.500            0.555556   
-3             0.666667               0.375            0.555556   
-4             0.888889               0.750            0.777778   
-5             0.888889               0.750            0.777778   
-6             0.444444               0.500            0.555556   
-7             0.666667               0.375            0.555556   
-8             0.888889               0.750            0.777778   
-9             0.888889               0.750            0.777778   
-10            0.444444               0.500            0.555556   
-11            0.666667               0.375            0.555556   
-12            0.888889               0.750            0.777778   
-13            1.000000               0.750            0.777778   
-14            0.666667               0.375            0.555556   
-15            0.666667               0.500            0.555556   
-16            0.888889               0.750            0.777778   
-17            1.000000               0.750            0.777778   
-18            0.666667               0.500            0.555556   
-19            0.666667               0.500            0.555556   
-20            0.888889               0.750            0.777778   
-21            1.000000               0.750            0.777778   
-22            0.666667               0.500            0.555556   
-23            0.666667               0.500            0.555556   
-24            1.000000               0.750            0.777778   
-25            1.000000               0.750            0.777778   
-26            0.666667               0.500            0.555556   
-27            0.666667               0.500            0.555556   
-28            1.000000               0.750            0.777778   
-29            1.000000               0.750            0.777778   
-30            0.666667               0.500            0.555556   
-31            0.666667               0.500            0.555556   
-32            1.000000               0.750            0.777778   
-33            1.000000               0.750            0.777778   
-34            0.666667               0.500            0.555556   
-35            0.666667               0.500            0.555556   
-36            1.000000               0.750            0.777778   
-37            1.000000               0.750            0.777778   
-38            0.666667               0.500            0.555556   
-39            0.666667               0.500            0.555556   
-
-    mean_test_recall  std_test_recall  rank_test_recall  
-0           0.772222         0.071146                12  
-1           0.772222         0.071146                12  
-2           0.611111         0.099381                21  
-3           0.563889         0.145827                35  
-4           0.772222         0.071146                12  
-5           0.772222         0.071146                12  
-6           0.544444         0.123728                39  
-7           0.563889         0.145827                35  
-8           0.772222         0.071146                12  
-9           0.772222         0.071146                12  
-10          0.544444         0.123728                39  
-11          0.563889         0.145827                35  
-12          0.772222         0.071146                12  
-13          0.794444         0.110554                 1  
-14          0.563889         0.145827                35  
-15          0.588889         0.119670                22  
-16          0.772222         0.071146                12  
-17          0.794444         0.110554                 1  
-18          0.588889         0.119670                22  
-19          0.588889         0.119670                22  
-20          0.772222         0.071146                12  
-21          0.794444         0.110554                 1  
-22          0.588889         0.119670                22  
-23          0.588889         0.119670                22  
-24          0.794444         0.110554                 1  
-25          0.794444         0.110554                 1  
-26          0.588889         0.119670                22  
-27          0.588889         0.119670                22  
-28          0.794444         0.110554                 1  
-29          0.794444         0.110554                 1  
-30          0.588889         0.119670                22  
-31          0.588889         0.119670                22  
-32          0.794444         0.110554                 1  
-33          0.794444         0.110554                 1  
-34          0.588889         0.119670                22  
-35          0.588889         0.119670                22  
-36          0.794444         0.110554                 1  
-37          0.794444         0.110554                 1  
-38          0.588889         0.119670                22  
-39          0.588889         0.119670                22  
 
 Best Parameters:
 {'C': 3, 'class_weight': 'balanced', 'penalty': 'l2'}
 
 Best Score 0.7944444444444445
 
+/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/neural_network/_multilayer_perceptron.py:571: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (200) reached and the optimization hasn't converged yet.
+  % self.max_iter, ConvergenceWarning)
+/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/neural_network/_multilayer_perceptron.py:571: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (200) reached and the optimization hasn't converged yet.
+  % self.max_iter, ConvergenceWarning)
+/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/neural_network/_multilayer_perceptron.py:571: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (200) reached and the optimization hasn't converged yet.
+  % self.max_iter, ConvergenceWarning)
 /home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/utils/extmath.py:151: RuntimeWarning: overflow encountered in matmul
   ret = a @ b
 /home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/utils/extmath.py:151: RuntimeWarning: invalid value encountered in matmul
@@ -408,10 +90,6 @@ Best Score 0.7944444444444445
   % self.max_iter, ConvergenceWarning)
 /home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/preprocessing/_label.py:768: RuntimeWarning: invalid value encountered in greater
   y = np.array(y > threshold, dtype=np.int)
-/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/neural_network/_multilayer_perceptron.py:571: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (200) reached and the optimization hasn't converged yet.
-  % self.max_iter, ConvergenceWarning)
-/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/neural_network/_multilayer_perceptron.py:571: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (200) reached and the optimization hasn't converged yet.
-  % self.max_iter, ConvergenceWarning)
 /home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/utils/extmath.py:151: RuntimeWarning: overflow encountered in matmul
   ret = a @ b
 /home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/utils/extmath.py:151: RuntimeWarning: invalid value encountered in matmul
@@ -422,8 +100,6 @@ Best Score 0.7944444444444445
   % self.max_iter, ConvergenceWarning)
 /home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/preprocessing/_label.py:768: RuntimeWarning: invalid value encountered in greater
   y = np.array(y > threshold, dtype=np.int)
-/home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/neural_network/_multilayer_perceptron.py:571: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (200) reached and the optimization hasn't converged yet.
-  % self.max_iter, ConvergenceWarning)
 /home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/utils/extmath.py:151: RuntimeWarning: overflow encountered in matmul
   ret = a @ b
 /home/user1/acnagle/cla/env/cla/lib/python3.6/site-packages/sklearn/utils/extmath.py:151: RuntimeWarning: invalid value encountered in matmul

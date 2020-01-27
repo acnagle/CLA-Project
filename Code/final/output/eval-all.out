@@ -176,3 +176,31 @@ std confusion matrix
 0  4.245627  4.245627
 1  3.242393  3.242393
 
+---------------- GNB -----------------
+average accuracy: 0.7418
+average F1: 0.6556
+average TPR: 0.7154
+average FPR: 0.2443
+average confusion matrix
+        0       1
+0  63.475  20.525
+1  12.522  31.478
+
+median accuracy: 0.7422
+median F1: 0.6538
+median TPR: 0.7045
+median FPR: 0.2381
+median confusion matrix
+      0     1
+0  64.0  20.0
+1  13.0  31.0
+
+std accuracy: 0.0358
+std F1: 0.0458
+std TPR: 0.0633
+std FPR: 0.0455
+std confusion matrix
+          0         1
+0  3.824314  3.824314
+1  2.785950  2.785950
+
