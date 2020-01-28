@@ -32,6 +32,8 @@ random.seed(r)
 
 print('\n############### Grid Search ###############')
 
+num_aug = int(sys.argv[1])    # number of times to augment each data point in the training set. any integer 0 or less will not cause the data to be augmented
+
 # ## Read in Data
 
 train_test = pd.read_json('data/train-test.json')
@@ -57,7 +59,158 @@ imp = IterativeImputer(max_iter=100, random_state=r)
 X_train = imp.fit_transform(X_train)
 X_test = imp.transform(X_test)
 
+scaler = StandardScaler()
+
 # ### Augment Data
+if num_aug > 0:
+    print('\nAugmenting the training data set with '+str(num_aug)+' augmented points per data point.')
+    print('Size of training set before => after data augmentation: '+str(len(X_train)), end=' => ')
+
+    train_set = pd.DataFrame(X_train, columns=train_test.columns)
+    train_labels = pd.DataFrame(y_train, columns=['labels'])
+    train_set.insert(loc=0, column='labels', value=train_labels)     # need to add labels back in for filtering purposes
+
+    pos = train_set.loc[train_set['labels'] == 1]    # dataframe of postive examples
+    neg = train_set.loc[train_set['labels'] == 0]    # dataframe of negative examples
+    train_set.drop('labels', axis='columns', inplace=True)
+
+    stats = ['min', 'max', 'std']   # statistics of interest for each class
+
+    pos_stat = np.zeros((len(stats), len(train_set.columns)))
+    neg_stat = np.zeros((len(stats), len(train_set.columns)))
+
+    for c in ['pos', 'neg']:
+        if c == 'pos':
+            df = pos
+            stat = pos_stat
+        else:
+            df = neg
+            stat = neg_stat
+        for col in range(len(train_set.columns)):
+            stat[:, col] = [
+                np.min(df.iloc[:, col]),
+                np.max(df.iloc[:, col]),
+                np.std(df.iloc[:, col]),
+            ]
+
+    pos_stat_df = pd.DataFrame(pos_stat, index=stats, columns=train_set.columns)
+    neg_stat_df = pd.DataFrame(neg_stat, index=stats, columns=train_set.columns)
+
+    # Note: may need to augmentation based on the correlation among variables, not just looking at mins and maxes
+    # independently
+
+    # These lists are handpicked based on the min, max, and std in pos_stat and neg_stat
+    pos_min = [
+        'turbidity',   # maybe remove par_below, add wind_speed
+        'par_below',
+        'DAILYAverageStationPressure'
+    ]
+
+    pos_max = [
+        'phycocyanin',
+        'do_raw',
+        'do_sat',
+        'par',
+        'par_below',
+        'DAILYMaximumDryBulbTemp',
+        'DAILYMinimumDryBulbTemp',
+        'DAILYPrecip_three_day',
+        'DAILYPrecip_one_week'
+    ]
+
+    neg_min = [     # maybe remove pco2_ppm, par (very high std)
+        'air_temp',
+        'rel_hum',
+        'chlor',
+        'phycocyanin',
+        'do_wtemp',
+        'pco2_ppm',
+        'par',
+        'DAILYMaximumDryBulbTemp',
+        'DAILYMinimumDryBulbTemp',
+        'DAILYDeptFromNormalAverageTemp',
+        
+    ]
+
+    neg_max = [
+        'rel_hum',
+        'wind_speed',
+        'chlor',
+        'pco2_ppm',
+        'DAILYDeptFromNormalAverageTemp',
+        'DAILYAverageStationPressure'
+    ]
+
+    train_labels_aug = copy.deepcopy(train_labels)   # labels of augmented data set
+    train_set_aug = copy.deepcopy(train_set)         # augmented training data set
+
+    for idx in train_set.index:
+        if train_labels.iloc[idx][0] == 1:
+            for i in range(num_aug):
+                aug = copy.deepcopy(train_set.iloc[idx])
+                
+                # must randomly choose elements in the intersection of neg_max and neg_min
+                inner = list(set(pos_min) & set(pos_max))
+                temp_max = copy.deepcopy(pos_max)
+                temp_min = copy.deepcopy(pos_min)
+
+                for col in inner:
+                    if np.random.uniform() >= 0.5:
+                        temp_max.remove(col)
+                    else:
+                        temp_min.remove(col)
+
+                mini = pos_stat_df.loc['min'][temp_min] - np.abs(np.random.normal(
+                    loc=pos_stat_df.loc['min'][temp_min].values,
+                    scale=pos_stat_df.loc['std'][temp_min].values))
+
+                maxi = pos_stat_df.loc['max'][temp_max] + np.abs(np.random.normal(
+                    loc=pos_stat_df.loc['max'][temp_max].values,
+                    scale=pos_stat_df.loc['std'][temp_max].values))
+
+                aug[temp_min] = mini
+                aug[temp_max] = maxi
+                            
+                train_set_aug = train_set_aug.append(aug)
+                train_labels_aug = train_labels_aug.append(train_labels.iloc[idx])
+
+        else:
+            for i in range(num_aug):
+                aug = copy.deepcopy(train_set.iloc[idx])
+
+                # must randomly choose elements in the intersection of neg_max and neg_min
+                inner = list(set(neg_min) & set(neg_max))
+                temp_max = copy.deepcopy(neg_max)
+                temp_min = copy.deepcopy(neg_min)
+
+                for col in inner:
+                    if np.random.uniform() >= 0.5:
+                        temp_max.remove(col)
+                    else:
+                        temp_min.remove(col)
+
+                mini = neg_stat_df.loc['min'][temp_min] - np.abs(np.random.normal(
+                    loc=neg_stat_df.loc['min'][temp_min].values,
+                    scale=neg_stat_df.loc['std'][temp_min].values))
+
+                maxi = neg_stat_df.loc['max'][temp_max] + np.abs(np.random.normal(
+                    loc=neg_stat_df.loc['max'][temp_max].values,
+                    scale=neg_stat_df.loc['std'][temp_max].values))
+
+                aug[temp_min] = mini
+                aug[temp_max] = maxi
+                
+                train_set_aug = train_set_aug.append(aug)
+                train_labels_aug = train_labels_aug.append(train_labels.iloc[idx])
+
+    # shuffle data
+    rand_perm = list(np.random.permutation(len(train_set_aug)))
+
+    X_train = train_set_aug.iloc[rand_perm].values
+    y_train = train_labels_aug.iloc[rand_perm].values.ravel()
+
+    print(len(X_train))
+
 #smote = SMOTE(
 #    sampling_strategy='all',
 #    random_state=1337,
@@ -67,7 +220,6 @@ X_test = imp.transform(X_test)
 #
 #X_train, y_train = smote.fit_resample(X_train, y_train)
 
-scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
